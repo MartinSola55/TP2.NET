@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace UI.Desktop
 {
-    public partial class Menu : ApplicationForm
+    public partial class Main : ApplicationForm
     {
-        public Menu()
+        public Main()
         {
             InitializeComponent();
         }
@@ -53,6 +53,20 @@ namespace UI.Desktop
             Comisiones comisiones = new Comisiones();
             comisiones.ShowDialog();
             comisiones.Listar();
+        }
+
+        private void mnuSalir_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void Main_Shown(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            if (login.ShowDialog() != DialogResult.OK)
+            {
+                this.Dispose();
+            }
         }
     }
 }

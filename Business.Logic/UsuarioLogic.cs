@@ -19,7 +19,6 @@ namespace Business.Logic
         {
             UsuarioData = new UsuarioAdapter();
         }
-
         public Usuario GetOne(int id)
         {
             
@@ -32,18 +31,16 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
-
         public List<Usuario> GetAll()
         {
             try
             {
-            return UsuarioData.GetAll();
+                return UsuarioData.GetAll();
             } catch (Exception exceptionManejada)
             {
                 throw exceptionManejada;
             }
         }
-
         public void Save(Usuario usuario)
         {
             try
@@ -55,7 +52,6 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
-
         public void Delete(int id)
         {
             try
@@ -66,6 +62,20 @@ namespace Business.Logic
             {
                 throw exceptionManejada;
             }
+        }
+        public bool ValidaLogin(string nombre, string clave)
+        {
+            try
+            {
+                if (UsuarioData.ValidaLogin(nombre, clave))
+                {
+                    return true;
+                }
+            } catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+            return false;
         }
 
     }

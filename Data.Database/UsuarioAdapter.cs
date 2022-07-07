@@ -216,5 +216,34 @@ namespace Data.Database
                 this.CloseConnection();
             }
         }
+        public bool ValidaLogin(string nombre, string clave)
+        {
+            Usuario usr = new Usuario();
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdUsuarios = new SqlCommand("SELECT * FROM usuarios WHERE nombre_usuario = @nombre_usario AND clave = @clave", sqlConn);
+                cmdUsuarios.Parameters.Add("@nombre_usario", SqlDbType.VarChar, 50).Value = nombre;
+                cmdUsuarios.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = clave;
+                SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
+                if (drUsuarios.Read())
+                {
+                    drUsuarios.Close();
+                    return true;
+                }
+            } catch (SqlException Ex)
+            {
+                Exception exceptionManejada = new Exception("Hubo un error con la base de datos", Ex);
+                throw exceptionManejada;
+            } catch (Exception Ex)
+            {
+                Exception exceptionManejada = new Exception("Hubo un error al recuperar los datos del usuario", Ex);
+                throw exceptionManejada;
+            } finally
+            {
+                this.CloseConnection();
+            }
+            return false;
+        }
     }
 }
