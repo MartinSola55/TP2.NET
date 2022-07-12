@@ -141,8 +141,8 @@ namespace UI.Desktop
             this.Name = "Login";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Inicio de sesión";
             this.ResumeLayout(false);
             this.PerformLayout();
 

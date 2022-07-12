@@ -31,13 +31,11 @@ namespace UI.Desktop
         {
             this.tlUsuario = new System.Windows.Forms.TableLayoutPanel();
             this.lblID = new System.Windows.Forms.Label();
-            this.lblNombre = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblClave = new System.Windows.Forms.Label();
             this.lblApellido = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblConfirmarClave = new System.Windows.Forms.Label();
-            this.txtID = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtClave = new System.Windows.Forms.TextBox();
@@ -46,7 +44,9 @@ namespace UI.Desktop
             this.txtConfimarClave = new System.Windows.Forms.TextBox();
             this.chkHabilitado = new System.Windows.Forms.CheckBox();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.lblNombre = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.tlUsuario.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,18 +101,6 @@ namespace UI.Desktop
             this.lblID.Size = new System.Drawing.Size(31, 24);
             this.lblID.TabIndex = 0;
             this.lblID.Text = "ID";
-            // 
-            // lblNombre
-            // 
-            this.lblNombre.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.lblNombre.Location = new System.Drawing.Point(3, 138);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(75, 24);
-            this.lblNombre.TabIndex = 1;
-            this.lblNombre.Text = "Nombre";
             // 
             // lblEmail
             // 
@@ -174,19 +162,6 @@ namespace UI.Desktop
             this.lblConfirmarClave.TabIndex = 7;
             this.lblConfirmarClave.Text = "Confirmar Clave";
             // 
-            // txtID
-            // 
-            this.txtID.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtID.Cursor = System.Windows.Forms.Cursors.No;
-            this.txtID.Enabled = false;
-            this.txtID.Location = new System.Drawing.Point(147, 34);
-            this.txtID.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtID.Name = "txtID";
-            this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(60, 31);
-            this.txtID.TabIndex = 0;
-            this.txtID.TabStop = false;
-            // 
             // txtNombre
             // 
             this.txtNombre.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -201,7 +176,7 @@ namespace UI.Desktop
             // 
             this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
-            this.txtEmail.Location = new System.Drawing.Point(147, 230);
+            this.txtEmail.Location = new System.Drawing.Point(147, 234);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(290, 31);
@@ -211,7 +186,7 @@ namespace UI.Desktop
             // 
             this.txtClave.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtClave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
-            this.txtClave.Location = new System.Drawing.Point(147, 330);
+            this.txtClave.Location = new System.Drawing.Point(147, 334);
             this.txtClave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtClave.Name = "txtClave";
             this.txtClave.Size = new System.Drawing.Size(290, 31);
@@ -221,7 +196,7 @@ namespace UI.Desktop
             // 
             this.txtApellido.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtApellido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
-            this.txtApellido.Location = new System.Drawing.Point(628, 130);
+            this.txtApellido.Location = new System.Drawing.Point(628, 134);
             this.txtApellido.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(290, 31);
@@ -231,7 +206,7 @@ namespace UI.Desktop
             // 
             this.txtUsuario.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
-            this.txtUsuario.Location = new System.Drawing.Point(628, 230);
+            this.txtUsuario.Location = new System.Drawing.Point(628, 234);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(290, 31);
@@ -274,6 +249,18 @@ namespace UI.Desktop
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // lblNombre
+            // 
+            this.lblNombre.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.lblNombre.Location = new System.Drawing.Point(3, 138);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(75, 24);
+            this.lblNombre.TabIndex = 1;
+            this.lblNombre.Text = "Nombre";
+            // 
             // btnAceptar
             // 
             this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -286,6 +273,19 @@ namespace UI.Desktop
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // txtID
+            // 
+            this.txtID.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtID.Cursor = System.Windows.Forms.Cursors.No;
+            this.txtID.Enabled = false;
+            this.txtID.Location = new System.Drawing.Point(147, 34);
+            this.txtID.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtID.Name = "txtID";
+            this.txtID.ReadOnly = true;
+            this.txtID.Size = new System.Drawing.Size(60, 31);
+            this.txtID.TabIndex = 0;
+            this.txtID.TabStop = false;
             // 
             // UsuarioDesktop
             // 
@@ -303,6 +303,7 @@ namespace UI.Desktop
             this.Name = "UsuarioDesktop";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "UsuarioDesktop";
             this.Load += new System.EventHandler(this.UsuarioDesktop_Load);
             this.tlUsuario.ResumeLayout(false);

@@ -226,6 +226,7 @@ namespace UI.Desktop
             this.Name = "CursoDesktop";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CursoDesktop";
             this.Load += new System.EventHandler(this.CursoDesktop_Load);
             this.tlCurso.ResumeLayout(false);

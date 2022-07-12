@@ -218,7 +218,6 @@ namespace Data.Database
         }
         public bool ValidaLogin(string nombre, string clave)
         {
-            Usuario usr = new Usuario();
             try
             {
                 this.OpenConnection();

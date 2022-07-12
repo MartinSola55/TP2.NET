@@ -87,7 +87,7 @@ namespace UI.Desktop
             // 
             this.txtDesc.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
-            this.txtDesc.Location = new System.Drawing.Point(156, 217);
+            this.txtDesc.Location = new System.Drawing.Point(156, 221);
             this.txtDesc.Margin = new System.Windows.Forms.Padding(4);
             this.txtDesc.MinimumSize = new System.Drawing.Size(249, 40);
             this.txtDesc.Name = "txtDesc";
@@ -150,6 +150,7 @@ namespace UI.Desktop
             this.Name = "EspecialidadDesktop";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EspecialidadesDesktop";
             this.tlEspecialidad.ResumeLayout(false);
             this.tlEspecialidad.PerformLayout();

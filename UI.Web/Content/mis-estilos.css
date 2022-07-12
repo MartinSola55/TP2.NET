@@ -1,0 +1,32 @@
+﻿.table-oscura {
+    --bs-table-bg: #212529;
+    --bs-table-striped-bg: #2c3034;
+    --bs-table-striped-color: #fff;
+    --bs-table-active-bg: #373b3e;
+    --bs-table-active-color: #fff;
+    --bs-table-hover-bg: #1c365a;
+    --bs-table-hover-color: #fff;
+    color: #fff;
+    border-color: #373b3e;
+}
+.container-fluid .table-striped .header-tabla {
+    --bs-table-accent-bg: #00354a;
+}
+.gradient-bg {
+    background: rgb(194,228,247);
+    background: linear-gradient(0deg, rgba(194,228,247,1) 0%, rgba(255,255,255,1) 100%);
+    min-height: 100vh;
+}
+.sombra {
+    -webkit-box-shadow: 0px 0px 20px 15px rgba(0,0,0,0.55);
+    -moz-box-shadow: 0px 0px 20px 15px rgba(0,0,0,0.55);
+    box-shadow: 0px 0px 20px 15px rgba(0,0,0,0.55);
+    background-color: #ccc;
+    padding: 1rem;
+    margin: 2rem;
+    border-radius: 2rem;
+    align-self: start;
+}
+#bodyContentPlaceholder_gridActionsPanel {
+    max-width:fit-content;
+}

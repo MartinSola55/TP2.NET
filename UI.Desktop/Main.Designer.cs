@@ -136,7 +136,7 @@ namespace UI.Desktop
             this.btnUsuarios.Margin = new System.Windows.Forms.Padding(4);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(100, 50);
-            this.btnUsuarios.TabIndex = 5;
+            this.btnUsuarios.TabIndex = 1;
             this.btnUsuarios.Text = "Ver";
             this.btnUsuarios.UseVisualStyleBackColor = true;
             this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
@@ -149,7 +149,7 @@ namespace UI.Desktop
             this.btnComisiones.Margin = new System.Windows.Forms.Padding(4);
             this.btnComisiones.Name = "btnComisiones";
             this.btnComisiones.Size = new System.Drawing.Size(100, 50);
-            this.btnComisiones.TabIndex = 6;
+            this.btnComisiones.TabIndex = 3;
             this.btnComisiones.Text = "Ver";
             this.btnComisiones.UseVisualStyleBackColor = true;
             this.btnComisiones.Click += new System.EventHandler(this.btnComisiones_Click);
@@ -162,7 +162,7 @@ namespace UI.Desktop
             this.btnCursos.Margin = new System.Windows.Forms.Padding(4);
             this.btnCursos.Name = "btnCursos";
             this.btnCursos.Size = new System.Drawing.Size(100, 50);
-            this.btnCursos.TabIndex = 4;
+            this.btnCursos.TabIndex = 0;
             this.btnCursos.Text = "Ver";
             this.btnCursos.UseVisualStyleBackColor = true;
             this.btnCursos.Click += new System.EventHandler(this.btnCursos_Click);
@@ -175,7 +175,7 @@ namespace UI.Desktop
             this.btnEspecialidades.Margin = new System.Windows.Forms.Padding(4);
             this.btnEspecialidades.Name = "btnEspecialidades";
             this.btnEspecialidades.Size = new System.Drawing.Size(100, 50);
-            this.btnEspecialidades.TabIndex = 7;
+            this.btnEspecialidades.TabIndex = 2;
             this.btnEspecialidades.Text = "Ver";
             this.btnEspecialidades.UseVisualStyleBackColor = true;
             this.btnEspecialidades.Click += new System.EventHandler(this.btnEspecialidades_Click);
@@ -188,7 +188,7 @@ namespace UI.Desktop
             this.txtSalir.Location = new System.Drawing.Point(659, 293);
             this.txtSalir.Name = "txtSalir";
             this.txtSalir.Size = new System.Drawing.Size(100, 50);
-            this.txtSalir.TabIndex = 8;
+            this.txtSalir.TabIndex = 4;
             this.txtSalir.Text = "Salir";
             this.txtSalir.UseVisualStyleBackColor = true;
             this.txtSalir.Click += new System.EventHandler(this.txtSalir_Click);
@@ -233,6 +233,7 @@ namespace UI.Desktop
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SYSACAD";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.Main_Shown);

@@ -267,7 +267,7 @@ namespace UI.Desktop
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.SystemColors.Window;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(560, 527);
             this.Controls.Add(this.tcEspecialidades);
             this.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
@@ -277,6 +277,7 @@ namespace UI.Desktop
             this.MaximizeBox = false;
             this.Name = "Especialidades";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Especialidades";
             this.Load += new System.EventHandler(this.Especialidades_Load);
             this.tcEspecialidades.ContentPanel.ResumeLayout(false);

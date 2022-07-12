@@ -1,0 +1,25 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="UI.Web.Site" %>
+
+<!DOCTYPE html>
+<html class="no-js">
+    <head runat="server">
+        <title>Academia</title>
+        <link href="Content/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="Content/mis-estilos.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="Scripts/modernizr-2.8.3.js"></script>
+        <script type="text/javascript" src="Scripts/bootstrap.js"></script>
+        <script type="text/javascript" src="Scripts/mis-scripts.js"></script>
+        <link rel="icon" type="image/png" href="Images/favicon.png"/>
+    </head>
+    <body class="gradient-bg">
+        <form id="bodyForm" runat="server">
+            <asp:Menu runat="server" ID="menu" DataSourceID="SiteMapDataSource">
+            </asp:Menu>
+            <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" />
+            <div>
+                <asp:ContentPlaceHolder ID="bodyContentPlaceholder" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </form>
+    </body>
+</html>
