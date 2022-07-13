@@ -54,6 +54,12 @@ namespace UI.Desktop
             planes.ShowDialog();
             planes.Listar();
         }
+        private void btnMaterias_Click(object sender, EventArgs e)
+        {
+            Materias materias = new Materias();
+            materias.ShowDialog();
+            materias.Listar();
+        }
         private void mnuSalir_Click(object sender, EventArgs e)
         {
             this.Dispose();
@@ -144,6 +150,18 @@ namespace UI.Desktop
         {
             this.btnComisiones.BackColor = Color.FromArgb(44, 48, 52);
             this.btnComisiones.ForeColor = Color.White;
+        }
+
+        private void btnMaterias_MouseEnter(object sender, EventArgs e)
+        {
+            this.btnMaterias.BackColor = Color.White;
+            this.btnMaterias.ForeColor = Color.FromArgb(44, 48, 52);
+        }
+
+        private void btnMaterias_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnMaterias.BackColor = Color.FromArgb(44, 48, 52);
+            this.btnMaterias.ForeColor = Color.White;
         }
     }
 }

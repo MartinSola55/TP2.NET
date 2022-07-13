@@ -34,20 +34,14 @@ namespace UI.Desktop
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
             this.tcUsuarios = new System.Windows.Forms.ToolStripContainer();
             this.tlUsuarios = new System.Windows.Forms.TableLayoutPanel();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.habilitado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.tsUsuarios = new System.Windows.Forms.ToolStrip();
@@ -56,6 +50,12 @@ namespace UI.Desktop
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.habilitado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tcUsuarios.ContentPanel.SuspendLayout();
             this.tcUsuarios.TopToolStripPanel.SuspendLayout();
             this.tcUsuarios.SuspendLayout();
@@ -71,12 +71,12 @@ namespace UI.Desktop
             // 
             this.tcUsuarios.ContentPanel.Controls.Add(this.tlUsuarios);
             this.tcUsuarios.ContentPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.tcUsuarios.ContentPanel.Size = new System.Drawing.Size(732, 370);
+            this.tcUsuarios.ContentPanel.Size = new System.Drawing.Size(732, 357);
             this.tcUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcUsuarios.Location = new System.Drawing.Point(0, 0);
             this.tcUsuarios.Margin = new System.Windows.Forms.Padding(4);
             this.tcUsuarios.Name = "tcUsuarios";
-            this.tcUsuarios.Size = new System.Drawing.Size(732, 406);
+            this.tcUsuarios.Size = new System.Drawing.Size(732, 393);
             this.tcUsuarios.TabIndex = 0;
             this.tcUsuarios.Text = "toolStripContainer1";
             // 
@@ -101,7 +101,7 @@ namespace UI.Desktop
             this.tlUsuarios.RowCount = 2;
             this.tlUsuarios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tlUsuarios.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlUsuarios.Size = new System.Drawing.Size(732, 370);
+            this.tlUsuarios.Size = new System.Drawing.Size(732, 357);
             this.tlUsuarios.TabIndex = 0;
             this.tlUsuarios.Paint += new System.Windows.Forms.PaintEventHandler(this.tlUsuarios_Paint);
             // 
@@ -166,80 +166,9 @@ namespace UI.Desktop
             this.dgvUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvUsuarios.RowTemplate.Height = 24;
             this.dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUsuarios.Size = new System.Drawing.Size(724, 288);
+            this.dgvUsuarios.Size = new System.Drawing.Size(724, 277);
             this.dgvUsuarios.TabIndex = 0;
             this.dgvUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellContentClick);
-            // 
-            // id
-            // 
-            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.id.DataPropertyName = "id";
-            this.id.HeaderText = "ID";
-            this.id.MinimumWidth = 6;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.id.Width = 59;
-            // 
-            // nombre
-            // 
-            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.nombre.DataPropertyName = "nombre";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.nombre.DefaultCellStyle = dataGridViewCellStyle3;
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.MinimumWidth = 6;
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            this.nombre.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.nombre.Width = 103;
-            // 
-            // apellido
-            // 
-            this.apellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.apellido.DataPropertyName = "apellido";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.apellido.DefaultCellStyle = dataGridViewCellStyle4;
-            this.apellido.HeaderText = "Apellido";
-            this.apellido.MinimumWidth = 6;
-            this.apellido.Name = "apellido";
-            this.apellido.ReadOnly = true;
-            this.apellido.Width = 103;
-            // 
-            // usuario
-            // 
-            this.usuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.usuario.DataPropertyName = "NombreUsuario";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.usuario.DefaultCellStyle = dataGridViewCellStyle5;
-            this.usuario.HeaderText = "Usuario";
-            this.usuario.MinimumWidth = 6;
-            this.usuario.Name = "usuario";
-            this.usuario.ReadOnly = true;
-            this.usuario.Width = 99;
-            // 
-            // email
-            // 
-            this.email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.email.DataPropertyName = "email";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.email.DefaultCellStyle = dataGridViewCellStyle6;
-            this.email.HeaderText = "EMail";
-            this.email.MinimumWidth = 6;
-            this.email.Name = "email";
-            this.email.ReadOnly = true;
-            this.email.Width = 82;
-            // 
-            // habilitado
-            // 
-            this.habilitado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.habilitado.DataPropertyName = "habilitado";
-            this.habilitado.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.habilitado.HeaderText = "Habilitado";
-            this.habilitado.MinimumWidth = 6;
-            this.habilitado.Name = "habilitado";
-            this.habilitado.ReadOnly = true;
-            this.habilitado.Width = 97;
             // 
             // btnActualizar
             // 
@@ -248,7 +177,7 @@ namespace UI.Desktop
             this.btnActualizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActualizar.ForeColor = System.Drawing.Color.White;
-            this.btnActualizar.Location = new System.Drawing.Point(20, 308);
+            this.btnActualizar.Location = new System.Drawing.Point(20, 296);
             this.btnActualizar.Margin = new System.Windows.Forms.Padding(20, 4, 4, 4);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(120, 50);
@@ -266,7 +195,7 @@ namespace UI.Desktop
             this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.ForeColor = System.Drawing.Color.Red;
-            this.btnSalir.Location = new System.Drawing.Point(592, 308);
+            this.btnSalir.Location = new System.Drawing.Point(592, 296);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(120, 50);
@@ -345,19 +274,85 @@ namespace UI.Desktop
             this.tsbEliminar.Text = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "ID";
+            this.id.MinimumWidth = 6;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.id.Width = 59;
+            // 
+            // nombre
+            // 
+            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombre.DataPropertyName = "nombre";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.nombre.DefaultCellStyle = dataGridViewCellStyle3;
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.MinimumWidth = 6;
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
+            this.nombre.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // apellido
+            // 
+            this.apellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.apellido.DataPropertyName = "apellido";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.apellido.DefaultCellStyle = dataGridViewCellStyle4;
+            this.apellido.HeaderText = "Apellido";
+            this.apellido.MinimumWidth = 6;
+            this.apellido.Name = "apellido";
+            this.apellido.ReadOnly = true;
+            // 
+            // usuario
+            // 
+            this.usuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.usuario.DataPropertyName = "NombreUsuario";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.usuario.DefaultCellStyle = dataGridViewCellStyle5;
+            this.usuario.HeaderText = "Usuario";
+            this.usuario.MinimumWidth = 6;
+            this.usuario.Name = "usuario";
+            this.usuario.ReadOnly = true;
+            // 
+            // email
+            // 
+            this.email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.email.DataPropertyName = "email";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.email.DefaultCellStyle = dataGridViewCellStyle6;
+            this.email.HeaderText = "EMail";
+            this.email.MinimumWidth = 6;
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
+            // 
+            // habilitado
+            // 
+            this.habilitado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.habilitado.DataPropertyName = "habilitado";
+            this.habilitado.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.habilitado.HeaderText = "Habilitado";
+            this.habilitado.MinimumWidth = 6;
+            this.habilitado.Name = "habilitado";
+            this.habilitado.ReadOnly = true;
+            this.habilitado.Width = 97;
+            // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(732, 416);
+            this.ClientSize = new System.Drawing.Size(732, 403);
             this.Controls.Add(this.tcUsuarios);
             this.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(750, 450);
             this.Name = "Usuarios";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.ShowIcon = false;

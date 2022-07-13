@@ -29,7 +29,7 @@ namespace UI.Desktop
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlComision = new System.Windows.Forms.TableLayoutPanel();
             this.lblID = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.lblIDPlan = new System.Windows.Forms.Label();
@@ -37,40 +37,40 @@ namespace UI.Desktop
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtAnio = new System.Windows.Forms.TextBox();
-            this.txtIDPlan = new System.Windows.Forms.TextBox();
             this.lblAnio = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.txtIDPlan = new System.Windows.Forms.TextBox();
+            this.tlComision.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tlComision
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.tableLayoutPanel1.Controls.Add(this.lblID, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblDescripcion, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblIDPlan, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnAceptar, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnCancelar, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.txtDescripcion, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtAnio, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lblAnio, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtID, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtIDPlan, 1, 3);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(838, 426);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tlComision.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.tlComision.ColumnCount = 2;
+            this.tlComision.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlComision.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this.tlComision.Controls.Add(this.lblID, 0, 0);
+            this.tlComision.Controls.Add(this.lblDescripcion, 0, 1);
+            this.tlComision.Controls.Add(this.lblIDPlan, 0, 3);
+            this.tlComision.Controls.Add(this.btnAceptar, 0, 4);
+            this.tlComision.Controls.Add(this.btnCancelar, 1, 4);
+            this.tlComision.Controls.Add(this.txtDescripcion, 1, 1);
+            this.tlComision.Controls.Add(this.txtAnio, 1, 2);
+            this.tlComision.Controls.Add(this.lblAnio, 0, 2);
+            this.tlComision.Controls.Add(this.txtID, 1, 0);
+            this.tlComision.Controls.Add(this.txtIDPlan, 1, 3);
+            this.tlComision.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlComision.Location = new System.Drawing.Point(0, 0);
+            this.tlComision.Margin = new System.Windows.Forms.Padding(4);
+            this.tlComision.Name = "tlComision";
+            this.tlComision.RowCount = 5;
+            this.tlComision.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlComision.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlComision.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlComision.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlComision.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlComision.Size = new System.Drawing.Size(838, 426);
+            this.tlComision.TabIndex = 0;
             // 
             // lblID
             // 
@@ -167,17 +167,6 @@ namespace UI.Desktop
             this.txtAnio.Size = new System.Drawing.Size(194, 31);
             this.txtAnio.TabIndex = 2;
             // 
-            // txtIDPlan
-            // 
-            this.txtIDPlan.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtIDPlan.BackColor = System.Drawing.Color.White;
-            this.txtIDPlan.ForeColor = System.Drawing.Color.Black;
-            this.txtIDPlan.Location = new System.Drawing.Point(213, 282);
-            this.txtIDPlan.Margin = new System.Windows.Forms.Padding(4);
-            this.txtIDPlan.Name = "txtIDPlan";
-            this.txtIDPlan.Size = new System.Drawing.Size(194, 31);
-            this.txtIDPlan.TabIndex = 3;
-            // 
             // lblAnio
             // 
             this.lblAnio.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -197,12 +186,21 @@ namespace UI.Desktop
             this.txtID.ForeColor = System.Drawing.Color.White;
             this.txtID.Location = new System.Drawing.Point(213, 27);
             this.txtID.Margin = new System.Windows.Forms.Padding(4);
-            this.txtID.MaximumSize = new System.Drawing.Size(50, 31);
-            this.txtID.MinimumSize = new System.Drawing.Size(50, 4);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(50, 31);
+            this.txtID.Size = new System.Drawing.Size(80, 31);
             this.txtID.TabIndex = 6;
+            // 
+            // txtIDPlan
+            // 
+            this.txtIDPlan.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtIDPlan.BackColor = System.Drawing.Color.White;
+            this.txtIDPlan.ForeColor = System.Drawing.Color.Black;
+            this.txtIDPlan.Location = new System.Drawing.Point(213, 282);
+            this.txtIDPlan.Margin = new System.Windows.Forms.Padding(4);
+            this.txtIDPlan.Name = "txtIDPlan";
+            this.txtIDPlan.Size = new System.Drawing.Size(194, 31);
+            this.txtIDPlan.TabIndex = 3;
             // 
             // ComisionDesktop
             // 
@@ -211,7 +209,7 @@ namespace UI.Desktop
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(838, 426);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tlComision);
             this.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
             this.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -224,15 +222,15 @@ namespace UI.Desktop
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Datos de la comisión";
             this.Load += new System.EventHandler(this.ComisionDesktop_Load);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tlComision.ResumeLayout(false);
+            this.tlComision.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tlComision;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.Label lblAnio;

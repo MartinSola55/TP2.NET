@@ -71,12 +71,12 @@ namespace UI.Desktop
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tableLayoutPanel1);
             this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(5);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(551, 474);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(945, 454);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(5);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(551, 501);
+            this.toolStripContainer1.Size = new System.Drawing.Size(945, 490);
             this.toolStripContainer1.TabIndex = 0;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -93,13 +93,14 @@ namespace UI.Desktop
             this.tableLayoutPanel1.Controls.Add(this.btnActualizar, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnSalir, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.dgvCursos, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(551, 474);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(945, 454);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnActualizar
@@ -109,7 +110,7 @@ namespace UI.Desktop
             this.btnActualizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActualizar.ForeColor = System.Drawing.Color.White;
-            this.btnActualizar.Location = new System.Drawing.Point(20, 401);
+            this.btnActualizar.Location = new System.Drawing.Point(20, 383);
             this.btnActualizar.Margin = new System.Windows.Forms.Padding(20, 4, 4, 4);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(120, 50);
@@ -127,7 +128,7 @@ namespace UI.Desktop
             this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.ForeColor = System.Drawing.Color.Red;
-            this.btnSalir.Location = new System.Drawing.Point(411, 401);
+            this.btnSalir.Location = new System.Drawing.Point(805, 383);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(120, 50);
@@ -150,7 +151,7 @@ namespace UI.Desktop
             this.dgvCursos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvCursos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvCursos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCursos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.dgvCursos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvCursos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -199,12 +200,11 @@ namespace UI.Desktop
             this.dgvCursos.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvCursos.RowTemplate.Height = 24;
             this.dgvCursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCursos.Size = new System.Drawing.Size(541, 369);
+            this.dgvCursos.Size = new System.Drawing.Size(935, 353);
             this.dgvCursos.TabIndex = 2;
             // 
             // id
             // 
-            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.id.DataPropertyName = "ID";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.id.DefaultCellStyle = dataGridViewCellStyle3;
@@ -213,11 +213,9 @@ namespace UI.Desktop
             this.id.Name = "id";
             this.id.ReadOnly = true;
             this.id.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.id.Width = 64;
             // 
             // id_materia
             // 
-            this.id_materia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.id_materia.DataPropertyName = "IDMateria";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.id_materia.DefaultCellStyle = dataGridViewCellStyle4;
@@ -225,11 +223,9 @@ namespace UI.Desktop
             this.id_materia.MinimumWidth = 50;
             this.id_materia.Name = "id_materia";
             this.id_materia.ReadOnly = true;
-            this.id_materia.Width = 138;
             // 
             // id_comision
             // 
-            this.id_comision.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.id_comision.DataPropertyName = "IDComision";
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.id_comision.DefaultCellStyle = dataGridViewCellStyle5;
@@ -237,11 +233,9 @@ namespace UI.Desktop
             this.id_comision.MinimumWidth = 50;
             this.id_comision.Name = "id_comision";
             this.id_comision.ReadOnly = true;
-            this.id_comision.Width = 143;
             // 
             // anio_calendario
             // 
-            this.anio_calendario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.anio_calendario.DataPropertyName = "AnioCalendario";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.anio_calendario.DefaultCellStyle = dataGridViewCellStyle6;
@@ -250,11 +244,9 @@ namespace UI.Desktop
             this.anio_calendario.Name = "anio_calendario";
             this.anio_calendario.ReadOnly = true;
             this.anio_calendario.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.anio_calendario.Width = 169;
             // 
             // cupo
             // 
-            this.cupo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.cupo.DataPropertyName = "Cupo";
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.cupo.DefaultCellStyle = dataGridViewCellStyle7;
@@ -263,12 +255,12 @@ namespace UI.Desktop
             this.cupo.Name = "cupo";
             this.cupo.ReadOnly = true;
             this.cupo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.cupo.Width = 81;
             // 
             // toolStrip1
             // 
             this.toolStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -278,36 +270,37 @@ namespace UI.Desktop
             this.toolStripSeparator2,
             this.tsbEliminar});
             this.toolStrip1.Location = new System.Drawing.Point(4, 0);
+            this.toolStrip1.MinimumSize = new System.Drawing.Size(0, 36);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(196, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(221, 36);
             this.toolStrip1.TabIndex = 0;
             // 
             // tsbNuevo
             // 
             this.tsbNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbNuevo.Font = new System.Drawing.Font("Comic Sans MS", 9F);
+            this.tsbNuevo.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
             this.tsbNuevo.ForeColor = System.Drawing.Color.Green;
             this.tsbNuevo.Image = ((System.Drawing.Image)(resources.GetObject("tsbNuevo.Image")));
             this.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNuevo.Name = "tsbNuevo";
-            this.tsbNuevo.Size = new System.Drawing.Size(56, 24);
+            this.tsbNuevo.Size = new System.Drawing.Size(65, 33);
             this.tsbNuevo.Text = "Nuevo";
             this.tsbNuevo.Click += new System.EventHandler(this.tsbNuevo_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 36);
             // 
             // tsbEditar
             // 
             this.tsbEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbEditar.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbEditar.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
             this.tsbEditar.ForeColor = System.Drawing.Color.White;
             this.tsbEditar.Image = ((System.Drawing.Image)(resources.GetObject("tsbEditar.Image")));
             this.tsbEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEditar.Name = "tsbEditar";
-            this.tsbEditar.Size = new System.Drawing.Size(57, 24);
+            this.tsbEditar.Size = new System.Drawing.Size(64, 33);
             this.tsbEditar.Text = "Editar";
             this.tsbEditar.Click += new System.EventHandler(this.tsbEditar_Click);
             this.tsbEditar.MouseEnter += new System.EventHandler(this.tsbEditar_MouseEnter);
@@ -316,17 +309,17 @@ namespace UI.Desktop
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 36);
             // 
             // tsbEliminar
             // 
             this.tsbEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbEliminar.Font = new System.Drawing.Font("Comic Sans MS", 9F);
+            this.tsbEliminar.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
             this.tsbEliminar.ForeColor = System.Drawing.Color.Red;
             this.tsbEliminar.Image = ((System.Drawing.Image)(resources.GetObject("tsbEliminar.Image")));
             this.tsbEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEliminar.Name = "tsbEliminar";
-            this.tsbEliminar.Size = new System.Drawing.Size(68, 24);
+            this.tsbEliminar.Size = new System.Drawing.Size(77, 33);
             this.tsbEliminar.Text = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
@@ -336,14 +329,13 @@ namespace UI.Desktop
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            this.ClientSize = new System.Drawing.Size(551, 514);
+            this.ClientSize = new System.Drawing.Size(945, 503);
             this.Controls.Add(this.toolStripContainer1);
             this.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(570, 550);
             this.Name = "Cursos";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 13);
             this.ShowIcon = false;

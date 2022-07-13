@@ -34,18 +34,14 @@ namespace UI.Desktop
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Planes));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Planes));
             this.tcPlanes = new System.Windows.Forms.ToolStripContainer();
             this.tlPlanes = new System.Windows.Forms.TableLayoutPanel();
             this.dgvPlanes = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_especialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.desc_especialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.tsPlanes = new System.Windows.Forms.ToolStrip();
@@ -54,6 +50,10 @@ namespace UI.Desktop
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_especialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.desc_especialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcPlanes.ContentPanel.SuspendLayout();
             this.tcPlanes.TopToolStripPanel.SuspendLayout();
             this.tcPlanes.SuspendLayout();
@@ -68,12 +68,12 @@ namespace UI.Desktop
             // tcPlanes.ContentPanel
             // 
             this.tcPlanes.ContentPanel.Controls.Add(this.tlPlanes);
-            this.tcPlanes.ContentPanel.Size = new System.Drawing.Size(800, 404);
+            this.tcPlanes.ContentPanel.Size = new System.Drawing.Size(782, 407);
             this.tcPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcPlanes.Location = new System.Drawing.Point(0, 0);
             this.tcPlanes.Margin = new System.Windows.Forms.Padding(4);
             this.tcPlanes.Name = "tcPlanes";
-            this.tcPlanes.Size = new System.Drawing.Size(800, 440);
+            this.tcPlanes.Size = new System.Drawing.Size(782, 443);
             this.tcPlanes.TabIndex = 0;
             this.tcPlanes.Text = "toolStripContainer1";
             // 
@@ -98,7 +98,7 @@ namespace UI.Desktop
             this.tlPlanes.RowCount = 2;
             this.tlPlanes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tlPlanes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlPlanes.Size = new System.Drawing.Size(800, 404);
+            this.tlPlanes.Size = new System.Drawing.Size(782, 407);
             this.tlPlanes.TabIndex = 0;
             // 
             // dgvPlanes
@@ -160,63 +160,8 @@ namespace UI.Desktop
             this.dgvPlanes.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvPlanes.RowTemplate.Height = 24;
             this.dgvPlanes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPlanes.Size = new System.Drawing.Size(792, 315);
+            this.dgvPlanes.Size = new System.Drawing.Size(774, 317);
             this.dgvPlanes.TabIndex = 0;
-            // 
-            // id
-            // 
-            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.id.DataPropertyName = "ID";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            this.id.DefaultCellStyle = dataGridViewCellStyle3;
-            this.id.HeaderText = "ID";
-            this.id.MinimumWidth = 6;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Width = 59;
-            // 
-            // descripcion
-            // 
-            this.descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.descripcion.DataPropertyName = "Descripcion";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            this.descripcion.DefaultCellStyle = dataGridViewCellStyle4;
-            this.descripcion.HeaderText = "Descripción";
-            this.descripcion.MinimumWidth = 6;
-            this.descripcion.Name = "descripcion";
-            this.descripcion.ReadOnly = true;
-            this.descripcion.Width = 130;
-            // 
-            // id_especialidad
-            // 
-            this.id_especialidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.id_especialidad.DataPropertyName = "IDEspecialidad";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            this.id_especialidad.DefaultCellStyle = dataGridViewCellStyle5;
-            this.id_especialidad.HeaderText = "ID Especialidad";
-            this.id_especialidad.MinimumWidth = 6;
-            this.id_especialidad.Name = "id_especialidad";
-            this.id_especialidad.ReadOnly = true;
-            this.id_especialidad.Width = 148;
-            // 
-            // desc_especialidad
-            // 
-            this.desc_especialidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            this.desc_especialidad.DefaultCellStyle = dataGridViewCellStyle6;
-            this.desc_especialidad.HeaderText = "Descripción especialidad";
-            this.desc_especialidad.MinimumWidth = 6;
-            this.desc_especialidad.Name = "desc_especialidad";
-            this.desc_especialidad.ReadOnly = true;
-            this.desc_especialidad.Width = 211;
             // 
             // btnActualizar
             // 
@@ -225,7 +170,7 @@ namespace UI.Desktop
             this.btnActualizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActualizar.ForeColor = System.Drawing.Color.White;
-            this.btnActualizar.Location = new System.Drawing.Point(20, 338);
+            this.btnActualizar.Location = new System.Drawing.Point(20, 341);
             this.btnActualizar.Margin = new System.Windows.Forms.Padding(20, 4, 4, 4);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(120, 50);
@@ -243,7 +188,7 @@ namespace UI.Desktop
             this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.ForeColor = System.Drawing.Color.Red;
-            this.btnSalir.Location = new System.Drawing.Point(660, 338);
+            this.btnSalir.Location = new System.Drawing.Point(642, 341);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(120, 50);
@@ -325,17 +270,69 @@ namespace UI.Desktop
             this.tsbEliminar.Text = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.id.DataPropertyName = "ID";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            this.id.DefaultCellStyle = dataGridViewCellStyle3;
+            this.id.HeaderText = "ID";
+            this.id.MinimumWidth = 6;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Width = 59;
+            // 
+            // descripcion
+            // 
+            this.descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.descripcion.DataPropertyName = "Descripcion";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            this.descripcion.DefaultCellStyle = dataGridViewCellStyle4;
+            this.descripcion.HeaderText = "Descripción";
+            this.descripcion.MinimumWidth = 6;
+            this.descripcion.Name = "descripcion";
+            this.descripcion.ReadOnly = true;
+            // 
+            // id_especialidad
+            // 
+            this.id_especialidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.id_especialidad.DataPropertyName = "IDEspecialidad";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            this.id_especialidad.DefaultCellStyle = dataGridViewCellStyle5;
+            this.id_especialidad.HeaderText = "ID Especialidad";
+            this.id_especialidad.MinimumWidth = 6;
+            this.id_especialidad.Name = "id_especialidad";
+            this.id_especialidad.ReadOnly = true;
+            this.id_especialidad.Width = 162;
+            // 
+            // desc_especialidad
+            // 
+            this.desc_especialidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            this.desc_especialidad.DefaultCellStyle = dataGridViewCellStyle6;
+            this.desc_especialidad.HeaderText = "Descripción especialidad";
+            this.desc_especialidad.MinimumWidth = 6;
+            this.desc_especialidad.Name = "desc_especialidad";
+            this.desc_especialidad.ReadOnly = true;
+            // 
             // Planes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(782, 453);
             this.Controls.Add(this.tcPlanes);
             this.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "Planes";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.ShowIcon = false;
@@ -366,11 +363,11 @@ namespace UI.Desktop
         private System.Windows.Forms.ToolStripButton tsbNuevo;
         private System.Windows.Forms.ToolStripButton tsbEditar;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_especialidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn desc_especialidad;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

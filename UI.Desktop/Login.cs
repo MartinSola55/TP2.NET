@@ -42,7 +42,6 @@ namespace UI.Desktop
         {
             if (this.Validar())
             {
-                MessageBox.Show("Ha ingresado correctamente al sistema", "Enhorabuena", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
             } else
             {

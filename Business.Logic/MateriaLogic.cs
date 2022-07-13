@@ -9,23 +9,23 @@ using System.Data.SqlClient;
 
 namespace Business.Logic
 {
-    public class ComisionLogic : BusinessLogic
+    public class MateriaLogic : BusinessLogic
     {
-        public ComisionAdapter ComisionData
+        public MateriaAdapter MateriaData
         {
             get; set;
         }
-        public ComisionLogic()
+        public MateriaLogic()
         {
-            ComisionData = new ComisionAdapter();
+            MateriaData = new MateriaAdapter();
         }
 
-        public Comision GetOne(int id)
+        public Materia GetOne(int id)
         {
 
             try
             {
-                return ComisionData.GetOne(id);
+                return MateriaData.GetOne(id);
             }
             catch (Exception exceptionManejada)
             {
@@ -33,11 +33,11 @@ namespace Business.Logic
             }
         }
 
-        public List<Comision> GetAll()
+        public List<Materia> GetAll()
         {
             try
             {
-                return ComisionData.GetAll();
+                return MateriaData.GetAll();
             }
             catch (Exception exceptionManejada)
             {
@@ -45,11 +45,11 @@ namespace Business.Logic
             }
         }
 
-        public void Save(Comision comision)
+        public void Save(Materia materia)
         {
             try
             {
-                ComisionData.Save(comision);
+                MateriaData.Save(materia);
             }
             catch (Exception exceptionManejada)
             {
@@ -61,7 +61,7 @@ namespace Business.Logic
         {
             try
             {
-                ComisionData.Delete(id);
+                MateriaData.Delete(id);
             }
             catch (Exception exceptionManejada)
             {
