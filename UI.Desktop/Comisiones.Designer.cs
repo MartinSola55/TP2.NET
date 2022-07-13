@@ -29,11 +29,12 @@ namespace UI.Desktop
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Comisiones));
             this.tcComisiones = new System.Windows.Forms.ToolStripContainer();
             this.tlComisiones = new System.Windows.Forms.TableLayoutPanel();
@@ -46,7 +47,9 @@ namespace UI.Desktop
             this.btnSalir = new System.Windows.Forms.Button();
             this.tsComisiones = new System.Windows.Forms.ToolStrip();
             this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEliminnar = new System.Windows.Forms.ToolStripButton();
             this.tcComisiones.ContentPanel.SuspendLayout();
             this.tcComisiones.TopToolStripPanel.SuspendLayout();
@@ -74,6 +77,7 @@ namespace UI.Desktop
             // 
             // tcComisiones.TopToolStripPanel
             // 
+            this.tcComisiones.TopToolStripPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.tcComisiones.TopToolStripPanel.Controls.Add(this.tsComisiones);
             // 
             // tlComisiones
@@ -89,8 +93,8 @@ namespace UI.Desktop
             this.tlComisiones.Margin = new System.Windows.Forms.Padding(4);
             this.tlComisiones.Name = "tlComisiones";
             this.tlComisiones.RowCount = 2;
-            this.tlComisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.tlComisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tlComisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tlComisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlComisiones.Size = new System.Drawing.Size(612, 429);
             this.tlComisiones.TabIndex = 0;
             // 
@@ -100,23 +104,24 @@ namespace UI.Desktop
             this.dgvComisiones.AllowUserToDeleteRows = false;
             this.dgvComisiones.AllowUserToResizeColumns = false;
             this.dgvComisiones.AllowUserToResizeRows = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            this.dgvComisiones.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            this.dgvComisiones.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvComisiones.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvComisiones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvComisiones.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvComisiones.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.dgvComisiones.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvComisiones.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvComisiones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvComisiones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvComisiones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvComisiones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -124,25 +129,35 @@ namespace UI.Desktop
             this.anio_especialidad,
             this.id_plan});
             this.tlComisiones.SetColumnSpan(this.dgvComisiones, 2);
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.DarkSlateGray;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.LightSeaGreen;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvComisiones.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.DarkSlateGray;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(54)))), ((int)(((byte)(90)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvComisiones.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvComisiones.EnableHeadersVisualStyles = false;
             this.dgvComisiones.Location = new System.Drawing.Point(4, 4);
             this.dgvComisiones.Margin = new System.Windows.Forms.Padding(4);
             this.dgvComisiones.MultiSelect = false;
             this.dgvComisiones.Name = "dgvComisiones";
             this.dgvComisiones.ReadOnly = true;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(54)))), ((int)(((byte)(90)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvComisiones.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvComisiones.RowHeadersWidth = 51;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.PowderBlue;
-            this.dgvComisiones.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            this.dgvComisiones.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvComisiones.RowTemplate.Height = 24;
             this.dgvComisiones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvComisiones.Size = new System.Drawing.Size(604, 378);
+            this.dgvComisiones.Size = new System.Drawing.Size(604, 335);
             this.dgvComisiones.TabIndex = 0;
             // 
             // id
@@ -153,13 +168,13 @@ namespace UI.Desktop
             this.id.Name = "id";
             this.id.ReadOnly = true;
             this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.id.Width = 60;
+            this.id.Width = 59;
             // 
             // descripcion
             // 
             this.descripcion.DataPropertyName = "Descripcion";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.descripcion.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.descripcion.DefaultCellStyle = dataGridViewCellStyle3;
             this.descripcion.HeaderText = "Descripción";
             this.descripcion.MinimumWidth = 150;
             this.descripcion.Name = "descripcion";
@@ -174,7 +189,7 @@ namespace UI.Desktop
             this.anio_especialidad.Name = "anio_especialidad";
             this.anio_especialidad.ReadOnly = true;
             this.anio_especialidad.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.anio_especialidad.Width = 172;
+            this.anio_especialidad.Width = 171;
             // 
             // id_plan
             // 
@@ -184,81 +199,106 @@ namespace UI.Desktop
             this.id_plan.Name = "id_plan";
             this.id_plan.ReadOnly = true;
             this.id_plan.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.id_plan.Width = 97;
+            this.id_plan.Width = 96;
             // 
             // btnActualizar
             // 
-            this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnActualizar.BackColor = System.Drawing.SystemColors.Window;
+            this.btnActualizar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnActualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.btnActualizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnActualizar.Location = new System.Drawing.Point(4, 390);
-            this.btnActualizar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizar.ForeColor = System.Drawing.Color.White;
+            this.btnActualizar.Location = new System.Drawing.Point(20, 361);
+            this.btnActualizar.Margin = new System.Windows.Forms.Padding(20, 4, 4, 4);
             this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(125, 35);
+            this.btnActualizar.Size = new System.Drawing.Size(120, 50);
             this.btnActualizar.TabIndex = 1;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.UseVisualStyleBackColor = false;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            this.btnActualizar.MouseEnter += new System.EventHandler(this.btnActualizar_MouseEnter);
+            this.btnActualizar.MouseLeave += new System.EventHandler(this.btnActualizar_MouseLeave);
             // 
             // btnSalir
             // 
-            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalir.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSalir.Location = new System.Drawing.Point(508, 390);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalir.ForeColor = System.Drawing.Color.Red;
+            this.btnSalir.Location = new System.Drawing.Point(472, 361);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(100, 35);
+            this.btnSalir.Size = new System.Drawing.Size(120, 50);
             this.btnSalir.TabIndex = 2;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            this.btnSalir.MouseEnter += new System.EventHandler(this.btnSalir_MouseEnter);
+            this.btnSalir.MouseLeave += new System.EventHandler(this.btnSalir_MouseLeave);
             // 
             // tsComisiones
             // 
+            this.tsComisiones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.tsComisiones.Dock = System.Windows.Forms.DockStyle.None;
             this.tsComisiones.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsComisiones.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsComisiones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbNuevo,
+            this.toolStripSeparator1,
             this.tsbEditar,
+            this.toolStripSeparator2,
             this.tsbEliminnar});
             this.tsComisiones.Location = new System.Drawing.Point(4, 0);
             this.tsComisiones.MinimumSize = new System.Drawing.Size(0, 36);
             this.tsComisiones.Name = "tsComisiones";
-            this.tsComisiones.Size = new System.Drawing.Size(244, 36);
+            this.tsComisiones.Size = new System.Drawing.Size(196, 36);
             this.tsComisiones.TabIndex = 0;
             // 
             // tsbNuevo
             // 
+            this.tsbNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbNuevo.Font = new System.Drawing.Font("Comic Sans MS", 9F);
+            this.tsbNuevo.ForeColor = System.Drawing.Color.Green;
             this.tsbNuevo.Image = ((System.Drawing.Image)(resources.GetObject("tsbNuevo.Image")));
             this.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNuevo.Name = "tsbNuevo";
-            this.tsbNuevo.Size = new System.Drawing.Size(76, 33);
+            this.tsbNuevo.Size = new System.Drawing.Size(56, 33);
             this.tsbNuevo.Text = "Nueva";
             this.tsbNuevo.Click += new System.EventHandler(this.tsbNuevo_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 36);
+            // 
             // tsbEditar
             // 
+            this.tsbEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbEditar.Font = new System.Drawing.Font("Comic Sans MS", 9F);
-            this.tsbEditar.ForeColor = System.Drawing.Color.Black;
+            this.tsbEditar.ForeColor = System.Drawing.Color.White;
             this.tsbEditar.Image = ((System.Drawing.Image)(resources.GetObject("tsbEditar.Image")));
             this.tsbEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEditar.Name = "tsbEditar";
-            this.tsbEditar.Size = new System.Drawing.Size(77, 33);
+            this.tsbEditar.Size = new System.Drawing.Size(57, 33);
             this.tsbEditar.Text = "Editar";
             this.tsbEditar.Click += new System.EventHandler(this.tsbEditar_Click);
+            this.tsbEditar.MouseEnter += new System.EventHandler(this.tsbEditar_MouseEnter);
+            this.tsbEditar.MouseLeave += new System.EventHandler(this.tsbEditar_MouseLeave);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 36);
             // 
             // tsbEliminnar
             // 
+            this.tsbEliminnar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbEliminnar.Font = new System.Drawing.Font("Comic Sans MS", 9F);
-            this.tsbEliminnar.ForeColor = System.Drawing.Color.Crimson;
+            this.tsbEliminnar.ForeColor = System.Drawing.Color.Red;
             this.tsbEliminnar.Image = ((System.Drawing.Image)(resources.GetObject("tsbEliminnar.Image")));
             this.tsbEliminnar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEliminnar.Name = "tsbEliminnar";
-            this.tsbEliminnar.Size = new System.Drawing.Size(88, 33);
+            this.tsbEliminnar.Size = new System.Drawing.Size(68, 33);
             this.tsbEliminnar.Text = "Eliminar";
             this.tsbEliminnar.Click += new System.EventHandler(this.tsbEliminnar_Click);
             // 
@@ -267,7 +307,7 @@ namespace UI.Desktop
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.ClientSize = new System.Drawing.Size(612, 465);
             this.Controls.Add(this.tcComisiones);
             this.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
@@ -308,5 +348,7 @@ namespace UI.Desktop
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn anio_especialidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_plan;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

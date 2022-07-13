@@ -45,6 +45,7 @@ namespace UI.Desktop
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
@@ -55,9 +56,9 @@ namespace UI.Desktop
             this.tableLayoutPanel1.Controls.Add(this.btnCancelar, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.txtDescripcion, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtAnio, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtIDPlan, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.lblAnio, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtID, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtIDPlan, 1, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
@@ -75,118 +76,137 @@ namespace UI.Desktop
             // 
             this.lblID.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblID.AutoSize = true;
+            this.lblID.ForeColor = System.Drawing.Color.White;
             this.lblID.Location = new System.Drawing.Point(4, 30);
             this.lblID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(31, 24);
+            this.lblID.Size = new System.Drawing.Size(36, 24);
             this.lblID.TabIndex = 0;
-            this.lblID.Text = "ID";
+            this.lblID.Text = "ID:";
             // 
             // lblDescripcion
             // 
             this.lblDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.ForeColor = System.Drawing.Color.White;
             this.lblDescripcion.Location = new System.Drawing.Point(4, 115);
             this.lblDescripcion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(102, 24);
+            this.lblDescripcion.Size = new System.Drawing.Size(107, 24);
             this.lblDescripcion.TabIndex = 1;
-            this.lblDescripcion.Text = "Descripción";
+            this.lblDescripcion.Text = "Descripción:";
             // 
             // lblIDPlan
             // 
             this.lblIDPlan.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblIDPlan.AutoSize = true;
+            this.lblIDPlan.ForeColor = System.Drawing.Color.White;
             this.lblIDPlan.Location = new System.Drawing.Point(4, 285);
             this.lblIDPlan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIDPlan.Name = "lblIDPlan";
-            this.lblIDPlan.Size = new System.Drawing.Size(68, 24);
+            this.lblIDPlan.Size = new System.Drawing.Size(73, 24);
             this.lblIDPlan.TabIndex = 3;
-            this.lblIDPlan.Text = "ID plan";
+            this.lblIDPlan.Text = "ID Plan:";
             // 
             // btnAceptar
             // 
             this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.btnAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAceptar.Location = new System.Drawing.Point(4, 358);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAceptar.ForeColor = System.Drawing.Color.Green;
+            this.btnAceptar.Location = new System.Drawing.Point(20, 358);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(20, 4, 4, 4);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(100, 50);
+            this.btnAceptar.Size = new System.Drawing.Size(120, 50);
             this.btnAceptar.TabIndex = 4;
             this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.UseVisualStyleBackColor = false;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            this.btnAceptar.MouseEnter += new System.EventHandler(this.btnAceptar_MouseEnter);
+            this.btnAceptar.MouseLeave += new System.EventHandler(this.btnAceptar_MouseLeave);
             // 
             // btnCancelar
             // 
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancelar.Location = new System.Drawing.Point(734, 358);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.ForeColor = System.Drawing.Color.Red;
+            this.btnCancelar.Location = new System.Drawing.Point(698, 358);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(100, 50);
+            this.btnCancelar.Size = new System.Drawing.Size(120, 50);
             this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.MouseEnter += new System.EventHandler(this.btnCancelar_MouseEnter);
+            this.btnCancelar.MouseLeave += new System.EventHandler(this.btnCancelar_MouseLeave);
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtDescripcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
+            this.txtDescripcion.BackColor = System.Drawing.Color.White;
+            this.txtDescripcion.ForeColor = System.Drawing.Color.Black;
             this.txtDescripcion.Location = new System.Drawing.Point(213, 112);
             this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescripcion.MinimumSize = new System.Drawing.Size(350, 4);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(450, 31);
-            this.txtDescripcion.TabIndex = 7;
+            this.txtDescripcion.TabIndex = 1;
             // 
             // txtAnio
             // 
             this.txtAnio.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtAnio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
+            this.txtAnio.BackColor = System.Drawing.Color.White;
+            this.txtAnio.ForeColor = System.Drawing.Color.Black;
             this.txtAnio.Location = new System.Drawing.Point(213, 197);
             this.txtAnio.Margin = new System.Windows.Forms.Padding(4);
             this.txtAnio.Name = "txtAnio";
             this.txtAnio.Size = new System.Drawing.Size(194, 31);
-            this.txtAnio.TabIndex = 8;
+            this.txtAnio.TabIndex = 2;
             // 
             // txtIDPlan
             // 
             this.txtIDPlan.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtIDPlan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
+            this.txtIDPlan.BackColor = System.Drawing.Color.White;
+            this.txtIDPlan.ForeColor = System.Drawing.Color.Black;
             this.txtIDPlan.Location = new System.Drawing.Point(213, 282);
             this.txtIDPlan.Margin = new System.Windows.Forms.Padding(4);
             this.txtIDPlan.Name = "txtIDPlan";
             this.txtIDPlan.Size = new System.Drawing.Size(194, 31);
-            this.txtIDPlan.TabIndex = 9;
+            this.txtIDPlan.TabIndex = 3;
             // 
             // lblAnio
             // 
             this.lblAnio.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblAnio.AutoSize = true;
+            this.lblAnio.ForeColor = System.Drawing.Color.White;
             this.lblAnio.Location = new System.Drawing.Point(4, 200);
             this.lblAnio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAnio.Name = "lblAnio";
-            this.lblAnio.Size = new System.Drawing.Size(143, 24);
+            this.lblAnio.Size = new System.Drawing.Size(148, 24);
             this.lblAnio.TabIndex = 2;
-            this.lblAnio.Text = "Año especialidad";
+            this.lblAnio.Text = "Año especialidad:";
             // 
             // txtID
             // 
             this.txtID.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtID.Enabled = false;
-            this.txtID.Location = new System.Drawing.Point(213, 40);
+            this.txtID.ForeColor = System.Drawing.Color.White;
+            this.txtID.Location = new System.Drawing.Point(213, 27);
             this.txtID.Margin = new System.Windows.Forms.Padding(4);
-            this.txtID.MaximumSize = new System.Drawing.Size(50, 4);
+            this.txtID.MaximumSize = new System.Drawing.Size(50, 31);
             this.txtID.MinimumSize = new System.Drawing.Size(50, 4);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(50, 4);
+            this.txtID.Size = new System.Drawing.Size(50, 31);
             this.txtID.TabIndex = 6;
             // 
             // ComisionDesktop
             // 
+            this.AcceptButton = this.btnAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
@@ -202,7 +222,7 @@ namespace UI.Desktop
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ComisionDesktop";
+            this.Text = "Datos de la comisión";
             this.Load += new System.EventHandler(this.ComisionDesktop_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

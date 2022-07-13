@@ -59,5 +59,29 @@ namespace UI.Desktop
         {
             this.DialogResult = DialogResult.No;
         }
+
+        private void btnIngresar_MouseEnter(object sender, EventArgs e)
+        {
+            this.btnIngresar.BackColor = Color.White;
+            this.btnIngresar.ForeColor = Color.FromArgb(44, 48, 52);
+        }
+
+        private void btnIngresar_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnIngresar.BackColor = Color.FromArgb(44, 48, 52);
+            this.btnIngresar.ForeColor = Color.White;
+        }
+
+        private void btnSalir_MouseEnter(object sender, EventArgs e)
+        {
+            this.btnSalir.BackColor = Color.Red;
+            this.btnSalir.ForeColor = Color.FromArgb(44, 48, 52);
+        }
+
+        private void btnSalir_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnSalir.BackColor = Color.FromArgb(44, 48, 52);
+            this.btnSalir.ForeColor = Color.Red;
+        }
     }
 }

@@ -148,5 +148,29 @@ namespace UI.Desktop
         {
             this.Close();
         }
+
+        private void btnAceptar_MouseEnter(object sender, EventArgs e)
+        {
+            this.btnAceptar.BackColor = Color.Green;
+            this.btnAceptar.ForeColor = Color.FromArgb(44, 48, 52);
+        }
+
+        private void btnAceptar_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnAceptar.BackColor = Color.FromArgb(44, 48, 52);
+            this.btnAceptar.ForeColor = Color.Green;
+        }
+
+        private void btnCancelar_MouseEnter(object sender, EventArgs e)
+        {
+            this.btnCancelar.BackColor = Color.Red;
+            this.btnCancelar.ForeColor = Color.FromArgb(44, 48, 52);
+        }
+
+        private void btnCancelar_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnCancelar.BackColor = Color.FromArgb(44, 48, 52);
+            this.btnCancelar.ForeColor = Color.Red;
+        }
     }
 }

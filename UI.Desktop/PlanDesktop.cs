@@ -12,23 +12,18 @@ using Business.Logic;
 
 namespace UI.Desktop
 {
-    public partial class ComisionDesktop : ApplicationForm
+    public partial class PlanDesktop : ApplicationForm
     {
-        public ComisionDesktop()
+        public PlanDesktop()
         {
             InitializeComponent();
         }
-
-        private void ComisionDesktop_Load(object sender, EventArgs e)
-        {
-
-        }
-        public Comision ComisionActual
+        public Business.Entities.Plan PlanActual
         {
             get;
             set;
         }
-        public ComisionDesktop(ModoForm modo) : this()
+        public PlanDesktop(ModoForm modo) : this()
         {
             Modo = modo;
             if (modo == ModoForm.Alta)
@@ -37,19 +32,18 @@ namespace UI.Desktop
             }
 
         }
-        public ComisionDesktop(int id, ModoForm modo) : this()
+        public PlanDesktop(int id, ModoForm modo) : this()
         {
-            ComisionLogic cl = new ComisionLogic();
-            ComisionActual = cl.GetOne(id);
+            PlanLogic pl = new PlanLogic();
+            PlanActual = pl.GetOne(id);
             Modo = modo;
             this.MapearDeDatos();
         }
         public override void MapearDeDatos()
         {
-            this.txtID.Text = this.ComisionActual.ID.ToString();
-            this.txtDescripcion.Text = this.ComisionActual.Descripcion;
-            this.txtAnio.Text = this.ComisionActual.AnioEspecialidad.ToString();
-            this.txtIDPlan.Text = this.ComisionActual.IDPlan.ToString();
+            this.txtID.Text = this.PlanActual.ID.ToString();
+            this.txtDescripcion.Text = this.PlanActual.Descripcion;
+            this.txtIDEsp.Text = this.PlanActual.IDEspecialidad.ToString();
             switch (this.Modo)
             {
                 case ModoForm.Modificacion:
@@ -61,8 +55,7 @@ namespace UI.Desktop
                     {
                         btnAceptar.Text = "Eliminar";
                         txtDescripcion.Enabled = false;
-                        txtAnio.Enabled = false;
-                        txtIDPlan.Enabled = false;
+                        txtIDEsp.Enabled = false;
                         break;
                     }
                 case ModoForm.Consulta:
@@ -76,37 +69,32 @@ namespace UI.Desktop
         {
             if (this.Modo == ModoForm.Alta)
             {
-                Comision comision = new Comision();
-                ComisionActual = comision;
+                Business.Entities.Plan plan = new Business.Entities.Plan();
+                PlanActual = plan;
             }
             if (this.Modo == ModoForm.Alta || this.Modo == ModoForm.Modificacion)
             {
-                this.ComisionActual.Descripcion = this.txtDescripcion.Text;
-                this.ComisionActual.AnioEspecialidad = int.Parse(this.txtAnio.Text);
-                this.ComisionActual.IDPlan = int.Parse(this.txtIDPlan.Text);
+                this.PlanActual.Descripcion = this.txtDescripcion.Text;
+                this.PlanActual.IDEspecialidad = int.Parse(this.txtIDEsp.Text);
                 if (this.Modo == ModoForm.Alta)
                 {
-                    this.ComisionActual.State = BusinessEntity.States.New;
+                    this.PlanActual.State = BusinessEntity.States.New;
                 }
                 else
                 {
-                    this.ComisionActual.State = BusinessEntity.States.Modified;
+                    this.PlanActual.State = BusinessEntity.States.Modified;
                 }
             }
             if (this.Modo == ModoForm.Baja)
             {
-                this.ComisionActual.State = BusinessEntity.States.Deleted;
+                this.PlanActual.State = BusinessEntity.States.Deleted;
             }
         }
         public override bool Validar()
         {
-            if (this.txtDescripcion.Text.Length == 0 || this.txtAnio.Text.Length == 0 || this.txtIDPlan.Text.Length == 0)
+            if (this.txtDescripcion.Text.Length == 0 || this.txtIDEsp.Text.Length == 0)
             {
                 this.Notificar("ERROR", "Debes completar todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            } else if (int.Parse(this.txtAnio.Text) < 1980 || int.Parse(this.txtAnio.Text) > System.DateTime.Now.Year)
-            {
-                this.Notificar("ERROR", "Debes añadir un año válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
@@ -114,10 +102,9 @@ namespace UI.Desktop
         public override void GuardarCambios()
         {
             this.MapearADatos();
-            ComisionLogic cl = new ComisionLogic();
-            cl.Save(ComisionActual);
+            PlanLogic pl = new PlanLogic();
+            pl.Save(PlanActual);
         }
-
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             try
@@ -127,12 +114,14 @@ namespace UI.Desktop
                     this.GuardarCambios();
                     this.Close();
                 }
-            } catch (FormatException)
+            }
+            catch (FormatException)
             {
-                MessageBox.Show("El formato del año o el ID no son válidos", "ERROR AL GUARDAR LA COMISIÓN", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } catch (Exception exceptionManejada)
+                MessageBox.Show("Debes ingresar un número de ID", "ERROR AL GUARDAR EL PLAN", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception exceptionManejada)
             {
-                MessageBox.Show(exceptionManejada.Message, "ERROR AL GUARDAR LA COMISIÓN", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(exceptionManejada.Message, "ERROR AL GUARDAR EL PLAN", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

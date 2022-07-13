@@ -9,57 +9,6 @@ namespace Data.Database
 {
     public class UsuarioAdapter : Adapter
     {
- #region DatosEnMemoria
-        // Esta regi�n solo se usa en esta etapa donde los datos se mantienen en memoria.
-        // Al modificar este proyecto para que acceda a la base de datos esta ser� eliminada
-        private static List<Usuario> _Usuarios;
-
-        private static List<Usuario> Usuarios
-        {
-            get
-            {
-                if (_Usuarios == null)
-                {
-                    _Usuarios = new List<Business.Entities.Usuario>();
-                    Business.Entities.Usuario usr;
-                    usr = new Business.Entities.Usuario();
-                    usr.ID = 1;
-                    usr.State = Business.Entities.BusinessEntity.States.Unmodified;
-                    usr.Nombre = "Luis Miguel";
-                    usr.Apellido = "Rodriguez";
-                    usr.NombreUsuario = "soyelpulga10";
-                    usr.Clave = "tesaquecampeon";
-                    usr.Email = "tupulguita10@gmail.com";
-                    usr.Habilitado = true;
-                    _Usuarios.Add(usr);
-
-                    usr = new Business.Entities.Usuario();
-                    usr.ID = 2;
-                    usr.State = Business.Entities.BusinessEntity.States.Unmodified;
-                    usr.Nombre = "Armando Esteban";
-                    usr.Apellido = "Quito";
-                    usr.NombreUsuario = "aequito";
-                    usr.Clave = "carpintero";
-                    usr.Email = "armandoquito@gmail.com";
-                    usr.Habilitado = false;
-                    _Usuarios.Add(usr);
-
-                    usr = new Business.Entities.Usuario();
-                    usr.ID = 3;
-                    usr.State = Business.Entities.BusinessEntity.States.Unmodified;
-                    usr.Nombre = "Alan";
-                    usr.Apellido = "Brado";
-                    usr.NombreUsuario = "alanbrado";
-                    usr.Clave = "abrete sesamo";
-                    usr.Email = "alanbrado@gmail.com";
-                    usr.Habilitado = true;
-                    _Usuarios.Add(usr);
-
-                }
-                return _Usuarios;
-            }
-        }
-        #endregion       
         public List<Usuario> GetAll()
         {
             List<Usuario> usuarios = new List<Usuario>();
@@ -126,22 +75,6 @@ namespace Data.Database
                 this.CloseConnection();
             }
             return usr;
-        }
-        public void Save(Usuario usuario)
-        {
-            if (usuario.State == BusinessEntity.States.New)
-            {
-                this.Insert(usuario);
-            }
-            else if (usuario.State == BusinessEntity.States.Deleted)
-            {
-                this.Delete(usuario.ID);
-            }
-            else if (usuario.State == BusinessEntity.States.Modified)
-            {
-                this.Update(usuario);
-            }
-            usuario.State = BusinessEntity.States.Unmodified;
         }
         public void Delete(int ID)
         {
@@ -215,6 +148,22 @@ namespace Data.Database
             {
                 this.CloseConnection();
             }
+        }
+        public void Save(Usuario usuario)
+        {
+            if (usuario.State == BusinessEntity.States.New)
+            {
+                this.Insert(usuario);
+            }
+            else if (usuario.State == BusinessEntity.States.Deleted)
+            {
+                this.Delete(usuario.ID);
+            }
+            else if (usuario.State == BusinessEntity.States.Modified)
+            {
+                this.Update(usuario);
+            }
+            usuario.State = BusinessEntity.States.Unmodified;
         }
         public bool ValidaLogin(string nombre, string clave)
         {

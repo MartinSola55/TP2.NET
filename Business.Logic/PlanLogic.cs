@@ -8,43 +8,44 @@ using Data.Database;
 
 namespace Business.Logic
 {
-    public class UsuarioLogic : BusinessLogic
+    public class PlanLogic : BusinessLogic
     {
-        public UsuarioAdapter UsuarioData
+        public PlanAdapter PlanData
         {
             get; set;
         }
-        public UsuarioLogic()
+        public PlanLogic()
         {
-            UsuarioData = new UsuarioAdapter();
+            PlanData = new PlanAdapter();
         }
-        public Usuario GetOne(int id)
+        public Plan GetOne(int id)
         {
-            
+
             try
             {
-                return UsuarioData.GetOne(id);
+                return PlanData.GetOne(id);
             }
             catch (Exception exceptionManejada)
             {
                 throw exceptionManejada;
             }
         }
-        public List<Usuario> GetAll()
+        public List<Plan> GetAll()
         {
             try
             {
-                return UsuarioData.GetAll();
-            } catch (Exception exceptionManejada)
+                return PlanData.GetAll();
+            }
+            catch (Exception exceptionManejada)
             {
                 throw exceptionManejada;
             }
         }
-        public void Save(Usuario usuario)
+        public void Save(Plan plan)
         {
             try
             {
-                UsuarioData.Save(usuario);
+                PlanData.Save(plan);
             }
             catch (Exception exceptionManejada)
             {
@@ -55,26 +56,12 @@ namespace Business.Logic
         {
             try
             {
-                UsuarioData.Delete(id);
+                PlanData.Delete(id);
             }
             catch (Exception exceptionManejada)
             {
                 throw exceptionManejada;
             }
-        }
-        public bool ValidaLogin(string nombre, string clave)
-        {
-            try
-            {
-                if (UsuarioData.ValidaLogin(nombre, clave))
-                {
-                    return true;
-                }
-            } catch (Exception exceptionManejada)
-            {
-                throw exceptionManejada;
-            }
-            return false;
         }
     }
 }

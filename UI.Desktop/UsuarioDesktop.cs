@@ -27,7 +27,7 @@ namespace UI.Desktop
         {
 
         }
-        public Usuario UsuarioActual
+        public Business.Entities.Usuario UsuarioActual
         {
             get;
             set;
@@ -163,6 +163,30 @@ namespace UI.Desktop
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnAceptar_MouseEnter(object sender, EventArgs e)
+        {
+            this.btnAceptar.BackColor = Color.Green;
+            this.btnAceptar.ForeColor = Color.FromArgb(44, 48, 52);
+        }
+
+        private void btnAceptar_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnAceptar.BackColor = Color.FromArgb(44, 48, 52);
+            this.btnAceptar.ForeColor = Color.Green;
+        }
+
+        private void btnCancelar_MouseEnter(object sender, EventArgs e)
+        {
+            this.btnCancelar.BackColor = Color.Red;
+            this.btnCancelar.ForeColor = Color.FromArgb(44, 48, 52);
+        }
+
+        private void btnCancelar_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnCancelar.BackColor = Color.FromArgb(44, 48, 52);
+            this.btnCancelar.ForeColor = Color.Red;
         }
     }
 }

@@ -12,30 +12,45 @@ using Business.Logic;
 
 namespace UI.Desktop
 {
-    public partial class Especialidades : ApplicationForm
+    public partial class Planes : ApplicationForm
     {
-        public Especialidades()
+        public Planes()
         {
             InitializeComponent();
-            this.dgvEspecialidades.AutoGenerateColumns = false;
+            this.dgvPlanes.AutoGenerateColumns = false;
         }
         public void Listar()
         {
             try
             {
-                EspecialidadLogic el = new EspecialidadLogic();
-                this.dgvEspecialidades.DataSource = el.GetAll();
-            } catch (Exception exceptionManejada)
+                PlanLogic pl = new PlanLogic();
+                this.dgvPlanes.DataSource = pl.GetAll();
+            }
+            catch (Exception exceptionManejada)
             {
-                MessageBox.Show(exceptionManejada.Message, "ERROR AL RECUPERAR ESPECIALIDADES", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(exceptionManejada.Message, "ERROR AL RECUPERAR DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        private void Plan_Load(object sender, EventArgs e)
+        {
+            this.Listar();
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            this.Listar();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            EspecialidadDesktop ed = new EspecialidadDesktop(ApplicationForm.ModoForm.Alta);
-            ed.ShowDialog();
+            PlanDesktop pd = new PlanDesktop(ApplicationForm.ModoForm.Alta);
+            pd.ShowDialog();
             this.Listar();
         }
 
@@ -43,11 +58,11 @@ namespace UI.Desktop
         {
             try
             {
-                if (this.dgvEspecialidades.SelectedRows != null)
+                if (this.dgvPlanes.SelectedRows != null)
                 {
-                    int ID = ((Especialidad)this.dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
-                    EspecialidadDesktop ed = new EspecialidadDesktop(ID, ApplicationForm.ModoForm.Modificacion);
-                    ed.ShowDialog();
+                    int ID = ((Plan)this.dgvPlanes.SelectedRows[0].DataBoundItem).ID;
+                    PlanDesktop pd = new PlanDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+                    pd.ShowDialog();
                     this.Listar();
                 }
             }
@@ -61,30 +76,15 @@ namespace UI.Desktop
         {
             try
             {
-                int ID = ((Especialidad)this.dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
-                EspecialidadDesktop ed = new EspecialidadDesktop(ID, ApplicationForm.ModoForm.Baja);
-                ed.ShowDialog();
+                int ID = ((Plan)this.dgvPlanes.SelectedRows[0].DataBoundItem).ID;
+                PlanDesktop pd = new PlanDesktop(ID, ApplicationForm.ModoForm.Baja);
+                pd.ShowDialog();
                 this.Listar();
             }
             catch (Exception exceptionManejada)
             {
                 MessageBox.Show(exceptionManejada.Message, "ERROR AL ELIMINAR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void btnActualizar_Click(object sender, EventArgs e)
-        {
-            this.Listar();
-        }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Especialidades_Load(object sender, EventArgs e)
-        {
-            this.Listar();
         }
 
         private void btnActualizar_MouseEnter(object sender, EventArgs e)

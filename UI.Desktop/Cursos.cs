@@ -84,5 +84,39 @@ namespace UI.Desktop
                 MessageBox.Show(exceptionManejada.Message, "ERROR AL ELIMINAR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnActualizar_MouseEnter(object sender, EventArgs e)
+        {
+            this.btnActualizar.BackColor = Color.White;
+            this.btnActualizar.ForeColor = Color.FromArgb(44, 48, 52);
+        }
+
+        private void btnActualizar_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnActualizar.BackColor = Color.FromArgb(44, 48, 52);
+            this.btnActualizar.ForeColor = Color.White;
+        }
+
+        private void btnSalir_MouseEnter(object sender, EventArgs e)
+        {
+            this.btnSalir.BackColor = Color.Red;
+            this.btnSalir.ForeColor = Color.FromArgb(44, 48, 52);
+        }
+
+        private void btnSalir_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnSalir.BackColor = Color.FromArgb(44, 48, 52);
+            this.btnSalir.ForeColor = Color.Red;
+        }
+
+        private void tsbEditar_MouseEnter(object sender, EventArgs e)
+        {
+            this.tsbEditar.ForeColor = Color.Black;
+        }
+
+        private void tsbEditar_MouseLeave(object sender, EventArgs e)
+        {
+            this.tsbEditar.ForeColor = Color.White;
+        }
     }
 }

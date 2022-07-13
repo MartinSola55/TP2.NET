@@ -52,11 +52,12 @@ namespace UI.Desktop
             // 
             // tlUsuario
             // 
+            this.tlUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.tlUsuario.ColumnCount = 4;
             this.tlUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tlUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tlUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tlUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tlUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
+            this.tlUsuario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34F));
             this.tlUsuario.Controls.Add(this.lblID, 0, 0);
             this.tlUsuario.Controls.Add(this.lblEmail, 0, 2);
             this.tlUsuario.Controls.Add(this.lblClave, 0, 3);
@@ -95,77 +96,78 @@ namespace UI.Desktop
             this.lblID.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblID.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.lblID.ForeColor = System.Drawing.Color.White;
             this.lblID.Location = new System.Drawing.Point(3, 38);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(31, 24);
+            this.lblID.Size = new System.Drawing.Size(36, 24);
             this.lblID.TabIndex = 0;
-            this.lblID.Text = "ID";
+            this.lblID.Text = "ID:";
             // 
             // lblEmail
             // 
             this.lblEmail.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.lblEmail.ForeColor = System.Drawing.Color.White;
             this.lblEmail.Location = new System.Drawing.Point(3, 238);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(52, 24);
+            this.lblEmail.Size = new System.Drawing.Size(57, 24);
             this.lblEmail.TabIndex = 2;
-            this.lblEmail.Text = "Email";
+            this.lblEmail.Text = "Email:";
             // 
             // lblClave
             // 
             this.lblClave.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblClave.AutoSize = true;
             this.lblClave.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClave.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.lblClave.ForeColor = System.Drawing.Color.White;
             this.lblClave.Location = new System.Drawing.Point(3, 338);
             this.lblClave.Name = "lblClave";
-            this.lblClave.Size = new System.Drawing.Size(52, 24);
+            this.lblClave.Size = new System.Drawing.Size(57, 24);
             this.lblClave.TabIndex = 3;
-            this.lblClave.Text = "Clave";
+            this.lblClave.Text = "Clave:";
             // 
             // lblApellido
             // 
             this.lblApellido.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblApellido.AutoSize = true;
             this.lblApellido.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellido.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.lblApellido.ForeColor = System.Drawing.Color.White;
             this.lblApellido.Location = new System.Drawing.Point(484, 138);
             this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(75, 24);
+            this.lblApellido.Size = new System.Drawing.Size(80, 24);
             this.lblApellido.TabIndex = 5;
-            this.lblApellido.Text = "Apellido";
+            this.lblApellido.Text = "Apellido:";
             // 
             // lblUsuario
             // 
             this.lblUsuario.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.lblUsuario.ForeColor = System.Drawing.Color.White;
             this.lblUsuario.Location = new System.Drawing.Point(484, 238);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(71, 24);
+            this.lblUsuario.Size = new System.Drawing.Size(76, 24);
             this.lblUsuario.TabIndex = 6;
-            this.lblUsuario.Text = "Usuario";
+            this.lblUsuario.Text = "Usuario:";
             // 
             // lblConfirmarClave
             // 
             this.lblConfirmarClave.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblConfirmarClave.AutoSize = true;
             this.lblConfirmarClave.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConfirmarClave.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.lblConfirmarClave.ForeColor = System.Drawing.Color.White;
             this.lblConfirmarClave.Location = new System.Drawing.Point(484, 338);
             this.lblConfirmarClave.Name = "lblConfirmarClave";
-            this.lblConfirmarClave.Size = new System.Drawing.Size(137, 24);
+            this.lblConfirmarClave.Size = new System.Drawing.Size(141, 24);
             this.lblConfirmarClave.TabIndex = 7;
-            this.lblConfirmarClave.Text = "Confirmar Clave";
+            this.lblConfirmarClave.Text = "Confirmar clave:";
             // 
             // txtNombre
             // 
             this.txtNombre.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
+            this.txtNombre.BackColor = System.Drawing.Color.White;
+            this.txtNombre.ForeColor = System.Drawing.Color.Black;
             this.txtNombre.Location = new System.Drawing.Point(147, 134);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtNombre.Name = "txtNombre";
@@ -175,7 +177,8 @@ namespace UI.Desktop
             // txtEmail
             // 
             this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
+            this.txtEmail.BackColor = System.Drawing.Color.White;
+            this.txtEmail.ForeColor = System.Drawing.Color.Black;
             this.txtEmail.Location = new System.Drawing.Point(147, 234);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtEmail.Name = "txtEmail";
@@ -185,7 +188,8 @@ namespace UI.Desktop
             // txtClave
             // 
             this.txtClave.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtClave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
+            this.txtClave.BackColor = System.Drawing.Color.White;
+            this.txtClave.ForeColor = System.Drawing.Color.Black;
             this.txtClave.Location = new System.Drawing.Point(147, 334);
             this.txtClave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtClave.Name = "txtClave";
@@ -195,8 +199,9 @@ namespace UI.Desktop
             // txtApellido
             // 
             this.txtApellido.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtApellido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
-            this.txtApellido.Location = new System.Drawing.Point(628, 134);
+            this.txtApellido.BackColor = System.Drawing.Color.White;
+            this.txtApellido.ForeColor = System.Drawing.Color.Black;
+            this.txtApellido.Location = new System.Drawing.Point(638, 134);
             this.txtApellido.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(290, 31);
@@ -205,8 +210,9 @@ namespace UI.Desktop
             // txtUsuario
             // 
             this.txtUsuario.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
-            this.txtUsuario.Location = new System.Drawing.Point(628, 234);
+            this.txtUsuario.BackColor = System.Drawing.Color.White;
+            this.txtUsuario.ForeColor = System.Drawing.Color.Black;
+            this.txtUsuario.Location = new System.Drawing.Point(638, 234);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(290, 31);
@@ -215,8 +221,9 @@ namespace UI.Desktop
             // txtConfimarClave
             // 
             this.txtConfimarClave.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtConfimarClave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
-            this.txtConfimarClave.Location = new System.Drawing.Point(628, 334);
+            this.txtConfimarClave.BackColor = System.Drawing.Color.White;
+            this.txtConfimarClave.ForeColor = System.Drawing.Color.Black;
+            this.txtConfimarClave.Location = new System.Drawing.Point(638, 334);
             this.txtConfimarClave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtConfimarClave.Name = "txtConfimarClave";
             this.txtConfimarClave.Size = new System.Drawing.Size(290, 31);
@@ -227,7 +234,7 @@ namespace UI.Desktop
             this.chkHabilitado.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.chkHabilitado.AutoSize = true;
             this.chkHabilitado.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkHabilitado.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.chkHabilitado.ForeColor = System.Drawing.Color.White;
             this.chkHabilitado.Location = new System.Drawing.Point(484, 36);
             this.chkHabilitado.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.chkHabilitado.Name = "chkHabilitado";
@@ -238,41 +245,51 @@ namespace UI.Desktop
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancelar.Location = new System.Drawing.Point(730, 405);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 5, 38, 46);
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.ForeColor = System.Drawing.Color.Red;
+            this.btnCancelar.Location = new System.Drawing.Point(823, 426);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(195, 52);
+            this.btnCancelar.Size = new System.Drawing.Size(120, 50);
             this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.MouseEnter += new System.EventHandler(this.btnCancelar_MouseEnter);
+            this.btnCancelar.MouseLeave += new System.EventHandler(this.btnCancelar_MouseLeave);
             // 
             // lblNombre
             // 
             this.lblNombre.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.lblNombre.ForeColor = System.Drawing.Color.White;
             this.lblNombre.Location = new System.Drawing.Point(3, 138);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(75, 24);
+            this.lblNombre.Size = new System.Drawing.Size(80, 24);
             this.lblNombre.TabIndex = 1;
-            this.lblNombre.Text = "Nombre";
+            this.lblNombre.Text = "Nombre:";
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.btnAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAceptar.Location = new System.Drawing.Point(38, 405);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(38, 5, 3, 46);
+            this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAceptar.ForeColor = System.Drawing.Color.Green;
+            this.btnAceptar.Location = new System.Drawing.Point(20, 426);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(20, 4, 4, 4);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(103, 52);
+            this.btnAceptar.Size = new System.Drawing.Size(120, 50);
             this.btnAceptar.TabIndex = 8;
             this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.UseVisualStyleBackColor = false;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            this.btnAceptar.MouseEnter += new System.EventHandler(this.btnAceptar_MouseEnter);
+            this.btnAceptar.MouseLeave += new System.EventHandler(this.btnAceptar_MouseLeave);
             // 
             // txtID
             // 
@@ -283,12 +300,13 @@ namespace UI.Desktop
             this.txtID.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(60, 31);
+            this.txtID.Size = new System.Drawing.Size(80, 31);
             this.txtID.TabIndex = 0;
             this.txtID.TabStop = false;
             // 
             // UsuarioDesktop
             // 
+            this.AcceptButton = this.btnAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
@@ -304,7 +322,7 @@ namespace UI.Desktop
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "UsuarioDesktop";
+            this.Text = "Datos del usuario";
             this.Load += new System.EventHandler(this.UsuarioDesktop_Load);
             this.tlUsuario.ResumeLayout(false);
             this.tlUsuario.PerformLayout();

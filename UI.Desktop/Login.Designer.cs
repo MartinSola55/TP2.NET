@@ -42,6 +42,8 @@ namespace UI.Desktop
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
+            this.lblTitulo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblTitulo.ForeColor = System.Drawing.Color.White;
             this.lblTitulo.Location = new System.Drawing.Point(149, 42);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(344, 48);
@@ -52,6 +54,8 @@ namespace UI.Desktop
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
+            this.lblUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblUsuario.ForeColor = System.Drawing.Color.White;
             this.lblUsuario.Location = new System.Drawing.Point(24, 148);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(167, 24);
@@ -61,6 +65,8 @@ namespace UI.Desktop
             // lblPass
             // 
             this.lblPass.AutoSize = true;
+            this.lblPass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblPass.ForeColor = System.Drawing.Color.White;
             this.lblPass.Location = new System.Drawing.Point(24, 239);
             this.lblPass.Name = "lblPass";
             this.lblPass.Size = new System.Drawing.Size(105, 24);
@@ -72,7 +78,7 @@ namespace UI.Desktop
             this.txtUsuario.Location = new System.Drawing.Point(211, 148);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(340, 31);
-            this.txtUsuario.TabIndex = 0;
+            this.txtUsuario.TabIndex = 1;
             // 
             // txtPass
             // 
@@ -80,7 +86,7 @@ namespace UI.Desktop
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(340, 31);
-            this.txtPass.TabIndex = 1;
+            this.txtPass.TabIndex = 2;
             // 
             // lnkOlvidaPass
             // 
@@ -90,31 +96,41 @@ namespace UI.Desktop
             this.lnkOlvidaPass.Location = new System.Drawing.Point(396, 365);
             this.lnkOlvidaPass.Name = "lnkOlvidaPass";
             this.lnkOlvidaPass.Size = new System.Drawing.Size(177, 24);
-            this.lnkOlvidaPass.TabIndex = 3;
+            this.lnkOlvidaPass.TabIndex = 4;
             this.lnkOlvidaPass.TabStop = true;
             this.lnkOlvidaPass.Text = "Olvidé mi contraseña";
             this.lnkOlvidaPass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkOlvidaPass_LinkClicked);
             // 
             // btnIngresar
             // 
+            this.btnIngresar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.btnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIngresar.ForeColor = System.Drawing.Color.White;
             this.btnIngresar.Location = new System.Drawing.Point(429, 292);
             this.btnIngresar.Name = "btnIngresar";
-            this.btnIngresar.Size = new System.Drawing.Size(122, 39);
-            this.btnIngresar.TabIndex = 2;
+            this.btnIngresar.Size = new System.Drawing.Size(120, 40);
+            this.btnIngresar.TabIndex = 3;
             this.btnIngresar.Text = "Ingresar";
-            this.btnIngresar.UseVisualStyleBackColor = true;
+            this.btnIngresar.UseVisualStyleBackColor = false;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
+            this.btnIngresar.MouseEnter += new System.EventHandler(this.btnIngresar_MouseEnter);
+            this.btnIngresar.MouseLeave += new System.EventHandler(this.btnIngresar_MouseLeave);
             // 
             // btnSalir
             // 
-            this.btnSalir.ForeColor = System.Drawing.Color.Crimson;
+            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalir.ForeColor = System.Drawing.Color.Red;
             this.btnSalir.Location = new System.Drawing.Point(12, 354);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(20, 3, 3, 5);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(89, 35);
-            this.btnSalir.TabIndex = 4;
+            this.btnSalir.Size = new System.Drawing.Size(100, 40);
+            this.btnSalir.TabIndex = 5;
             this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            this.btnSalir.MouseEnter += new System.EventHandler(this.btnSalir_MouseEnter);
+            this.btnSalir.MouseLeave += new System.EventHandler(this.btnSalir_MouseLeave);
             // 
             // Login
             // 
@@ -122,7 +138,7 @@ namespace UI.Desktop
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.ClientSize = new System.Drawing.Size(585, 401);
             this.ControlBox = false;
             this.Controls.Add(this.btnSalir);
