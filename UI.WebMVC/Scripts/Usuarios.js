@@ -38,7 +38,10 @@ function listadoUsuarios(arrayHeader, data) {
     $("#tabla-usuarios").html(contenido);
     $('#tabla-generic').DataTable(
         {
-            searching: false
+            searching: false,
+            "language": {
+                url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json'
+            }
         }
     )
     $("#tabla-generic").removeAttr("style");
