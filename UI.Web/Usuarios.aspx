@@ -22,10 +22,10 @@
                 </asp:BoundField>
                 <asp:BoundField HeaderText="Habilitado" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle" DataField="Habilitado" NullDisplayText="-">
                     <HeaderStyle CssClass="text-center header-tabla" HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"/>
                 </asp:BoundField>
                 <asp:CommandField HeaderText="Editar - Eliminar" ControlStyle-CssClass="btn btn-outline-light rounded " ButtonType="Button" ShowSelectButton="true" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
-                    <ControlStyle CssClass="btn btn-outline-light rounded " />
+                    <ControlStyle CssClass="btn btn-outline-light" />
                     <HeaderStyle CssClass="text-center header-tabla" HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 </asp:CommandField>
@@ -62,7 +62,7 @@
                 <br />
                 <div class="row">
                     <asp:Label ID="habilitadoLabel" runat="server" CssClass="col-1 my-auto" Text="Habilitado: "></asp:Label>
-                    <asp:CheckBox ID="habilitadoCheckBox" runat="server" CssClass="w-25"/>
+                    <asp:CheckBox ID="habilitadoCheckBox" runat="server" CssClass="w-25 check-large"/>
                 </div>
                 <br />
                 <div class="row">

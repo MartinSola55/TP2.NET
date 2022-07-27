@@ -30,20 +30,21 @@ namespace UI.Desktop
             {
                 btnAceptar.Text = "Guardar";
             }
-
+            this.ListarCombo();
         }
         public PlanDesktop(int id, ModoForm modo) : this()
         {
             PlanLogic pl = new PlanLogic();
             PlanActual = pl.GetOne(id);
             Modo = modo;
+            this.ListarCombo();
             this.MapearDeDatos();
         }
         public override void MapearDeDatos()
         {
             this.txtID.Text = this.PlanActual.ID.ToString();
             this.txtDescripcion.Text = this.PlanActual.Descripcion;
-            this.txtIDEsp.Text = this.PlanActual.IDEspecialidad.ToString();
+            this.comboEspecialidad.SelectedIndex = this.PlanActual.IDEspecialidad;
             switch (this.Modo)
             {
                 case ModoForm.Modificacion:
@@ -55,7 +56,7 @@ namespace UI.Desktop
                     {
                         btnAceptar.Text = "Eliminar";
                         txtDescripcion.Enabled = false;
-                        txtIDEsp.Enabled = false;
+                        comboEspecialidad.Enabled = false;
                         break;
                     }
                 case ModoForm.Consulta:
@@ -75,7 +76,7 @@ namespace UI.Desktop
             if (this.Modo == ModoForm.Alta || this.Modo == ModoForm.Modificacion)
             {
                 this.PlanActual.Descripcion = this.txtDescripcion.Text;
-                this.PlanActual.IDEspecialidad = int.Parse(this.txtIDEsp.Text);
+                this.PlanActual.IDEspecialidad = this.comboEspecialidad.SelectedIndex;
                 if (this.Modo == ModoForm.Alta)
                 {
                     this.PlanActual.State = BusinessEntity.States.New;
@@ -92,9 +93,13 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
-            if (this.txtDescripcion.Text.Length == 0 || this.txtIDEsp.Text.Length == 0)
+            if (this.txtDescripcion.Text.Length == 0)
             {
-                this.Notificar("ERROR", "Debes completar todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Notificar("ERROR", "Debes escribir una descripción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            } else if (this.comboEspecialidad.SelectedIndex == 0)
+            {
+                this.Notificar("ERROR", "Debes seleccionar una especialidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
@@ -104,6 +109,19 @@ namespace UI.Desktop
             this.MapearADatos();
             PlanLogic pl = new PlanLogic();
             pl.Save(PlanActual);
+        }
+        private void ListarCombo()
+        {
+            EspecialidadLogic el = new EspecialidadLogic();
+            List<Especialidad> especialidades = el.GetAll();
+            string primerElemento = "--Seleccione una especialidad--";
+            this.comboEspecialidad.Items.Add(primerElemento);
+            foreach (Especialidad esp in especialidades)
+            {
+                this.comboEspecialidad.Items.Add(esp.Descripcion);
+                this.comboEspecialidad.SelectedIndex = esp.ID;
+            }
+            this.comboEspecialidad.SelectedIndex = 0;
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {

@@ -17,7 +17,10 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdMaterias = new SqlCommand("SELECT * FROM materias", sqlConn);
+                SqlCommand cmdMaterias = new SqlCommand(
+                    "SELECT * FROM materias m " +
+                    "INNER JOIN planes p ON p.id_plan = m.id_plan " +
+                    "INNER JOIN especialidades e ON e.id_especialidad = p.id_especialidad", sqlConn);
                 SqlDataReader drMaterias = cmdMaterias.ExecuteReader();
                 while (drMaterias.Read())
                 {
@@ -27,6 +30,9 @@ namespace Data.Database
                     mat.HSSemanales = (int)drMaterias["hs_semanales"];
                     mat.HSTotales = (int)drMaterias["hs_totales"];
                     mat.IDPlan = (int)drMaterias["id_plan"];
+                    mat.DescripcionPlan = (string)drMaterias["desc_plan"];
+                    mat.DescripcionPlan += " - ";
+                    mat.DescripcionPlan += (string)drMaterias["desc_especialidad"];
                     materias.Add(mat);
                 }
 
@@ -138,7 +144,7 @@ namespace Data.Database
             }
             catch (SqlException Ex)
             {
-                Exception ExceptionManejada = new Exception("El ID del plan ingresado no pertenece a una materia existente", Ex);
+                Exception ExceptionManejada = new Exception("El ID del plan ingresado no pertenece a uno existente", Ex);
                 throw ExceptionManejada;
             }
             catch (Exception Ex)

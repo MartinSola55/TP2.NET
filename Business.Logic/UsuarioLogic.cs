@@ -62,11 +62,11 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
-        public bool ValidaLogin(string nombre, string clave)
+        public bool ValidaLogin(string user, string pass)
         {
             try
             {
-                if (UsuarioData.ValidaLogin(nombre, clave))
+                if (UsuarioData.ValidaLogin(user, pass))
                 {
                     return true;
                 }

@@ -31,13 +31,14 @@ namespace UI.Desktop
             {
                 btnAceptar.Text = "Guardar";
             }
-
+            this.ListarCombo();
         }
         public MateriaDesktop(int id, ModoForm modo) : this()
         {
             MateriaLogic ml = new MateriaLogic();
             MateriaActual = ml.GetOne(id);
             Modo = modo;
+            this.ListarCombo();
             this.MapearDeDatos();
         }
         public override void MapearDeDatos()
@@ -46,7 +47,7 @@ namespace UI.Desktop
             this.txtDescripcion.Text = this.MateriaActual.Descripcion.ToString();
             this.txtHSSemanales.Text = this.MateriaActual.HSSemanales.ToString();
             this.txtHSTotales.Text = this.MateriaActual.HSTotales.ToString();
-            this.txtIDPlan.Text = this.MateriaActual.IDPlan.ToString();
+            this.comboPlan.SelectedIndex = this.MateriaActual.IDPlan;
             switch (this.Modo)
             {
                 case ModoForm.Modificacion:
@@ -60,7 +61,7 @@ namespace UI.Desktop
                         txtDescripcion.Enabled = false;
                         txtHSSemanales.Enabled = false;
                         txtHSTotales.Enabled = false;
-                        txtIDPlan.Enabled = false;
+                        comboPlan.Enabled = false;
                         break;
                     }
                 case ModoForm.Consulta:
@@ -82,7 +83,7 @@ namespace UI.Desktop
                 this.MateriaActual.Descripcion = this.txtDescripcion.Text;
                 this.MateriaActual.HSSemanales = int.Parse(this.txtHSSemanales.Text);
                 this.MateriaActual.HSTotales = int.Parse(this.txtHSTotales.Text);
-                this.MateriaActual.IDPlan = int.Parse(this.txtIDPlan.Text);
+                this.MateriaActual.IDPlan = int.Parse(this.comboPlan.SelectedValue.ToString());
                 if (this.Modo == ModoForm.Alta)
                 {
                     this.MateriaActual.State = BusinessEntity.States.New;
@@ -99,7 +100,7 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
-            if (txtDescripcion.Text.Length == 0 || txtHSSemanales.Text.Length == 0 || txtHSTotales.Text.Length == 0 || txtIDPlan.Text.Length == 0)
+            if (txtDescripcion.Text.Length == 0 || txtHSSemanales.Text.Length == 0 || txtHSTotales.Text.Length == 0)
             {
                 this.Notificar("ERROR", "Debes completar todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -113,6 +114,15 @@ namespace UI.Desktop
             {
                 this.Notificar("ERROR", "Debes ingresar una cantidad de horas totales válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
+            } else if (int.Parse(txtHSTotales.Text) <= int.Parse(txtHSSemanales.Text))
+            {
+                this.Notificar("ERROR", "Debes ingresar una cantidad de horas totales mayor a las semanales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            } 
+            else if (this.comboPlan.SelectedIndex == 0)
+            {
+                this.Notificar("ERROR", "Debes seleccionar un plan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
             return true;
         }
@@ -122,7 +132,21 @@ namespace UI.Desktop
             MateriaLogic ml = new MateriaLogic();
             ml.Save(MateriaActual);
         }
-
+        private void ListarCombo()
+        {
+            PlanLogic pl = new PlanLogic();
+            List<Plan> planes = pl.GetAll();
+            Dictionary<int, string> comboSource = new Dictionary<int, string>();
+            comboSource.Add(0, "--Seleccione un plan--");
+            foreach (Plan p in planes)
+            {
+                comboSource.Add(p.ID, p.Descripcion + " - " + p.DescripcionEsp);
+            }
+            this.comboPlan.DataSource = new BindingSource(comboSource, null);
+            this.comboPlan.DisplayMember = "Value";
+            this.comboPlan.ValueMember = "Key";
+            this.comboPlan.SelectedIndex = 0;
+        }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             try

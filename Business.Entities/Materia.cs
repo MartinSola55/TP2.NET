@@ -31,5 +31,9 @@ namespace Business.Entities
         {
             get; set;
         }
+        public string DescripcionPlan
+        {
+            get; set;
+        }
     }
 }

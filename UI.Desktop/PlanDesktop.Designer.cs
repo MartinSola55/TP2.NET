@@ -36,8 +36,8 @@ namespace UI.Desktop
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.txtIDEsp = new System.Windows.Forms.TextBox();
             this.lblIDEsp = new System.Windows.Forms.Label();
+            this.comboEspecialidad = new System.Windows.Forms.ComboBox();
             this.tlPlan.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,8 +53,8 @@ namespace UI.Desktop
             this.tlPlan.Controls.Add(this.txtDescripcion, 1, 1);
             this.tlPlan.Controls.Add(this.btnAceptar, 0, 3);
             this.tlPlan.Controls.Add(this.btnCancelar, 1, 3);
-            this.tlPlan.Controls.Add(this.txtIDEsp, 1, 2);
             this.tlPlan.Controls.Add(this.lblIDEsp, 0, 2);
+            this.tlPlan.Controls.Add(this.comboEspecialidad, 1, 2);
             this.tlPlan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlPlan.Location = new System.Drawing.Point(0, 0);
             this.tlPlan.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -151,17 +151,6 @@ namespace UI.Desktop
             this.btnCancelar.MouseEnter += new System.EventHandler(this.btnCancelar_MouseEnter);
             this.btnCancelar.MouseLeave += new System.EventHandler(this.btnCancelar_MouseLeave);
             // 
-            // txtIDEsp
-            // 
-            this.txtIDEsp.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtIDEsp.BackColor = System.Drawing.Color.White;
-            this.txtIDEsp.ForeColor = System.Drawing.Color.Black;
-            this.txtIDEsp.Location = new System.Drawing.Point(163, 287);
-            this.txtIDEsp.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtIDEsp.Name = "txtIDEsp";
-            this.txtIDEsp.Size = new System.Drawing.Size(80, 31);
-            this.txtIDEsp.TabIndex = 2;
-            // 
             // lblIDEsp
             // 
             this.lblIDEsp.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -172,6 +161,19 @@ namespace UI.Desktop
             this.lblIDEsp.Size = new System.Drawing.Size(139, 24);
             this.lblIDEsp.TabIndex = 7;
             this.lblIDEsp.Text = "ID Especialidad:";
+            // 
+            // comboEspecialidad
+            // 
+            this.comboEspecialidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.comboEspecialidad.BackColor = System.Drawing.Color.White;
+            this.comboEspecialidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboEspecialidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboEspecialidad.ForeColor = System.Drawing.Color.Black;
+            this.comboEspecialidad.FormattingEnabled = true;
+            this.comboEspecialidad.Location = new System.Drawing.Point(163, 290);
+            this.comboEspecialidad.Name = "comboEspecialidad";
+            this.comboEspecialidad.Size = new System.Drawing.Size(240, 32);
+            this.comboEspecialidad.TabIndex = 2;
             // 
             // PlanDesktop
             // 
@@ -206,7 +208,7 @@ namespace UI.Desktop
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.TextBox txtIDEsp;
         private System.Windows.Forms.Label lblIDEsp;
+        private System.Windows.Forms.ComboBox comboEspecialidad;
     }
 }

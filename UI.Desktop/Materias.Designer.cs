@@ -34,20 +34,15 @@ namespace UI.Desktop
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Materias));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Materias));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvMaterias = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.desc_materia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hs_semanales = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hs_totales = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_plan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.tsMaterias = new System.Windows.Forms.ToolStrip();
@@ -56,6 +51,11 @@ namespace UI.Desktop
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.desc_materia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hs_semanales = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hs_totales = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.desc_plan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -134,7 +134,7 @@ namespace UI.Desktop
             this.desc_materia,
             this.hs_semanales,
             this.hs_totales,
-            this.id_plan});
+            this.desc_plan});
             this.tableLayoutPanel1.SetColumnSpan(this.dgvMaterias, 2);
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
@@ -166,66 +166,6 @@ namespace UI.Desktop
             this.dgvMaterias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMaterias.Size = new System.Drawing.Size(774, 308);
             this.dgvMaterias.TabIndex = 0;
-            // 
-            // id
-            // 
-            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.id.DataPropertyName = "ID";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.id.DefaultCellStyle = dataGridViewCellStyle3;
-            this.id.HeaderText = "ID";
-            this.id.MinimumWidth = 6;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.id.Width = 59;
-            // 
-            // desc_materia
-            // 
-            this.desc_materia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.desc_materia.DataPropertyName = "Descripcion";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.desc_materia.DefaultCellStyle = dataGridViewCellStyle4;
-            this.desc_materia.HeaderText = "Descripción";
-            this.desc_materia.MinimumWidth = 6;
-            this.desc_materia.Name = "desc_materia";
-            this.desc_materia.ReadOnly = true;
-            // 
-            // hs_semanales
-            // 
-            this.hs_semanales.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.hs_semanales.DataPropertyName = "HSSemanales";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.hs_semanales.DefaultCellStyle = dataGridViewCellStyle5;
-            this.hs_semanales.HeaderText = "Horas semanales";
-            this.hs_semanales.MinimumWidth = 6;
-            this.hs_semanales.Name = "hs_semanales";
-            this.hs_semanales.ReadOnly = true;
-            this.hs_semanales.Width = 172;
-            // 
-            // hs_totales
-            // 
-            this.hs_totales.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.hs_totales.DataPropertyName = "HSTotales";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.hs_totales.DefaultCellStyle = dataGridViewCellStyle6;
-            this.hs_totales.HeaderText = "Horas totales";
-            this.hs_totales.MinimumWidth = 6;
-            this.hs_totales.Name = "hs_totales";
-            this.hs_totales.ReadOnly = true;
-            this.hs_totales.Width = 149;
-            // 
-            // id_plan
-            // 
-            this.id_plan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.id_plan.DataPropertyName = "IDPlan";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.id_plan.DefaultCellStyle = dataGridViewCellStyle7;
-            this.id_plan.HeaderText = "ID Plan";
-            this.id_plan.MinimumWidth = 6;
-            this.id_plan.Name = "id_plan";
-            this.id_plan.ReadOnly = true;
-            this.id_plan.Width = 96;
             // 
             // btnActualizar
             // 
@@ -326,6 +266,65 @@ namespace UI.Desktop
             this.tsbEliminar.Text = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.id.DataPropertyName = "ID";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.id.DefaultCellStyle = dataGridViewCellStyle3;
+            this.id.HeaderText = "ID";
+            this.id.MinimumWidth = 6;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.id.Width = 59;
+            // 
+            // desc_materia
+            // 
+            this.desc_materia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.desc_materia.DataPropertyName = "Descripcion";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.desc_materia.DefaultCellStyle = dataGridViewCellStyle4;
+            this.desc_materia.HeaderText = "Descripción";
+            this.desc_materia.MinimumWidth = 6;
+            this.desc_materia.Name = "desc_materia";
+            this.desc_materia.ReadOnly = true;
+            // 
+            // hs_semanales
+            // 
+            this.hs_semanales.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.hs_semanales.DataPropertyName = "HSSemanales";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.hs_semanales.DefaultCellStyle = dataGridViewCellStyle5;
+            this.hs_semanales.HeaderText = "Horas semanales";
+            this.hs_semanales.MinimumWidth = 6;
+            this.hs_semanales.Name = "hs_semanales";
+            this.hs_semanales.ReadOnly = true;
+            this.hs_semanales.Width = 157;
+            // 
+            // hs_totales
+            // 
+            this.hs_totales.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.hs_totales.DataPropertyName = "HSTotales";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.hs_totales.DefaultCellStyle = dataGridViewCellStyle6;
+            this.hs_totales.HeaderText = "Horas totales";
+            this.hs_totales.MinimumWidth = 6;
+            this.hs_totales.Name = "hs_totales";
+            this.hs_totales.ReadOnly = true;
+            this.hs_totales.Width = 136;
+            // 
+            // desc_plan
+            // 
+            this.desc_plan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.desc_plan.DataPropertyName = "DescripcionPlan";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.desc_plan.DefaultCellStyle = dataGridViewCellStyle7;
+            this.desc_plan.HeaderText = "Plan";
+            this.desc_plan.MinimumWidth = 6;
+            this.desc_plan.Name = "desc_plan";
+            this.desc_plan.ReadOnly = true;
+            // 
             // Materias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
@@ -372,6 +371,6 @@ namespace UI.Desktop
         private System.Windows.Forms.DataGridViewTextBoxColumn desc_materia;
         private System.Windows.Forms.DataGridViewTextBoxColumn hs_semanales;
         private System.Windows.Forms.DataGridViewTextBoxColumn hs_totales;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_plan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn desc_plan;
     }
 }

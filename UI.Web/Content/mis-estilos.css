@@ -30,3 +30,10 @@
 #bodyContentPlaceholder_gridActionsPanel {
     max-width:fit-content;
 }
+.check-large input{
+    transform:scale(1.5);
+}
+.container h3 {
+    color:white;
+    text-shadow: 0 0 8px black;
+}

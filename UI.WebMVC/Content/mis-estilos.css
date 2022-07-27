@@ -1,0 +1,19 @@
+﻿.contenedor-modal {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    justify-content: start;
+}
+
+.error::after {
+    content: "*";
+    color: red;
+    font-size: 1rem;
+}
+
+#btnVerClave {
+    width: fit-content;
+}
+
+#tabla-generic_length {
+    margin-bottom: 1rem;
+}

@@ -23,7 +23,7 @@ namespace Data.Database
         {
             string connectionString =null;
             //connectionString  = ConfigurationManager.ConnectionStrings[consKeyDefaultCnnString].ConnectionString;
-            connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=tp2_net;Integrated Security=True";
+            connectionString = "Server=tcp:tp2net.database.windows.net,1433;Initial Catalog=academia;Persist Security Info=False;User ID=net;Password=tp2.grupo3;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             sqlConn = new SqlConnection(connectionString);
             sqlConn.Open();
         }

@@ -30,7 +30,6 @@ namespace UI.Desktop
         private void InitializeComponent()
         {
             this.tlMateria = new System.Windows.Forms.TableLayoutPanel();
-            this.txtIDPlan = new System.Windows.Forms.TextBox();
             this.txtHSTotales = new System.Windows.Forms.TextBox();
             this.txtHSSemanales = new System.Windows.Forms.TextBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
@@ -42,6 +41,7 @@ namespace UI.Desktop
             this.lblHSTotales = new System.Windows.Forms.Label();
             this.lblIDPlan = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
+            this.comboPlan = new System.Windows.Forms.ComboBox();
             this.tlMateria.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +51,6 @@ namespace UI.Desktop
             this.tlMateria.ColumnCount = 2;
             this.tlMateria.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlMateria.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.tlMateria.Controls.Add(this.txtIDPlan, 1, 4);
             this.tlMateria.Controls.Add(this.txtHSTotales, 1, 3);
             this.tlMateria.Controls.Add(this.txtHSSemanales, 1, 2);
             this.tlMateria.Controls.Add(this.txtDescripcion, 1, 1);
@@ -63,6 +62,7 @@ namespace UI.Desktop
             this.tlMateria.Controls.Add(this.lblHSTotales, 0, 3);
             this.tlMateria.Controls.Add(this.lblIDPlan, 0, 4);
             this.tlMateria.Controls.Add(this.txtID, 1, 0);
+            this.tlMateria.Controls.Add(this.comboPlan, 1, 4);
             this.tlMateria.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlMateria.ForeColor = System.Drawing.Color.White;
             this.tlMateria.Location = new System.Drawing.Point(0, 0);
@@ -77,15 +77,6 @@ namespace UI.Desktop
             this.tlMateria.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlMateria.Size = new System.Drawing.Size(800, 450);
             this.tlMateria.TabIndex = 0;
-            // 
-            // txtIDPlan
-            // 
-            this.txtIDPlan.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtIDPlan.ForeColor = System.Drawing.Color.Black;
-            this.txtIDPlan.Location = new System.Drawing.Point(203, 286);
-            this.txtIDPlan.Name = "txtIDPlan";
-            this.txtIDPlan.Size = new System.Drawing.Size(80, 31);
-            this.txtIDPlan.TabIndex = 5;
             // 
             // txtHSTotales
             // 
@@ -201,9 +192,9 @@ namespace UI.Desktop
             this.lblIDPlan.Location = new System.Drawing.Point(4, 289);
             this.lblIDPlan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIDPlan.Name = "lblIDPlan";
-            this.lblIDPlan.Size = new System.Drawing.Size(73, 24);
+            this.lblIDPlan.Size = new System.Drawing.Size(47, 24);
             this.lblIDPlan.TabIndex = 6;
-            this.lblIDPlan.Text = "ID Plan:";
+            this.lblIDPlan.Text = "Plan:";
             // 
             // txtID
             // 
@@ -216,6 +207,18 @@ namespace UI.Desktop
             this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(80, 31);
             this.txtID.TabIndex = 1;
+            // 
+            // comboPlan
+            // 
+            this.comboPlan.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.comboPlan.BackColor = System.Drawing.Color.White;
+            this.comboPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboPlan.ForeColor = System.Drawing.Color.Black;
+            this.comboPlan.FormattingEnabled = true;
+            this.comboPlan.Location = new System.Drawing.Point(203, 289);
+            this.comboPlan.Name = "comboPlan";
+            this.comboPlan.Size = new System.Drawing.Size(264, 32);
+            this.comboPlan.TabIndex = 5;
             // 
             // MateriaDesktop
             // 
@@ -249,10 +252,10 @@ namespace UI.Desktop
         private System.Windows.Forms.Label lblHSSemanales;
         private System.Windows.Forms.Label lblHSTotales;
         private System.Windows.Forms.Label lblIDPlan;
-        private System.Windows.Forms.TextBox txtIDPlan;
         private System.Windows.Forms.TextBox txtHSTotales;
         private System.Windows.Forms.TextBox txtHSSemanales;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.ComboBox comboPlan;
     }
 }
