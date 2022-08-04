@@ -36,12 +36,12 @@ namespace UI.Desktop
             this.lblAnio = new System.Windows.Forms.Label();
             this.lblCupo = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
-            this.txtMateria = new System.Windows.Forms.TextBox();
-            this.txtComision = new System.Windows.Forms.TextBox();
             this.txtAnio = new System.Windows.Forms.TextBox();
             this.txtCupo = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.comboMateria = new System.Windows.Forms.ComboBox();
+            this.comboComision = new System.Windows.Forms.ComboBox();
             this.tlCurso.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,12 +57,12 @@ namespace UI.Desktop
             this.tlCurso.Controls.Add(this.lblAnio, 0, 3);
             this.tlCurso.Controls.Add(this.lblCupo, 0, 4);
             this.tlCurso.Controls.Add(this.txtID, 1, 0);
-            this.tlCurso.Controls.Add(this.txtMateria, 1, 1);
-            this.tlCurso.Controls.Add(this.txtComision, 1, 2);
             this.tlCurso.Controls.Add(this.txtAnio, 1, 3);
             this.tlCurso.Controls.Add(this.txtCupo, 1, 4);
             this.tlCurso.Controls.Add(this.btnCancelar, 1, 5);
             this.tlCurso.Controls.Add(this.btnAceptar, 0, 5);
+            this.tlCurso.Controls.Add(this.comboMateria, 1, 1);
+            this.tlCurso.Controls.Add(this.comboComision, 1, 2);
             this.tlCurso.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlCurso.Location = new System.Drawing.Point(0, 0);
             this.tlCurso.Margin = new System.Windows.Forms.Padding(4);
@@ -74,7 +74,7 @@ namespace UI.Desktop
             this.tlCurso.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tlCurso.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tlCurso.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlCurso.Size = new System.Drawing.Size(437, 589);
+            this.tlCurso.Size = new System.Drawing.Size(445, 609);
             this.tlCurso.TabIndex = 0;
             // 
             // lblID
@@ -82,7 +82,7 @@ namespace UI.Desktop
             this.lblID.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblID.AutoSize = true;
             this.lblID.ForeColor = System.Drawing.Color.White;
-            this.lblID.Location = new System.Drawing.Point(4, 32);
+            this.lblID.Location = new System.Drawing.Point(4, 33);
             this.lblID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(36, 24);
@@ -94,31 +94,31 @@ namespace UI.Desktop
             this.lblMateria.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblMateria.AutoSize = true;
             this.lblMateria.ForeColor = System.Drawing.Color.White;
-            this.lblMateria.Location = new System.Drawing.Point(4, 120);
+            this.lblMateria.Location = new System.Drawing.Point(4, 124);
             this.lblMateria.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMateria.Name = "lblMateria";
-            this.lblMateria.Size = new System.Drawing.Size(104, 24);
+            this.lblMateria.Size = new System.Drawing.Size(78, 24);
             this.lblMateria.TabIndex = 1;
-            this.lblMateria.Text = "ID Materia:";
+            this.lblMateria.Text = "Materia:";
             // 
             // lblCurso
             // 
             this.lblCurso.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCurso.AutoSize = true;
             this.lblCurso.ForeColor = System.Drawing.Color.White;
-            this.lblCurso.Location = new System.Drawing.Point(4, 208);
+            this.lblCurso.Location = new System.Drawing.Point(4, 215);
             this.lblCurso.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCurso.Name = "lblCurso";
-            this.lblCurso.Size = new System.Drawing.Size(86, 24);
+            this.lblCurso.Size = new System.Drawing.Size(83, 24);
             this.lblCurso.TabIndex = 2;
-            this.lblCurso.Text = "ID Curso:";
+            this.lblCurso.Text = "Comisión:";
             // 
             // lblAnio
             // 
             this.lblAnio.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblAnio.AutoSize = true;
             this.lblAnio.ForeColor = System.Drawing.Color.White;
-            this.lblAnio.Location = new System.Drawing.Point(4, 296);
+            this.lblAnio.Location = new System.Drawing.Point(4, 306);
             this.lblAnio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAnio.Name = "lblAnio";
             this.lblAnio.Size = new System.Drawing.Size(134, 24);
@@ -130,7 +130,7 @@ namespace UI.Desktop
             this.lblCupo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCupo.AutoSize = true;
             this.lblCupo.ForeColor = System.Drawing.Color.White;
-            this.lblCupo.Location = new System.Drawing.Point(4, 384);
+            this.lblCupo.Location = new System.Drawing.Point(4, 397);
             this.lblCupo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCupo.Name = "lblCupo";
             this.lblCupo.Size = new System.Drawing.Size(53, 24);
@@ -143,41 +143,19 @@ namespace UI.Desktop
             this.txtID.BackColor = System.Drawing.Color.White;
             this.txtID.Enabled = false;
             this.txtID.ForeColor = System.Drawing.Color.Black;
-            this.txtID.Location = new System.Drawing.Point(178, 28);
+            this.txtID.Location = new System.Drawing.Point(182, 30);
             this.txtID.Margin = new System.Windows.Forms.Padding(4);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(75, 31);
             this.txtID.TabIndex = 5;
             // 
-            // txtMateria
-            // 
-            this.txtMateria.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtMateria.BackColor = System.Drawing.Color.White;
-            this.txtMateria.ForeColor = System.Drawing.Color.Black;
-            this.txtMateria.Location = new System.Drawing.Point(178, 116);
-            this.txtMateria.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMateria.Name = "txtMateria";
-            this.txtMateria.Size = new System.Drawing.Size(194, 31);
-            this.txtMateria.TabIndex = 1;
-            // 
-            // txtComision
-            // 
-            this.txtComision.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtComision.BackColor = System.Drawing.Color.White;
-            this.txtComision.ForeColor = System.Drawing.Color.Black;
-            this.txtComision.Location = new System.Drawing.Point(178, 204);
-            this.txtComision.Margin = new System.Windows.Forms.Padding(4);
-            this.txtComision.Name = "txtComision";
-            this.txtComision.Size = new System.Drawing.Size(194, 31);
-            this.txtComision.TabIndex = 2;
-            // 
             // txtAnio
             // 
             this.txtAnio.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtAnio.BackColor = System.Drawing.Color.White;
             this.txtAnio.ForeColor = System.Drawing.Color.Black;
-            this.txtAnio.Location = new System.Drawing.Point(178, 292);
+            this.txtAnio.Location = new System.Drawing.Point(182, 303);
             this.txtAnio.Margin = new System.Windows.Forms.Padding(4);
             this.txtAnio.Name = "txtAnio";
             this.txtAnio.Size = new System.Drawing.Size(194, 31);
@@ -188,7 +166,7 @@ namespace UI.Desktop
             this.txtCupo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtCupo.BackColor = System.Drawing.Color.White;
             this.txtCupo.ForeColor = System.Drawing.Color.Black;
-            this.txtCupo.Location = new System.Drawing.Point(178, 380);
+            this.txtCupo.Location = new System.Drawing.Point(182, 394);
             this.txtCupo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCupo.Name = "txtCupo";
             this.txtCupo.Size = new System.Drawing.Size(194, 31);
@@ -201,7 +179,7 @@ namespace UI.Desktop
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.ForeColor = System.Drawing.Color.Red;
-            this.btnCancelar.Location = new System.Drawing.Point(297, 489);
+            this.btnCancelar.Location = new System.Drawing.Point(305, 507);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(120, 50);
@@ -219,7 +197,7 @@ namespace UI.Desktop
             this.btnAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAceptar.ForeColor = System.Drawing.Color.Green;
-            this.btnAceptar.Location = new System.Drawing.Point(20, 489);
+            this.btnAceptar.Location = new System.Drawing.Point(20, 507);
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(20, 4, 4, 4);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(120, 50);
@@ -230,6 +208,30 @@ namespace UI.Desktop
             this.btnAceptar.MouseEnter += new System.EventHandler(this.btnAceptar_MouseEnter);
             this.btnAceptar.MouseLeave += new System.EventHandler(this.btnAceptar_MouseLeave);
             // 
+            // comboMateria
+            // 
+            this.comboMateria.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.comboMateria.BackColor = System.Drawing.Color.White;
+            this.comboMateria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboMateria.ForeColor = System.Drawing.Color.Black;
+            this.comboMateria.FormattingEnabled = true;
+            this.comboMateria.Location = new System.Drawing.Point(181, 120);
+            this.comboMateria.Name = "comboMateria";
+            this.comboMateria.Size = new System.Drawing.Size(195, 32);
+            this.comboMateria.TabIndex = 7;
+            // 
+            // comboComision
+            // 
+            this.comboComision.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.comboComision.BackColor = System.Drawing.Color.White;
+            this.comboComision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboComision.ForeColor = System.Drawing.Color.Black;
+            this.comboComision.FormattingEnabled = true;
+            this.comboComision.Location = new System.Drawing.Point(181, 215);
+            this.comboComision.Name = "comboComision";
+            this.comboComision.Size = new System.Drawing.Size(195, 32);
+            this.comboComision.TabIndex = 8;
+            // 
             // CursoDesktop
             // 
             this.AcceptButton = this.btnAceptar;
@@ -237,7 +239,7 @@ namespace UI.Desktop
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(437, 589);
+            this.ClientSize = new System.Drawing.Size(445, 609);
             this.Controls.Add(this.tlCurso);
             this.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.DarkSlateGray;
@@ -266,11 +268,11 @@ namespace UI.Desktop
         private System.Windows.Forms.Label lblAnio;
         private System.Windows.Forms.Label lblCupo;
         private System.Windows.Forms.TextBox txtID;
-        private System.Windows.Forms.TextBox txtMateria;
-        private System.Windows.Forms.TextBox txtComision;
         private System.Windows.Forms.TextBox txtAnio;
         private System.Windows.Forms.TextBox txtCupo;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.ComboBox comboMateria;
+        private System.Windows.Forms.ComboBox comboComision;
     }
 }

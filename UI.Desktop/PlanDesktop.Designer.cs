@@ -158,9 +158,9 @@ namespace UI.Desktop
             this.lblIDEsp.ForeColor = System.Drawing.Color.White;
             this.lblIDEsp.Location = new System.Drawing.Point(3, 290);
             this.lblIDEsp.Name = "lblIDEsp";
-            this.lblIDEsp.Size = new System.Drawing.Size(139, 24);
+            this.lblIDEsp.Size = new System.Drawing.Size(113, 24);
             this.lblIDEsp.TabIndex = 7;
-            this.lblIDEsp.Text = "ID Especialidad:";
+            this.lblIDEsp.Text = "Especialidad:";
             // 
             // comboEspecialidad
             // 

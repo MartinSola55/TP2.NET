@@ -35,13 +35,14 @@ namespace UI.Desktop
             {
                 btnAceptar.Text = "Guardar";
             }
-
+            this.ListarCombo();
         }
         public ComisionDesktop(int id, ModoForm modo) : this()
         {
             ComisionLogic cl = new ComisionLogic();
             ComisionActual = cl.GetOne(id);
             Modo = modo;
+            this.ListarCombo();
             this.MapearDeDatos();
         }
         public override void MapearDeDatos()
@@ -49,7 +50,7 @@ namespace UI.Desktop
             this.txtID.Text = this.ComisionActual.ID.ToString();
             this.txtDescripcion.Text = this.ComisionActual.Descripcion;
             this.txtAnio.Text = this.ComisionActual.AnioEspecialidad.ToString();
-            this.txtIDPlan.Text = this.ComisionActual.IDPlan.ToString();
+            this.comboPlan.SelectedValue = this.ComisionActual.IDPlan;
             switch (this.Modo)
             {
                 case ModoForm.Modificacion:
@@ -62,7 +63,7 @@ namespace UI.Desktop
                         btnAceptar.Text = "Eliminar";
                         txtDescripcion.Enabled = false;
                         txtAnio.Enabled = false;
-                        txtIDPlan.Enabled = false;
+                        comboPlan.Enabled = false;
                         break;
                     }
                 case ModoForm.Consulta:
@@ -83,7 +84,7 @@ namespace UI.Desktop
             {
                 this.ComisionActual.Descripcion = this.txtDescripcion.Text;
                 this.ComisionActual.AnioEspecialidad = int.Parse(this.txtAnio.Text);
-                this.ComisionActual.IDPlan = int.Parse(this.txtIDPlan.Text);
+                this.ComisionActual.IDPlan = int.Parse(this.comboPlan.SelectedValue.ToString());
                 if (this.Modo == ModoForm.Alta)
                 {
                     this.ComisionActual.State = BusinessEntity.States.New;
@@ -100,13 +101,19 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
-            if (this.txtDescripcion.Text.Length == 0 || this.txtAnio.Text.Length == 0 || this.txtIDPlan.Text.Length == 0)
+            if (this.txtDescripcion.Text.Length == 0 || this.txtAnio.Text.Length == 0)
             {
                 this.Notificar("ERROR", "Debes completar todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
-            } else if (int.Parse(this.txtAnio.Text) < 1980 || int.Parse(this.txtAnio.Text) > System.DateTime.Now.Year)
+            } 
+            else if (int.Parse(this.txtAnio.Text) < 1980 || int.Parse(this.txtAnio.Text) > System.DateTime.Now.Year)
             {
                 this.Notificar("ERROR", "Debes añadir un año válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (this.comboPlan.SelectedValue.ToString() == "0")
+            {
+                this.Notificar("ERROR", "Debes seleccionar un plan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
@@ -117,7 +124,21 @@ namespace UI.Desktop
             ComisionLogic cl = new ComisionLogic();
             cl.Save(ComisionActual);
         }
-
+        private void ListarCombo()
+        {
+            PlanLogic pl = new PlanLogic();
+            List<Plan> planes = pl.GetAll();
+            Dictionary<int, string> comboSource = new Dictionary<int, string>();
+            comboSource.Add(0, "-- Seleccione un plan --");
+            foreach (Plan p in planes)
+            {
+                comboSource.Add(p.ID, p.Descripcion + " - " + p.DescripcionEsp);
+            }
+            this.comboPlan.DataSource = new BindingSource(comboSource, null);
+            this.comboPlan.DisplayMember = "Value";
+            this.comboPlan.ValueMember = "Key";
+            this.comboPlan.SelectedValue = 0;
+        }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             try

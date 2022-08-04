@@ -44,7 +44,7 @@ namespace UI.Desktop
         {
             this.txtID.Text = this.PlanActual.ID.ToString();
             this.txtDescripcion.Text = this.PlanActual.Descripcion;
-            this.comboEspecialidad.SelectedIndex = this.PlanActual.IDEspecialidad;
+            this.comboEspecialidad.SelectedValue = this.PlanActual.IDEspecialidad;
             switch (this.Modo)
             {
                 case ModoForm.Modificacion:
@@ -76,7 +76,7 @@ namespace UI.Desktop
             if (this.Modo == ModoForm.Alta || this.Modo == ModoForm.Modificacion)
             {
                 this.PlanActual.Descripcion = this.txtDescripcion.Text;
-                this.PlanActual.IDEspecialidad = this.comboEspecialidad.SelectedIndex;
+                this.PlanActual.IDEspecialidad = int.Parse(this.comboEspecialidad.SelectedValue.ToString());
                 if (this.Modo == ModoForm.Alta)
                 {
                     this.PlanActual.State = BusinessEntity.States.New;
@@ -97,7 +97,7 @@ namespace UI.Desktop
             {
                 this.Notificar("ERROR", "Debes escribir una descripción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
-            } else if (this.comboEspecialidad.SelectedIndex == 0)
+            } else if (this.comboEspecialidad.SelectedValue.ToString() == "0")
             {
                 this.Notificar("ERROR", "Debes seleccionar una especialidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -114,14 +114,16 @@ namespace UI.Desktop
         {
             EspecialidadLogic el = new EspecialidadLogic();
             List<Especialidad> especialidades = el.GetAll();
-            string primerElemento = "--Seleccione una especialidad--";
-            this.comboEspecialidad.Items.Add(primerElemento);
+            Dictionary<int, string> comboSource = new Dictionary<int, string>();
+            comboSource.Add(0, "-- Seleccione una especialidad --");
             foreach (Especialidad esp in especialidades)
             {
-                this.comboEspecialidad.Items.Add(esp.Descripcion);
-                this.comboEspecialidad.SelectedIndex = esp.ID;
+                comboSource.Add(esp.ID, esp.Descripcion);
             }
-            this.comboEspecialidad.SelectedIndex = 0;
+            this.comboEspecialidad.DataSource = new BindingSource(comboSource, null);
+            this.comboEspecialidad.DisplayMember = "Value";
+            this.comboEspecialidad.ValueMember = "Key";
+            this.comboEspecialidad.SelectedValue = 0;
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {

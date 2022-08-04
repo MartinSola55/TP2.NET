@@ -17,7 +17,8 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdEspecialidades = new SqlCommand("SELECT * FROM especialidades", sqlConn);
+                SqlCommand cmdEspecialidades = new SqlCommand("SELECT * FROM especialidades " +
+                    "ORDER BY desc_especialidad", sqlConn);
                 SqlDataReader drEspecialidades = cmdEspecialidades.ExecuteReader();
                 while (drEspecialidades.Read())
                 {

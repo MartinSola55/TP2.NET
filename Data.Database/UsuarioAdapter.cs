@@ -14,23 +14,24 @@ namespace Data.Database
             List<Usuario> usuarios = new List<Usuario>();
             try
             {
-            this.OpenConnection();
-            SqlCommand cmdUsuarios = new SqlCommand("SELECT * FROM usuarios", sqlConn);
-            SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
-            while (drUsuarios.Read())
-            {
-                Usuario usr = new Usuario();
-                usr.ID = (int)drUsuarios["id_usuario"];
-                usr.NombreUsuario = (string)drUsuarios["nombre_usuario"];
-                usr.Clave = (string)drUsuarios["clave"];
-                usr.Habilitado = (bool)drUsuarios["habilitado"];
-                usr.Nombre = (string)drUsuarios["nombre"];
-                usr.Apellido = (string)drUsuarios["apellido"];
-                usr.Email = (string)drUsuarios["email"];
-                usuarios.Add(usr);
-            }
+                this.OpenConnection();
+                SqlCommand cmdUsuarios = new SqlCommand("SELECT * FROM usuarios " +
+                    "ORDER BY apellido, nombre, nombre_usuario", sqlConn);
+                SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
+                while (drUsuarios.Read())
+                {
+                    Usuario usr = new Usuario();
+                    usr.ID = (int)drUsuarios["id_usuario"];
+                    usr.NombreUsuario = (string)drUsuarios["nombre_usuario"];
+                    usr.Clave = (string)drUsuarios["clave"];
+                    usr.Habilitado = (bool)drUsuarios["habilitado"];
+                    usr.Nombre = (string)drUsuarios["nombre"];
+                    usr.Apellido = (string)drUsuarios["apellido"];
+                    usr.Email = (string)drUsuarios["email"];
+                    usuarios.Add(usr);
+                }
 
-            drUsuarios.Close();
+                drUsuarios.Close();
             } catch (Exception Ex)
             {
                 Exception exceptionManejada = new Exception("Hubo un error al recuperar la lista de usuarios", Ex);
@@ -170,7 +171,8 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdUsuarios = new SqlCommand("SELECT * FROM usuarios WHERE nombre_usuario = @nombre_usario AND clave = @clave", sqlConn);
+                SqlCommand cmdUsuarios = new SqlCommand("SELECT * FROM usuarios " +
+                    "WHERE nombre_usuario = @nombre_usario AND clave = @clave", sqlConn);
                 cmdUsuarios.Parameters.Add("@nombre_usario", SqlDbType.VarChar, 50).Value = nombre;
                 cmdUsuarios.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = clave;
                 SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
@@ -192,6 +194,45 @@ namespace Data.Database
                 this.CloseConnection();
             }
             return false;
+        }
+        public List<Usuario> FiltraUsuarios(string nombre, string apellido, string usr, string mail)
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdUsuarios = new SqlCommand(
+                    "SELECT * FROM usuarios " +
+                    "WHERE nombre_usuario LIKE '%" + usr + "%' " +
+                    "AND nombre LIKE '%" + nombre + "%'" +
+                    "AND apellido LIKE '%" + apellido+ "%' " +
+                    "AND email LIKE '%" + mail + "%' ", sqlConn);
+                SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
+                while (drUsuarios.Read())
+                {
+                    Usuario usuario = new Usuario();
+                    usuario.ID = (int)drUsuarios["id_usuario"];
+                    usuario.NombreUsuario = (string)drUsuarios["nombre_usuario"];
+                    usuario.Clave = (string)drUsuarios["clave"];
+                    usuario.Habilitado = (bool)drUsuarios["habilitado"];
+                    usuario.Nombre = (string)drUsuarios["nombre"];
+                    usuario.Apellido = (string)drUsuarios["apellido"];
+                    usuario.Email = (string)drUsuarios["email"];
+                    usuarios.Add(usuario);
+                }
+
+                drUsuarios.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception exceptionManejada = new Exception("Hubo un error al filtrar la lista de usuarios", Ex);
+                throw exceptionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return usuarios;
         }
     }
 }

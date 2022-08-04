@@ -34,20 +34,21 @@ namespace UI.Desktop
             {
                 btnAceptar.Text = "Guardar";
             }
-
+            ListarCombos();
         }
         public CursoDesktop(int id, ModoForm modo) : this()
         {
             CursoLogic cl = new CursoLogic();
             CursoActual = cl.GetOne(id);
             Modo = modo;
+            this.ListarCombos();
             this.MapearDeDatos();
         }
         public override void MapearDeDatos()
         {
             this.txtID.Text = this.CursoActual.ID.ToString();
-            this.txtMateria.Text = this.CursoActual.IDMateria.ToString();
-            this.txtComision.Text = this.CursoActual.IDComision.ToString();
+            this.comboComision.SelectedValue = this.CursoActual.IDComision;
+            this.comboMateria.SelectedValue = this.CursoActual.IDMateria;
             this.txtAnio.Text = this.CursoActual.AnioCalendario.ToString();
             this.txtCupo.Text = this.CursoActual.Cupo.ToString();
             switch (this.Modo)
@@ -60,8 +61,8 @@ namespace UI.Desktop
                 case ModoForm.Baja:
                     {
                         btnAceptar.Text = "Eliminar";
-                        txtMateria.Enabled = false;
-                        txtComision.Enabled = false;
+                        comboComision.Enabled = false;
+                        comboMateria.Enabled = false;
                         txtAnio.Enabled = false;
                         txtCupo.Enabled = false;
                         break;
@@ -82,8 +83,8 @@ namespace UI.Desktop
             }
             if (this.Modo == ModoForm.Alta || this.Modo == ModoForm.Modificacion)
             {
-                this.CursoActual.IDMateria = int.Parse(this.txtMateria.Text);
-                this.CursoActual.IDComision = int.Parse(this.txtComision.Text);
+                this.CursoActual.IDMateria = int.Parse(this.comboMateria.SelectedValue.ToString());
+                this.CursoActual.IDComision = int.Parse(this.comboComision.SelectedValue.ToString());
                 this.CursoActual.AnioCalendario = int.Parse(this.txtAnio.Text);
                 this.CursoActual.Cupo = int.Parse(this.txtCupo.Text);
                 if (this.Modo == ModoForm.Alta)
@@ -102,7 +103,7 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
-            if (txtMateria.Text.Length == 0 || txtComision.Text.Length == 0 || txtAnio.Text.Length == 0 || txtCupo.Text.Length == 0)
+            if (txtAnio.Text.Length == 0 || txtCupo.Text.Length == 0)
             {
                 this.Notificar("ERROR", "Debes completar todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -117,6 +118,16 @@ namespace UI.Desktop
                 this.Notificar("ERROR", "El cupo debe ser estar entre 1 y 500", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            else if (this.comboMateria.SelectedValue.ToString() == "0")
+            {
+                this.Notificar("ERROR", "Debes seleccionar una materia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (this.comboComision.SelectedValue.ToString() == "0")
+            {
+                this.Notificar("ERROR", "Debes seleccionar una comisión", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             return true;
         }
         public override void GuardarCambios()
@@ -125,7 +136,33 @@ namespace UI.Desktop
             CursoLogic cl = new CursoLogic();
             cl.Save(CursoActual);
         }
-
+        private void ListarCombos()
+        {
+            MateriaLogic ml = new MateriaLogic();
+            ComisionLogic cl = new ComisionLogic();
+            List<Materia> materias = ml.GetAll();
+            List<Comision> comisiones = cl.GetAll();
+            Dictionary<int, string> comboSourceM = new Dictionary<int, string>();
+            Dictionary<int, string> comboSourceC = new Dictionary<int, string>();
+            comboSourceM.Add(0, "-- Seleccione una materia--");
+            comboSourceC.Add(0, "-- Seleccione una comisión --");
+            foreach (Materia m in materias)
+            {
+                comboSourceM.Add(m.ID, m.Descripcion);
+            }
+            foreach (Comision c in comisiones)
+            {
+                comboSourceC.Add(c.ID, c.Descripcion);
+            }
+            this.comboMateria.DataSource = new BindingSource(comboSourceM, null);
+            this.comboComision.DataSource = new BindingSource(comboSourceC, null);
+            this.comboMateria.DisplayMember = "Value";
+            this.comboComision.DisplayMember = "Value";
+            this.comboMateria.ValueMember = "Key";
+            this.comboComision.ValueMember = "Key";
+            this.comboMateria.SelectedValue = 0;
+            this.comboComision.SelectedValue = 0;
+        }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             try

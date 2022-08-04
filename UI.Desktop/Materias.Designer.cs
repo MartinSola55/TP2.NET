@@ -318,9 +318,9 @@ namespace UI.Desktop
             // 
             this.desc_plan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.desc_plan.DataPropertyName = "DescripcionPlan";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.desc_plan.DefaultCellStyle = dataGridViewCellStyle7;
-            this.desc_plan.HeaderText = "Plan";
+            this.desc_plan.HeaderText = "Plan - Especialidad";
             this.desc_plan.MinimumWidth = 6;
             this.desc_plan.Name = "desc_plan";
             this.desc_plan.ReadOnly = true;

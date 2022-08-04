@@ -18,7 +18,9 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdPlanes = new SqlCommand("SELECT * FROM planes p INNER JOIN especialidades e ON p.id_especialidad = e.id_especialidad", sqlConn);
+                SqlCommand cmdPlanes = new SqlCommand("SELECT * FROM planes p " +
+                    "INNER JOIN especialidades e ON p.id_especialidad = e.id_especialidad " +
+                    "ORDER BY p.desc_plan, e.desc_especialidad", sqlConn);
                 SqlDataReader drPlanes = cmdPlanes.ExecuteReader();
                 while (drPlanes.Read())
                 {

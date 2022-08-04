@@ -36,7 +36,8 @@ namespace UI.WebMVC.Controllers
             try
             {
                 ul.Delete(id);
-                respuesta = "El usuario se eliminó correctamente";            }
+                respuesta = "El usuario se eliminó correctamente";
+            }
             catch (Exception ex)
             {
                 respuesta = ex.Message;
@@ -64,6 +65,12 @@ namespace UI.WebMVC.Controllers
             }
             return Json(respuesta, JsonRequestBehavior.AllowGet);
         }
-        
+        public JsonResult FiltraUsuarios(string nombre, string apellido, string usr, string mail)
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+            UsuarioLogic ul = new UsuarioLogic();
+            usuarios = ul.FiltraUsuarios(nombre, apellido, usr, mail);
+            return Json(usuarios, JsonRequestBehavior.AllowGet);
+        }
     }
 }

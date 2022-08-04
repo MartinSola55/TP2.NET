@@ -32,10 +32,18 @@ namespace Business.Entities
         {
             get; set;
         }
-
+        public string ComisionDesc
+        {
+            get; set;
+        }
         public int IDMateria
         {
             get; set;
         }
+        public string MateriaDesc
+        {
+            get; set;
+        }
+
     }
 }

@@ -1,6 +1,9 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding-top: 5rem;
+}
+
+main {
+    min-height: 80vh;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -17,6 +20,5 @@ textarea {
 }
 
 #footerText {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
-

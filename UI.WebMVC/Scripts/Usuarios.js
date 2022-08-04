@@ -1,8 +1,9 @@
 ﻿listar();
+let header = ["Nombre", "Apellido", "Email", "Usuario", "Habilitado"];
 
 function listar() {
     $.get("../Usuarios/getAll", function (data) {
-        listadoUsuarios(["Nombre", "Apellido", "Email", "Usuario", "Habilitado", "Acción"], data);
+        listadoUsuarios(header, data);
     });
 }
 
@@ -16,6 +17,7 @@ function listadoUsuarios(arrayHeader, data) {
         contenido += arrayHeader[i];
         contenido += "</td>";
     }
+    contenido += "<td class='no-sort text-center'>Acción</td>";
     contenido += "</tr>";
     contenido += "</thead>";
     contenido += "<tbody>";
@@ -40,11 +42,40 @@ function listadoUsuarios(arrayHeader, data) {
         {
             searching: false,
             "language": {
-                url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json'
-            }
+                paginate: {
+                    "first": "Primero",
+                    "last": "Último",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                },
+                emptyTable: "No existen usuarios que coincidan con la búsqueda",
+                info: "Mostrando _START_ a _END_ de _TOTAL_ usuarios",
+                infoEmpty: "Mostrando 0 usuarios",
+                lengthMenu: "Mostrar _MENU_ usuarios",
+            },
+            columnDefs: [{
+                orderable: false,
+                targets: "no-sort"
+            }]
         }
     )
     $("#tabla-generic").removeAttr("style");
+}
+
+jQuery('#filtroNombre').on('input', filtraUsuario);
+jQuery('#filtroApellido').on('input', filtraUsuario);
+jQuery('#filtroUsuario').on('input', filtraUsuario);
+jQuery('#filtroMail').on('input', filtraUsuario);
+
+function filtraUsuario() {
+    let nombre = $("#filtroNombre").val();
+    let apellido = $("#filtroApellido").val();
+    let usuario = $("#filtroUsuario").val();
+    let mail = $("#filtroMail").val();
+    $.get("../Usuarios/FiltraUsuarios/?nombre=" + nombre + "&apellido=" + apellido + "&usr="
+        + usuario + "&mail=" + mail, function (data) {
+            listadoUsuarios(header, data);
+        });
 }
 
 function modalEdit(id) {
@@ -103,6 +134,14 @@ $("#btnAgregar").click(function () {
     habilitarCampos();
     $("#staticBackdropLabel").text("Agregar usuario");
     $("#checkHabilitada").prop('checked', false);
+});
+
+jQuery('#limpia-filtro').on('click', function () {
+    listar();
+    $("#filtroNombre").val("");
+    $("#filtroApellido").val("");
+    $("#filtroUsuario").val("");
+    $("#filtroMail").val("");
 });
 
 function limpiarCampos() {

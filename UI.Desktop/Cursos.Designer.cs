@@ -34,28 +34,28 @@ namespace UI.Desktop
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cursos));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cursos));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.dgvCursos = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_materia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_comision = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.anio_calendario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_materia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_comision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.anio_calendario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -203,59 +203,6 @@ namespace UI.Desktop
             this.dgvCursos.Size = new System.Drawing.Size(935, 353);
             this.dgvCursos.TabIndex = 2;
             // 
-            // id
-            // 
-            this.id.DataPropertyName = "ID";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.id.DefaultCellStyle = dataGridViewCellStyle3;
-            this.id.HeaderText = "ID";
-            this.id.MinimumWidth = 6;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // id_materia
-            // 
-            this.id_materia.DataPropertyName = "IDMateria";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.id_materia.DefaultCellStyle = dataGridViewCellStyle4;
-            this.id_materia.HeaderText = "ID Materia";
-            this.id_materia.MinimumWidth = 50;
-            this.id_materia.Name = "id_materia";
-            this.id_materia.ReadOnly = true;
-            // 
-            // id_comision
-            // 
-            this.id_comision.DataPropertyName = "IDComision";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.id_comision.DefaultCellStyle = dataGridViewCellStyle5;
-            this.id_comision.HeaderText = "ID Comisión";
-            this.id_comision.MinimumWidth = 50;
-            this.id_comision.Name = "id_comision";
-            this.id_comision.ReadOnly = true;
-            // 
-            // anio_calendario
-            // 
-            this.anio_calendario.DataPropertyName = "AnioCalendario";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.anio_calendario.DefaultCellStyle = dataGridViewCellStyle6;
-            this.anio_calendario.HeaderText = "Año Calendario";
-            this.anio_calendario.MinimumWidth = 60;
-            this.anio_calendario.Name = "anio_calendario";
-            this.anio_calendario.ReadOnly = true;
-            this.anio_calendario.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // cupo
-            // 
-            this.cupo.DataPropertyName = "Cupo";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cupo.DefaultCellStyle = dataGridViewCellStyle7;
-            this.cupo.HeaderText = "Cupo";
-            this.cupo.MinimumWidth = 6;
-            this.cupo.Name = "cupo";
-            this.cupo.ReadOnly = true;
-            this.cupo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
             // toolStrip1
             // 
             this.toolStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
@@ -322,6 +269,67 @@ namespace UI.Desktop
             this.tsbEliminar.Size = new System.Drawing.Size(77, 33);
             this.tsbEliminar.Text = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
+            // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.id.DataPropertyName = "ID";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.id.DefaultCellStyle = dataGridViewCellStyle3;
+            this.id.HeaderText = "ID";
+            this.id.MinimumWidth = 6;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.id.Width = 64;
+            // 
+            // id_materia
+            // 
+            this.id_materia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.id_materia.DataPropertyName = "MateriaDesc";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.id_materia.DefaultCellStyle = dataGridViewCellStyle4;
+            this.id_materia.HeaderText = "Materia";
+            this.id_materia.MinimumWidth = 50;
+            this.id_materia.Name = "id_materia";
+            this.id_materia.ReadOnly = true;
+            // 
+            // id_comision
+            // 
+            this.id_comision.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.id_comision.DataPropertyName = "ComisionDesc";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.id_comision.DefaultCellStyle = dataGridViewCellStyle5;
+            this.id_comision.HeaderText = "Comisión";
+            this.id_comision.MinimumWidth = 50;
+            this.id_comision.Name = "id_comision";
+            this.id_comision.ReadOnly = true;
+            // 
+            // anio_calendario
+            // 
+            this.anio_calendario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.anio_calendario.DataPropertyName = "AnioCalendario";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.anio_calendario.DefaultCellStyle = dataGridViewCellStyle6;
+            this.anio_calendario.HeaderText = "Año Calendario";
+            this.anio_calendario.MinimumWidth = 60;
+            this.anio_calendario.Name = "anio_calendario";
+            this.anio_calendario.ReadOnly = true;
+            this.anio_calendario.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.anio_calendario.Width = 169;
+            // 
+            // cupo
+            // 
+            this.cupo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cupo.DataPropertyName = "Cupo";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cupo.DefaultCellStyle = dataGridViewCellStyle7;
+            this.cupo.HeaderText = "Cupo";
+            this.cupo.MinimumWidth = 6;
+            this.cupo.Name = "cupo";
+            this.cupo.ReadOnly = true;
+            this.cupo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.cupo.Width = 81;
             // 
             // Cursos
             // 

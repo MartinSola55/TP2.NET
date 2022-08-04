@@ -17,7 +17,12 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdCursos = new SqlCommand("SELECT * FROM cursos", sqlConn);
+                SqlCommand cmdCursos = new SqlCommand(
+                    "SELECT * FROM cursos c " +
+                    "INNER JOIN materias m ON c.id_materia = m.id_materia " +
+                    "INNER JOIN comisiones com ON c.id_comision = com.id_comision " +
+                    "ORDER BY m.desc_materia, com.desc_comision"
+                    , sqlConn);
                 SqlDataReader drCursos = cmdCursos.ExecuteReader();
                 while (drCursos.Read())
                 {
@@ -27,6 +32,8 @@ namespace Data.Database
                     curso.IDComision = (int)drCursos["id_comision"];
                     curso.AnioCalendario = (int)drCursos["anio_calendario"];
                     curso.Cupo = (int)drCursos["cupo"];
+                    curso.MateriaDesc = (string)drCursos["desc_materia"];
+                    curso.ComisionDesc = (string)drCursos["desc_comision"];
                     cursos.Add(curso);
                 }
 

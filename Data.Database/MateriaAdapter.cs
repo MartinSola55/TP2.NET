@@ -20,7 +20,8 @@ namespace Data.Database
                 SqlCommand cmdMaterias = new SqlCommand(
                     "SELECT * FROM materias m " +
                     "INNER JOIN planes p ON p.id_plan = m.id_plan " +
-                    "INNER JOIN especialidades e ON e.id_especialidad = p.id_especialidad", sqlConn);
+                    "INNER JOIN especialidades e ON e.id_especialidad = p.id_especialidad " +
+                    "ORDER BY m.desc_materia, m.id_plan, p.desc_plan, e.desc_especialidad", sqlConn);
                 SqlDataReader drMaterias = cmdMaterias.ExecuteReader();
                 while (drMaterias.Read())
                 {

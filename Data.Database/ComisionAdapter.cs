@@ -15,7 +15,11 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdComisiones = new SqlCommand("SELECT * FROM comisiones", sqlConn);
+                SqlCommand cmdComisiones = new SqlCommand(
+                    "SELECT * FROM comisiones c " +
+                    "INNER JOIN planes p ON c.id_plan = p.id_plan " +
+                    "INNER JOIN especialidades e ON p.id_especialidad = e.id_especialidad " +
+                    "ORDER BY desc_comision", sqlConn);
                 SqlDataReader drComisiones = cmdComisiones.ExecuteReader();
                 while (drComisiones.Read())
                 {
@@ -24,6 +28,9 @@ namespace Data.Database
                     com.Descripcion = (string)drComisiones["desc_comision"];
                     com.AnioEspecialidad = (int)drComisiones["anio_especialidad"];
                     com.IDPlan = (int)drComisiones["id_plan"];
+                    com.PlanDesc = (string)drComisiones["desc_plan"];
+                    com.PlanDesc += " - ";
+                    com.PlanDesc += (string)drComisiones["desc_especialidad"];
                     comisiones.Add(com);
                 }
 

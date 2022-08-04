@@ -39,7 +39,7 @@ namespace UI.Desktop
             this.txtAnio = new System.Windows.Forms.TextBox();
             this.lblAnio = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
-            this.txtIDPlan = new System.Windows.Forms.TextBox();
+            this.comboPlan = new System.Windows.Forms.ComboBox();
             this.tlComision.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +58,7 @@ namespace UI.Desktop
             this.tlComision.Controls.Add(this.txtAnio, 1, 2);
             this.tlComision.Controls.Add(this.lblAnio, 0, 2);
             this.tlComision.Controls.Add(this.txtID, 1, 0);
-            this.tlComision.Controls.Add(this.txtIDPlan, 1, 3);
+            this.tlComision.Controls.Add(this.comboPlan, 1, 3);
             this.tlComision.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlComision.Location = new System.Drawing.Point(0, 0);
             this.tlComision.Margin = new System.Windows.Forms.Padding(4);
@@ -104,9 +104,9 @@ namespace UI.Desktop
             this.lblIDPlan.Location = new System.Drawing.Point(4, 285);
             this.lblIDPlan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIDPlan.Name = "lblIDPlan";
-            this.lblIDPlan.Size = new System.Drawing.Size(73, 24);
+            this.lblIDPlan.Size = new System.Drawing.Size(47, 24);
             this.lblIDPlan.TabIndex = 3;
-            this.lblIDPlan.Text = "ID Plan:";
+            this.lblIDPlan.Text = "Plan:";
             // 
             // btnAceptar
             // 
@@ -191,16 +191,17 @@ namespace UI.Desktop
             this.txtID.Size = new System.Drawing.Size(80, 31);
             this.txtID.TabIndex = 6;
             // 
-            // txtIDPlan
+            // comboPlan
             // 
-            this.txtIDPlan.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtIDPlan.BackColor = System.Drawing.Color.White;
-            this.txtIDPlan.ForeColor = System.Drawing.Color.Black;
-            this.txtIDPlan.Location = new System.Drawing.Point(213, 282);
-            this.txtIDPlan.Margin = new System.Windows.Forms.Padding(4);
-            this.txtIDPlan.Name = "txtIDPlan";
-            this.txtIDPlan.Size = new System.Drawing.Size(194, 31);
-            this.txtIDPlan.TabIndex = 3;
+            this.comboPlan.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.comboPlan.BackColor = System.Drawing.Color.White;
+            this.comboPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboPlan.ForeColor = System.Drawing.Color.Black;
+            this.comboPlan.FormattingEnabled = true;
+            this.comboPlan.Location = new System.Drawing.Point(212, 285);
+            this.comboPlan.Name = "comboPlan";
+            this.comboPlan.Size = new System.Drawing.Size(195, 32);
+            this.comboPlan.TabIndex = 7;
             // 
             // ComisionDesktop
             // 
@@ -240,6 +241,6 @@ namespace UI.Desktop
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtAnio;
-        private System.Windows.Forms.TextBox txtIDPlan;
+        private System.Windows.Forms.ComboBox comboPlan;
     }
 }

@@ -1,12 +1,34 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Usuarios";
 }
 
 <link href="~/Content/mis-estilos.css" rel="stylesheet" />
 <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
 
 <h1 class="text-center">Usuarios</h1>
+
+<div class="container-fluid d-flex mb-3">
+    <div class="row me-4 col-3">
+        <label class="form-label">Filtrar por nombre: </label>
+        <input type="text" id="filtroNombre" class="form-control" placeholder="Nombre a buscar" />
+    </div>
+    <div class="row me-4 col-3">
+        <label class="form-label">Filtrar por apellido: </label>
+        <input type="text" id="filtroApellido" class="form-control" placeholder="Apellido a buscar" />
+    </div>
+    <div class="row me-4 col-3">
+        <label class="form-label">Filtrar por usuario: </label>
+        <input type="text" id="filtroUsuario" class="form-control" placeholder="Usuario a buscar" />
+    </div>
+    <div class="row me-4 col-3">
+        <label class="form-label">Filtrar por mail: </label>
+        <input type="text" id="filtroMail" class="form-control" placeholder="Mail a buscar" />
+    </div>
+</div>
+    <div class="mb-3">
+        <input type="button" class="btn btn-outline-dark" id="limpia-filtro" value="Limpiar" style="max-height:3rem" />
+    </div>
 
 <div id="tabla-usuarios">
 
@@ -35,7 +57,7 @@
                 <input id="txtEmail" type="email" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
                 <label class="mb-3 campo3">Usuario: </label>
                 <input id="txtNombreUsuario" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
-                <label class="mb-3">Habilitada: </label>
+                <label class="mb-3">Habilitado: </label>
                 <div>
                     <input id="checkHabilitado" class="mb-3 form-check habilitarCampo deshabilitarCampo" type="checkbox" style="transform:scale(1.25)" />
                 </div>

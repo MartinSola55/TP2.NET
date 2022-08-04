@@ -298,7 +298,7 @@ namespace UI.Desktop
             // 
             this.desc_especialidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.desc_especialidad.DataPropertyName = "DescripcionEsp";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
             this.desc_especialidad.DefaultCellStyle = dataGridViewCellStyle5;

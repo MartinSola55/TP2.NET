@@ -57,7 +57,6 @@ namespace UI.Desktop
             this.txtEmail.Text = this.UsuarioActual.Email;
             this.txtUsuario.Text = this.UsuarioActual.NombreUsuario;
             this.txtClave.Text = this.UsuarioActual.Clave;
-            this.txtConfimarClave.Text = this.UsuarioActual.Clave;
             switch (this.Modo)
             {
                 case ModoForm.Modificacion:

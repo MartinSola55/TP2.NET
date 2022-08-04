@@ -69,12 +69,12 @@ namespace UI.Desktop
             // 
             this.tcComisiones.ContentPanel.Controls.Add(this.tlComisiones);
             this.tcComisiones.ContentPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.tcComisiones.ContentPanel.Size = new System.Drawing.Size(612, 417);
+            this.tcComisiones.ContentPanel.Size = new System.Drawing.Size(669, 417);
             this.tcComisiones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcComisiones.Location = new System.Drawing.Point(0, 0);
             this.tcComisiones.Margin = new System.Windows.Forms.Padding(4);
             this.tcComisiones.Name = "tcComisiones";
-            this.tcComisiones.Size = new System.Drawing.Size(612, 453);
+            this.tcComisiones.Size = new System.Drawing.Size(669, 453);
             this.tcComisiones.TabIndex = 0;
             this.tcComisiones.Text = "toolStripContainer1";
             // 
@@ -98,7 +98,7 @@ namespace UI.Desktop
             this.tlComisiones.RowCount = 2;
             this.tlComisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tlComisiones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlComisiones.Size = new System.Drawing.Size(612, 417);
+            this.tlComisiones.Size = new System.Drawing.Size(669, 417);
             this.tlComisiones.TabIndex = 0;
             // 
             // dgvComisiones
@@ -160,7 +160,7 @@ namespace UI.Desktop
             this.dgvComisiones.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvComisiones.RowTemplate.Height = 24;
             this.dgvComisiones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvComisiones.Size = new System.Drawing.Size(604, 325);
+            this.dgvComisiones.Size = new System.Drawing.Size(661, 325);
             this.dgvComisiones.TabIndex = 0;
             // 
             // btnActualizar
@@ -187,7 +187,7 @@ namespace UI.Desktop
             this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.ForeColor = System.Drawing.Color.Red;
-            this.btnSalir.Location = new System.Drawing.Point(472, 350);
+            this.btnSalir.Location = new System.Drawing.Point(529, 350);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(120, 50);
@@ -281,7 +281,7 @@ namespace UI.Desktop
             // 
             this.descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.descripcion.DataPropertyName = "Descripcion";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.descripcion.DefaultCellStyle = dataGridViewCellStyle4;
             this.descripcion.HeaderText = "Descripción";
             this.descripcion.MinimumWidth = 150;
@@ -303,16 +303,15 @@ namespace UI.Desktop
             // 
             // id_plan
             // 
-            this.id_plan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.id_plan.DataPropertyName = "IDPlan";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            this.id_plan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.id_plan.DataPropertyName = "PlanDesc";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.id_plan.DefaultCellStyle = dataGridViewCellStyle6;
-            this.id_plan.HeaderText = "ID Plan";
+            this.id_plan.HeaderText = "Plan - Especialidad";
             this.id_plan.MinimumWidth = 80;
             this.id_plan.Name = "id_plan";
             this.id_plan.ReadOnly = true;
             this.id_plan.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.id_plan.Width = 96;
             // 
             // Comisiones
             // 
@@ -320,7 +319,7 @@ namespace UI.Desktop
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            this.ClientSize = new System.Drawing.Size(612, 453);
+            this.ClientSize = new System.Drawing.Size(669, 453);
             this.Controls.Add(this.tcComisiones);
             this.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
             this.ForeColor = System.Drawing.Color.DarkSlateGray;

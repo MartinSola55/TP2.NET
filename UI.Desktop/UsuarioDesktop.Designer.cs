@@ -195,6 +195,7 @@ namespace UI.Desktop
             this.txtClave.Name = "txtClave";
             this.txtClave.Size = new System.Drawing.Size(290, 31);
             this.txtClave.TabIndex = 6;
+            this.txtClave.UseSystemPasswordChar = true;
             // 
             // txtApellido
             // 
@@ -228,6 +229,7 @@ namespace UI.Desktop
             this.txtConfimarClave.Name = "txtConfimarClave";
             this.txtConfimarClave.Size = new System.Drawing.Size(290, 31);
             this.txtConfimarClave.TabIndex = 7;
+            this.txtConfimarClave.UseSystemPasswordChar = true;
             // 
             // chkHabilitado
             // 

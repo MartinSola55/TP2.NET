@@ -47,7 +47,7 @@ namespace UI.Desktop
             this.txtDescripcion.Text = this.MateriaActual.Descripcion.ToString();
             this.txtHSSemanales.Text = this.MateriaActual.HSSemanales.ToString();
             this.txtHSTotales.Text = this.MateriaActual.HSTotales.ToString();
-            this.comboPlan.SelectedIndex = this.MateriaActual.IDPlan;
+            this.comboPlan.SelectedValue = this.MateriaActual.IDPlan;
             switch (this.Modo)
             {
                 case ModoForm.Modificacion:
@@ -119,7 +119,7 @@ namespace UI.Desktop
                 this.Notificar("ERROR", "Debes ingresar una cantidad de horas totales mayor a las semanales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             } 
-            else if (this.comboPlan.SelectedIndex == 0)
+            else if (this.comboPlan.SelectedValue.ToString() == "0")
             {
                 this.Notificar("ERROR", "Debes seleccionar un plan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -137,7 +137,7 @@ namespace UI.Desktop
             PlanLogic pl = new PlanLogic();
             List<Plan> planes = pl.GetAll();
             Dictionary<int, string> comboSource = new Dictionary<int, string>();
-            comboSource.Add(0, "--Seleccione un plan--");
+            comboSource.Add(0, "-- Seleccione un plan --");
             foreach (Plan p in planes)
             {
                 comboSource.Add(p.ID, p.Descripcion + " - " + p.DescripcionEsp);
@@ -145,7 +145,7 @@ namespace UI.Desktop
             this.comboPlan.DataSource = new BindingSource(comboSource, null);
             this.comboPlan.DisplayMember = "Value";
             this.comboPlan.ValueMember = "Key";
-            this.comboPlan.SelectedIndex = 0;
+            this.comboPlan.SelectedValue = 0;
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {

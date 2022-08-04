@@ -11,26 +11,27 @@
     <link rel="icon" type="image/jpg" href="~/Images/favicon.png" />
 </head>
 <body>
-    <div class="navbar navbar-dark bg-dark navbar-inverse fixed-top py-3">
-            <div class="navbar-header">
-                <a class="navbar-brand ms-5" href="/Home">
-                    <img src="~/Images/logoUTN.png" alt="Logo UTN" width="167" height="50">
-                </a>
-                @Html.ActionLink("Usuarios", "Index", "Usuarios", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
-    </div>
-
-    <div class="container body-content mt-5">
-        @RenderBody()
-        <hr />
-        <footer class="text-center bg-dark text-white card-footer fixed-bottom align-items-center py-4">
-            <p id="footerText" class="m-0">&copy; @DateTime.Now.Year - SYSACAD</p>
-        </footer>
-    </div>
+    <main>
+        <div class="navbar navbar-dark bg-dark navbar-inverse fixed-top py-3">
+                <div class="navbar-header">
+                    <a class="navbar-brand ms-5" href="/Home">
+                        <img src="~/Images/logoUTN.png" alt="Logo UTN" width="167" height="50">
+                    </a>
+                    @Html.ActionLink("Usuarios", "Index", "Usuarios", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                    </ul>
+                </div>
+        </div>  
+        <div class="container body-content mt-5">
+            @RenderBody()
+            <hr />
+        </div>
+    </main>
+    <footer class="text-center bg-dark text-white py-4" style="vertical-align:bottom">
+        <p id="footerText" class="m-0">&copy; @DateTime.Now.Year - SYSACAD</p>
+    </footer>
 
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
