@@ -174,8 +174,8 @@ namespace Data.Database
                 this.OpenConnection();
                 SqlCommand cmdPlanes = new SqlCommand(
                     "SELECT * FROM planes p " +
-                    "WHERE p.desc_especialidad LIKE '%" + descripcion + "%' " +
-                    "INNER JOIN especialidades e ON p.id_especialidad = e.id_especialidad", sqlConn);
+                    "INNER JOIN especialidades e ON p.id_especialidad = e.id_especialidad " +
+                    "WHERE p.desc_plan LIKE '%" + descripcion + "%'", sqlConn);
                 SqlDataReader drPlanes = cmdPlanes.ExecuteReader();
                 while (drPlanes.Read())
                 {

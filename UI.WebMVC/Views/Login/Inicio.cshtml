@@ -32,9 +32,10 @@
                                 <div id="containerUser" class="form-outline form-white mb-4 text-start">
                                     <label class="form-label">Usuario</label>
                                     <div class="formInput">
-                                        <input type="text" id="txtUser" class="form-control form-control-lg" placeholder="Tu usario" />
+                                        <input type="text" id="txtUser" class="form-control form-control-lg" placeholder="Tu usuario" />
                                         <i class="validacionEstado bi bi-x-circle-fill"></i>
                                     </div>
+                                    <p id="emptyUser" style="display: none">Por favor, completa este campo</p>
                                     <p class="informaError" style="display: none">Debes ingresar un usuario válido</p>
                                 </div>
 
@@ -44,10 +45,11 @@
                                         <input type="password" id="txtPass" class="form-control form-control-lg" placeholder="Contraseña" />
                                         <i class="validacionEstado bi bi-x-circle-fill"></i>
                                     </div>
+                                    <p id="emptyPass" style="display: none">Por favor, completa este campo</p>
                                     <p class="informaError" style="display: none">Debes ingresar una contraseña válida</p>
                                 </div>
 
-                                <input id="btnIngresar" type="button" class="btn btn-outline-light btn-lg px-5" value="Ingresar" />
+                                <input id="btnIngresar" type="submit" class="btn btn-outline-light btn-lg px-5" value="Ingresar" />
 
                                 <div class="p-2 mt-4 errorMessage" id="errorMessage">
                                     <p class="my-auto text-center"><i class="bi bi-exclamation-triangle-fill"></i><b> Error: </b>Por favor, completa los datos requeridos</p>

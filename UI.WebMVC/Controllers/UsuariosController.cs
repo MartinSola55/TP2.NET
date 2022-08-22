@@ -12,6 +12,8 @@ namespace UI.WebMVC.Controllers
     [Seguridad]
     public class UsuariosController : Controller
     {
+        private UsuarioLogic ul = new UsuarioLogic();
+
         // GET: Usuarios
         public ActionResult Inicio()
         {
@@ -20,21 +22,18 @@ namespace UI.WebMVC.Controllers
         public JsonResult getAll()
         {
             List<Usuario> usuarios = new List<Usuario>();
-            UsuarioLogic ul = new UsuarioLogic();
             usuarios = ul.GetAll();
             return Json(usuarios, JsonRequestBehavior.AllowGet);
         }
         public JsonResult getOne(int id)
         {
             Usuario usuario = new Usuario();
-            UsuarioLogic ul = new UsuarioLogic();
             usuario = ul.GetOne(id);
             return Json(usuario, JsonRequestBehavior.AllowGet);
         }
         public JsonResult Delete(int id)
         {
             string respuesta;
-            UsuarioLogic ul = new UsuarioLogic();
             try
             {
                 ul.Delete(id);
@@ -48,7 +47,6 @@ namespace UI.WebMVC.Controllers
         }
         public JsonResult Save(Usuario usr)
         {
-            UsuarioLogic ul = new UsuarioLogic();
             string respuesta;
             try
             {
@@ -70,7 +68,6 @@ namespace UI.WebMVC.Controllers
         public JsonResult FiltraUsuarios(string nombre, string apellido, string usr, string mail)
         {
             List<Usuario> usuarios = new List<Usuario>();
-            UsuarioLogic ul = new UsuarioLogic();
             usuarios = ul.FiltraUsuarios(nombre, apellido, usr, mail);
             return Json(usuarios, JsonRequestBehavior.AllowGet);
         }

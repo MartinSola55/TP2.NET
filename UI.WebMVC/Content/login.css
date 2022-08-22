@@ -18,7 +18,7 @@
     position: relative;
 }
 
-.formLogin input:not([type="button"]) {
+.formLogin input:not([type="submit"]) {
     width: 100%;
     padding: .375rem .75rem;
     font-size: 1rem;
@@ -36,7 +36,7 @@
     transition-delay: 0s, 0s;
 }
 
-.formLogin input:not([type="button"]):focus {
+.formLogin input:not([type="submit"]):focus {
     border-color: #009dffad;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 81, 255, 0.6);
 }
@@ -65,6 +65,7 @@
     padding: 0 15px;
     border-radius: 0.5rem;
     display: none;
+    color: black;
 }
 
 .errorMessage-activo {

@@ -1,4 +1,5 @@
 ﻿$('#btnIngresar').on('click', function () {
+    event.preventDefault();
     if (campoRequired()) {
         let user = $("#txtUser").val();
         let pass = $("#txtPass").val();
@@ -12,7 +13,7 @@
     }
 });
 
-const inputs = $("#formLogin input[type!=button]").toArray();
+const inputs = $("#formLogin input[type!=submit]").toArray();
 
 const expresiones = {
     usuario: /^[a-zA-Z0-9\_\-]{1,16}$/, // Letras, numeros, guion y guion_bajo
@@ -48,16 +49,18 @@ const validaLogin = (e) => {
 
 let validaCampos = (expresion, input, campo) => {
     if (input.value === "") {
-        $(`#container${campo}`).removeClass("formContainer-incorrecto");
-        $(`#container${campo} .informaError`).css("display", "none");
+        $(`#container${campo}`).addClass("formContainer-incorrecto");
+        $(`#container${campo} .informaError`).css("display", "block");
         return false;
     }
     if (expresion.test(input.value)) {
+        $(`#empty${campo}`).css("display", "none");
         $(`#container${campo}`).removeClass("formContainer-incorrecto");
         $(`#container${campo} i`).removeClass("bi-x-circle-fill");
         $(`#container${campo} .informaError`).css("display", "none");
         return true;
     } else {
+        $(`#empty${campo}`).css("display", "none");
         $(`#container${campo}`).addClass("formContainer-incorrecto");
         $(`#container${campo} i`).addClass("bi-x-circle-fill");
         $(`#container${campo} .informaError`).css("display", "block");
@@ -66,11 +69,22 @@ let validaCampos = (expresion, input, campo) => {
 };
 
 inputs.forEach((input) => {
-    input.addEventListener('keyup', validaLogin);
-    input.addEventListener('change', validaLogin);
+    input.addEventListener('input', validaLogin);
 });
 
 function campoRequired() {
+    if ($('#txtUser').val() === "") {
+        $("#errorMessage").addClass("errorMessage-activo");
+        $('#containerUser').addClass("formContainer-incorrecto");
+        $('#containerUser .informaError').css("display", "block");
+        $('#emptyUser').css("display", "block");
+    }
+    if ($('#txtPass').val() === "") {
+        $("#errorMessage").addClass("errorMessage-activo");
+        $('#containerPass').addClass("formContainer-incorrecto");
+        $('#containerPass .informaError').css("display", "block");
+        $('#emptyPass').css("display", "block");
+    }
     if (campos.user && campos.pass) {
         $("#errorMessage").removeClass("errorMessage-activo");
         return true;
