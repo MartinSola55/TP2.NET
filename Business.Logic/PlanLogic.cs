@@ -63,5 +63,28 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
+        public List<Plan> FiltraPlanes(string descripcion)
+        {
+            try
+            {
+                return PlanData.FiltraPlanes(descripcion);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public Plan GetByDescripcion(Plan plan)
+        {
+
+            try
+            {
+                return PlanData.GetByDescripcion(plan);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
     }
 }

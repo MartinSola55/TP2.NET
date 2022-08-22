@@ -148,5 +148,68 @@ namespace Data.Database
                 this.CloseConnection();
             }
         }
+        public List<Especialidad> FiltraEspecialidades(string descripcion)
+        {
+            List<Especialidad> especialidades = new List<Especialidad>();
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdEspecialidades = new SqlCommand(
+                    "SELECT * FROM especialidades " +
+                    "WHERE desc_especialidad LIKE '%" + descripcion + "%' ", sqlConn);
+                SqlDataReader drEspecialidades = cmdEspecialidades.ExecuteReader();
+                while (drEspecialidades.Read())
+                {
+                    Especialidad esp = new Especialidad();
+                    esp.ID = (int)drEspecialidades["id_especialidad"];
+                    esp.Descripcion = (string)drEspecialidades["desc_especialidad"];
+                    especialidades.Add(esp);
+                }
+
+                drEspecialidades.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception exceptionManejada = new Exception("Hubo un error al filtrar la lista de especialidades", Ex);
+                throw exceptionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return especialidades;
+        }
+        public Especialidad GetByDescripcion(string descripcion)
+        {
+            Especialidad esp = new Especialidad();
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdEspecialidades = new SqlCommand("SELECT * FROM especialidades WHERE desc_especialidad = @descripcion", sqlConn);
+                cmdEspecialidades.Parameters.Add("@descripcion", SqlDbType.VarChar, 50).Value = descripcion;
+                SqlDataReader drEspecialidades = cmdEspecialidades.ExecuteReader();
+                if (drEspecialidades.Read())
+                {
+                    esp.ID = (int)drEspecialidades["id_especialidad"];
+                    esp.Descripcion = (string)drEspecialidades["desc_especialidad"];
+                }
+                drEspecialidades.Close();
+            }
+            catch (SqlException Ex)
+            {
+                Exception ExceptionManejada = new Exception("La especialidad seleccionada no existe", Ex);
+                throw ExceptionManejada;
+            }
+            catch (Exception Ex)
+            {
+                Exception ExceptionManejada = new Exception("Hubo un error al recuperar los datos de la especialidad", Ex);
+                throw ExceptionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return esp;
+        }
     }
 }

@@ -5,13 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using Business.Entities;
 using Business.Logic;
+using UI.WebMVC.Filter;
 
 namespace UI.WebMVC.Controllers
 {
+    [Seguridad]
     public class UsuariosController : Controller
     {
         // GET: Usuarios
-        public ActionResult Index()
+        public ActionResult Inicio()
         {
             return View();
         }

@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Planes";
+}
+
+<link href="~/Content/mis-estilos.css" rel="stylesheet" />
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+
+<h1 class="text-center">Planes</h1>
+
+<div class="container-fluid d-flex mb-3">
+    <div class="row me-4 col-3">
+        <label class="form-label">Filtrar por nombre: </label>
+        <input type="text" id="filtroDescripcion" class="form-control" placeholder="Nombre a buscar" />
+    </div>
+</div>
+<div class="mb-3">
+    <input type="button" class="btn btn-outline-dark" id="limpia-filtro" value="Limpiar" style="max-height:3rem" />
+</div>
+
+<div id="tabla-planes">
+
+</div>
+
+<button id="btnAgregar" type="button" class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Agregar
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body contenedor-modal align-items-center">
+                <label class="mb-3">ID: </label>
+                <input id="txtID" type="text" class="form-control limpiarCampo w-25 mb-3" disabled />
+
+                <label class="mb-3 campo0">Nombre: </label>
+                <input id="txtDescripcion" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+
+                <label class="mb-2 campo1">Especialidad: </label>
+                <select id="comboEsp" class="form-select limpiarCampo habilitarCampo deshabilitarCampo required mb-2">
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button id="btnAceptar" onclick="confirmarCambios()" type="button" class="btn btn-success">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<script src="~/Scripts/Planes.js"></script>

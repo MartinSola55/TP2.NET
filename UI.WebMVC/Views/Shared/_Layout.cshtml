@@ -6,24 +6,57 @@
     <title>@ViewBag.Title - SYSACAD</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/navbar.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" type="image/jpg" href="~/Images/favicon.png" />
 </head>
 <body>
+    <nav class="navbar navbar-expand-custom navbar-mainbg">
+        <a class="navbar-brand navbar-logo" href="/Home">
+            <img src="~/Images/logoUTN.png" alt="Logo UTN" style="max-width: 167px; max-height: 50px ">
+        </a>
+        <div id="navbtn">
+            <button class="navbar-toggler btn-close-white" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto w-100">
+                <div class="hori-selector">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Home"><i class="bi bi-house"></i>Inicio</a>
+                </li>
+                @{
+                    if (Session["user"] != null)
+                    {
+                        @:<li class="nav-item">
+                            @:<a class="nav-link" href="/Usuarios"><i class="bi bi-person"></i>Usuarios</a>
+                        @:</li>
+                        @:<li class="nav-item">
+                            @:<a class="nav-link" href="/Especialidades"><i class="bi bi-award"></i>Especialidades</a>
+                        @:</li>
+                        @:<li class="nav-item">
+                            @:<a class="nav-link" href="/Planes"><i class="bi bi-book"></i>Planes</a>
+                        @:</li>
+                        @:<li class="nav-item">
+                            @:<a class="nav-item" href="/Login/CerrarSesion">Cerrar sesión</a>
+                        @:</li>
+                    }
+                    else
+                    {
+                        @:<li class="nav-item">
+                            @:<a class="nav-item" href="/Login">Iniciar sesión</a>
+                        @:</li>
+                    }
+                }
+            </ul>
+        </div>
+    </nav>
     <main>
-        <div class="navbar navbar-dark bg-dark navbar-inverse fixed-top py-3">
-                <div class="navbar-header">
-                    <a class="navbar-brand ms-5" href="/Home">
-                        <img src="~/Images/logoUTN.png" alt="Logo UTN" width="167" height="50">
-                    </a>
-                    @Html.ActionLink("Usuarios", "Index", "Usuarios", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                    </ul>
-                </div>
-        </div>  
         <div class="container body-content mt-5">
             @RenderBody()
             <hr />
@@ -32,9 +65,10 @@
     <footer class="text-center bg-dark text-white py-4" style="vertical-align:bottom">
         <p id="footerText" class="m-0">&copy; @DateTime.Now.Year - SYSACAD</p>
     </footer>
-
+    
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/navbar.js"></script>
 
 </body>
 </html>

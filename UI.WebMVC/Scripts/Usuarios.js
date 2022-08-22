@@ -75,7 +75,7 @@ function filtraUsuario() {
     $.get("../Usuarios/FiltraUsuarios/?nombre=" + nombre + "&apellido=" + apellido + "&usr="
         + usuario + "&mail=" + mail, function (data) {
             listadoUsuarios(header, data);
-        });
+    });
 }
 
 function modalEdit(id) {

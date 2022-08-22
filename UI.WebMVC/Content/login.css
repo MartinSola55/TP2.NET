@@ -1,0 +1,88 @@
+﻿.gradient-custom {
+    /* fallback for old browsers */
+    background: #003a9c;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to bottom, rgb(0, 0, 0), rgb(0, 58, 156));
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to bottom, rgb(0, 0, 0), rgb(0, 58, 156))
+}
+
+.formLogin label {
+    display: block;
+    font-weight: 700;
+    padding: 10px 10px 5px 0;
+    cursor: pointer;
+}
+
+.formLogin {
+    position: relative;
+}
+
+.formLogin input:not([type="button"]) {
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition-property: border-color, box-shadow;
+    transition-duration: 0.15s, 0.15s;
+    transition-timing-function: ease-in-out, ease-in-out;
+    transition-delay: 0s, 0s;
+}
+
+.formLogin input:not([type="button"]):focus {
+    border-color: #009dffad;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 81, 255, 0.6);
+}
+
+.formLogin input .error {
+    font-size: 12px;
+    margin-bottom: 0;
+    display: none;
+}
+
+.formLogin .informaError-activo {
+    display: block;
+}
+
+.formLogin .validacionEstado {
+    position: absolute;
+    right: 0;
+    font-size: 16px;
+    opacity: 0;
+}
+
+.errorMessage {
+    font-size: 1.2rem;
+    height: auto;
+    background: #F66060;
+    padding: 0 15px;
+    border-radius: 0.5rem;
+    display: none;
+}
+
+.errorMessage-activo {
+    display: block;
+}
+
+/* ----- -----  Estilos para Validacion ----- ----- */
+
+.formContainer-incorrecto label, .formContainer-incorrecto p {
+    color: #bb2929;
+}
+
+.formContainer-incorrecto .formInput .validacionEstado {
+    color: #bb2929;
+    opacity: 1;
+}
+
+.formContainer-incorrecto .formInput input {
+    border-color: #FF0000;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px rgba(255, 0, 0, 0.6);
+}

@@ -57,5 +57,39 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
+        public void Delete(int id)
+        {
+            try
+            {
+                EspecialidadData.Delete(id);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public List<Especialidad> FiltraEspecialidades(string descripcion)
+        {
+            try
+            {
+                return EspecialidadData.FiltraEspecialidades(descripcion);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public Especialidad GetByDescripcion(string descripcion)
+        {
+
+            try
+            {
+                return EspecialidadData.GetByDescripcion(descripcion);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
     }
 }

@@ -1,0 +1,67 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="icon" type="image/jpg" href="~/Images/favicon.png" />
+    <title>Inicio de sesión</title>
+</head>
+<body>
+    <section class="gradient-custom" style="min-height: 100vh">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body px-5 pb-5 text-center">
+
+                            <form id="formLogin" class="formLogin mb-md-1 mt-md-4 pb-5">
+
+                                <img src="~/Images/logoUTN.png" class="mb-md-3" height="50" style="filter: invert(0%);" />
+                                <h3 class="fw-bold mb-3 text-uppercase">Universidad Tecnológica Nacional</h3>
+
+                                <h5 class="text-white-50 mb-5">Por favor, ingrese su usuario y contraseña</h5>
+
+                                <div id="containerUser" class="form-outline form-white mb-4 text-start">
+                                    <label class="form-label">Usuario</label>
+                                    <div class="formInput">
+                                        <input type="text" id="txtUser" class="form-control form-control-lg" placeholder="Tu usario" />
+                                        <i class="validacionEstado bi bi-x-circle-fill"></i>
+                                    </div>
+                                    <p class="informaError" style="display: none">Debes ingresar un usuario válido</p>
+                                </div>
+
+                                <div id="containerPass" class="form-outline form-white mb-4 text-start">
+                                    <label class="form-label" for="typePasswordX">Contraseña</label>
+                                    <div class="formInput">
+                                        <input type="password" id="txtPass" class="form-control form-control-lg" placeholder="Contraseña" />
+                                        <i class="validacionEstado bi bi-x-circle-fill"></i>
+                                    </div>
+                                    <p class="informaError" style="display: none">Debes ingresar una contraseña válida</p>
+                                </div>
+
+                                <input id="btnIngresar" type="button" class="btn btn-outline-light btn-lg px-5" value="Ingresar" />
+
+                                <div class="p-2 mt-4 errorMessage" id="errorMessage">
+                                    <p class="my-auto text-center"><i class="bi bi-exclamation-triangle-fill"></i><b> Error: </b>Por favor, completa los datos requeridos</p>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/login.js"></script>
+</body>
+</html>

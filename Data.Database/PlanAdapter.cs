@@ -166,5 +166,77 @@ namespace Data.Database
             }
             plan.State = BusinessEntity.States.Unmodified;
         }
+        public List<Plan> FiltraPlanes(string descripcion)
+        {
+            List<Plan> planes = new List<Plan>();
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdPlanes = new SqlCommand(
+                    "SELECT * FROM planes p " +
+                    "WHERE p.desc_especialidad LIKE '%" + descripcion + "%' " +
+                    "INNER JOIN especialidades e ON p.id_especialidad = e.id_especialidad", sqlConn);
+                SqlDataReader drPlanes = cmdPlanes.ExecuteReader();
+                while (drPlanes.Read())
+                {
+                    Plan plan = new Plan();
+                    plan.ID = (int)drPlanes["id_plan"];
+                    plan.Descripcion = (string)drPlanes["desc_plan"];
+                    plan.IDEspecialidad = (int)drPlanes["id_especialidad"];
+                    plan.DescripcionEsp = (string)drPlanes["desc_especialidad"];
+                    planes.Add(plan);
+                }
+
+                drPlanes.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception exceptionManejada = new Exception("Hubo un error al filtrar la lista de planes", Ex);
+                throw exceptionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return planes;
+        }
+        public Plan GetByDescripcion(Plan p)
+        {
+            Plan plan = new Plan();
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdPlanes = new SqlCommand("SELECT * FROM planes p " +
+                    "INNER JOIN especialidades e ON p.id_especialidad = e.id_especialidad " +
+                    "WHERE p.desc_plan = @descripcion " +
+                    "AND p.id_especialidad = @id_esp", sqlConn);
+                cmdPlanes.Parameters.Add("@descripcion", SqlDbType.VarChar, 50).Value = p.Descripcion;
+                cmdPlanes.Parameters.Add("@id_esp", SqlDbType.Int).Value = p.IDEspecialidad;
+                SqlDataReader drPlanes = cmdPlanes.ExecuteReader();
+                if (drPlanes.Read())
+                {
+                    plan.ID = (int)drPlanes["id_plan"];
+                    plan.Descripcion = (string)drPlanes["desc_plan"];
+                    plan.IDEspecialidad = (int)drPlanes["id_especialidad"];
+                    plan.DescripcionEsp = (string)drPlanes["desc_especialidad"];
+                }
+                drPlanes.Close();
+            }
+            catch (SqlException Ex)
+            {
+                Exception ExceptionManejada = new Exception("El plan seleccionado no existe", Ex);
+                throw ExceptionManejada;
+            }
+            catch (Exception Ex)
+            {
+                Exception ExceptionManejada = new Exception("Hubo un error al recuperar los datos del plan", Ex);
+                throw ExceptionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return plan;
+        }
     }
 }

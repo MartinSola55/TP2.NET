@@ -1,9 +1,5 @@
-﻿body {
-    padding-top: 5rem;
-}
-
-main {
-    min-height: 80vh;
+﻿main {
+    min-height: 90vh;
 }
 
 /* Set padding to keep content from hitting the edges */
