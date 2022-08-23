@@ -81,7 +81,6 @@ namespace Business.Logic
         }
         public Materia GetRepetido(Materia materia)
         {
-
             try
             {
                 return MateriaData.GetRepetido(materia);

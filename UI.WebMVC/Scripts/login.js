@@ -17,7 +17,7 @@ const inputs = $("#formLogin input[type!=submit]").toArray();
 
 const expresiones = {
     usuario: /^[a-zA-Z0-9\_\-]{1,16}$/, // Letras, numeros, guion y guion_bajo
-    password: /^.{1,20}$/, // 4 a 20 digitos.
+    password: /^.{1,20}$/, // 1 a 20 digitos.
 }
 
 const campos = {

@@ -19,7 +19,6 @@ namespace Business.Logic
         {
             ComisionData = new ComisionAdapter();
         }
-
         public Comision GetOne(int id)
         {
 
@@ -32,7 +31,6 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
-
         public List<Comision> GetAll()
         {
             try
@@ -44,7 +42,6 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
-
         public void Save(Comision comision)
         {
             try
@@ -56,12 +53,33 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
-
         public void Delete(int id)
         {
             try
             {
                 ComisionData.Delete(id);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public List<Comision> FiltraComisiones(string descripcion)
+        {
+            try
+            {
+                return ComisionData.FiltraComisiones(descripcion);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public Comision GetRepetido(Comision comision)
+        {
+            try
+            {
+                return ComisionData.GetRepetido(comision);
             }
             catch (Exception exceptionManejada)
             {

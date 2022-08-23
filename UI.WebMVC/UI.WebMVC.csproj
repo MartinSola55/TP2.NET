@@ -115,6 +115,7 @@
     <Content Include="Images\logoUTN.png" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\Comisiones.js" />
     <Content Include="Scripts\Especialidades.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -130,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ComisionesController.cs" />
     <Compile Include="Controllers\EspecialidadesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -170,6 +172,7 @@
     <Content Include="Views\Login\Inicio.cshtml" />
     <Content Include="Views\Planes\Inicio.cshtml" />
     <Content Include="Views\Materias\Inicio.cshtml" />
+    <Content Include="Views\Comisiones\Inicio.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

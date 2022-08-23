@@ -27,9 +27,5 @@ namespace Business.Entities
         {
             get; set;
         }
-        public string EspecialidadDesc
-        {
-            get; set;
-        }
     }
 }

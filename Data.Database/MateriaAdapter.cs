@@ -262,7 +262,7 @@ namespace Data.Database
             }
             catch (SqlException Ex)
             {
-                Exception ExceptionManejada = new Exception("la materia seleccionada no existe", Ex);
+                Exception ExceptionManejada = new Exception("La materia seleccionada no existe", Ex);
                 throw ExceptionManejada;
             }
             catch (Exception Ex)
