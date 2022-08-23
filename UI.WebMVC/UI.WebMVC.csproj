@@ -111,6 +111,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\favicon.png" />
+    <Content Include="Images\Fondo inicio.jpg" />
     <Content Include="Images\logoUTN.png" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
@@ -118,6 +119,7 @@
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\login.js" />
+    <Content Include="Scripts\Materias.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\navbar.js" />
     <Content Include="Scripts\Planes.js" />
@@ -131,6 +133,7 @@
     <Compile Include="Controllers\EspecialidadesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MateriasController.cs" />
     <Compile Include="Controllers\PlanesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Filter\Seguridad.cs" />
@@ -166,6 +169,7 @@
     <Content Include="Views\Especialidades\Inicio.cshtml" />
     <Content Include="Views\Login\Inicio.cshtml" />
     <Content Include="Views\Planes\Inicio.cshtml" />
+    <Content Include="Views\Materias\Inicio.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

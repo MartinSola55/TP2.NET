@@ -74,12 +74,12 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
-        public Plan GetByDescripcion(Plan plan)
+        public Plan GetRepetido(Plan plan)
         {
 
             try
             {
-                return PlanData.GetByDescripcion(plan);
+                return PlanData.GetRepetido(plan);
             }
             catch (Exception exceptionManejada)
             {

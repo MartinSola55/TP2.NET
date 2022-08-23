@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Especialidades";
+    ViewBag.Title = "Materias";
 }
 
 <link href="~/Content/mis-estilos.css" rel="stylesheet" />
@@ -17,7 +17,7 @@
     <input type="button" class="btn btn-outline-dark" id="limpia-filtro" value="Limpiar" style="max-height:3rem" />
 </div>
 
-<div id="tabla-especialidades">
+<div id="tabla-materias">
 
 </div>
 
@@ -36,8 +36,20 @@
             <div class="modal-body contenedor-modal align-items-center">
                 <label class="mb-3">ID: </label>
                 <input id="txtID" type="text" class="form-control limpiarCampo w-25 mb-3" disabled />
-                <label class="mb-3 campo0">Nombre: </label>
+
+                <label id="campo0" class="mb-3">Nombre de la materia: </label>
                 <input id="txtDescripcion" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+
+                <label id="campo1" class="mb-3">Horas semanales: </label>
+                <input id="txtHSS" type="number" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+
+                <label id="campo2" class="mb-3">Horas totales: </label>
+                <input id="txtHST" type="number" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+
+
+                <label id="campo3" class="mb-2">Plan: </label>
+                <select id="comboPlanes" class="form-select limpiarCampo habilitarCampo deshabilitarCampo required mb-2">
+                </select>
             </div>
             <div class="modal-footer">
                 <button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
@@ -51,4 +63,4 @@
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
 <script src="~/Scripts/jquery-ui.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-<script src="~/Scripts/Especialidades.js"></script>
+<script src="~/Scripts/Materias.js"></script>

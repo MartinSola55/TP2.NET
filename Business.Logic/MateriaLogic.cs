@@ -68,5 +68,28 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
+        public List<Materia> FiltraMaterias(string descripcion)
+        {
+            try
+            {
+                return MateriaData.FiltraMaterias(descripcion);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public Materia GetRepetido(Materia materia)
+        {
+
+            try
+            {
+                return MateriaData.GetRepetido(materia);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
     }
 }

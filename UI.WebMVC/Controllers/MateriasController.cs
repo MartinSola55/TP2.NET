@@ -10,34 +10,33 @@ using UI.WebMVC.Filter;
 namespace UI.WebMVC.Controllers
 {
     [Seguridad]
-    public class PlanesController : Controller
+    public class MateriasController : Controller
     {
-        private PlanLogic pl = new PlanLogic();
-
-        // GET: Planes
+        private MateriaLogic ml = new MateriaLogic();
+        // GET: Materias
         public ActionResult Inicio()
         {
             return View();
         }
         public JsonResult getAll()
         {
-            List<Plan> planes = new List<Plan>();
-            planes = pl.GetAll();
-            return Json(planes, JsonRequestBehavior.AllowGet);
+            List<Materia> materia = new List<Materia>();
+            materia = ml.GetAll();
+            return Json(materia, JsonRequestBehavior.AllowGet);
         }
         public JsonResult getOne(int id)
         {
-            Plan plan = new Plan();
-            plan = pl.GetOne(id);
-            return Json(plan, JsonRequestBehavior.AllowGet);
+            Materia materia = new Materia();
+            materia = ml.GetOne(id);
+            return Json(materia, JsonRequestBehavior.AllowGet);
         }
         public JsonResult Delete(int id)
         {
             string[] respuesta = { "", "" };
             try
             {
-                pl.Delete(id);
-                respuesta[0] = "El plan se eliminó correctamente";
+                ml.Delete(id);
+                respuesta[0] = "La materia se eliminó correctamente";
                 respuesta[1] = "1";
             }
             catch (Exception ex)
@@ -47,29 +46,29 @@ namespace UI.WebMVC.Controllers
             }
             return Json(respuesta, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult Save(Plan plan)
+        public JsonResult Save(Materia materia)
         {
             string[] respuesta = { "", "" };
             try
             {
-                Plan repetido = pl.GetRepetido(plan);
+                Materia repetido = ml.GetRepetido(materia);
                 if (repetido.ID == 0)
                 {
-                    if (plan.ID == 0)
+                    if (materia.ID == 0)
                     {
-                        plan.State = BusinessEntity.States.New;
+                        materia.State = BusinessEntity.States.New;
                     }
                     else
                     {
-                        plan.State = BusinessEntity.States.Modified;
+                        materia.State = BusinessEntity.States.Modified;
                     }
-                    respuesta[0] = "El plan se guardó correctamente";
+                    respuesta[0] = "La materia se guardó correctamente";
                     respuesta[1] = "1";
-                    pl.Save(plan);
+                    ml.Save(materia);
                 }
                 else
                 {
-                    respuesta[0] = "El plan que desea guardar ya existe";
+                    respuesta[0] = "La materia que desea guardar ya existe";
                     respuesta[1] = "0";
                 }
             }
@@ -80,11 +79,11 @@ namespace UI.WebMVC.Controllers
             }
             return Json(respuesta, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult FiltraPlanes(string descripcion)
+        public JsonResult FiltraMaterias(string descripcion)
         {
-            List<Plan> planes = new List<Plan>();
-            planes = pl.FiltraPlanes(descripcion);
-            return Json(planes, JsonRequestBehavior.AllowGet);
+            List<Materia> materia = new List<Materia>();
+            materia = ml.FiltraMaterias(descripcion);
+            return Json(materia, JsonRequestBehavior.AllowGet);
         }
     }
 }

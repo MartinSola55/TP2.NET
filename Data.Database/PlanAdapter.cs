@@ -200,7 +200,7 @@ namespace Data.Database
             }
             return planes;
         }
-        public Plan GetByDescripcion(Plan p)
+        public Plan GetRepetido(Plan p)
         {
             Plan plan = new Plan();
             try

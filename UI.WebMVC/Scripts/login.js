@@ -50,6 +50,7 @@ const validaLogin = (e) => {
 let validaCampos = (expresion, input, campo) => {
     if (input.value === "") {
         $(`#container${campo}`).addClass("formContainer-incorrecto");
+        $(`#container${campo} i`).addClass("bi-x-circle-fill");
         $(`#container${campo} .informaError`).css("display", "block");
         return false;
     }
