@@ -128,7 +128,7 @@ jQuery('#limpia-filtro').on('click', function () {
 
 function limpiarCampos() {
     $(".limpiarCampo").val("");
-    $("#comboEsp").val(0);
+    $("#comboPlanes").val(0);
     campos = $(".required");
     for (let i = 0; i < campos.length; i++) {
         $("#campo" + i).removeClass("error");
@@ -148,7 +148,7 @@ function validaDatos() {
     let valido = true;
     campos = $(".required");
     for (let i = 0; i < campos.length; i++) {
-        if (campos[i].value == "") {
+        if (campos[i].value == "" || campos[i].value == "0") {
             valido = false;
             $("#campo" + i).addClass("error");
         } else {

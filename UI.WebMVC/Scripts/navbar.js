@@ -48,7 +48,7 @@ jQuery(document).ready(function ($) {
 
 	// Account for home page with empty path
 	if (path == '') {
-		path = '/Main';
+		path = '/Home';
 	}
 
 	var target = $('#navbarSupportedContent ul li a[href="' + path + '"]');

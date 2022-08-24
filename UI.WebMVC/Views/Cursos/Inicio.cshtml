@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Cursos";
+    string anioMax = @DateTime.Today.ToShortDateString();
 }
 
 <link href="~/Content/mis-estilos.css" rel="stylesheet" />
@@ -28,10 +29,10 @@
                 <input id="txtID" type="text" class="form-control limpiarCampo w-25 mb-3" disabled />
 
                 <label id="campo0" class="mb-3">Año: </label>
-                <input id="txtAnio" type="number" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+                <input id="txtAnio" type="number" min="1990" max="@Html.Raw(anioMax)" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
                 
                 <label id="campo1" class="mb-3">Cupo: </label>
-                <input id="txtCupo" type="number" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+                <input id="txtCupo" type="number" min="1" max="500" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
 
                 <label id="campo2" class="mb-2">Materia: </label>
                 <select id="comboMaterias" class="form-select limpiarCampo habilitarCampo deshabilitarCampo required mb-2">

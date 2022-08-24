@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Comisiones";
+    string anioMax = @DateTime.Today.ToShortDateString();
 }
 
 <link href="~/Content/mis-estilos.css" rel="stylesheet" />
@@ -41,7 +42,7 @@
                 <input id="txtDescripcion" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
                 
                 <label id="campo1" class="mb-3">Año especialidad: </label>
-                <input id="txtAnio" type="number" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+                <input id="txtAnio" type="number" min="1990" max="@Html.Raw(anioMax)" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
 
                 <label id="campo2" class="mb-2">Plan - Especialidad: </label>
                 <select id="comboPlanes" class="form-select limpiarCampo habilitarCampo deshabilitarCampo required mb-2">

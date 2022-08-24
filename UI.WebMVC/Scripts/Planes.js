@@ -140,7 +140,7 @@ function validaDatos() {
     let valido = true;
     campos = $(".required");
     for (let i = 0; i < campos.length; i++) {
-        if (campos[i].value == "") {
+        if (campos[i].value == "" || campos[i].value == "0") {
             valido = false;
             $("#campo" + i).addClass("error");
         } else {
