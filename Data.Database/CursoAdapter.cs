@@ -173,5 +173,53 @@ namespace Data.Database
                 this.CloseConnection();
             }
         }
+        public Curso GetRepetido(Curso c)
+        {
+            Curso curso = new Curso();
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdCursos = new SqlCommand(
+                    "SELECT * FROM cursos c " +
+                    "INNER JOIN materias m ON c.id_materia = m.id_materia " +
+                    "INNER JOIN comisiones com ON c.id_comision = com.id_comision " +
+                    "WHERE c.id_materia = @id_materia " +
+                    "AND c.id_comision = @id_comision " +
+                    "AND c.anio_calendario = @anio " +
+                    "AND NOT c.id_curso = @id_curso"
+                    , sqlConn);
+                cmdCursos.Parameters.Add("@id_materia", SqlDbType.VarChar, 50).Value = c.IDMateria;
+                cmdCursos.Parameters.Add("@id_comision", SqlDbType.Int).Value = c.IDComision;
+                cmdCursos.Parameters.Add("@anio", SqlDbType.Int).Value = c.AnioCalendario;
+                cmdCursos.Parameters.Add("@id_curso", SqlDbType.Int).Value = c.ID;
+                SqlDataReader drCursos = cmdCursos.ExecuteReader();
+                if (drCursos.Read())
+                {
+                    curso.ID = (int)drCursos["id_curso"];
+                    curso.Cupo = (int)drCursos["cupo"];
+                    curso.AnioCalendario = (int)drCursos["anio_calendario"];
+                    curso.IDMateria = (int)drCursos["id_materia"];
+                    curso.IDComision = (int)drCursos["id_comision"];
+                    curso.ComisionDesc = (string)drCursos["desc_comision"];
+                    curso.MateriaDesc = (string)drCursos["desc_materia"];
+                }
+                drCursos.Close();
+            }
+            catch (SqlException Ex)
+            {
+                Exception ExceptionManejada = new Exception("El curso seleccionado no existe", Ex);
+                throw ExceptionManejada;
+            }
+            catch (Exception Ex)
+            {
+                Exception ExceptionManejada = new Exception("Hubo un error al recuperar los datos del curso", Ex);
+                throw ExceptionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return curso;
+        }
     }
 }

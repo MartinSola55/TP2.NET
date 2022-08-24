@@ -23,11 +23,6 @@ namespace Business.Entities
             get; set;
         }
 
-        public string Descripcion
-        {
-            get; set;
-        }
-
         public int IDComision
         {
             get; set;

@@ -1,14 +1,15 @@
 ﻿listar();
-llenarComboPlanes();
-let header = ["Descripción", "Año especialidad", "Plan - Especialidad"];
+llenarComboMaterias();
+llenarComboComisiones();
+let header = ["Año", "Cupo", "Comisión", "Materia"];
 
 function listar() {
-    $.get("../Comisiones/getAll", function (data) {
-        listadoComisiones(header, data);
+    $.get("../Cursos/getAll", function (data) {
+        listadoCursos(header, data);
     });
 }
 
-function listadoComisiones(arrayHeader, data) {
+function listadoCursos(arrayHeader, data) {
     let contenido = "";
     contenido += "<table id='tabla-generic' class='table table-dark table-striped table-bordered table-hover'>";
     contenido += "<thead>";
@@ -24,9 +25,10 @@ function listadoComisiones(arrayHeader, data) {
     contenido += "<tbody>";
     for (let i = 0; i < data.length; i++) {
         contenido += "<tr>";
-        contenido += "<td class='text-center'>" + data[i].Descripcion + "</td>";
-        contenido += "<td class='text-center'>" + data[i].AnioEspecialidad + "</td>";
-        contenido += "<td class='text-center'>" + data[i].PlanDesc + "</td>";
+        contenido += "<td class='text-center'>" + data[i].AnioCalendario + "</td>";
+        contenido += "<td class='text-center'>" + data[i].Cupo + "</td>";
+        contenido += "<td class='text-center'>" + data[i].ComisionDesc + "</td>";
+        contenido += "<td>" + data[i].MateriaDesc + "</td>";
         contenido += "<td class='d-flex justify-content-center'>";
         contenido += "<button class='btn btn-outline-success me-4' onclick='modalEdit(" + data[i]["ID"] + ")' data-bs-toggle='modal' data-bs-target='#staticBackdrop'><i class='bi bi-pencil-square'></i></button>";
         contenido += "<button class='btn btn-outline-danger ms-4' onclick='modalDelete(" + data[i]["ID"] + ")' data-bs-toggle='modal' data-bs-target='#staticBackdrop'><i class='bi bi-trash3'></i></button>";
@@ -35,7 +37,7 @@ function listadoComisiones(arrayHeader, data) {
     }
     contenido += "</tbody>";
     contenido += "</table>";
-    $("#tabla-comisiones").html(contenido);
+    $("#tabla-cursos").html(contenido);
     $('#tabla-generic').DataTable(
         {
             searching: false,
@@ -60,52 +62,61 @@ function listadoComisiones(arrayHeader, data) {
     $("#tabla-generic").removeAttr("style");
 }
 
-jQuery('#filtroDescripcion').on('input', filtraComisiones);
-
-function filtraComisiones() {
-    let descripcion = $("#filtroDescripcion").val();
-    $.get("../Comisiones/FiltraComisiones/?descripcion=" + descripcion, function (data) {
-        listadoComisiones(header, data);
-    });
-}
-
 function modalEdit(id) {
-    $("#staticBackdropLabel").text("Editar comisión");
+    $("#staticBackdropLabel").text("Editar curso");
     limpiarCampos();
     habilitarCampos();
-    $.get("../Comisiones/getOne/?id=" + id, function (data) {
+    $.get("../Cursos/getOne/?id=" + id, function (data) {
         $("#txtID").val(data['ID']);
-        $("#txtDescripcion").val(data['Descripcion']);
-        $("#txtAnio").val(data['AnioEspecialidad']);
-        $("#comboPlanes").val(data['IDPlan']);
+        $("#txtAnio").val(data['AnioCalendario']);
+        $("#txtCupo").val(data['Cupo']);
+        $("#comboMaterias").val(data['IDMateria']);
+        $("#comboComisiones").val(data['IDComision']);
     });
 }
 
 function modalDelete(id) {
-    $("#staticBackdropLabel").text("Eliminar comisión");
+    $("#staticBackdropLabel").text("Eliminar curso");
     limpiarCampos();
     deshabilitarCampos();
     $("#btnAceptar").addClass("eliminar");
-    $.get("../Comisiones/getOne/?id=" + id, function (data) {
+    $.get("../Cursos/getOne/?id=" + id, function (data) {
         $("#txtID").val(data['ID']);
-        $("#txtDescripcion").val(data['Descripcion']);
-        $("#txtAnio").val(data['AnioEspecialidad']);
-        $("#comboPlanes").val(data['IDPlan']);
+        $("#txtAnio").val(data['AnioCalendario']);
+        $("#txtCupo").val(data['Cupo']);
+        $("#comboMaterias").val(data['IDMateria']);
+        $("#comboComisiones").val(data['IDComision']);
     });
     let frm = new FormData();
     frm.append("id", id);
 }
 
-function llenarComboPlanes() {
-    $.get("../Planes/getAll", function (data) {
-        let control = $("#comboPlanes");
+function llenarComboMaterias() {
+    $.get("../Materias/getAll", function (data) {
+        let control = $("#comboMaterias");
         let contenido = "";
-        contenido += "<option value='0' disabled selected >--Seleccione un plan--</option>";
+        contenido += "<option value='0' disabled selected >--Seleccione una materia--</option>";
         for (let i = 0; i < data.length; i++) {
             contenido += "<option value='" + data[i].ID + "'>";
             contenido += data[i].Descripcion;
             contenido += " - ";
-            contenido += data[i].DescripcionEsp;
+            contenido += data[i].DescripcionPlan;
+            contenido += "</option>";
+        }
+        control.html(contenido);
+    });
+}
+
+function llenarComboComisiones() {
+    $.get("../Comisiones/getAll", function (data) {
+        let control = $("#comboComisiones");
+        let contenido = "";
+        contenido += "<option value='0' disabled selected >--Seleccione una comisión--</option>";
+        for (let i = 0; i < data.length; i++) {
+            contenido += "<option value='" + data[i].ID + "'>";
+            contenido += data[i].Descripcion;
+            contenido += " - ";
+            contenido += data[i].PlanDesc;
             contenido += "</option>";
         }
         control.html(contenido);
@@ -115,7 +126,9 @@ function llenarComboPlanes() {
 $("#btnAgregar").click(function () {
     limpiarCampos();
     habilitarCampos();
-    $("#staticBackdropLabel").text("Agregar comisión");
+    $("#staticBackdropLabel").text("Agregar curso");
+    $("#comboMaterias").val("0");
+    $("#comboComisiones").val("0");
 });
 
 jQuery('#limpia-filtro').on('click', function () {
@@ -159,27 +172,29 @@ function confirmarCambios() {
     if (validaDatos()) {
         let frm = new FormData();
         let id = $("#txtID").val();
-        let descripcion = $("#txtDescripcion").val();
+        let cupo = $("#txtCupo").val();
         let anio = $("#txtAnio").val();
-        let plan = $("#comboPlanes").val();
+        let materia = $("#comboMaterias").val();
+        let comision = $("#comboComisiones").val();
         frm.append("ID", id);
-        frm.append("Descripcion", descripcion);
-        frm.append("AnioEspecialidad", anio);
-        frm.append("IDPlan", plan);
+        frm.append("Cupo", cupo);
+        frm.append("AnioCalendario", anio);
+        frm.append("IDMateria", materia);
+        frm.append("IDComision", comision);
         if ($("#btnAceptar").hasClass("eliminar")) {
-            if (confirm("¿Seguro que desea eliminar la comisión?") == 1) {
-                crudComisiones(frm, "Delete");
+            if (confirm("¿Seguro que desea eliminar el curso?") == 1) {
+                crudCursos(frm, "Delete");
             }
         } else {
-            crudComisiones(frm, "Save");
+            crudCursos(frm, "Save");
         }
     }
 }
 
-function crudComisiones(frm, action) {
+function crudCursos(frm, action) {
     $.ajax({
         type: "POST",
-        url: "../Comisiones/" + action,
+        url: "../Cursos/" + action,
         data: frm,
         contentType: false,
         processData: false,

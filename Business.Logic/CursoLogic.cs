@@ -60,5 +60,16 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
+        public Curso GetRepetido(Curso curso)
+        {
+            try
+            {
+                return CursoData.GetRepetido(curso);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
     }
 }
