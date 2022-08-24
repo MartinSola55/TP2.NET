@@ -107,7 +107,8 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("UPDATE planes SET desc_plan = @desc_plan, id_especialidad = @id_especialidad " +
+                SqlCommand cmdSave = new SqlCommand(
+                    "UPDATE planes SET desc_plan = @desc_plan, id_especialidad = @id_especialidad " +
                     "WHERE id_plan = @id", sqlConn);
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = plan.ID;
                 cmdSave.Parameters.Add("@desc_plan", SqlDbType.VarChar, 50).Value = plan.Descripcion;
@@ -134,7 +135,8 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("INSERT INTO planes (desc_plan, id_especialidad)" +
+                SqlCommand cmdSave = new SqlCommand(
+                    "INSERT INTO planes (desc_plan, id_especialidad)" +
                     "VALUES (@desc_plan, @id_especialidad) SELECT @@identity", sqlConn);
                 cmdSave.Parameters.Add("@desc_plan", SqlDbType.VarChar, 50).Value = plan.Descripcion;
                 cmdSave.Parameters.Add("@id_especialidad", SqlDbType.VarChar, 50).Value = plan.IDEspecialidad;
@@ -175,7 +177,8 @@ namespace Data.Database
                 SqlCommand cmdPlanes = new SqlCommand(
                     "SELECT * FROM planes p " +
                     "INNER JOIN especialidades e ON p.id_especialidad = e.id_especialidad " +
-                    "WHERE p.desc_plan LIKE '%" + descripcion + "%'", sqlConn);
+                    "WHERE p.desc_plan LIKE '%" + descripcion + "%' " +
+                    "ORDER BY p.desc_plan, e.desc_especialidad", sqlConn);
                 SqlDataReader drPlanes = cmdPlanes.ExecuteReader();
                 while (drPlanes.Read())
                 {
@@ -206,7 +209,8 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdPlanes = new SqlCommand("SELECT * FROM planes p " +
+                SqlCommand cmdPlanes = new SqlCommand(
+                    "SELECT * FROM planes p " +
                     "INNER JOIN especialidades e ON p.id_especialidad = e.id_especialidad " +
                     "WHERE p.desc_plan = @descripcion " +
                     "AND p.id_especialidad = @id_esp", sqlConn);

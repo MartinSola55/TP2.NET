@@ -1,7 +1,7 @@
 ﻿.navbar-logo {
     padding: 20px;
     color: #fff;
-    margin-right: 3rem;
+    margin-right: 2rem;
 }
 
 .navbar-mainbg {
@@ -78,7 +78,7 @@
     border: none;
 }
 
-@media(min-width: 1150px) {
+@media(min-width: 1360px) {
     ul li:last-child {
         position: absolute;
         right: 0;
@@ -148,7 +148,7 @@
     }
 }
 
-@media (max-width: 1149px) {
+@media (max-width: 1359px) {
     ul li:last-child {
         text-align: center;
     }
@@ -171,7 +171,7 @@
         text-align: center;
     }
 
-        .nav-item:last-child {
-            margin-bottom: 10px;
-        }
+    .nav-item:last-child {
+        margin-bottom: 10px;
+    }
 }

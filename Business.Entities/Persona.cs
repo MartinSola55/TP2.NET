@@ -19,9 +19,7 @@ namespace Business.Entities
 
         public string Apellido
         {
-            get => default;
-            set => this.Apellido = value;
-           
+            get; set;
         }
 
         public string Direccion
@@ -39,7 +37,17 @@ namespace Business.Entities
             get; set;
         }
 
+        public string NacimientoString
+        {
+            get; set;
+        }
+
         public int IDPlan
+        {
+            get; set;
+        }
+
+        public string DescPlan
         {
             get; set;
         }
