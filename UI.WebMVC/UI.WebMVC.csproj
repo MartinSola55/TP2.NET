@@ -121,6 +121,8 @@
     <Content Include="Scripts\daterangepicker-es.js" />
     <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\Especialidades.js" />
+    <Content Include="Scripts\InscripcionesDocentes.js" />
+    <Content Include="Scripts\InscripcionesAlumnos.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\login.js" />
@@ -183,6 +185,8 @@
     <Content Include="Views\Comisiones\Inicio.cshtml" />
     <Content Include="Views\Cursos\Inicio.cshtml" />
     <Content Include="Views\Personas\Inicio.cshtml" />
+    <Content Include="Views\Personas\InscripcionesAlumno.cshtml" />
+    <Content Include="Views\Personas\InscripcionesDocente.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

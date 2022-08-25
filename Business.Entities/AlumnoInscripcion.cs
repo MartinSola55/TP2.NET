@@ -27,6 +27,11 @@ namespace Business.Entities
             get; set;
         }
 
+        public string DescripcionCurso
+        {
+            get; set;
+        }
+
         public int Nota
         {
             get; set;

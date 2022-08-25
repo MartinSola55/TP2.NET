@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Inscripciones - Alumno";
+}
+
+<link href="~/Content/mis-estilos.css" rel="stylesheet" />
+
+<h1 class="text-center mb-4">Datos del alumno</h1>
+
+<div id="datos-persona" class="container-fluid mt-5">
+    <label class="mb-2">Nombre: </label>
+    <input id="txtNombre" type="text" class="form-control mb-2" disabled />
+    
+    <label class="mb-2">Apellido: </label>
+    <input id="txtApellido" type="text" class="form-control mb-2" disabled />
+
+    <label class="mb-2">Teléfono: </label>
+    <input id="txtTelefono" type="tel" class="form-control mb-2" disabled />
+
+    <label class="mb-2">Dirección: </label>
+    <input id="txtDireccion" type="text" class="form-control mb-2" disabled />
+
+    <label class="mb-2">Fecha de nacimiento: </label>
+    <input id="txtNacimiento" type="text" class="form-control mb-2" disabled />
+
+    <label class="mb-2">Email: </label>
+    <input id="txtEmail" type="text" class="form-control mb-2" disabled />
+
+    <label class="mb-2">Legajo: </label>
+    <input id="txtLegajo" type="text" class="form-control mb-2" disabled />
+
+    <label class="mb-2">Plan: </label>
+    <input id="txtPlan" type="text" class="form-control mb-2" disabled />
+
+    <button id="btnAgregar" type="button" class="btn btn-success px-4 mt-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Agregar inscripción
+    </button>
+
+</div>
+
+<hr class="mt-5" />
+
+<h2 class="text-center mb-4">Inscripciones vigentes</h2>
+
+<div id="tarjetasInscripciones" class="container d-flex flex-row row mx-auto justify-content-center">
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body contenedor-modal">
+                <label class="mb-2">ID: </label>
+                <input id="txtID" type="text" class="form-control limpiarCampo w-25 mb-2" disabled />
+
+                <label class="mb-2">ID Alumno: </label>
+                <input id="txtIDAlumno" type="text" class="form-control limpiarCampo w-25 mb-2" disabled />
+
+                <label id="campo0" class="mb-2">Condición: </label>
+                <input id="txtCondicion" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-2" />
+
+                <label class="mb-2">Nota: </label>
+                <input id="txtNota" type="number" min="1" max="10" class="form-control limpiarCampo habilitarCampo deshabilitarCampo mb-2" />
+
+                <label id="campo1" class="mb-2">Curso: </label>
+                <select id="comboCursos" class="form-select limpiarCampo habilitarCampo deshabilitarCampo required mb-2">
+                </select>
+
+            </div>
+            <div class="modal-footer">
+                <button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button id="btnAceptar" onclick="confirmarCambios()" type="button" class="btn btn-success">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/InscripcionesAlumnos.js"></script>

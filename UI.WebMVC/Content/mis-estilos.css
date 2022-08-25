@@ -17,3 +17,12 @@
 #tabla-generic_length {
     margin-bottom: 1rem;
 }
+
+#datos-persona {
+    display: grid;
+    grid-template-columns: 15% 35% 15% 35%;
+}
+
+#datos-persona label {
+    align-self: center;
+}

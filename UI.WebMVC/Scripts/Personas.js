@@ -57,8 +57,9 @@ function listadoPersonas(arrayHeader, data) {
         contenido += "<td class='text-center'>" + tipo + "</td>";
         contenido += "<td class='text-center'>" + data[i].DescPlan + "</td>";
         contenido += "<td class='d-flex justify-content-center'>";
-        contenido += "<button class='btn btn-outline-success me-4' onclick='modalEdit(" + data[i]["ID"] + ")' data-bs-toggle='modal' data-bs-target='#staticBackdrop'><i class='bi bi-pencil-square'></i></button>";
-        contenido += "<button class='btn btn-outline-danger ms-4' onclick='modalDelete(" + data[i]["ID"] + ")' data-bs-toggle='modal' data-bs-target='#staticBackdrop'><i class='bi bi-trash3'></i></button>";
+        contenido += "<button class='btn btn-outline-success me-2 py-1' onclick='modalEdit(" + data[i]["ID"] + ")' data-bs-toggle='modal' data-bs-target='#staticBackdrop'><i class='bi bi-pencil-square'></i></button>";
+        contenido += "<button class='btn btn-outline-danger mx-2' onclick='modalDelete(" + data[i]["ID"] + ")' data-bs-toggle='modal' data-bs-target='#staticBackdrop'><i class='bi bi-trash3'></i></button>";
+        contenido += "<button class='btn btn-outline-light ms-2' onclick='selectPersona(" + data[i]["ID"] + ", " + data[i].TipoPersona + ")'>Seleccionar</button>";
         contenido += "</td>";
         contenido += "</tr>";
     }
@@ -251,4 +252,12 @@ function crudPersonas(frm, action) {
             }
         }
     });
+}
+
+function selectPersona(id, tipo) {
+    if (tipo == 1) {
+        window.location.href = "Personas/InscripcionesDocente?id=" + id;
+    } else if (tipo == 2) {
+        window.location.href = "Personas/InscripcionesAlumno?id=" + id;
+    }
 }

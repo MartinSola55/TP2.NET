@@ -14,9 +14,19 @@ namespace Business.Logic
         {
             get; set;
         }
+        public AlumnoInscripcionAdapter AlumnoData
+        {
+            get; set;
+        }
+        public DocenteCursoAdapter DocenteData
+        {
+            get; set;
+        }
         public PersonaLogic()
         {
             PersonaData = new PersonaAdapter();
+            AlumnoData = new AlumnoInscripcionAdapter();
+            DocenteData = new DocenteCursoAdapter();
         }
         public Persona GetOne(int id)
         {
@@ -101,6 +111,116 @@ namespace Business.Logic
             try
             {
                 return PersonaData.FiltraPersonas(nombre, apellido);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public List<AlumnoInscripcion> GetInscripcionesAlumnno(int id)
+        {
+            try
+            {
+                return AlumnoData.GetInscripcionesAlumnno(id);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public List<DocenteCurso> GetInscripcionesDocente(int id)
+        {
+            try
+            {
+                return DocenteData.GetInscripcionesDocente(id);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public AlumnoInscripcion GetInscripcionAlumnno(int id)
+        {
+            try
+            {
+                return AlumnoData.GetOne(id);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public DocenteCurso GetInscripcionDocente(int id)
+        {
+            try
+            {
+                return DocenteData.GetOne(id);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public bool EsInscripcionRepetida(AlumnoInscripcion inscripcion)
+        {
+            try
+            {
+                return AlumnoData.EsInscripcionRepetida(inscripcion);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public bool EsInscripcionRepetida(DocenteCurso inscripcion)
+        {
+            try
+            {
+                return DocenteData.EsInscripcionRepetida(inscripcion);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public void SaveIns(AlumnoInscripcion inscripcion)
+        {
+            try
+            {
+                AlumnoData.Save(inscripcion);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public void SaveIns(DocenteCurso inscripcion)
+        {
+            try
+            {
+                DocenteData.Save(inscripcion);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public void DeleteInsAl(int id)
+        {
+            try
+            {
+                AlumnoData.Delete(id);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public void DeleteInsDoc(int id)
+        {
+            try
+            {
+                DocenteData.Delete(id);
             }
             catch (Exception exceptionManejada)
             {

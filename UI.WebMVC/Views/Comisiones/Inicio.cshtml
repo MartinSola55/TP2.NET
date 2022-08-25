@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Comisiones";
-    string anioMax = @DateTime.Today.ToShortDateString();
+    string anioMax = @DateTime.Today.Year.ToString();
 }
 
 <link href="~/Content/mis-estilos.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
 
 </div>
 
-<button id="btnAgregar" type="button" class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+<button id="btnAgregar" type="button" class="btn btn-success px-4 mb-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     Agregar
 </button>
 

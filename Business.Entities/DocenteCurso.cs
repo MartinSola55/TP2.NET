@@ -11,12 +11,17 @@ namespace Business.Entities
         private int _IDCurso;
         private int _IDDocente;
 
-        public int Cargo
+        public string Cargo
         {
             get; set;
         }
 
         public int IDCurso
+        {
+            get; set;
+        }
+
+        public string DescripcionCurso
         {
             get; set;
         }

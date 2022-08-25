@@ -48,10 +48,10 @@ function listadoCursos(arrayHeader, data) {
                     "next": "Siguiente",
                     "previous": "Anterior"
                 },
-                emptyTable: "No existen comisiones que coincidan con la búsqueda",
-                info: "Mostrando _START_ a _END_ de _TOTAL_ comisiones",
-                infoEmpty: "Mostrando 0 comisiones",
-                lengthMenu: "Mostrar _MENU_ comisiones",
+                emptyTable: "No existen cursos que coincidan con la búsqueda",
+                info: "Mostrando _START_ a _END_ de _TOTAL_ cursos",
+                infoEmpty: "Mostrando 0 cursos",
+                lengthMenu: "Mostrar _MENU_ cursos",
             },
             columnDefs: [{
                 orderable: false,
