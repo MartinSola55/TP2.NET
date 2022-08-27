@@ -77,6 +77,70 @@ namespace Data.Database
             }
             return usr;
         }
+        public int GetTipoUsuario(string nombre, string clave)
+        {
+            int TipoUsr = 0;
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdUsuario = new SqlCommand(
+                    "SELECT * FROM usuarios u " +
+                    "INNER JOIN personas p ON u.id_persona = p.id_persona " +
+                    "WHERE nombre_usuario = @nombre_usario AND clave = @clave", sqlConn);
+                cmdUsuario.Parameters.Add("@nombre_usario", SqlDbType.VarChar, 50).Value = nombre;
+                cmdUsuario.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = clave;
+                SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
+                if (drUsuario.Read())
+                {
+                    TipoUsr = (int)drUsuario["tipo_persona"];
+                }
+                drUsuario.Close();
+            } catch (SqlException Ex)
+            {
+                Exception exceptionManejada = new Exception("El usuario seleccionado no existe", Ex);
+                throw exceptionManejada;
+            } catch (Exception Ex)
+            {
+                Exception exceptionManejada = new Exception("Hubo un error al recuperar los datos del usuario", Ex);
+                throw exceptionManejada;
+            } finally
+            {
+                this.CloseConnection();
+            }
+            return TipoUsr;
+        }
+        public int GetIDPersona(string nombre, string clave)
+        {
+            int idPer = 0;
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdUsuario = new SqlCommand(
+                    "SELECT * FROM usuarios u " +
+                    "INNER JOIN personas p ON u.id_persona = p.id_persona " +
+                    "WHERE nombre_usuario = @nombre_usario AND clave = @clave", sqlConn);
+                cmdUsuario.Parameters.Add("@nombre_usario", SqlDbType.VarChar, 50).Value = nombre;
+                cmdUsuario.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = clave;
+                SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
+                if (drUsuario.Read())
+                {
+                    idPer = (int)drUsuario["id_persona"];
+                }
+                drUsuario.Close();
+            } catch (SqlException Ex)
+            {
+                Exception exceptionManejada = new Exception("El usuario seleccionado no existe", Ex);
+                throw exceptionManejada;
+            } catch (Exception Ex)
+            {
+                Exception exceptionManejada = new Exception("Hubo un error al recuperar los datos del usuario", Ex);
+                throw exceptionManejada;
+            } finally
+            {
+                this.CloseConnection();
+            }
+            return idPer;
+        }
         public void Delete(int ID)
         {
             try

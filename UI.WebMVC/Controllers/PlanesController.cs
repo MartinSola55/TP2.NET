@@ -31,6 +31,7 @@ namespace UI.WebMVC.Controllers
             plan = pl.GetOne(id);
             return Json(plan, JsonRequestBehavior.AllowGet);
         }
+        [Admin]
         public JsonResult Delete(int id)
         {
             string[] respuesta = { "", "" };
@@ -47,6 +48,7 @@ namespace UI.WebMVC.Controllers
             }
             return Json(respuesta, JsonRequestBehavior.AllowGet);
         }
+        [Admin]
         public JsonResult Save(Plan plan)
         {
             string[] respuesta = { "", "" };

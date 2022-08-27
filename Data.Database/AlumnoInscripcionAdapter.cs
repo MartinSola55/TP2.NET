@@ -38,7 +38,7 @@ namespace Data.Database
                     ins.DescripcionCurso += (string)drInscripciones["desc_materia"];
                     ins.DescripcionCurso += " - ";
                     ins.DescripcionCurso += (string)drInscripciones["desc_plan"];
-                    ins.Nota = (int)drInscripciones["nota"];
+                    ins.Nota = drInscripciones["nota"] as int?;
                     ins.Condicion = (string)drInscripciones["condicion"];
                     inscripciones.Add(ins);
                 }
@@ -82,7 +82,7 @@ namespace Data.Database
                     ins.DescripcionCurso += (string)drInscripcion["desc_materia"];
                     ins.DescripcionCurso += " - ";
                     ins.DescripcionCurso += (string)drInscripcion["desc_plan"];
-                    ins.Nota = (int)drInscripcion["nota"];
+                    ins.Nota = drInscripcion["nota"] as int?;
                     ins.Condicion = (string)drInscripcion["condicion"];
                 }
                 drInscripcion.Close();
@@ -172,14 +172,21 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand(
+                SqlCommand cmdSave;
+                if (inscripcion.Nota == null) {
+                    cmdSave = new SqlCommand(
+                    "INSERT INTO alumnos_inscripciones (id_curso, id_alumno, condicion) " +
+                    "VALUES (@id_curso, @id_alumno, @condicion) SELECT @@identity", sqlConn);
+                } else
+                {
+                    cmdSave = new SqlCommand(
                     "INSERT INTO alumnos_inscripciones (id_curso, id_alumno, condicion, nota) " +
                     "VALUES (@id_curso, @id_alumno, @condicion, @nota) SELECT @@identity", sqlConn);
-                cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = inscripcion.ID;
+                    cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = inscripcion.Nota;
+                }
                 cmdSave.Parameters.Add("@id_curso", SqlDbType.Int).Value = inscripcion.IDCurso;
                 cmdSave.Parameters.Add("@id_alumno", SqlDbType.Int).Value = inscripcion.IDAlumno;
                 cmdSave.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = inscripcion.Condicion;
-                cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = inscripcion.Nota;
                 inscripcion.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
             }
             catch (Exception Ex)
@@ -229,6 +236,92 @@ namespace Data.Database
                 this.CloseConnection();
             }
             return false;
+        }
+        public bool EsInscripcionRepetida(int idAlumno, int idCurso)
+        {
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdInscripcion = new SqlCommand(
+                    "SELECT * FROM alumnos_inscripciones " +
+                    "WHERE id_curso = @curso " +
+                    "AND id_alumno = @id_alumno ", sqlConn);
+                cmdInscripcion.Parameters.Add("@curso", SqlDbType.Int).Value = idCurso;
+                cmdInscripcion.Parameters.Add("@id_alumno", SqlDbType.Int).Value = idAlumno;
+                SqlDataReader drInscripcion = cmdInscripcion.ExecuteReader();
+                if (drInscripcion.Read())
+                {
+                    return true;
+                }
+                drInscripcion.Close();
+            }
+            catch (SqlException Ex)
+            {
+                Exception ExceptionManejada = new Exception("No se pueden recuperar las inscripciones", Ex);
+                throw ExceptionManejada;
+            }
+            catch (Exception Ex)
+            {
+                Exception ExceptionManejada = new Exception("Hubo un error al recuperar las inscripciones", Ex);
+                throw ExceptionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return false;
+        }
+        public List<AlumnoInscripcion> GetAlumnosXCurso(int idCurso, int idMateria, int idComision)
+        {
+            List<AlumnoInscripcion> alumnos = new List<AlumnoInscripcion>();
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdAlumnos = new SqlCommand("SELECT * FROM personas p " +
+                    "INNER JOIN alumnos_inscripciones ai ON p.id_persona = ai.id_alumno " +
+                    "INNER JOIN cursos c ON ai.id_curso = c.id_curso " +
+                    "INNER JOIN materias m ON c.id_materia = m.id_materia " +
+                    "INNER JOIN comisiones com ON c.id_comision = com.id_comision " +
+                    "INNER JOIN planes pl ON m.id_plan = pl.id_plan " +
+                    "WHERE ai.id_curso = @idCurso " +
+                    "AND c.id_materia = @idMateria " +
+                    "AND c.id_comision = @idComision " +
+                    "ORDER BY p.apellido, p.nombre", sqlConn);
+                cmdAlumnos.Parameters.Add("@idCurso", SqlDbType.Int).Value = idCurso;
+                cmdAlumnos.Parameters.Add("@idMateria", SqlDbType.Int).Value = idMateria;
+                cmdAlumnos.Parameters.Add("@idComision", SqlDbType.Int).Value = idComision;
+                SqlDataReader drAlumnos = cmdAlumnos.ExecuteReader();
+                while (drAlumnos.Read())
+                {
+                    AlumnoInscripcion alum = new AlumnoInscripcion();
+                    alum.ID = (int)drAlumnos["id_inscripcion"];
+                    alum.IDAlumno = (int)drAlumnos["id_alumno"];
+                    alum.IDCurso = (int)drAlumnos["id_curso"];
+                    alum.DescripcionCurso = (string)drAlumnos["desc_materia"];
+                    alum.DescripcionCurso += " - Comisión ";
+                    alum.DescripcionCurso += (string)drAlumnos["desc_comision"];
+                    alum.DescripcionCurso += " - ";
+                    int anio = (int)drAlumnos["anio_calendario"];
+                    alum.DescripcionCurso += anio.ToString();
+                    alum.Nota = drAlumnos["nota"] as int?;
+                    alum.Condicion = (string)drAlumnos["condicion"];
+                    alum.NombreApellido = (string)drAlumnos["apellido"];
+                    alum.NombreApellido += ", ";
+                    alum.NombreApellido += (string)drAlumnos["nombre"];
+                    alumnos.Add(alum);
+                }
+                drAlumnos.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception exceptionManejada = new Exception("Hubo un error al recuperar la lista de alumnos", Ex);
+                throw exceptionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return alumnos;
         }
     }
 }

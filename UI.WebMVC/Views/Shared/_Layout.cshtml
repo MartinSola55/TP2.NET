@@ -31,40 +31,97 @@
                     <a class="nav-link" href="/Home"><i class="bi bi-house"></i>Inicio</a>
                 </li>
                 @{
-                    if (Session["user"] != null)
+                    switch (Session["tipoUsr"])
                     {
-                        @:<li class="nav-item">
-                            @:<a class="nav-link" href="/Usuarios"><i class="bi bi-person"></i>Usuarios</a>
-                        @:</li>
-                        @:<li class="nav-item">
-                            @:<a class="nav-link" href="/Especialidades"><i class="bi bi-award"></i>Especialidades</a>
-                        @:</li>
-                        @:<li class="nav-item">
-                            @:<a class="nav-link" href="/Planes"><i class="bi bi-book"></i>Planes</a>
-                        @:</li>
-                        @:<li class="nav-item">
-                            @:<a class="nav-link" href="/Materias"><i class="bi bi-journal-text"></i>Materias</a>
-                        @:</li>
-                        @:<li class="nav-item">
-                            @:<a class="nav-link" href="/Comisiones"><i class="bi bi-list-ol"></i>Comisiones</a>
-                        @:</li>
-                        @:<li class="nav-item">
-                            @:<a class="nav-link" href="/Cursos"><i class="bi bi-people"></i>Cursos</a>
-                        @:</li>
-                        @:<li class="nav-item">
-                            @:<a class="nav-link" href="/Personas"><i class="bi bi-person-circle"></i>Personas</a>
-                        @:</li>
-                        @:<li class="nav-item">
-                            @:<a class="nav-item" href="/Login/CerrarSesion">Cerrar sesión</a>
-                        @:</li>
-
-                    }
-                    else
-                    {
-                        @:<li class="nav-item">
-                            @:<a class="nav-item" href="/Login">Iniciar sesión</a>
-                        @:</li>
-                    }
+                        case 1:
+                            {
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Especialidades"><i class="bi bi-award"></i>Especialidades</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Planes"><i class="bi bi-book"></i>Planes</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Materias"><i class="bi bi-journal-text"></i>Materias</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Comisiones"><i class="bi bi-list-ol"></i>Comisiones</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Cursos"><i class="bi bi-people"></i>Cursos</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Docente"><i class="bi bi-mortarboard"></i>Dictados</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-item" href="/Login/CerrarSesion">Cerrar sesión</a>
+                                    @:
+                                @:</li>
+                                break;
+                            }
+                        case 2:
+                            {
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Especialidades"><i class="bi bi-award"></i>Especialidades</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Planes"><i class="bi bi-book"></i>Planes</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Materias"><i class="bi bi-journal-text"></i>Materias</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Comisiones"><i class="bi bi-list-ol"></i>Comisiones</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Cursos"><i class="bi bi-people"></i>Cursos</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/InscripcionesAlumno"><i class="bi bi-plus-square"></i>Inscripción a cursos</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-item" href="/Login/CerrarSesion">Cerrar sesión</a>
+                                    @:
+                                @:</li>
+                                break;
+                            }
+                        case 3:
+                            {
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Usuarios"><i class="bi bi-person"></i>Usuarios</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Especialidades"><i class="bi bi-award"></i>Especialidades</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Planes"><i class="bi bi-book"></i>Planes</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Materias"><i class="bi bi-journal-text"></i>Materias</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Comisiones"><i class="bi bi-list-ol"></i>Comisiones</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Cursos"><i class="bi bi-people"></i>Cursos</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-link" href="/Personas"><i class="bi bi-person-circle"></i>Personas</a>
+                                @:</li>
+                                @:<li class="nav-item">
+                                    @:<a class="nav-item" href="/Login/CerrarSesion">Cerrar sesión</a>
+                                    @:
+                                @:</li>
+                                break;
+                            }
+                        default:
+                            {
+                                @:<li class="nav-item">
+                                    @:<a class="nav-item" href="/Login">Iniciar sesión</a>
+                                @:</li>
+                                break;
+                            }
+                    };
                 }
             </ul>
         </div>
@@ -77,7 +134,7 @@
     <footer class="text-center bg-dark text-white py-4" style="vertical-align:bottom">
         <p id="footerText" class="m-0">&copy; @DateTime.Now.Year - SYSACAD</p>
     </footer>
-    
+
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <script src="~/Scripts/navbar.js"></script>

@@ -114,6 +114,8 @@
     <Content Include="Images\favicon.png" />
     <Content Include="Images\Fondo inicio.jpg" />
     <Content Include="Images\logoUTN.png" />
+    <Content Include="Scripts\CargosDocente.js" />
+    <Content Include="Scripts\InscripcionesAlumno.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\Comisiones.js" />
@@ -121,8 +123,9 @@
     <Content Include="Scripts\daterangepicker-es.js" />
     <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\Especialidades.js" />
-    <Content Include="Scripts\InscripcionesDocentes.js" />
-    <Content Include="Scripts\InscripcionesAlumnos.js" />
+    <Content Include="Scripts\NotasAlumno.js" />
+    <Content Include="Scripts\PersonasDocentes.js" />
+    <Content Include="Scripts\PersonasAlumnos.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\login.js" />
@@ -143,8 +146,10 @@
     <Compile Include="Controllers\CursosController.cs" />
     <Compile Include="Controllers\EspecialidadesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InscripcionesAlumnoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MateriasController.cs" />
+    <Compile Include="Controllers\DocenteController.cs" />
     <Compile Include="Controllers\PersonasController.cs" />
     <Compile Include="Controllers\PlanesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -187,6 +192,9 @@
     <Content Include="Views\Personas\Inicio.cshtml" />
     <Content Include="Views\Personas\InscripcionesAlumno.cshtml" />
     <Content Include="Views\Personas\InscripcionesDocente.cshtml" />
+    <Content Include="Views\InscripcionesAlumno\Inicio.cshtml" />
+    <Content Include="Views\Docente\Inicio.cshtml" />
+    <Content Include="Views\Docente\Notas.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

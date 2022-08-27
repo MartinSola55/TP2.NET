@@ -1,11 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "Inscripciones - Docente";
+    ViewBag.Title = "Inscripciones";
 }
 
 <link href="~/Content/mis-estilos.css" rel="stylesheet" />
 
-<h1 class="text-center mb-4">Datos del docente</h1>
+<h1 class="text-center mb-4">Tus datos</h1>
 
 <div id="datos-persona" class="container-fluid mt-5">
     <label class="mb-2">Nombre: </label>
@@ -33,7 +33,7 @@
     <input id="txtPlan" type="text" class="form-control mb-2" disabled />
 
     <button id="btnAgregar" type="button" class="btn btn-success px-4 mt-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Agregar inscripción
+        Inscribirse
     </button>
 
 </div>
@@ -58,13 +58,16 @@
                 <label class="mb-2">ID: </label>
                 <input id="txtID" type="text" class="form-control limpiarCampo w-25 mb-2" disabled />
 
-                <label class="mb-2">ID Docente: </label>
-                <input id="txtIDDocente" type="text" class="form-control limpiarCampo w-25 mb-2" disabled />
+                <label class="mb-2">ID Alumno: </label>
+                <input id="txtIDAlumno" type="text" class="form-control limpiarCampo w-25 mb-2" disabled />
 
-                <label id="campo0" class="mb-2">Cargo: </label>
-                <input id="txtCargo" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-2" />
+                <label id="lblCondicion" class="mb-2">Condición: </label>
+                <input id="txtCondicion" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo mb-2" />
 
-                <label id="campo1" class="mb-2">Curso: </label>
+                <label id="lblNota" class="mb-2">Nota: </label>
+                <input id="txtNota" type="number" min="1" max="10" class="form-control limpiarCampo habilitarCampo deshabilitarCampo mb-2" />
+
+                <label id="lblCurso" class="mb-2">Curso: </label>
                 <select id="comboCursos" class="form-select limpiarCampo habilitarCampo deshabilitarCampo required mb-2">
                 </select>
 
@@ -77,6 +80,12 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    var idPer = getPerID();
+    function getPerID() {
+        return @Session["idPer"];
+    }
+</script>
 
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
-<script src="~/Scripts/PersonasDocentes.js"></script>
+<script src="~/Scripts/InscripcionesAlumno.js"></script>

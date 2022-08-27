@@ -30,6 +30,8 @@ namespace Data.Database
                     ins.ID = (int)drInscripciones["id_dictado"];
                     ins.IDDocente = (int)drInscripciones["id_docente"];
                     ins.IDCurso = (int)drInscripciones["id_curso"];
+                    ins.IDComision = (int)drInscripciones["id_comision"];
+                    ins.IDMateria = (int)drInscripciones["id_materia"];
                     int anio = (int)drInscripciones["anio_calendario"];
                     ins.DescripcionCurso = anio.ToString();
                     ins.DescripcionCurso += " - ";

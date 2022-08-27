@@ -1,7 +1,6 @@
 ﻿listar();
 llenarComboPlanes();
 let header = ["Descripción", "Año especialidad", "Plan - Especialidad"];
-
 function listar() {
     $.get("../Comisiones/getAll", function (data) {
         listadoComisiones(header, data);
@@ -18,7 +17,7 @@ function listadoComisiones(arrayHeader, data) {
         contenido += arrayHeader[i];
         contenido += "</td>";
     }
-    contenido += "<td class='no-sort text-center'>Acción</td>";
+    contenido += tipoUsr == "3" ? "<td class='no-sort text-center'>Acción</td>" : "";
     contenido += "</tr>";
     contenido += "</thead>";
     contenido += "<tbody>";
@@ -27,10 +26,12 @@ function listadoComisiones(arrayHeader, data) {
         contenido += "<td class='text-center'>" + data[i].Descripcion + "</td>";
         contenido += "<td class='text-center'>" + data[i].AnioEspecialidad + "</td>";
         contenido += "<td class='text-center'>" + data[i].PlanDesc + "</td>";
-        contenido += "<td class='d-flex justify-content-center'>";
-        contenido += "<button class='btn btn-outline-success me-4' onclick='modalEdit(" + data[i]["ID"] + ")' data-bs-toggle='modal' data-bs-target='#staticBackdrop'><i class='bi bi-pencil-square'></i></button>";
-        contenido += "<button class='btn btn-outline-danger ms-4' onclick='modalDelete(" + data[i]["ID"] + ")' data-bs-toggle='modal' data-bs-target='#staticBackdrop'><i class='bi bi-trash3'></i></button>";
-        contenido += "</td>";
+        if (tipoUsr == "3") {
+            contenido += "<td class='d-flex justify-content-center'>";
+            contenido += "<button class='btn btn-outline-success me-4' onclick='modalEdit(" + data[i]["ID"] + ")' data-bs-toggle='modal' data-bs-target='#staticBackdrop'><i class='bi bi-pencil-square'></i></button>";
+            contenido += "<button class='btn btn-outline-danger ms-4' onclick='modalDelete(" + data[i]["ID"] + ")' data-bs-toggle='modal' data-bs-target='#staticBackdrop'><i class='bi bi-trash3'></i></button>";
+            contenido += "</td>";
+        }
         contenido += "</tr>";
     }
     contenido += "</tbody>";

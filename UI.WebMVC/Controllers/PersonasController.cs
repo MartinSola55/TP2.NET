@@ -10,6 +10,7 @@ using UI.WebMVC.Filter;
 namespace UI.WebMVC.Controllers
 {
     [Seguridad]
+    [Admin]
     public class PersonasController : Controller
     {
         private PersonaLogic pl = new PersonaLogic();

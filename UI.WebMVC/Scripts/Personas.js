@@ -45,7 +45,7 @@ function listadoPersonas(arrayHeader, data) {
         contenido += "<tr>";
         contenido += "<td>" + data[i].Apellido + "</td>";
         contenido += "<td>" + data[i].Nombre + "</td>";
-        contenido += "<td>" + data[i].Direccion + "</td>";
+        contenido += "<td>" + data[i].Telefono + "</td>";
         contenido += "<td class='text-center'>" + data[i].NacimientoString + "</td>";
         contenido += "<td class='text-center'>" + data[i].Legajo + "</td>";
         let tipo = "-";
@@ -53,6 +53,8 @@ function listadoPersonas(arrayHeader, data) {
             tipo = "Docente";
         } else if (data[i].TipoPersona == "2") {
             tipo = "Alumno";
+        } else if (data[i].TipoPersona == "3") {
+            tipo = "Administrador";
         }
         contenido += "<td class='text-center'>" + tipo + "</td>";
         contenido += "<td class='text-center'>" + data[i].DescPlan + "</td>";

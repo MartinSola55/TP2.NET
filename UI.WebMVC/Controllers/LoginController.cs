@@ -1,4 +1,5 @@
-﻿using Business.Logic;
+﻿using Business.Entities;
+using Business.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace UI.WebMVC.Controllers
 {
     public class LoginController : Controller
     {
+        UsuarioLogic ul = new UsuarioLogic();
         // GET: Login
         public ActionResult Inicio()
         {
@@ -19,6 +21,8 @@ namespace UI.WebMVC.Controllers
         public ActionResult CerrarSesion()
         {
             Session["user"] = null;
+            Session["tipoUsr"] = null;
+            Session["idUsr"] = null;
             return RedirectToAction("Inicio", "Home");
         }
         public bool Validar(string user, string pass)
@@ -26,18 +30,21 @@ namespace UI.WebMVC.Controllers
             bool respuesta = false;
             try
             {
-                UsuarioLogic ul = new UsuarioLogic();
-                SHA256Managed sha = new SHA256Managed();
                 //Cifrar contraseña
+                SHA256Managed sha = new SHA256Managed();
                 byte[] passNoCifrada = Encoding.Default.GetBytes(pass);
                 byte[] bytesCifrados = sha.ComputeHash(passNoCifrada);
                 string passCifrada = BitConverter.ToString(bytesCifrados).Replace("-", string.Empty);
 
                 respuesta = ul.ValidaLogin(user, pass);
+                int tipoUsr = ul.GetTipoUsuario(user, pass);
+                int idPer = ul.GetIDPersona(user, pass);
 
                 if (respuesta == true)
                 {
                     Session["user"] = user;
+                    Session["tipoUsr"] = tipoUsr;
+                    Session["idPer"] = idPer;
                     return respuesta;
                 }
                 return respuesta;

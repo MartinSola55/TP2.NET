@@ -172,6 +172,17 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
+        public bool EsInscripcionRepetida(int idAlumno, int idCurso)
+        {
+            try
+            {
+                return AlumnoData.EsInscripcionRepetida(idAlumno, idCurso);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
         public bool EsInscripcionRepetida(DocenteCurso inscripcion)
         {
             try
@@ -221,6 +232,17 @@ namespace Business.Logic
             try
             {
                 DocenteData.Delete(id);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public List<AlumnoInscripcion> GetAlumnosXCurso(int idCurso, int idMateria, int idComision)
+        {
+            try
+            {
+                return AlumnoData.GetAlumnosXCurso(idCurso, idMateria, idComision);
             }
             catch (Exception exceptionManejada)
             {

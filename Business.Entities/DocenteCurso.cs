@@ -30,5 +30,16 @@ namespace Business.Entities
         {
             get; set;
         }
+        
+        public int IDComision
+        {
+            get; set;
+        }
+        
+        public int IDMateria
+        {
+            get; set;
+        }
+
     }
 }

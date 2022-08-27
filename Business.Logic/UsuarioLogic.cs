@@ -20,10 +20,31 @@ namespace Business.Logic
         }
         public Usuario GetOne(int id)
         {
-            
             try
             {
                 return UsuarioData.GetOne(id);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public int GetTipoUsuario(string nombre, string clave)
+        {
+            try
+            {
+                return UsuarioData.GetTipoUsuario(nombre, clave);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public int GetIDPersona(string nombre, string clave)
+        {
+            try
+            {
+                return UsuarioData.GetIDPersona(nombre, clave);
             }
             catch (Exception exceptionManejada)
             {

@@ -10,6 +10,7 @@ using UI.WebMVC.Filter;
 namespace UI.WebMVC.Controllers
 {
     [Seguridad]
+    [Admin]
     public class UsuariosController : Controller
     {
         private UsuarioLogic ul = new UsuarioLogic();
@@ -31,6 +32,7 @@ namespace UI.WebMVC.Controllers
             usuario = ul.GetOne(id);
             return Json(usuario, JsonRequestBehavior.AllowGet);
         }
+        [Admin]
         public JsonResult Delete(int id)
         {
             string respuesta;
@@ -45,6 +47,7 @@ namespace UI.WebMVC.Controllers
             }
             return Json(respuesta, JsonRequestBehavior.AllowGet);
         }
+        [Admin]
         public JsonResult Save(Usuario usr)
         {
             string respuesta;

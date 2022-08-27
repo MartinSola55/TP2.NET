@@ -43,7 +43,7 @@ function listarInscripciones() {
             tarjeta += "<div class='card me-4 col-3 mb-4' style='width: 18rem;'>";
             tarjeta += "<div class='card-body d-flex flex-column'>"
             tarjeta += "<h5 class='card-title'>Condición: " + data[i].Condicion + "</h5>"
-            let nota = data[i].Nota = ! null ? data[i].Nota : "";
+            let nota = data[i].Nota == null ? "" : data[i].Nota;
             if (nota != "") {
                 tarjeta += "<h5 class='card-title'>Nota: " + nota + "</h5>"
             }
@@ -118,7 +118,7 @@ function campoRequired() {
     let valido = true;
     campos = $(".required");
     for (let i = 0; i < campos.length; i++) {
-        if (campos[i].value == "" || campos[i].value == "") {
+        if (campos[i].value == "" || campos[i].value == "0") {
             valido = false;
             $("#campo" + i).addClass("error");
         } else {

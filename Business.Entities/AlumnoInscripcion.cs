@@ -7,7 +7,7 @@ namespace Business.Entities
 {
     public class AlumnoInscripcion : BusinessEntity
     {
-        private int _Condicion;
+        private string _Condicion;
         private int _IDAlumno;
         private int _IDCurso;
         private int _Nota;
@@ -32,7 +32,12 @@ namespace Business.Entities
             get; set;
         }
 
-        public int Nota
+        public string NombreApellido
+        {
+            get; set;
+        }
+
+        public int? Nota
         {
             get; set;
         }

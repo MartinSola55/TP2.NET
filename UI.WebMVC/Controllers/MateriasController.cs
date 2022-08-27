@@ -30,6 +30,7 @@ namespace UI.WebMVC.Controllers
             materia = ml.GetOne(id);
             return Json(materia, JsonRequestBehavior.AllowGet);
         }
+        [Admin]
         public JsonResult Delete(int id)
         {
             string[] respuesta = { "", "" };
@@ -46,6 +47,7 @@ namespace UI.WebMVC.Controllers
             }
             return Json(respuesta, JsonRequestBehavior.AllowGet);
         }
+        [Admin]
         public JsonResult Save(Materia materia)
         {
             string[] respuesta = { "", "" };
