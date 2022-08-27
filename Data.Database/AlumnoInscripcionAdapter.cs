@@ -66,6 +66,7 @@ namespace Data.Database
                     "INNER JOIN materias m ON c.id_materia = m.id_materia " +
                     "INNER JOIN comisiones com ON c.id_comision = com.id_comision " +
                     "INNER JOIN planes p ON m.id_plan = p.id_plan " +
+                    "INNER JOIN personas per ON ai.id_alumno = per.id_persona " +
                     "WHERE id_inscripcion = @id ", sqlConn);
                 cmdInscripcion.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 SqlDataReader drInscripcion = cmdInscripcion.ExecuteReader();
@@ -84,6 +85,9 @@ namespace Data.Database
                     ins.DescripcionCurso += (string)drInscripcion["desc_plan"];
                     ins.Nota = drInscripcion["nota"] as int?;
                     ins.Condicion = (string)drInscripcion["condicion"];
+                    ins.NombreApellido = (string)drInscripcion["apellido"];
+                    ins.NombreApellido += ", ";
+                    ins.NombreApellido += (string)drInscripcion["nombre"];
                 }
                 drInscripcion.Close();
             }
@@ -148,6 +152,34 @@ namespace Data.Database
                     "WHERE id_inscripcion = @id", sqlConn);
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = inscripcion.ID;
                 cmdSave.Parameters.Add("@id_curso", SqlDbType.Int).Value = inscripcion.IDCurso;
+                cmdSave.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = inscripcion.Condicion;
+                cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = inscripcion.Nota;
+                cmdSave.ExecuteNonQuery();
+            }
+            catch (SqlException Ex)
+            {
+                Exception exceptionManejada = new Exception("La inscripción seleccionada no existe", Ex);
+                throw exceptionManejada;
+            }
+            catch (Exception Ex)
+            {
+                Exception exceptionManejada = new Exception("Hubo un error al modificar los datos de la inscripción", Ex);
+                throw exceptionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+        }
+        public void UpdateCondicion(AlumnoInscripcion inscripcion)
+        {
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdSave = new SqlCommand(
+                    "UPDATE alumnos_inscripciones SET condicion = @condicion, nota = @nota " +
+                    "WHERE id_inscripcion = @id", sqlConn);
+                cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = inscripcion.ID;
                 cmdSave.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = inscripcion.Condicion;
                 cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = inscripcion.Nota;
                 cmdSave.ExecuteNonQuery();

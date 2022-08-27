@@ -43,6 +43,20 @@ namespace UI.WebMVC.Controllers
             }
             return Json(dc, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult GetInscripcionAlumno(int id)
+        {
+            AlumnoInscripcion ai = new AlumnoInscripcion();
+            try
+            {
+                ai = pl.GetInscripcionAlumnno(id);
+                return Json(ai, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+
+            }
+            return Json(ai, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult GetAlumnosXCurso(int idCurso, int idMateria, int idComision)
         {
             List<AlumnoInscripcion> alumnos = new List<AlumnoInscripcion>();
@@ -57,23 +71,14 @@ namespace UI.WebMVC.Controllers
             }
             return Json(alumnos, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SaveNotaCondicion(AlumnoInscripcion inscripcion)
+        public JsonResult SaveCondicion(AlumnoInscripcion inscripcion)
         {
             string[] respuesta = { "", "" };
             try
             {
-                if (!pl.EsInscripcionRepetida(inscripcion))
-                {
-                    inscripcion.State = BusinessEntity.States.Modified;
-                    pl.SaveIns(inscripcion);
-                    respuesta[0] = "La inscripción se guardó correctamente";
-                    respuesta[1] = "1";
-                }
-                else
-                {
-                    respuesta[0] = "La inscripción que desea guardar ya existe";
-                    respuesta[1] = "0";
-                }
+                pl.UpdateCondicion(inscripcion);
+                respuesta[0] = "La inscripción se guardó correctamente";
+                respuesta[1] = "1";
             }
             catch (Exception ex)
             {

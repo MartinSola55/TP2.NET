@@ -1,5 +1,5 @@
 ﻿listar();
-let header = ["Nombre", "Apellido", "Email", "Usuario", "Habilitado"];
+const header = ["Usuario", "Email", "Habilitado"];
 
 function listar() {
     $.get("../Usuarios/getAll", function (data) {
@@ -23,10 +23,8 @@ function listadoUsuarios(arrayHeader, data) {
     contenido += "<tbody>";
     for (let i = 0; i < data.length; i++) {
         contenido += "<tr>";
-        contenido += "<td>" + data[i].Nombre + "</td>";
-        contenido += "<td>" + data[i].Apellido + "</td>";
-        contenido += "<td>" + data[i].Email + "</td>";
         contenido += "<td>" + data[i].NombreUsuario + "</td>";
+        contenido += "<td>" + data[i].Email + "</td>";
         let habilitado = data[i].Habilitado == 1 ? "Sí" : "No";
         contenido += "<td class='text-center'>" + habilitado + "</td>";
         contenido += "<td class='d-flex justify-content-center'>";
@@ -62,19 +60,14 @@ function listadoUsuarios(arrayHeader, data) {
     $("#tabla-generic").removeAttr("style");
 }
 
-jQuery('#filtroNombre').on('input', filtraUsuario);
-jQuery('#filtroApellido').on('input', filtraUsuario);
 jQuery('#filtroUsuario').on('input', filtraUsuario);
 jQuery('#filtroMail').on('input', filtraUsuario);
 
 function filtraUsuario() {
-    let nombre = $("#filtroNombre").val();
-    let apellido = $("#filtroApellido").val();
     let usuario = $("#filtroUsuario").val();
     let mail = $("#filtroMail").val();
-    $.get("../Usuarios/FiltraUsuarios/?nombre=" + nombre + "&apellido=" + apellido + "&usr="
-        + usuario + "&mail=" + mail, function (data) {
-            listadoUsuarios(header, data);
+    $.get("../Usuarios/FiltraUsuarios/?usr=" + usuario + "&mail=" + mail, function (data) {
+        listadoUsuarios(header, data);
     });
 }
 
@@ -84,9 +77,6 @@ function modalEdit(id) {
     habilitarCampos();
     $.get("../Usuarios/getOne/?id=" + id, function (data) {
         $("#txtID").val(data['ID']);
-        $("#txtNombre").val(data['Nombre']);
-        $("#txtApellido").val(data['Apellido']);
-        $("#txtEmail").val(data['Email']);
         $("#txtNombreUsuario").val(data['NombreUsuario']);
         $("#txtClave").val(data['Clave']);
         $("#checkHabilitado").prop('checked', data['Habilitado']);
@@ -100,9 +90,6 @@ function modalDelete(id) {
     $("#btnAceptar").addClass("eliminar");
     $.get("../Usuarios/getOne/?id=" + id, function (data) {
         $("#txtID").val(data['ID']);
-        $("#txtNombre").val(data['Nombre']);
-        $("#txtApellido").val(data['Apellido']);
-        $("#txtEmail").val(data['Email']);
         $("#txtNombreUsuario").val(data['NombreUsuario']);
         $("#txtClave").val(data['Clave']);
         $("#txtRepiteClave").val(data['Clave']);
@@ -128,18 +115,8 @@ $("#btnVerClave").click(function () {
     }
 });
 
-
-$("#btnAgregar").click(function () {
-    limpiarCampos();
-    habilitarCampos();
-    $("#staticBackdropLabel").text("Agregar usuario");
-    $("#checkHabilitada").prop('checked', false);
-});
-
 jQuery('#limpia-filtro').on('click', function () {
     listar();
-    $("#filtroNombre").val("");
-    $("#filtroApellido").val("");
     $("#filtroUsuario").val("");
     $("#filtroMail").val("");
 });
@@ -202,16 +179,10 @@ function confirmarCambios() {
     if (validaDatos()) {
         let frm = new FormData();
         let id = $("#txtID").val();
-        let nombre = $("#txtNombre").val();
-        let apellido = $("#txtApellido").val();
-        let email = $("#txtEmail").val();
         let usuario = $("#txtNombreUsuario").val();
         let clave = $("#txtClave").val();
         let check = $("#checkHabilitado").is(':checked');
         frm.append("ID", id);
-        frm.append("Nombre", nombre);
-        frm.append("Apellido", apellido);
-        frm.append("Email", email);
         frm.append("NombreUsuario", usuario);
         frm.append("Clave", clave);
         frm.append("Habilitado", check);

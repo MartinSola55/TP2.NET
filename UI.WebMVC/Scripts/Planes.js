@@ -1,6 +1,6 @@
 ﻿listar();
 llenarComboEsp();
-let header = ["Descripción", "Especialidad"];
+const header = ["Descripción", "Especialidad"];
 
 function listar() {
     $.get("../Planes/getAll", function (data) {

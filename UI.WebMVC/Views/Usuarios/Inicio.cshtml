@@ -8,14 +8,6 @@
 
 <div class="container-fluid d-flex mb-3">
     <div class="row me-4 col-3">
-        <label class="form-label">Filtrar por nombre: </label>
-        <input type="text" id="filtroNombre" class="form-control" placeholder="Nombre a buscar" />
-    </div>
-    <div class="row me-4 col-3">
-        <label class="form-label">Filtrar por apellido: </label>
-        <input type="text" id="filtroApellido" class="form-control" placeholder="Apellido a buscar" />
-    </div>
-    <div class="row me-4 col-3">
         <label class="form-label">Filtrar por usuario: </label>
         <input type="text" id="filtroUsuario" class="form-control" placeholder="Usuario a buscar" />
     </div>
@@ -32,10 +24,6 @@
 
 </div>
 
-<button id="btnAgregar" type="button" class="btn btn-success px-4 mb-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    Agregar
-</button>
-
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -48,16 +36,7 @@
                 <label class="mb-3">ID: </label>
                 <input id="txtID" type="text" class="form-control limpiarCampo w-25 mb-3" disabled />
 
-                <label class="mb-3 campo0">Nombre: </label>
-                <input id="txtNombre" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
-
-                <label class="mb-3 campo1">Apellido: </label>
-                <input id="txtApellido" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
-
-                <label class="mb-3 campo2">Email: </label>
-                <input id="txtEmail" type="email" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
-
-                <label class="mb-3 campo3">Usuario: </label>
+                <label class="mb-3 campo0">Usuario: </label>
                 <input id="txtNombreUsuario" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
 
                 <label class="mb-3">Habilitado: </label>
@@ -65,10 +44,10 @@
                     <input id="checkHabilitado" class="mb-3 form-check habilitarCampo deshabilitarCampo" type="checkbox" style="transform:scale(1.25)" />
                 </div>
 
-                <label id="lblClave" class="mb-3 campo4">Clave: </label>
+                <label id="lblClave" class="mb-3 campo1">Clave: </label>
                 <input id="txtClave" type="password" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
 
-                <label id="lblRepiteClave" class="mb-3 campo5">Repetir clave: </label>
+                <label id="lblRepiteClave" class="mb-3 campo2">Repetir clave: </label>
                 <input id="txtRepiteClave" type="password" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
 
                 <button id="btnVerClave" class='btn btn-outline-primary oculto'><i id="iconVerClave" class='bi bi-eye'></i></button>

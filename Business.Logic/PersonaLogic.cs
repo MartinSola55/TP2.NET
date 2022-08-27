@@ -205,6 +205,17 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
+        public void UpdateCondicion(AlumnoInscripcion inscripcion)
+        {
+            try
+            {
+                AlumnoData.UpdateCondicion(inscripcion);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
         public void SaveIns(DocenteCurso inscripcion)
         {
             try

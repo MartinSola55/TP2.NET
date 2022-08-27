@@ -1,7 +1,7 @@
 ﻿listar();
 llenarComboMaterias();
 llenarComboComisiones();
-let header = ["Año", "Cupo", "Comisión", "Materia"];
+const header = ["Año", "Cupo", "Comisión", "Materia"];
 
 function listar() {
     $.get("../Cursos/getAll", function (data) {

@@ -72,6 +72,17 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
+        public void Create(Usuario usuario)
+        {
+            try
+            {
+                UsuarioData.Create(usuario);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
         public void Delete(int id)
         {
             try
@@ -97,11 +108,22 @@ namespace Business.Logic
             }
             return false;
         }
-        public List<Usuario> FiltraUsuarios(string nombre, string apellido, string usr, string mail)
+        public List<Usuario> FiltraUsuarios(string usr, string mail)
         {
             try
             {
-                return UsuarioData.FiltraUsuarios(nombre, apellido, usr, mail);
+                return UsuarioData.FiltraUsuarios(usr, mail);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public bool EsRepetido(string usuario)
+        {
+            try
+            {
+                return UsuarioData.GetRepetido(usuario);
             }
             catch (Exception exceptionManejada)
             {

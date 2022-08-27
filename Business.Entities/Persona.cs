@@ -16,6 +16,7 @@ namespace Business.Entities
         private string _Nombre;
         private string _Telefono;
         private int _TipoPersona;
+        private string _NombreUsuario;
 
         public string Apellido
         {
@@ -68,6 +69,11 @@ namespace Business.Entities
         }
 
         public int Legajo
+        {
+            get; set;
+        }
+
+        public string NombreUsuario
         {
             get; set;
         }

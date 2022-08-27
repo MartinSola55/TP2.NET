@@ -1,5 +1,5 @@
 ﻿listar();
-let header = ["Descripción"];
+const header = ["Descripción"];
 
 function listar() {
     $.get("../Especialidades/getAll", function (data) {

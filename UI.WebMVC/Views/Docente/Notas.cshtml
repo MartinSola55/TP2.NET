@@ -11,6 +11,38 @@
 <div id="tabla-notas">
 
 </div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                
+            </div>
+            <div class="modal-body contenedor-modal align-items-center">
+                <input id="txtIDAlumno" type="text" class="limpiarCampo" style="display: none" />
+
+                <label class="mb-3">ID: </label>
+                <input id="txtID" type="text" class="form-control limpiarCampo w-25 mb-3" disabled />
+
+                <label class="mb-3">Alumno: </label>
+                <input id="txtAlumno" type="text" class="form-control limpiarCampo mb-3" disabled />
+
+                <label id="campo0" class="mb-3">Condición: </label>
+                <input id="txtCondicion" type="text" class="form-control limpiarCampo mb-3" />
+
+                <label id="campo1" class="mb-3">Nota: </label>
+                <input id="txtNota" type="number" min="1" max="10" class="form-control limpiarCampo mb-3" />
+
+            </div>
+            <div class="modal-footer">
+                <button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button id="btnAceptar" onclick="confirmarCambios()" type="button" class="btn btn-success">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>

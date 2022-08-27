@@ -14,6 +14,7 @@ namespace UI.WebMVC.Controllers
     public class PersonasController : Controller
     {
         private PersonaLogic pl = new PersonaLogic();
+        private UsuarioLogic ul = new UsuarioLogic();
         // GET: Personas
         public ActionResult Inicio()
         {
@@ -245,6 +246,30 @@ namespace UI.WebMVC.Controllers
                 pl.DeleteInsDoc(id);
                 respuesta[0] = "La inscripción se eliminó correctamente";
                 respuesta[1] = "1";
+            }
+            catch (Exception ex)
+            {
+                respuesta[0] = ex.Message;
+                respuesta[1] = "0";
+            }
+            return Json(respuesta, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult SaveUser(Usuario usuario)
+        {
+            string[] respuesta = { "", "" };
+            try
+            {
+                if (!ul.EsRepetido(usuario.NombreUsuario))
+                {
+                    usuario.State = BusinessEntity.States.New;
+                    ul.Create(usuario);
+                    respuesta[0] = "El usuario se guardó correctamente";
+                    respuesta[1] = "1";
+                } else
+                {
+                    respuesta[0] = "El usuario que desea guardar ya existe";
+                    respuesta[1] = "0";
+                }
             }
             catch (Exception ex)
             {

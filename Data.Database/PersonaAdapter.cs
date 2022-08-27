@@ -55,16 +55,17 @@ namespace Data.Database
             return personas;
         }
         public Persona GetOne(int ID)
-        {
+            {
             Persona per = new Persona();
             try
             {
                 this.OpenConnection();
                 SqlCommand cmdPersonas = new SqlCommand(
                     "SELECT * FROM personas p " +
+                    "LEFT JOIN usuarios u ON p.id_persona = u.id_persona " +
                     "INNER JOIN planes pl ON p.id_plan = pl.id_plan " +
                     "INNER JOIN especialidades e ON pl.id_especialidad = e.id_especialidad " +
-                    "WHERE id_persona = @id", sqlConn);
+                    "WHERE p.id_persona = @id", sqlConn);
                 cmdPersonas.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 SqlDataReader drPersonas = cmdPersonas.ExecuteReader();
                 if (drPersonas.Read())
@@ -83,6 +84,7 @@ namespace Data.Database
                     per.DescPlan = (string)drPersonas["desc_plan"];
                     per.DescPlan += " - ";
                     per.DescPlan += (string)drPersonas["desc_especialidad"];
+                    per.NombreUsuario = drPersonas["nombre_usuario"] as string;
                 }
                 drPersonas.Close();
             }

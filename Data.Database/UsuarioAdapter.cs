@@ -15,8 +15,10 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdUsuarios = new SqlCommand("SELECT * FROM usuarios " +
-                    "ORDER BY apellido, nombre, nombre_usuario", sqlConn);
+                SqlCommand cmdUsuarios = new SqlCommand(
+                    "SELECT * FROM usuarios u " +
+                    "LEFT JOIN personas p ON u.id_persona = p.id_persona " +
+                    "ORDER BY u.nombre_usuario", sqlConn);
                 SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
                 while (drUsuarios.Read())
                 {
@@ -25,9 +27,7 @@ namespace Data.Database
                     usr.NombreUsuario = (string)drUsuarios["nombre_usuario"];
                     usr.Clave = (string)drUsuarios["clave"];
                     usr.Habilitado = (bool)drUsuarios["habilitado"];
-                    usr.Nombre = (string)drUsuarios["nombre"];
-                    usr.Apellido = (string)drUsuarios["apellido"];
-                    usr.Email = (string)drUsuarios["email"];
+                    usr.Email = drUsuarios["email"] as string;
                     usuarios.Add(usr);
                 }
 
@@ -58,9 +58,6 @@ namespace Data.Database
                     usr.NombreUsuario = (string)drUsuarios["nombre_usuario"];
                     usr.Clave = (string)drUsuarios["clave"];
                     usr.Habilitado = (bool)drUsuarios["habilitado"];
-                    usr.Nombre = (string)drUsuarios["nombre"];
-                    usr.Apellido = (string)drUsuarios["apellido"];
-                    usr.Email = (string)drUsuarios["email"];
                 }
                 drUsuarios.Close();
             } catch (SqlException Ex)
@@ -86,7 +83,7 @@ namespace Data.Database
                 SqlCommand cmdUsuario = new SqlCommand(
                     "SELECT * FROM usuarios u " +
                     "INNER JOIN personas p ON u.id_persona = p.id_persona " +
-                    "WHERE nombre_usuario = @nombre_usario AND clave = @clave", sqlConn);
+                    "WHERE u.nombre_usuario = @nombre_usario AND u.clave = @clave", sqlConn);
                 cmdUsuario.Parameters.Add("@nombre_usario", SqlDbType.VarChar, 50).Value = nombre;
                 cmdUsuario.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = clave;
                 SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
@@ -118,7 +115,7 @@ namespace Data.Database
                 SqlCommand cmdUsuario = new SqlCommand(
                     "SELECT * FROM usuarios u " +
                     "INNER JOIN personas p ON u.id_persona = p.id_persona " +
-                    "WHERE nombre_usuario = @nombre_usario AND clave = @clave", sqlConn);
+                    "WHERE u.nombre_usuario = @nombre_usario AND clave = @clave", sqlConn);
                 cmdUsuario.Parameters.Add("@nombre_usario", SqlDbType.VarChar, 50).Value = nombre;
                 cmdUsuario.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = clave;
                 SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
@@ -167,15 +164,13 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("UPDATE usuarios SET nombre_usuario = @nombre_usuario, clave = @clave," +
-                    " habilitado = @habilitado, nombre = @nombre, apellido = @apellido, email = @email WHERE id_usuario = @id", sqlConn);
+                SqlCommand cmdSave = new SqlCommand(
+                    "UPDATE usuarios SET nombre_usuario = @nombre_usuario, clave = @clave," +
+                    " habilitado = @habilitado WHERE id_usuario = @id", sqlConn);
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = usuario.ID;
                 cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
                 cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
                 cmdSave.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
-                cmdSave.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
-                cmdSave.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
-                cmdSave.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.Email;
                 cmdSave.ExecuteNonQuery();
             } catch (SqlException Ex)
             {
@@ -195,15 +190,36 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("INSERT INTO usuarios (nombre_usuario, clave, habilitado, nombre, apellido, email)" +
-                    "VALUES (@nombre_usuario, @clave, @habilitado, @nombre, @apellido, @email) SELECT @@identity", sqlConn);
+                SqlCommand cmdSave = new SqlCommand(
+                    "INSERT INTO usuarios (nombre_usuario, clave, habilitado)" +
+                    "VALUES (@nombre_usuario, @clave, @habilitado) SELECT @@identity", sqlConn);
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = usuario.ID;
                 cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
                 cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
                 cmdSave.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
-                cmdSave.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
-                cmdSave.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
-                cmdSave.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.Email;
+                usuario.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
+            } catch (Exception Ex)
+            {
+                Exception exceptionManejada = new Exception("Hubo un error al crear el usuario", Ex);
+                throw exceptionManejada;
+            } finally
+            {
+                this.CloseConnection();
+            }
+        }
+        public void Create(Usuario usuario)
+        {
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdSave = new SqlCommand(
+                    "INSERT INTO usuarios (nombre_usuario, clave, habilitado, id_persona)" +
+                    "VALUES (@nombre_usuario, @clave, @habilitado, @id_persona) SELECT @@identity", sqlConn);
+                cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = usuario.ID;
+                cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
+                cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
+                cmdSave.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
+                cmdSave.Parameters.Add("@id_persona", SqlDbType.Int).Value = usuario.IDPersona;
                 usuario.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
             } catch (Exception Ex)
             {
@@ -235,7 +251,8 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdUsuarios = new SqlCommand("SELECT * FROM usuarios " +
+                SqlCommand cmdUsuarios = new SqlCommand(
+                    "SELECT * FROM usuarios " +
                     "WHERE nombre_usuario = @nombre_usario AND clave = @clave", sqlConn);
                 cmdUsuarios.Parameters.Add("@nombre_usario", SqlDbType.VarChar, 50).Value = nombre;
                 cmdUsuarios.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = clave;
@@ -259,18 +276,17 @@ namespace Data.Database
             }
             return false;
         }
-        public List<Usuario> FiltraUsuarios(string nombre, string apellido, string usr, string mail)
+        public List<Usuario> FiltraUsuarios(string usr, string mail)
         {
             List<Usuario> usuarios = new List<Usuario>();
             try
             {
                 this.OpenConnection();
                 SqlCommand cmdUsuarios = new SqlCommand(
-                    "SELECT * FROM usuarios " +
-                    "WHERE nombre_usuario LIKE '%" + usr + "%' " +
-                    "AND nombre LIKE '%" + nombre + "%'" +
-                    "AND apellido LIKE '%" + apellido+ "%' " +
-                    "AND email LIKE '%" + mail + "%' ", sqlConn);
+                    "SELECT * FROM usuarios u " +
+                    "INNER JOIN personas p ON u.id_persona = p.id_persona " +
+                    "WHERE u.nombre_usuario LIKE '%" + usr + "%' " +
+                    "AND p.email LIKE '%" + mail + "%' ", sqlConn);
                 SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
                 while (drUsuarios.Read())
                 {
@@ -279,12 +295,9 @@ namespace Data.Database
                     usuario.NombreUsuario = (string)drUsuarios["nombre_usuario"];
                     usuario.Clave = (string)drUsuarios["clave"];
                     usuario.Habilitado = (bool)drUsuarios["habilitado"];
-                    usuario.Nombre = (string)drUsuarios["nombre"];
-                    usuario.Apellido = (string)drUsuarios["apellido"];
                     usuario.Email = (string)drUsuarios["email"];
                     usuarios.Add(usuario);
                 }
-
                 drUsuarios.Close();
             }
             catch (Exception Ex)
@@ -297,6 +310,33 @@ namespace Data.Database
                 this.CloseConnection();
             }
             return usuarios;
+        }
+        public bool GetRepetido(string usr)
+        {
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdUsuarios = new SqlCommand(
+                    "SELECT * FROM usuarios " +
+                    "WHERE nombre_usuario = @nombre_usario", sqlConn);
+                cmdUsuarios.Parameters.Add("@nombre_usario", SqlDbType.VarChar, 50).Value = usr;
+                SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
+                if (drUsuarios.Read())
+                {
+                    return true;
+                }
+                drUsuarios.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception exceptionManejada = new Exception("Hubo un error al validar si el nombre de usuario es repetido", Ex);
+                throw exceptionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return false;
         }
     }
 }

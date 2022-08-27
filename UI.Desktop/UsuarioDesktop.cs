@@ -52,8 +52,6 @@ namespace UI.Desktop
         {
             this.txtID.Text = this.UsuarioActual.ID.ToString();
             this.chkHabilitado.Checked = this.UsuarioActual.Habilitado;
-            this.txtNombre.Text = this.UsuarioActual.Nombre;
-            this.txtApellido.Text = this.UsuarioActual.Apellido;
             this.txtEmail.Text = this.UsuarioActual.Email;
             this.txtUsuario.Text = this.UsuarioActual.NombreUsuario;
             this.txtClave.Text = this.UsuarioActual.Clave;
@@ -67,8 +65,6 @@ namespace UI.Desktop
                 case ModoForm.Baja:
                     {
                         btnAceptar.Text = "Eliminar";
-                        txtNombre.Enabled = false;
-                        txtApellido.Enabled = false;
                         txtEmail.Enabled = false;
                         txtUsuario.Enabled = false;
                         txtClave.Enabled = false;
@@ -93,8 +89,6 @@ namespace UI.Desktop
             if (this.Modo == ModoForm.Alta || this.Modo == ModoForm.Modificacion)
             {
                 this.UsuarioActual.Habilitado = this.chkHabilitado.Checked;
-                this.UsuarioActual.Nombre = this.txtNombre.Text;
-                this.UsuarioActual.Apellido = this.txtApellido.Text;
                 this.UsuarioActual.Email = this.txtEmail.Text;
                 this.UsuarioActual.NombreUsuario = this.txtUsuario.Text;
                 this.UsuarioActual.Clave = this.txtClave.Text;
@@ -114,8 +108,8 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
-            if (this.txtNombre.Text.Length == 0 || this.txtApellido.Text.Length == 0 || this.txtEmail.Text.Length == 0 ||
-                this.txtUsuario.Text.Length == 0 || this.txtClave.Text.Length == 0 || this.txtConfimarClave.Text.Length == 0)
+            if (this.txtEmail.Text.Length == 0 || this.txtUsuario.Text.Length == 0 || this.txtClave.Text.Length == 0 
+                || this.txtConfimarClave.Text.Length == 0)
             {
                 this.Notificar("ERROR", "Debes completar todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;

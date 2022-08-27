@@ -1,8 +1,8 @@
 ﻿listar();
 llenarComboPlanes();
 moment.locale('es');
-let header = ["Apellido", "Nombre", "Teléfono", "Nacimiento", "Legajo", "Tipo", "Plan"];
-let maxDia = new Date();
+const header = ["Apellido", "Nombre", "Teléfono", "Nacimiento", "Legajo", "Tipo", "Plan"];
+const maxDia = new Date();
 
 $(function () {
     $('#txtNacimiento').daterangepicker({

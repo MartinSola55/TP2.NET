@@ -3,7 +3,7 @@
     return results[1] || 0;
 }
 
-let header = ["Alumno", "Condición", "Nota"];
+const header = ["Alumno", "Condición", "Nota"];
 
 listar();
 
@@ -24,7 +24,7 @@ function listadoAlumnos(arrayHeader, data) {
         contenido += arrayHeader[i];
         contenido += "</td>";
     }
-    contenido += "<td class='no-sort text-center'>Acción</td>";
+    contenido += "<td class='no-sort text-center'>Editar</td>";
     contenido += "</tr>";
     contenido += "</thead>";
     contenido += "<tbody>";
@@ -64,4 +64,71 @@ function listadoAlumnos(arrayHeader, data) {
         }
     )
     $("#tabla-generic").removeAttr("style");
+}
+
+function modalEdit(idIns) {
+    $("#staticBackdropLabel").text("Editar condición");
+    limpiarCampos();
+    $.get("../Docente/GetInscripcionAlumno/?id=" + idIns, function (data) {
+        $("#txtIDAlumno").val(data['IDAlumno']);
+        $("#txtID").val(data['ID']);
+        $("#txtAlumno").val(data['NombreApellido']);
+        $("#txtCondicion").val(data['Condicion']);
+        $("#txtNota").val(data['Nota']);
+    });
+}
+
+function limpiarCampos() {
+    $(".limpiarCampo").val("");
+    campos = $(".required");
+    for (let i = 0; i < campos.length; i++) {
+        $("#campo" + i).removeClass("error");
+    }
+    $("#btnAceptar").removeClass("eliminar");
+}
+
+function validaDatos() {
+    let valido = true;
+    campos = $(".required");
+    for (let i = 0; i < campos.length; i++) {
+        if (campos[i].value == "") {
+            valido = false;
+            $("#campo" + i).addClass("error");
+        } else {
+            $("#campo" + i).removeClass("error");
+        }
+    }
+    return valido;
+}
+
+function confirmarCambios() {
+    if (validaDatos()) {
+        let frm = new FormData();
+        let id = $("#txtID").val();
+        let idAlumno = $("#txtIDAlumno").val();
+        let nota = $("#txtNota").val();
+        let condicion = $("#txtCondicion").val();
+        frm.append("ID", id);
+        frm.append("IDAlumno", idAlumno);
+        frm.append("Nota", nota);
+        frm.append("Condicion", condicion);
+        actualizaCondicion(frm);
+    }
+}
+
+function actualizaCondicion(frm) {
+    $.ajax({
+        type: "POST",
+        url: "../Docente/SaveCondicion",
+        data: frm,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            alert(data[0]);
+            if (data[1] == "1") {
+                listar();
+                $("#btnCancelar").click();
+            }
+        }
+    });
 }

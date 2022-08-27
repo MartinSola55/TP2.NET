@@ -1,6 +1,6 @@
 ﻿listar();
 llenarComboPlanes();
-let header = ["Descripción", "Hs. Semanales", "Hs. Totales", "Plan - Especialidad"];
+const header = ["Descripción", "Hs. Semanales", "Hs. Totales", "Plan - Especialidad"];
 
 function listar() {
     $.get("../Materias/getAll", function (data) {

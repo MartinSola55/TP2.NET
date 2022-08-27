@@ -1,6 +1,6 @@
 ﻿listar();
 llenarComboPlanes();
-let header = ["Descripción", "Año especialidad", "Plan - Especialidad"];
+const header = ["Descripción", "Año especialidad", "Plan - Especialidad"];
 function listar() {
     $.get("../Comisiones/getAll", function (data) {
         listadoComisiones(header, data);
