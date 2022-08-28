@@ -21,13 +21,27 @@ namespace UI.WebMVC.Controllers
         public JsonResult getAll()
         {
             List<Materia> materia = new List<Materia>();
-            materia = ml.GetAll();
+            try
+            {
+                materia = ml.GetAll();
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(materia, JsonRequestBehavior.AllowGet);
         }
         public JsonResult getOne(int id)
         {
             Materia materia = new Materia();
-            materia = ml.GetOne(id);
+            try
+            {
+                materia = ml.GetOne(id);
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(materia, JsonRequestBehavior.AllowGet);
         }
         [Admin]
@@ -84,7 +98,14 @@ namespace UI.WebMVC.Controllers
         public JsonResult FiltraMaterias(string descripcion)
         {
             List<Materia> materia = new List<Materia>();
-            materia = ml.FiltraMaterias(descripcion);
+            try
+            {
+                materia = ml.FiltraMaterias(descripcion);
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(materia, JsonRequestBehavior.AllowGet);
         }
     }

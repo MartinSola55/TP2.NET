@@ -32,9 +32,18 @@
     <label class="mb-2">Plan: </label>
     <input id="txtPlan" type="text" class="form-control mb-2" disabled />
 
-    <button id="btnAgregar" type="button" class="btn btn-success px-4 mt-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Agregar inscripción
-    </button>
+    <label class="mb-2">Usuario: </label>
+    <input id="txtUsuario" type="text" class="form-control mb-2" disabled />
+
+    <div class="d-flex justify-content-between" style="grid-column: 1 / 5; ">
+        <button id="btnAgregar" type="button" class="btn btn-success px-4 mt-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Agregar inscripción
+        </button>
+
+        <button id="btnAddUser" type="button" class="btn btn-success px-4 mt-4" data-bs-toggle="modal" data-bs-target="#staticBackdropUsr" style="display: none">
+            Crear usuario
+        </button>
+    </div>
 
 </div>
 
@@ -77,6 +86,42 @@
     </div>
 </div>
 
+<!-- Modal usuario -->
+<div class="modal fade" id="staticBackdropUsr" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelUser" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabelUser">Agregar usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body contenedor-modal align-items-center">
+
+                <label id="lblUsuario" class="mb-3">Usuario: </label>
+                <input id="txtNombreUsuario" type="text" class="form-control limpiarCampo mb-3" />
+
+                <label class="mb-3">Habilitado: </label>
+                <div>
+                    <input id="checkHabilitado" class="mb-3 form-check" type="checkbox" style="transform:scale(1.25)" />
+                </div>
+
+                <label id="lblClave" class="mb-3 campo1">Clave: </label>
+                <input id="txtClave" type="password" class="form-control limpiarCampo mb-3" />
+
+                <label id="lblRepiteClave" class="mb-3 campo2">Repetir clave: </label>
+                <input id="txtRepiteClave" type="password" class="form-control limpiarCampo mb-3" />
+
+                <button id="btnVerClave" class='btn btn-outline-primary oculto'><i id="iconVerClave" class='bi bi-eye'></i></button>
+
+            </div>
+            <div class="modal-footer">
+                <button id="btnCancelarUser" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button id="btnAceptarUser" onclick="confirmarCambiosUser()" type="button" class="btn btn-success">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
 <script src="~/Scripts/PersonasDocentes.js"></script>
+<script src="~/Scripts/PersonasUsuarios.js"></script>

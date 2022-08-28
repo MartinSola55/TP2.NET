@@ -134,6 +134,7 @@
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\navbar.js" />
     <Content Include="Scripts\Personas.js" />
+    <Content Include="Scripts\PersonasUsuarios.js" />
     <Content Include="Scripts\Planes.js" />
     <Content Include="Scripts\Usuarios.js" />
     <Content Include="Web.config" />

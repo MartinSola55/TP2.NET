@@ -23,13 +23,27 @@ namespace UI.WebMVC.Controllers
         public JsonResult getAll()
         {
             List<Usuario> usuarios = new List<Usuario>();
-            usuarios = ul.GetAll();
+            try
+            {
+                usuarios = ul.GetAll();
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(usuarios, JsonRequestBehavior.AllowGet);
         }
         public JsonResult getOne(int id)
         {
             Usuario usuario = new Usuario();
-            usuario = ul.GetOne(id);
+            try
+            {
+                usuario = ul.GetOne(id);
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(usuario, JsonRequestBehavior.AllowGet);
         }
         [Admin]
@@ -65,7 +79,14 @@ namespace UI.WebMVC.Controllers
         public JsonResult FiltraUsuarios(string usr, string mail)
         {
             List<Usuario> usuarios = new List<Usuario>();
-            usuarios = ul.FiltraUsuarios(usr, mail);
+            try
+            {
+                usuarios = ul.FiltraUsuarios(usr, mail);
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(usuarios, JsonRequestBehavior.AllowGet);
         }
     }

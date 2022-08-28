@@ -26,7 +26,14 @@ namespace UI.WebMVC.Controllers
         public JsonResult getOne(int id)
         {
             Persona persona = new Persona();
-            persona = pl.GetOne(id);
+            try
+            {
+                persona = pl.GetOne(id);
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(persona, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetInscripciones(int id)

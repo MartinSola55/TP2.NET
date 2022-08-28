@@ -10,7 +10,7 @@ function test() {
 	$(".hori-selector").css({
 		"top": (itemPosNewAnimTop.top + 4) + "px",
 		"left": itemPosNewAnimLeft.left + "px",
-		"height": activeWidthNewAnimHeight + "px",
+		"height": (activeWidthNewAnimHeight + 0.5) + "px",
 		"width": activeWidthNewAnimWidth + "px"
 	});
 	$("#navbarSupportedContent").on("click", "li", function (e) {

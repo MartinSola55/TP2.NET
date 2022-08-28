@@ -15,6 +15,10 @@ $.get("../Personas/getOne/?id=" + $.urlParam('id'), function (data) {
     $("#txtNacimiento").val(data['NacimientoString']);
     $("#txtLegajo").val(data['Legajo']);
     $("#txtPlan").val(data['DescPlan']);
+    $("#txtUsuario").val(data['NombreUsuario']);
+    if (data['NombreUsuario'] == null) {
+        $("#btnAddUser").css("display", "");
+    }
 });
 
 function listarCursos() {
@@ -40,7 +44,6 @@ function listarInscripciones() {
         let contenedor = $('#tarjetasInscripciones');
         let tarjeta = "";
         for (let i = 0; i < data.length; i++) {
-            console.log(data);
             tarjeta += "<div class='card me-4 col-3 mb-4' style='width: 18rem;'>";
             tarjeta += "<div class='card-body d-flex flex-column'>"
             tarjeta += "<h5 class='card-title'>Cargo: " + data[i].Cargo + "</h5>"
@@ -70,7 +73,6 @@ function modalEdit(id) {
     limpiarCampos();
     habilitarCampos();
     $.get("../Personas/getInscripcion/?id=" + id + "&tipo=1", function (data) {
-        console.log(data);
         $("#txtID").val(data["ID"]);
         $("#txtIDDocente").val($.urlParam('id'));
         $("#txtCargo").val(data["Cargo"]);

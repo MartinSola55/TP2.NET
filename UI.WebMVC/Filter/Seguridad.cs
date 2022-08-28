@@ -32,7 +32,8 @@ namespace UI.WebMVC.Filter
         {
             try
             {
-                string tipoUsr = HttpContext.Current.Session["tipoUsr"].ToString();
+                var tipo = HttpContext.Current.Session["tipoUsr"];
+                string tipoUsr = tipo == null ? "0" : tipo.ToString();
                 if (tipoUsr != "3")
                 {
                     filterContext.Result = new RedirectResult("~/Home");

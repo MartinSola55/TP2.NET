@@ -31,13 +31,27 @@ namespace UI.WebMVC.Controllers
         public JsonResult getAll()
         {
             List<Persona> personas = new List<Persona>();
-            personas = pl.GetAll();
+            try
+            {
+                personas = pl.GetAll();
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(personas, JsonRequestBehavior.AllowGet);
         }
         public JsonResult getOne(int id)
         {
             Persona persona = new Persona();
-            persona = pl.GetOne(id);
+            try
+            {
+                persona = pl.GetOne(id);
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(persona, JsonRequestBehavior.AllowGet);
         }
         public JsonResult Delete(int id)

@@ -21,13 +21,26 @@ namespace UI.WebMVC.Controllers
         public JsonResult getAll()
         {
             List<Comision> comisiones = new List<Comision>();
-            comisiones = cl.GetAll();
+            try
+            {
+                comisiones = cl.GetAll();
+            } catch (Exception e)
+            {
+
+            }
             return Json(comisiones, JsonRequestBehavior.AllowGet);
         }
         public JsonResult getOne(int id)
         {
             Comision comision = new Comision();
-            comision = cl.GetOne(id);
+            try
+            {
+                comision = cl.GetOne(id);
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(comision, JsonRequestBehavior.AllowGet);
         }
         [Admin]
@@ -84,7 +97,14 @@ namespace UI.WebMVC.Controllers
         public JsonResult FiltraPlanes(string descripcion)
         {
             List<Comision> comisiones = new List<Comision>();
-            comisiones = cl.FiltraComisiones(descripcion);
+            try
+            {
+                comisiones = cl.FiltraComisiones(descripcion);
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(comisiones, JsonRequestBehavior.AllowGet);
         }
     }

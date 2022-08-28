@@ -21,13 +21,27 @@ namespace UI.WebMVC.Controllers
         public JsonResult getAll()
         {
             List<Curso> cursos = new List<Curso>();
-            cursos = cl.GetAll();
+            try
+            {
+                cursos = cl.GetAll();
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(cursos, JsonRequestBehavior.AllowGet);
         }
         public JsonResult getOne(int id)
         {
             Curso curso = new Curso();
-            curso = cl.GetOne(id);
+            try
+            {
+                curso = cl.GetOne(id);
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(curso, JsonRequestBehavior.AllowGet);
         }
         [Admin]

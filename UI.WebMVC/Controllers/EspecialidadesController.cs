@@ -21,13 +21,27 @@ namespace UI.WebMVC.Controllers
         public JsonResult getAll()
         {
             List<Especialidad> especialidades = new List<Especialidad>();
-            especialidades = el.GetAll();
+            try
+            {
+                especialidades = el.GetAll();
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(especialidades, JsonRequestBehavior.AllowGet);
         }
         public JsonResult getOne(int id)
         {
             Especialidad especialidad = new Especialidad();
-            especialidad = el.GetOne(id);
+            try
+            {
+                especialidad = el.GetOne(id);
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(especialidad, JsonRequestBehavior.AllowGet);
         }
         [Admin]
@@ -83,7 +97,15 @@ namespace UI.WebMVC.Controllers
         public JsonResult FiltraEspecialidades(string descripcion)
         {
             List<Especialidad> especialidades = new List<Especialidad>();
-            especialidades = el.FiltraEspecialidades(descripcion);
+
+            try
+            {
+                especialidades = el.FiltraEspecialidades(descripcion);
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(especialidades, JsonRequestBehavior.AllowGet);
         }
     }

@@ -22,13 +22,27 @@ namespace UI.WebMVC.Controllers
         public JsonResult getAll()
         {
             List<Plan> planes = new List<Plan>();
-            planes = pl.GetAll();
+            try
+            {
+                planes = pl.GetAll();
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(planes, JsonRequestBehavior.AllowGet);
         }
         public JsonResult getOne(int id)
         {
             Plan plan = new Plan();
-            plan = pl.GetOne(id);
+            try
+            {
+                plan = pl.GetOne(id);
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(plan, JsonRequestBehavior.AllowGet);
         }
         [Admin]
@@ -85,7 +99,14 @@ namespace UI.WebMVC.Controllers
         public JsonResult FiltraPlanes(string descripcion)
         {
             List<Plan> planes = new List<Plan>();
-            planes = pl.FiltraPlanes(descripcion);
+            try
+            {
+                planes = pl.FiltraPlanes(descripcion);
+            }
+            catch (Exception e)
+            {
+
+            }
             return Json(planes, JsonRequestBehavior.AllowGet);
         }
     }
