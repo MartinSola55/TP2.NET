@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.Desktop", "UI.Desktop\UI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Logic", "Business.Logic\Business.Logic.csproj", "{84602876-BEBA-4D0B-92E8-0217FD951914}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Util", "Util\Util.csproj", "{C4F99DF4-5CC1-43FA-AC7B-759F07A0413A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Entities", "Business.Entities\Business.Entities.csproj", "{9A23BF15-3572-4CFF-B580-1EFDEB407043}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.Consola", "UI.Consola\UI.Consola.csproj", "{E83365C3-2F68-41CF-8C00-589B9C6BC5E2}"
@@ -33,10 +31,6 @@ Global
 		{84602876-BEBA-4D0B-92E8-0217FD951914}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84602876-BEBA-4D0B-92E8-0217FD951914}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84602876-BEBA-4D0B-92E8-0217FD951914}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4F99DF4-5CC1-43FA-AC7B-759F07A0413A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4F99DF4-5CC1-43FA-AC7B-759F07A0413A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4F99DF4-5CC1-43FA-AC7B-759F07A0413A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4F99DF4-5CC1-43FA-AC7B-759F07A0413A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9A23BF15-3572-4CFF-B580-1EFDEB407043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9A23BF15-3572-4CFF-B580-1EFDEB407043}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A23BF15-3572-4CFF-B580-1EFDEB407043}.Release|Any CPU.ActiveCfg = Release|Any CPU

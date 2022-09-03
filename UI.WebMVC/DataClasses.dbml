@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="academia" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=tp2net.database.windows.net;Initial Catalog=academia;User ID=net;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="academiaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.alumnos_inscripciones" Member="AlumnosInscripciones">
+    <Type Name="AlumnosInscripciones">
+      <Column Name="id_inscripcion" Member="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_alumno" Member="IDAlumno" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_curso" Member="IDCurso" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="condicion" Member="Condicion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="nota" Member="Nota" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="curso_alumnos_inscripcione" Member="Cursos" ThisKey="IDCurso" OtherKey="ID" Type="Cursos" IsForeignKey="true" />
+      <Association Name="persona_alumnos_inscripcione" Member="Personas" ThisKey="IDAlumno" OtherKey="ID" Type="Personas" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.comisiones" Member="Comisiones">
+    <Type Name="Comisiones">
+      <Column Name="id_comision" Member="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="desc_comision" Member="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="anio_especialidad" Member="AnioEspecialidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_plan" Member="IDPlan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="comisione_curso" Member="Cursos" ThisKey="ID" OtherKey="IDComision" Type="Cursos" />
+      <Association Name="plane_comisione" Member="Planes" ThisKey="IDPlan" OtherKey="ID" Type="Planes" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.cursos" Member="Cursos">
+    <Type Name="Cursos">
+      <Column Name="id_curso" Member="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_materia" Member="IDMateria" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_comision" Member="IDComision" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="anio_calendario" Member="AnioCalendario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cupo" Member="Cupo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="curso_alumnos_inscripcione" Member="AlumnosInscripciones" ThisKey="ID" OtherKey="IDCurso" Type="AlumnosInscripciones" />
+      <Association Name="curso_docentes_curso" Member="DocentesCursos" ThisKey="ID" OtherKey="id_curso" Type="DocentesCurso" />
+      <Association Name="comisione_curso" Member="Comisiones" ThisKey="IDComision" OtherKey="ID" Type="Comisiones" IsForeignKey="true" />
+      <Association Name="materia_curso" Member="Materias" ThisKey="IDMateria" OtherKey="ID" Type="Materias" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.docentes_cursos" Member="DocentesCursos">
+    <Type Name="DocentesCurso">
+      <Column Name="id_dictado" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_curso" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_docente" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cargo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="curso_docentes_curso" Member="Cursos" ThisKey="id_curso" OtherKey="ID" Type="Cursos" IsForeignKey="true" />
+      <Association Name="persona_docentes_curso" Member="Personas" ThisKey="id_docente" OtherKey="ID" Type="Personas" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.especialidades" Member="Especialidades">
+    <Type Name="Especialidades">
+      <Column Name="id_especialidad" Member="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="desc_especialidad" Member="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="especialidade_plane" Member="Planes" ThisKey="ID" OtherKey="IDEspecialidad" Type="Planes" />
+    </Type>
+  </Table>
+  <Table Name="dbo.materias" Member="Materias">
+    <Type Name="Materias">
+      <Column Name="id_materia" Member="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="desc_materia" Member="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="hs_semanales" Member="HSSemanales" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="hs_totales" Member="HSTotales" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_plan" Member="IDPlan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="materia_curso" Member="Cursos" ThisKey="ID" OtherKey="IDMateria" Type="Cursos" />
+      <Association Name="plane_materia" Member="Planes" ThisKey="IDPlan" OtherKey="ID" Type="Planes" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.personas" Member="Personas">
+    <Type Name="Personas">
+      <Column Name="id_persona" Member="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Member="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="apellido" Member="Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="direccion" Member="Direccion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="email" Member="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="telefono" Member="Telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="fecha_nac" Member="FechaNacimiento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="legajo" Member="Legajo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tipo_persona" Member="TipoPersona" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_plan" Member="IDPlan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="persona_alumnos_inscripcione" Member="AlumnosInscripciones" ThisKey="ID" OtherKey="IDAlumno" Type="AlumnosInscripciones" />
+      <Association Name="persona_docentes_curso" Member="DocentesCursos" ThisKey="ID" OtherKey="id_docente" Type="DocentesCurso" />
+      <Association Name="persona_usuario" Member="Usuarios" ThisKey="ID" OtherKey="IDPersona" Type="Usuarios" />
+      <Association Name="plane_persona" Member="Planes" ThisKey="IDPlan" OtherKey="ID" Type="Planes" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.planes" Member="Planes">
+    <Type Name="Planes">
+      <Column Name="id_plan" Member="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="desc_plan" Member="Descripcion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="id_especialidad" Member="IDEspecialidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="plane_comisione" Member="Comisiones" ThisKey="ID" OtherKey="IDPlan" Type="Comisiones" />
+      <Association Name="plane_materia" Member="Materias" ThisKey="ID" OtherKey="IDPlan" Type="Materias" />
+      <Association Name="plane_persona" Member="Personas" ThisKey="ID" OtherKey="IDPlan" Type="Personas" />
+      <Association Name="especialidade_plane" Member="Especialidades" ThisKey="IDEspecialidad" OtherKey="ID" Type="Especialidades" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.usuarios" Member="Usuarios">
+    <Type Name="Usuarios">
+      <Column Name="id_usuario" Member="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre_usuario" Member="NombreUsuario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="clave" Member="Clave" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="habilitado" Member="Habilitado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="cambia_clave" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="id_persona" Member="IDPersona" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="persona_usuario" Member="Personas" ThisKey="IDPersona" OtherKey="ID" Type="Personas" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

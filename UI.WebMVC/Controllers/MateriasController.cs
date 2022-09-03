@@ -13,6 +13,8 @@ namespace UI.WebMVC.Controllers
     public class MateriasController : Controller
     {
         private MateriaLogic ml = new MateriaLogic();
+        private DataClassesDataContext db = new DataClassesDataContext();
+
         // GET: Materias
         public ActionResult Inicio()
         {
@@ -20,29 +22,44 @@ namespace UI.WebMVC.Controllers
         }
         public JsonResult getAll()
         {
-            List<Materia> materia = new List<Materia>();
             try
             {
-                materia = ml.GetAll();
+                var materias = from m in db.Materias
+                               join p in db.Planes
+                                   on m.IDPlan equals p.ID
+                               join e in db.Especialidades
+                                   on p.IDEspecialidad equals e.ID
+                               orderby m.Descripcion, m.IDPlan, p.Descripcion, e.Descripcion
+                               select new
+                               {
+                                   m.ID,
+                                   m.Descripcion,
+                                   m.HSTotales,
+                                   m.HSSemanales,
+                                   m.IDPlan,
+                                   DescripcionPlan = p.Descripcion + " - " + e.Descripcion
+                               };
+                return Json(materias, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(materia, JsonRequestBehavior.AllowGet);
         }
         public JsonResult getOne(int id)
         {
-            Materia materia = new Materia();
             try
             {
-                materia = ml.GetOne(id);
+                var materia = db.Materias
+                    .Where(m => m.ID.Equals(id))
+                    .Select(m => new { m.ID, m.Descripcion, m.HSSemanales, m.HSTotales, m.IDPlan })
+                    .FirstOrDefault();
+                return Json(materia, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(materia, JsonRequestBehavior.AllowGet);
         }
         [Admin]
         public JsonResult Delete(int id)
@@ -67,8 +84,10 @@ namespace UI.WebMVC.Controllers
             string[] respuesta = { "", "" };
             try
             {
-                Materia repetido = ml.GetRepetido(materia);
-                if (repetido.ID == 0)
+                Materias repetido = db.Materias
+                    .Where(m => m.Descripcion.Equals(materia.Descripcion) && m.IDPlan.Equals(materia.IDPlan) && !m.ID.Equals(materia.ID))
+                    .FirstOrDefault();
+                if (repetido == null)
                 {
                     if (materia.ID == 0)
                     {
@@ -97,16 +116,30 @@ namespace UI.WebMVC.Controllers
         }
         public JsonResult FiltraMaterias(string descripcion)
         {
-            List<Materia> materia = new List<Materia>();
             try
             {
-                materia = ml.FiltraMaterias(descripcion);
+                var materias = from m in db.Materias
+                               join p in db.Planes
+                                   on m.IDPlan equals p.ID
+                               join e in db.Especialidades
+                                   on p.IDEspecialidad equals e.ID
+                               orderby m.Descripcion, m.IDPlan, p.Descripcion, e.Descripcion
+                               select new
+                               {
+                                   m.ID,
+                                   m.Descripcion,
+                                   m.HSTotales,
+                                   m.HSSemanales,
+                                   m.IDPlan,
+                                   DescripcionPlan = p.Descripcion + " - " + e.Descripcion
+                               };
+                materias = materias.Where(m => m.Descripcion.Contains(descripcion));
+                return Json(materias, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(materia, JsonRequestBehavior.AllowGet);
         }
     }
 }

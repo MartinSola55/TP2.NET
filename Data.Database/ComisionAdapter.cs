@@ -219,7 +219,7 @@ namespace Data.Database
             {
                 this.OpenConnection();
                 SqlCommand cmdComisiones = new SqlCommand(
-                     "SELECT * FROM comisiones c " +
+                    "SELECT * FROM comisiones c " +
                     "INNER JOIN planes p ON c.id_plan = p.id_plan " +
                     "INNER JOIN especialidades e ON p.id_especialidad = e.id_especialidad " +
                     "WHERE c.desc_comision = @descripcion " +

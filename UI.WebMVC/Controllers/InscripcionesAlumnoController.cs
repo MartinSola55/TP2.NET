@@ -79,7 +79,7 @@ namespace UI.WebMVC.Controllers
                 }
                 else
                 {
-                    respuesta[0] = "La inscripción que desea guardar ya existe";
+                    respuesta[0] = "Ya te encuentras inscripto a esta materia";
                     respuesta[1] = "0";
                 }
             }

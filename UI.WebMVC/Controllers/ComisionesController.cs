@@ -13,6 +13,8 @@ namespace UI.WebMVC.Controllers
     public class ComisionesController : Controller
     {
         private ComisionLogic cl = new ComisionLogic();
+        private DataClassesDataContext db = new DataClassesDataContext();
+
         // GET: Comisiones
         public ActionResult Inicio()
         {
@@ -20,28 +22,43 @@ namespace UI.WebMVC.Controllers
         }
         public JsonResult getAll()
         {
-            List<Comision> comisiones = new List<Comision>();
             try
             {
-                comisiones = cl.GetAll();
-            } catch (Exception e)
-            {
-
-            }
-            return Json(comisiones, JsonRequestBehavior.AllowGet);
-        }
-        public JsonResult getOne(int id)
-        {
-            Comision comision = new Comision();
-            try
-            {
-                comision = cl.GetOne(id);
+                var comisiones = from c in db.Comisiones
+                                 join p in db.Planes
+                                    on c.IDPlan equals p.ID
+                                 join e in db.Especialidades
+                                    on p.IDEspecialidad equals e.ID
+                                 orderby c.Descripcion
+                                 select new
+                                 {
+                                     c.ID,
+                                     c.Descripcion,
+                                     c.AnioEspecialidad,
+                                     c.IDPlan,
+                                     PlanDesc = p.Descripcion + " - " + e.Descripcion
+                                 };
+                return Json(comisiones, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(comision, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult getOne(int id)
+        {
+            try
+            {
+                var comisiones = db.Comisiones
+                    .Where(c => c.ID.Equals(id))
+                    .Select(c => new { c.ID, c.Descripcion, c.AnioEspecialidad, c.IDPlan })
+                    .FirstOrDefault();
+                return Json(comisiones, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(0, JsonRequestBehavior.AllowGet);
+            }
         }
         [Admin]
         public JsonResult Delete(int id)
@@ -66,8 +83,11 @@ namespace UI.WebMVC.Controllers
             string[] respuesta = { "", "" };
             try
             {
-                Comision repetido = cl.GetRepetido(comision);
-                if (repetido.ID == 0)
+                Comisiones repetido = db.Comisiones
+                    .Where(c => c.Descripcion.Equals(comision.Descripcion) && c.IDPlan.Equals(comision.IDPlan)
+                    && c.AnioEspecialidad.Equals(comision.AnioEspecialidad) && !c.ID.Equals(comision.ID))
+                    .FirstOrDefault();
+                if (repetido == null)
                 {
                     if (comision.ID == 0)
                     {
@@ -94,18 +114,31 @@ namespace UI.WebMVC.Controllers
             }
             return Json(respuesta, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult FiltraPlanes(string descripcion)
+        public JsonResult FiltraComisiones(string descripcion)
         {
-            List<Comision> comisiones = new List<Comision>();
             try
             {
-                comisiones = cl.FiltraComisiones(descripcion);
+                var comisiones = from c in db.Comisiones
+                                 join p in db.Planes
+                                    on c.IDPlan equals p.ID
+                                 join e in db.Especialidades
+                                    on p.IDEspecialidad equals e.ID
+                                 orderby c.Descripcion
+                                 select new
+                                 {
+                                     c.ID,
+                                     c.Descripcion,
+                                     c.AnioEspecialidad,
+                                     c.IDPlan,
+                                     PlanDesc = p.Descripcion + " - " + e.Descripcion
+                                 };
+                comisiones = comisiones.Where(c => c.Descripcion.Contains(descripcion));
+                return Json(comisiones, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(comisiones, JsonRequestBehavior.AllowGet);
         }
     }
 }

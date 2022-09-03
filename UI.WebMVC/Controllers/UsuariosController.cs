@@ -14,6 +14,7 @@ namespace UI.WebMVC.Controllers
     public class UsuariosController : Controller
     {
         private UsuarioLogic ul = new UsuarioLogic();
+        private DataClassesDataContext db = new DataClassesDataContext();
 
         // GET: Usuarios
         public ActionResult Inicio()
@@ -22,29 +23,52 @@ namespace UI.WebMVC.Controllers
         }
         public JsonResult getAll()
         {
-            List<Usuario> usuarios = new List<Usuario>();
             try
             {
-                usuarios = ul.GetAll();
+                var usuarios = from u in db.Usuarios
+                               join per in db.Personas
+                                    on u.IDPersona equals per.ID
+                                    into persona
+                               from p in persona.DefaultIfEmpty()
+                               select new
+                               {
+                                   u.ID,
+                                   u.NombreUsuario,
+                                   u.Clave,
+                                   u.Habilitado,
+                                   p.Email
+                               };
+                return Json(usuarios, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(usuarios, JsonRequestBehavior.AllowGet);
         }
         public JsonResult getOne(int id)
         {
-            Usuario usuario = new Usuario();
             try
             {
-                usuario = ul.GetOne(id);
+                var usuario = from u in db.Usuarios
+                               join per in db.Personas
+                                    on u.IDPersona equals per.ID
+                                    into persona
+                               from p in persona.DefaultIfEmpty()
+                               where u.ID == id
+                               select new
+                               {
+                                   u.ID,
+                                   u.NombreUsuario,
+                                   u.Clave,
+                                   u.Habilitado,
+                                   p.Email
+                               };
+                return Json(usuario, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(usuario, JsonRequestBehavior.AllowGet);
         }
         [Admin]
         public JsonResult Delete(int id)
@@ -78,16 +102,28 @@ namespace UI.WebMVC.Controllers
         }
         public JsonResult FiltraUsuarios(string usr, string mail)
         {
-            List<Usuario> usuarios = new List<Usuario>();
             try
             {
-                usuarios = ul.FiltraUsuarios(usr, mail);
+                var usuarios = from u in db.Usuarios
+                               join per in db.Personas
+                                    on u.IDPersona equals per.ID
+                                    into persona
+                               from p in persona.DefaultIfEmpty()
+                               select new
+                               {
+                                   u.ID,
+                                   u.NombreUsuario,
+                                   u.Clave,
+                                   u.Habilitado,
+                                   p.Email
+                               };
+                usuarios = usuarios.Where(u=>u.NombreUsuario.Contains(usr) && u.Email.Contains(mail));
+                return Json(usuarios, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(usuarios, JsonRequestBehavior.AllowGet);
         }
     }
 }

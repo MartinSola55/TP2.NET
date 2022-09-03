@@ -13,6 +13,8 @@ namespace UI.WebMVC.Controllers
     public class CursosController : Controller
     {
         private CursoLogic cl = new CursoLogic();
+        private DataClassesDataContext db = new DataClassesDataContext();
+
         // GET: Curso
         public ActionResult Inicio()
         {
@@ -20,29 +22,45 @@ namespace UI.WebMVC.Controllers
         }
         public JsonResult getAll()
         {
-            List<Curso> cursos = new List<Curso>();
             try
             {
-                cursos = cl.GetAll();
+                var cursos = from c in db.Cursos
+                             join m in db.Materias
+                                on c.IDMateria equals m.ID
+                             join com in db.Comisiones
+                                on c.IDComision equals com.ID
+                             orderby m.Descripcion, com.Descripcion
+                             select new
+                             {
+                                 c.ID,
+                                 c.IDComision,
+                                 c.IDMateria,
+                                 c.AnioCalendario,
+                                 c.Cupo,
+                                 MateriaDesc = m.Descripcion,
+                                 ComisionDesc = com.Descripcion
+                             };
+                return Json(cursos, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(cursos, JsonRequestBehavior.AllowGet);
         }
         public JsonResult getOne(int id)
         {
-            Curso curso = new Curso();
             try
             {
-                curso = cl.GetOne(id);
+                var curso = db.Cursos
+                    .Where(c => c.ID.Equals(id))
+                    .Select(c => new { c.ID, c.IDMateria, c.IDComision, c.AnioCalendario, c.Cupo })
+                    .FirstOrDefault();
+                return Json(curso, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(curso, JsonRequestBehavior.AllowGet);
         }
         [Admin]
         public JsonResult Delete(int id)
@@ -67,10 +85,13 @@ namespace UI.WebMVC.Controllers
             string[] respuesta = { "", "" };
             try
             {
-                Curso repetido = cl.GetRepetido(curso);
-                if (repetido.ID == 0)
+                Cursos repetido = db.Cursos
+                    .Where(c => c.IDMateria.Equals(curso.IDMateria) && c.IDComision.Equals(curso.IDComision)
+                    && c.AnioCalendario.Equals(curso.AnioCalendario) && !c.ID.Equals(curso.ID))
+                    .FirstOrDefault();
+                if (repetido == null)
                 {
-                    if (curso.ID == 0)
+                    if (curso == null)
                     {
                         curso.State = BusinessEntity.States.New;
                     }

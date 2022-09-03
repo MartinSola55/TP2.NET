@@ -76,10 +76,10 @@ function modalEdit(id) {
     limpiarCampos();
     habilitarCampos();
     $.get("../Usuarios/getOne/?id=" + id, function (data) {
-        $("#txtID").val(data['ID']);
-        $("#txtNombreUsuario").val(data['NombreUsuario']);
-        $("#txtClave").val(data['Clave']);
-        $("#checkHabilitado").prop('checked', data['Habilitado']);
+        $("#txtID").val(data[0]['ID']);
+        $("#txtNombreUsuario").val(data[0]['NombreUsuario']);
+        $("#txtClave").val(data[0]['Clave']);
+        $("#checkHabilitado").prop('checked', data[0]['Habilitado']);
     });
 }
 
@@ -89,11 +89,11 @@ function modalDelete(id) {
     deshabilitarCampos();
     $("#btnAceptar").addClass("eliminar");
     $.get("../Usuarios/getOne/?id=" + id, function (data) {
-        $("#txtID").val(data['ID']);
-        $("#txtNombreUsuario").val(data['NombreUsuario']);
-        $("#txtClave").val(data['Clave']);
-        $("#txtRepiteClave").val(data['Clave']);
-        $("#checkHabilitado").prop('checked', data['Habilitado']);
+        $("#txtID").val(data[0]['ID']);
+        $("#txtNombreUsuario").val(data[0]['NombreUsuario']);
+        $("#txtClave").val(data[0]['Clave']);
+        $("#txtRepiteClave").val(data[0]['Clave']);
+        $("#checkHabilitado").prop('checked', data[0]['Habilitado']);
     });
     let frm = new FormData();
     frm.append("id", id);

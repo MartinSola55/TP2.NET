@@ -13,6 +13,7 @@ namespace UI.WebMVC.Controllers
     public class EspecialidadesController : Controller
     {
         private EspecialidadLogic el = new EspecialidadLogic();
+        private DataClassesDataContext db = new DataClassesDataContext();
         // GET: Especialidades
         public ActionResult Inicio()
         {
@@ -20,29 +21,32 @@ namespace UI.WebMVC.Controllers
         }
         public JsonResult getAll()
         {
-            List<Especialidad> especialidades = new List<Especialidad>();
             try
             {
-                especialidades = el.GetAll();
+                var especialidades = db.Especialidades
+                    .Select(e => new { ID = e.ID, Descripcion = e.Descripcion })
+                    .OrderBy(e => e.Descripcion);
+                return Json(especialidades, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(especialidades, JsonRequestBehavior.AllowGet);
         }
         public JsonResult getOne(int id)
         {
-            Especialidad especialidad = new Especialidad();
             try
             {
-                especialidad = el.GetOne(id);
+                var especialidad = db.Especialidades
+                    .Where(e => e.ID.Equals(id))
+                    .Select(e => new { ID = e.ID, Descripcion = e.Descripcion })
+                    .FirstOrDefault();
+                return Json(especialidad, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(especialidad, JsonRequestBehavior.AllowGet);
         }
         [Admin]
         public JsonResult Delete(int id)
@@ -67,8 +71,8 @@ namespace UI.WebMVC.Controllers
             string[] respuesta = { "", ""};
             try
             {
-                Especialidad repetido = el.GetByDescripcion(esp.Descripcion);
-                if (repetido.ID == 0)
+                Especialidades repetido = db.Especialidades.Where(e => e.Descripcion.Equals(esp.Descripcion)).FirstOrDefault();
+                if (repetido == null)
                 {
                     if (esp.ID == 0)
                     {
@@ -96,17 +100,22 @@ namespace UI.WebMVC.Controllers
         }
         public JsonResult FiltraEspecialidades(string descripcion)
         {
-            List<Especialidad> especialidades = new List<Especialidad>();
-
             try
             {
-                especialidades = el.FiltraEspecialidades(descripcion);
+                var especialidades = from e in db.Especialidades
+                                     orderby e.Descripcion
+                                     select new
+                                     {
+                                         e.ID,
+                                         e.Descripcion,
+                                     };
+                especialidades = especialidades.Where(e => e.Descripcion.Contains(descripcion));
+                return Json(especialidades, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(especialidades, JsonRequestBehavior.AllowGet);
         }
     }
 }

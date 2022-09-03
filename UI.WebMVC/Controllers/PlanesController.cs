@@ -13,6 +13,7 @@ namespace UI.WebMVC.Controllers
     public class PlanesController : Controller
     {
         private PlanLogic pl = new PlanLogic();
+        private DataClassesDataContext db = new DataClassesDataContext();
 
         // GET: Planes
         public ActionResult Inicio()
@@ -21,29 +22,40 @@ namespace UI.WebMVC.Controllers
         }
         public JsonResult getAll()
         {
-            List<Plan> planes = new List<Plan>();
             try
             {
-                planes = pl.GetAll();
+                var planes = from p in db.Planes
+                             join e in db.Especialidades
+                                on p.IDEspecialidad equals e.ID
+                             orderby p.Descripcion, e.Descripcion
+                             select new
+                             {
+                                 p.ID,
+                                 p.Descripcion,
+                                 IDEspecialidad = e.ID,
+                                 DescripcionEsp = e.Descripcion
+                             };
+                return Json(planes, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(planes, JsonRequestBehavior.AllowGet);
         }
         public JsonResult getOne(int id)
         {
-            Plan plan = new Plan();
             try
             {
-                plan = pl.GetOne(id);
+                var plan = db.Planes
+                    .Where(p => p.ID.Equals(id))
+                    .Select(p => new { p.ID, p.Descripcion, p.IDEspecialidad })
+                    .FirstOrDefault();
+                return Json(plan, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(plan, JsonRequestBehavior.AllowGet);
         }
         [Admin]
         public JsonResult Delete(int id)
@@ -68,8 +80,10 @@ namespace UI.WebMVC.Controllers
             string[] respuesta = { "", "" };
             try
             {
-                Plan repetido = pl.GetRepetido(plan);
-                if (repetido.ID == 0)
+                Planes repetido = db.Planes
+                    .Where(p => p.Descripcion.Equals(plan.Descripcion) && p.IDEspecialidad.Equals(plan.IDEspecialidad) && !p.ID.Equals(plan.ID))
+                    .FirstOrDefault();
+                if (repetido == null)
                 {
                     if (plan.ID == 0)
                     {
@@ -98,16 +112,26 @@ namespace UI.WebMVC.Controllers
         }
         public JsonResult FiltraPlanes(string descripcion)
         {
-            List<Plan> planes = new List<Plan>();
             try
             {
-                planes = pl.FiltraPlanes(descripcion);
+                var planes = from p in db.Planes
+                             join e in db.Especialidades
+                                on p.IDEspecialidad equals e.ID
+                             orderby p.Descripcion, e.Descripcion
+                             select new
+                             {
+                                 p.ID,
+                                 p.Descripcion,
+                                 IDEspecialidad = e.ID,
+                                 DescripcionEsp = e.Descripcion
+                             };
+                planes = planes.Where(p => p.Descripcion.Contains(descripcion));
+                return Json(planes, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
-            return Json(planes, JsonRequestBehavior.AllowGet);
         }
     }
 }
