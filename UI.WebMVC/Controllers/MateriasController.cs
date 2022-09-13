@@ -13,12 +13,24 @@ namespace UI.WebMVC.Controllers
     public class MateriasController : Controller
     {
         private MateriaLogic ml = new MateriaLogic();
+        private PlanLogic pl = new PlanLogic();
         private DataClassesDataContext db = new DataClassesDataContext();
 
         // GET: Materias
         public ActionResult Inicio()
         {
+            ViewBag.listado = listadoPlanes();
             return View();
+        }
+        [HttpPost]
+        public ActionResult Inicio(Materia materia)
+        {
+            ViewBag.listado = listadoPlanes();
+            if (ModelState.IsValid)
+            {
+                return View(materia);
+            }
+            return RedirectToAction(nameof(Inicio));
         }
         public JsonResult getAll()
         {
@@ -62,26 +74,24 @@ namespace UI.WebMVC.Controllers
             }
         }
         [Admin]
-        public JsonResult Delete(int id)
+        public ActionResult Delete(Materia materia)
         {
-            string[] respuesta = { "", "" };
             try
             {
-                ml.Delete(id);
-                respuesta[0] = "La materia se eliminó correctamente";
-                respuesta[1] = "1";
+                ml.Delete(materia.ID);
+                ViewBag.Message = "La materia se eliminó correctamente";
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listado = listadoPlanes();
+            return View("Inicio");
         }
         [Admin]
-        public JsonResult Save(Materia materia)
+        public ActionResult Save(Materia materia)
         {
-            string[] respuesta = { "", "" };
             try
             {
                 Materias repetido = db.Materias
@@ -92,27 +102,28 @@ namespace UI.WebMVC.Controllers
                     if (materia.ID == 0)
                     {
                         materia.State = BusinessEntity.States.New;
+                        ViewBag.Message = "La materia se guardó correctamente";
                     }
                     else
                     {
                         materia.State = BusinessEntity.States.Modified;
+                        ViewBag.Message = "La materia se actualizó correctamente";
                     }
-                    respuesta[0] = "La materia se guardó correctamente";
-                    respuesta[1] = "1";
                     ml.Save(materia);
                 }
                 else
                 {
-                    respuesta[0] = "La materia que desea guardar ya existe";
-                    respuesta[1] = "0";
+                    ViewBag.Message = "La materia que desea guardar ya existe";
+                    ViewBag.Error = 1;
                 }
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listado = listadoPlanes();
+            return View("Inicio");
         }
         public JsonResult FiltraMaterias(string descripcion)
         {
@@ -140,6 +151,20 @@ namespace UI.WebMVC.Controllers
             {
                 return Json(0, JsonRequestBehavior.AllowGet);
             }
+        }
+        public IEnumerable<SelectListItem> listadoPlanes()
+        {
+            IEnumerable<SelectListItem> lista = null;
+            try
+            {
+                IEnumerable<Plan> planes = pl.GetAll();
+                lista = planes.Select(p => new SelectListItem { Text = p.Descripcion + " - " + p.DescripcionEsp, Value = p.ID.ToString() });
+            }
+            catch (Exception e)
+            {
+
+            }
+            return lista;
         }
     }
 }

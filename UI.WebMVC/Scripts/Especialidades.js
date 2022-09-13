@@ -1,6 +1,14 @@
 ﻿listar();
 const header = ["Descripción"];
 
+if ($("#txtNotification").html() !== "") {
+    $("#NotifContainer").show();
+}
+
+setTimeout(function () {
+    $('#NotifContainer').fadeOut(1500)
+}, 4000)
+
 function listar() {
     $.get("../Especialidades/getAll", function (data) {
         listadoEspecialidades(header, data);
@@ -94,6 +102,7 @@ function modalDelete(id) {
 $("#btnAgregar").click(function () {
     limpiarCampos();
     habilitarCampos();
+    $("#txtID").prop("disabled", "disabled");
     $("#staticBackdropLabel").text("Agregar especialidad");
 });
 
@@ -104,10 +113,8 @@ jQuery('#limpia-filtro').on('click', function () {
 
 function limpiarCampos() {
     $(".limpiarCampo").val("");
-    campos = $(".required");
-    for (let i = 0; i < campos.length; i++) {
-        $("#campo" + i).removeClass("error");
-    }
+    $("#txtID").prop("disabled", "");
+    $("#txtID").prop("readonly", "readonly");
     $("#btnAceptar").removeClass("eliminar");
 }
 
@@ -119,50 +126,15 @@ function deshabilitarCampos() {
     $(".deshabilitarCampo").attr("disabled", "disabled");
 }
 
-function validaDatos() {
-    let valido = true;
-    campos = $(".required");
-    for (let i = 0; i < campos.length; i++) {
-        if (campos[i].value == "") {
-            valido = false;
-            $("#campo" + i).addClass("error");
-        } else {
-            $("#campo" + i).removeClass("error");
+$('#btnAceptar').on('click', function (e) {
+    e.preventDefault();
+    if ($("#btnAceptar").hasClass("eliminar")) {
+        if (confirm("¿Seguro que desea eliminar la especialidad?") == 1) {
+            $("#formEspecialidad").attr("action", "/Especialidades/Delete");
+            $("#formEspecialidad").submit();
         }
+    } else {
+        $("#formEspecialidad").attr("action", "/Especialidades/Save");
+        $("#formEspecialidad").submit();
     }
-    return valido;
-}
-
-function confirmarCambios() {
-    if (validaDatos()) {
-        let frm = new FormData();
-        let id = $("#txtID").val();
-        let descripcion = $("#txtDescripcion").val();
-        frm.append("ID", id);
-        frm.append("Descripcion", descripcion);
-        if ($("#btnAceptar").hasClass("eliminar")) {
-            if (confirm("¿Seguro que desea eliminar la especialidad?") == 1) {
-                crudEspecialidades(frm, "Delete");
-            }
-        } else {
-            crudEspecialidades(frm, "Save");
-        }
-    }
-}
-
-function crudEspecialidades(frm, action) {
-    $.ajax({
-        type: "POST",
-        url: "../Especialidades/" + action,
-        data: frm,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            alert(data[0]);
-            if (data[1] == "1") {
-                listar();
-                $("#btnCancelar").click();
-            }
-        }
-    });
-}
+});

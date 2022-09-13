@@ -109,6 +109,10 @@ namespace Data.Database
             } catch (SqlException Ex)
             {
                 Exception exceptionManejada = new Exception("El curso seleccionado no existe", Ex);
+                if (Ex.Number == 547)
+                {
+                    exceptionManejada = new Exception("Existen dependencias del curso que desea eliminar", Ex);
+                }
                 throw exceptionManejada;
             } catch (Exception Ex)
             {

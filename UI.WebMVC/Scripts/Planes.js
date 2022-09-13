@@ -1,6 +1,13 @@
 ﻿listar();
-llenarComboEsp();
 const header = ["Descripción", "Especialidad"];
+
+if ($("#txtNotification").html() !== "") {
+    $("#NotifContainer").show();
+}
+
+setTimeout(function () {
+    $('#NotifContainer').fadeOut(1500)
+}, 4000)
 
 function listar() {
     $.get("../Planes/getAll", function (data) {
@@ -95,24 +102,11 @@ function modalDelete(id) {
     frm.append("id", id);
 }
 
-function llenarComboEsp() {
-    $.get("../Especialidades/getAll", function (data) {
-        let control = $("#comboEsp");
-        let contenido = "";
-        contenido += "<option value='0' disabled selected >--Seleccione una especialidad--</option>";
-        for (let i = 0; i < data.length; i++) {
-            contenido += "<option value='" + data[i].ID + "'>";
-            contenido += data[i].Descripcion;
-            contenido += "</option>";
-        }
-        control.html(contenido);
-    });
-}
-
 $("#btnAgregar").click(function () {
     limpiarCampos();
     habilitarCampos();
     $("#staticBackdropLabel").text("Agregar plan");
+    $("#txtID").prop("disabled", "disabled");
 });
 
 jQuery('#limpia-filtro').on('click', function () {
@@ -122,11 +116,8 @@ jQuery('#limpia-filtro').on('click', function () {
 
 function limpiarCampos() {
     $(".limpiarCampo").val("");
-    $("#comboEsp").val(0);
-    campos = $(".required");
-    for (let i = 0; i < campos.length; i++) {
-        $("#campo" + i).removeClass("error");
-    }
+    $("#txtID").prop("disabled", "");
+    $("#txtID").prop("readonly", "readonly");
     $("#btnAceptar").removeClass("eliminar");
 }
 
@@ -138,52 +129,15 @@ function deshabilitarCampos() {
     $(".deshabilitarCampo").attr("disabled", "disabled");
 }
 
-function validaDatos() {
-    let valido = true;
-    campos = $(".required");
-    for (let i = 0; i < campos.length; i++) {
-        if (campos[i].value == "" || campos[i].value == "0") {
-            valido = false;
-            $("#campo" + i).addClass("error");
-        } else {
-            $("#campo" + i).removeClass("error");
+$('#btnAceptar').on('click', function (e) {
+    e.preventDefault();
+    if ($("#btnAceptar").hasClass("eliminar")) {
+        if (confirm("¿Seguro que desea eliminar el plan?") == 1) {
+            $("#formPlan").attr("action", "/Planes/Delete");
+            $("#formPlan").submit();
         }
+    } else {
+        $("#formPlan").attr("action", "/Planes/Save");
+        $("#formPlan").submit();
     }
-    return valido;
-}
-
-function confirmarCambios() {
-    if (validaDatos()) {
-        let frm = new FormData();
-        let id = $("#txtID").val();
-        let descripcion = $("#txtDescripcion").val();
-        let esp = $("#comboEsp").val();
-        frm.append("ID", id);
-        frm.append("Descripcion", descripcion);
-        frm.append("IDEspecialidad", esp);
-        if ($("#btnAceptar").hasClass("eliminar")) {
-            if (confirm("¿Seguro que desea eliminar el plan?") == 1) {
-                crudPlanes(frm, "Delete");
-            }
-        } else {
-            crudPlanes(frm, "Save");
-        }
-    }
-}
-
-function crudPlanes(frm, action) {
-    $.ajax({
-        type: "POST",
-        url: "../Planes/" + action,
-        data: frm,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            alert(data[0]);
-            if (data[1] == "1") {
-                listar();
-                $("#btnCancelar").click();
-            }
-        }
-    });
-}
+});

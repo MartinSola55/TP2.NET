@@ -1,5 +1,12 @@
-﻿listarCursos();
-listarInscripciones();
+﻿listarInscripciones();
+
+if ($("#txtNotification").html() !== "") {
+    $("#NotifContainer").show();
+}
+
+setTimeout(function () {
+    $('#NotifContainer').fadeOut(1500)
+}, 4000)
 
 $.get("../InscripcionesAlumno/getOne/?id=" + idPer, function (data) {
     $("#txtNombre").val(data['Nombre']);
@@ -12,24 +19,6 @@ $.get("../InscripcionesAlumno/getOne/?id=" + idPer, function (data) {
     $("#txtPlan").val(data['DescPlan']);
 });
 
-function listarCursos() {
-    $.get("../Cursos/getAll", function (data) {
-        let control = $("#comboCursos");
-        let contenido = "";
-        contenido += "<option value='0' disabled selected >--Seleccione una curso--</option>";
-        for (let i = 0; i < data.length; i++) {
-            contenido += "<option value='" + data[i].ID + "'>";
-            contenido += data[i].AnioCalendario;
-            contenido += " - ";
-            contenido += data[i].ComisionDesc;
-            contenido += " - ";
-            contenido += data[i].MateriaDesc;
-            contenido += "</option>";
-        }
-        control.html(contenido);
-    });
-}
-
 function listarInscripciones() {
     $.get("../InscripcionesAlumno/GetInscripciones?id=" + idPer, function (data) {
         let contenedor = $('#tarjetasInscripciones');
@@ -41,7 +30,7 @@ function listarInscripciones() {
             let nota = data[i].Nota == null ? "" : data[i].Nota;
             if (nota != "") {
                 tarjeta += "<h5 class='card-title'>Nota: " + nota + "</h5>"
-            }            tarjeta += "<h5 class='card-title'>Nota: " + nota + "</h5>"
+            }
             tarjeta += "<p class='card-text'>" + data[i].DescripcionCurso + "</p>"
             tarjeta += "<div class='d-flex justify-content-between mt-auto'>"
             tarjeta += "<button class='btn btn-outline-dark' onclick='modalVer(" + data[i].ID + ")' data-bs-toggle='modal' data-bs-target='#staticBackdrop' >Ver</button>"
@@ -57,13 +46,15 @@ function listarInscripciones() {
 jQuery('#btnAgregar').on('click', function () {
     limpiarCampos();
     habilitarCampos();
+    $("#txtID").prop("disabled", "disabled");
     $("#staticBackdropLabel").text("Agregar inscripción");
     $("#txtIDAlumno").val(idPer);
-    $("#comboCursos").val("0");
+    $("#comboCursos").val("");
     $("#lblCondicion").css("display", "none");
     $("#txtCondicion").css("display", "none");
     $("#lblNota").css("display", "none");
     $("#txtNota").css("display", "none");
+    $(".hide").css("display", "none");
     $("#btnAceptar").css("display", "");
     $("#btnCancelar").html("Cancelar");
 });
@@ -76,6 +67,7 @@ function modalVer(id) {
     $("#txtCondicion").css("display", "");
     $("#lblNota").css("display", "");
     $("#txtNota").css("display", "");
+    $(".hide").css("display", "");
     $("#btnAceptar").css("display", "none");
     $.get("../InscripcionesAlumno/getInscripcion/?id=" + id, function (data) {
         $("#txtID").val(data["ID"]);
@@ -89,6 +81,8 @@ function modalVer(id) {
 
 function limpiarCampos() {
     $(".limpiarCampo").val("");
+    $("#txtID").prop("disabled", "");
+    $("#txtID").prop("readonly", "readonly");
     $("#lblCurso").removeClass("error");
 }
 
@@ -100,37 +94,8 @@ function deshabilitarCampos() {
     $(".deshabilitarCampo").attr("disabled", "disabled");
 }
 
-function campoRequired() {
-    let valido = true;
-    if ($("#comboCursos").val() == null) {
-        valido = false;
-        $("#lblCurso").addClass("error");
-    } else {
-        $("#lblCurso").removeClass("error");
-    }
-    return valido;
-}
-
-function confirmarCambios() {
-    if (campoRequired()) {
-        let idAlumno = $("#txtIDAlumno").val();
-        let idCurso = $("#comboCursos").val();
-        saveInscripcion(idAlumno, idCurso);
-    }
-}
-
-function saveInscripcion(idAlumno, idCurso) {
-    $.ajax({
-        type: "POST",
-        url: "../InscripcionesAlumno/Save?idAlumno=" + idAlumno + "&idCurso=" + idCurso,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            alert(data[0]);
-            if (data[1] == "1") {
-                listarInscripciones();
-                $("#btnCancelar").click();
-            }
-        }
-    });
-}
+$('#btnAceptar').on('click', function (e) {
+    e.preventDefault();
+    $("#formInscripcion").attr("action", "/InscripcionesAlumno/Save");
+    $("#formInscripcion").submit();
+});

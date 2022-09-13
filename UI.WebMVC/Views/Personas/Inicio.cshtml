@@ -1,11 +1,33 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Personas";
 }
+@model Business.Entities.Persona
 
 <link href="~/Content/mis-estilos.css" rel="stylesheet" />
 <link href="~/Content/daterangepicker.css" rel="stylesheet" />
 
+@{ if (ViewBag.Message != null)
+    {
+        if (ViewBag.Error == 1)
+        {
+            @:<div id="NotifContainer" style="background-color: khaki;">
+                @:<h3 id="txtNotification"><i class="bi bi-exclamation-triangle"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+        else if (ViewBag.Error == 2)
+        {
+            @:<div id="NotifContainer" style="background-color: crimson;">
+                @:<h3 id="txtNotification" style="color: white;"><i class="bi bi-exclamation-diamond"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+        else
+        {
+            @:<div id="NotifContainer" style="background-color: cornflowerblue;">
+                @:<h3 id="txtNotification" style="color: white;"><i class="bi bi-info-circle"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+    }
+}
 
 <div class="container-fluid d-flex mb-3">
     <div class="row me-4 col-3">
@@ -33,61 +55,85 @@
     Agregar
 </button>
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body contenedor-modal align-items-center">
-                <label class="mb-3">ID: </label>
-                <input id="txtID" type="text" class="form-control limpiarCampo w-25 mb-3" disabled />
+@{
+    using (Html.BeginForm("", "", FormMethod.Post, new { @id = "formPersona" }))
+    {
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body contenedor-modal align-items-center">
+                        <label class="mb-3">ID: </label>
+                        @Html.TextBoxFor(model => model.ID, new { @id = "txtID", @readonly = "readonly", @class = "form-control limpiarCampo w-25 mb-3" })
 
-                <label id="campo0" class="mb-3">Nombre: </label>
-                <input id="txtNombre" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+                        <label>Nombre: </label>
+                        @Html.TextBoxFor(model => model.Nombre, new { @id = "txtNombre", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.Nombre, null, new { @class = "text-danger mb-3" })
 
-                <label id="campo1" class="mb-3">Apellido: </label>
-                <input id="txtApellido" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+                        <label>Apellido: </label>
+                        @Html.TextBoxFor(model => model.Apellido, new { @id = "txtApellido", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.Apellido, null, new { @class = "text-danger mb-3" })
 
-                <label id="campo2" class="mb-3">Direccion: </label>
-                <input id="txtDireccion" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+                        <label>Dirección: </label>
+                        @Html.TextBoxFor(model => model.Direccion, new { @id = "txtDireccion", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.Direccion, null, new { @class = "text-danger mb-3" })
 
-                <label id="campo3" class="mb-3">Email: </label>
-                <input id="txtEmail" type="email" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+                        <label>Email: </label>
+                        @Html.TextBoxFor(model => model.Email, new { @id = "txtEmail", @type = "email", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger mb-3" })
 
-                <label id="campo4" class="mb-3">Teléfono: </label>
-                <input id="txtTelefono" type="tel" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+                        <label>Teléfono: </label>
+                        @Html.TextBoxFor(model => model.Telefono, new { @id = "txtTelefono", @type = "tel", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.Telefono, null, new { @class = "text-danger mb-3" })
 
-                <label id="campo5" class="mb-3">Fecha de nacimiento: </label>
-                <input id="txtNacimiento" type="text" placeholder="dd/mm/aaaa" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+                        <label>Fecha de nacimiento: </label>
+                        @Html.TextBoxFor(model => model.FechaNacimiento, new { @id = "txtNacimiento", @placeholder = "dd/mm/aaaa", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.FechaNacimiento, null, new { @class = "text-danger mb-3" })
 
-                <label id="campo6" class="mb-3">Legajo: </label>
-                <input id="txtLegajo" type="number" min="1" max="100000" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+                        <label>Legajo: </label>
+                        @Html.TextBoxFor(model => model.Legajo, new { @id = "txtLegajo", @type = "number", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.Legajo, null, new { @class = "text-danger mb-3" })
 
-                <label id="campo7" class="mb-3">Tipo: </label>
-                <select id="comboTipo" class="form-select limpiarCampo habilitarCampo deshabilitarCampo required mb-3">
-                    <option value='0' disabled selected>--Seleccione un tipo--</option>
-                    <option value='1'>Docente</option>
-                    <option value='2'>Alumno</option>
-                </select>
+                        <label>Tipo: </label>
+                        @Html.DropDownListFor(model => model.TipoPersona, new List<SelectListItem>
+                        {
+                            new SelectListItem{ Text="--Seleccione un tipo--", Value = "" },
+                            new SelectListItem{ Text="Docente", Value = "1" },
+                            new SelectListItem{ Text="Alumno", Value = "2" },
+                         }, new { @id = "comboTipo", @class = "form-select limpiarCampo habilitarCampo deshabilitarCampo" })                        
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.TipoPersona, null, new { @class = "text-danger mb-3" })
 
-                <label id="campo8" class="mb-2">Plan: </label>
-                <select id="comboPlanes" class="form-select limpiarCampo habilitarCampo deshabilitarCampo required mb-2">
-                </select>
+                        <label class="mb-2">Plan: </label>
+                        @Html.DropDownListFor(model => model.IDPlan, new SelectList(ViewBag.listado, "Value", "Text"), "--Seleccione un plan--", new { @id = "comboPlanes", @class = "form-select limpiarCampo habilitarCampo deshabilitarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.IDPlan, null, new { @class = "text-danger" })
+                    </div>
 
-            </div>
-            <div class="modal-footer">
-                <button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button id="btnAceptar" onclick="confirmarCambios()" type="button" class="btn btn-success">Aceptar</button>
+                    <div class="modal-footer">
+                        <button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button id="btnAceptar" type="submit" class="btn btn-success">Aceptar</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
+    }
+}
 
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 <script src="~/Scripts/moment-with-locales.js"></script>
 <script src="~/Scripts/daterangepicker.js"></script>

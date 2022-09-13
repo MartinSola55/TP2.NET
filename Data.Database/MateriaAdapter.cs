@@ -121,6 +121,10 @@ namespace Data.Database
             catch (SqlException Ex)
             {
                 Exception ExceptionManejada = new Exception("La materia seleccionada no existe", Ex);
+                if (Ex.Number == 547)
+                {
+                    ExceptionManejada = new Exception("Existen dependencias de la materia que desea eliminar", Ex);
+                }
                 throw ExceptionManejada;
             }
             catch (Exception Ex)

@@ -21,6 +21,15 @@ namespace UI.WebMVC.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Inicio(Usuario usuario)
+        {
+            if (ModelState.IsValid)
+            {
+                return View(usuario);
+            }
+            return RedirectToAction(nameof(Inicio));
+        }
         public JsonResult getAll()
         {
             try
@@ -71,34 +80,44 @@ namespace UI.WebMVC.Controllers
             }
         }
         [Admin]
-        public JsonResult Delete(int id)
+        public ActionResult Delete(Usuario usr)
         {
-            string respuesta;
             try
             {
-                ul.Delete(id);
-                respuesta = "El usuario se eliminó correctamente";
+                ul.Delete(usr.ID);
+                ViewBag.Message = "El usuario se eliminó correctamente";
             }
             catch (Exception ex)
             {
-                respuesta = ex.Message;
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            return View("Inicio");
         }
         [Admin]
-        public JsonResult Save(Usuario usr)
+        public ActionResult Save(Usuario usr)
         {
-            string respuesta;
             try
             {
-                usr.State = BusinessEntity.States.Modified;
-                ul.Save(usr);
-                respuesta = "El usuario se guardó correctamente";
+                Usuarios repetido = db.Usuarios
+                    .Where(u => u.NombreUsuario.Equals(usr.NombreUsuario) && !u.ID.Equals(usr.ID))
+                    .FirstOrDefault();
+                if (repetido == null)
+                {
+                    usr.State = BusinessEntity.States.Modified;
+                    ul.Save(usr);
+                    ViewBag.Message = "El usuario se guardó correctamente";
+                } else
+                {
+                    ViewBag.Message = "El usuario que desea guardar ya existe";
+                    ViewBag.Error = 1;
+                }
             }catch (Exception ex)
             {
-                respuesta = ex.Message;
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            return View("Inicio");
         }
         public JsonResult FiltraUsuarios(string usr, string mail)
         {

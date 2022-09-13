@@ -95,7 +95,11 @@ namespace Data.Database
                 cmdDelete.ExecuteNonQuery();
             } catch (SqlException Ex)
             {
-                Exception ExceptionManejada = new Exception("Existen dependencias de esta especialidad", Ex);
+                Exception ExceptionManejada = new Exception("No se pudo eliminar la especialidad", Ex);
+                if (Ex.Number == 547)
+                {
+                    ExceptionManejada = new Exception("Existen dependencias de la especialidad que desea eliminar", Ex);
+                }
                 throw ExceptionManejada;
             } catch (Exception Ex)
             {

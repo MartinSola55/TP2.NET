@@ -1,9 +1,32 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Inscripciones - Docente";
 }
+@model Business.Entities.DocenteCurso
 
 <link href="~/Content/mis-estilos.css" rel="stylesheet" />
+
+@{ if (ViewBag.Message != null)
+    {
+        if (ViewBag.Error == 1)
+        {
+            @:<div id="NotifContainer" style="background-color: khaki;">
+                @:<h3 id="txtNotification"><i class="bi bi-exclamation-triangle"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+        else if (ViewBag.Error == 2)
+        {
+            @:<div id="NotifContainer" style="background-color: crimson;">
+                @:<h3 id="txtNotification" style="color: white;"><i class="bi bi-exclamation-diamond"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+        else
+        {
+            @:<div id="NotifContainer" style="background-color: cornflowerblue;">
+                @:<h3 id="txtNotification" style="color: white;"><i class="bi bi-info-circle"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+    }
+}
 
 <h1 class="text-center mb-4">Datos del docente</h1>
 
@@ -49,79 +72,101 @@
 
 <hr class="mt-5" />
 
-<h2 class="text-center mb-4">Inscripciones vigentes</h2>
+<h2 class="text-center mb-4">Cargos vigentes</h2>
 
 <div id="tarjetasInscripciones" class="container d-flex flex-row row mx-auto justify-content-center">
 
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body contenedor-modal">
-                <label class="mb-2">ID: </label>
-                <input id="txtID" type="text" class="form-control limpiarCampo w-25 mb-2" disabled />
+@{
+    using (Html.BeginForm("", "", FormMethod.Post, new { @id = "formInscripcion" }))
+    {
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body contenedor-modal align-items-center">
+                        <label class="mb-3">ID: </label>
+                        @Html.TextBoxFor(model => model.ID, new { @id = "txtID", @readonly = "readonly", @class = "form-control limpiarCampo w-25 mb-3" })
 
-                <label class="mb-2">ID Docente: </label>
-                <input id="txtIDDocente" type="text" class="form-control limpiarCampo w-25 mb-2" disabled />
+                        <label class="mb-3">ID Docente: </label>
+                        @Html.TextBoxFor(model => model.IDDocente, new { @id = "txtIDDocente", @readonly = "readonly", @class = "form-control limpiarCampo w-25 mb-3" })
 
-                <label id="campo0" class="mb-2">Cargo: </label>
-                <input id="txtCargo" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-2" />
+                        <label>Cargo: </label>
+                        @Html.TextBoxFor(model => model.Cargo, new { @id = "txtCargo", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.Cargo, null, new { @class = "text-danger mb-3" })
 
-                <label id="campo1" class="mb-2">Curso: </label>
-                <select id="comboCursos" class="form-select limpiarCampo habilitarCampo deshabilitarCampo required mb-2">
-                </select>
-
-            </div>
-            <div class="modal-footer">
-                <button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button id="btnAceptar" onclick="confirmarCambios()" type="button" class="btn btn-success">Aceptar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal usuario -->
-<div class="modal fade" id="staticBackdropUsr" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelUser" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabelUser">Agregar usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body contenedor-modal align-items-center">
-
-                <label id="lblUsuario" class="mb-3">Usuario: </label>
-                <input id="txtNombreUsuario" type="text" class="form-control limpiarCampo mb-3" />
-
-                <label class="mb-3">Habilitado: </label>
-                <div>
-                    <input id="checkHabilitado" class="mb-3 form-check" type="checkbox" style="transform:scale(1.25)" />
+                        <label>Curso: </label>
+                        @Html.DropDownListFor(model => model.IDCurso, new SelectList(ViewBag.listadoCursos, "Value", "Text"), "--Seleccione un curso--", new { @id = "comboCursos", @class = "form-select limpiarCampo habilitarCampo deshabilitarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.IDCurso, null, new { @class = "text-danger mb-3" })
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button id="btnAceptar" type="submit" class="btn btn-success">Aceptar</button>
+                    </div>
                 </div>
-
-                <label id="lblClave" class="mb-3 campo1">Clave: </label>
-                <input id="txtClave" type="password" class="form-control limpiarCampo mb-3" />
-
-                <label id="lblRepiteClave" class="mb-3 campo2">Repetir clave: </label>
-                <input id="txtRepiteClave" type="password" class="form-control limpiarCampo mb-3" />
-
-                <button id="btnVerClave" class='btn btn-outline-primary oculto'><i id="iconVerClave" class='bi bi-eye'></i></button>
-
-            </div>
-            <div class="modal-footer">
-                <button id="btnCancelarUser" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button id="btnAceptarUser" onclick="confirmarCambiosUser()" type="button" class="btn btn-success">Aceptar</button>
             </div>
         </div>
-    </div>
-</div>
+    }
 
+    using (Html.BeginForm("SaveUser", "Personas", FormMethod.Post, new { @id = "formUsuario" }))
+    {
+        <!-- Modal usuario -->
+        <div class="modal fade" id="staticBackdropUsr" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabelUser" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabelUser">Agregar usuario</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body contenedor-modal align-items-center">
+
+                        @Html.TextBoxFor(model => model.Usuario.IDPersona, new { @id = "txtIDPersona", @style = "display: none" })
+                        @Html.TextBoxFor(model => model.Usuario.TipoPersona, new { @id = "txtTipoUser", @style = "display: none" })
+
+                        <label id="lblUsuario">Usuario: </label>
+                        @Html.TextBoxFor(model => model.Usuario.NombreUsuario, new { @id = "txtNombreUsuario", @class = "form-control limpiarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.Usuario.NombreUsuario, null, new { @class = "text-danger mb-3" })
+
+                        <label>Habilitado: </label>
+                        <div>
+                            @Html.CheckBoxFor(model => model.Usuario.Habilitado, new { @id = "checkHabilitado", @style = "transform:scale(1.25)", @class = "form-check" })
+                        </div>
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.Usuario.Habilitado, null, new { @class = "text-danger mb-3" })
+
+                        <label id="lblClave">Clave: </label>
+                        @Html.TextBoxFor(model => model.Usuario.Clave, new { @id = "txtClave", @class = "form-control limpiarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.Usuario.Clave, null, new { @class = "text-danger mb-3" })
+
+                        <label id="lblRepiteClave">Repetir clave: </label>
+                        @Html.TextBoxFor(model => model.Usuario.RepiteClave, new { @id = "txtRepiteClave", @class = "form-control limpiarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.Usuario.RepiteClave, null, new { @class = "text-danger" })
+
+                        <button id="btnVerClave" type="button" class='btn btn-outline-primary oculto'><i id="iconVerClave" class='bi bi-eye'></i></button>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnCancelarUser" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button id="btnAceptarUser" type="submit" class="btn btn-success">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
 
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Scripts/PersonasDocentes.js"></script>
 <script src="~/Scripts/PersonasUsuarios.js"></script>

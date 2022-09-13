@@ -18,3 +18,11 @@ textarea {
 #footerText {
     font-size: 1.1rem;
 }
+
+#NotifContainer {
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border-radius: 10px;
+}

@@ -19,6 +19,15 @@ namespace UI.WebMVC.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Inicio(Especialidad especialidad)
+        {
+            if (ModelState.IsValid)
+            {
+                return View(especialidad);
+            }
+            return RedirectToAction(nameof(Inicio));
+        }
         public JsonResult getAll()
         {
             try
@@ -49,26 +58,23 @@ namespace UI.WebMVC.Controllers
             }
         }
         [Admin]
-        public JsonResult Delete(int id)
+        public ActionResult Delete(Especialidad esp)
         {
-            string[] respuesta = { "", "" };
             try
             {
-                el.Delete(id);
-                respuesta[0] = "La especialidad se eliminó correctamente";
-                respuesta[1] = "1";
+                el.Delete(esp.ID);
+                ViewBag.Message = "La especialidad se eliminó correctamente";
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            return View("Inicio");
         }
         [Admin]
-        public JsonResult Save(Especialidad esp)
+        public ActionResult Save(Especialidad esp)
         {
-            string[] respuesta = { "", ""};
             try
             {
                 Especialidades repetido = db.Especialidades.Where(e => e.Descripcion.Equals(esp.Descripcion)).FirstOrDefault();
@@ -77,26 +83,26 @@ namespace UI.WebMVC.Controllers
                     if (esp.ID == 0)
                     {
                         esp.State = BusinessEntity.States.New;
+                        ViewBag.Message = "La especialidad se guardó correctamente";
                     }
                     else
                     {
                         esp.State = BusinessEntity.States.Modified;
+                        ViewBag.Message = "La especialidad se actualizó correctamente";
                     }
-                    respuesta[0] = "La especialidad se guardó correctamente";
-                    respuesta[1] = "1";
                     el.Save(esp);
                 } else
                 {
-                    respuesta[0] = "La especialidad que desea guardar ya existe";
-                    respuesta[1] = "0";
+                    ViewBag.Message = "La especialidad que desea guardar ya existe";
+                    ViewBag.Error = 1;
                 }
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            return View("Inicio");
         }
         public JsonResult FiltraEspecialidades(string descripcion)
         {

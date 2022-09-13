@@ -126,6 +126,10 @@ namespace Data.Database
             catch (SqlException Ex)
             {
                 Exception exceptionManejada = new Exception("La inscripción seleccionada no existe", Ex);
+                if (Ex.Number == 547)
+                {
+                    exceptionManejada = new Exception("Existen dependencias del cargo que desea eliminar", Ex);
+                }
                 throw exceptionManejada;
             }
             catch (Exception Ex)

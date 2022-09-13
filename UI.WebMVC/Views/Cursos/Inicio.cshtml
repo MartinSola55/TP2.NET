@@ -1,56 +1,86 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Cursos";
-    string anioMax = @DateTime.Today.ToShortDateString();
 }
+@model Business.Entities.Curso
 
 <link href="~/Content/mis-estilos.css" rel="stylesheet" />
 
+@{ if (ViewBag.Message != null)
+    {
+        if (ViewBag.Error == 1)
+        {
+            @:<div id="NotifContainer" style="background-color: khaki;">
+                @:<h3 id="txtNotification"><i class="bi bi-exclamation-triangle"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+        else if (ViewBag.Error == 2)
+        {
+            @:<div id="NotifContainer" style="background-color: crimson;">
+                @:<h3 id="txtNotification" style="color: white;"><i class="bi bi-exclamation-diamond"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+        else
+        {
+            @:<div id="NotifContainer" style="background-color: cornflowerblue;">
+                @:<h3 id="txtNotification" style="color: white;"><i class="bi bi-info-circle"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+    }
+}
 
 <div id="tabla-cursos">
 
 </div>
 
 @{ if (Session["tipoUsr"].ToString() == "3")
-    {     
+    {
         @:<button id="btnAgregar" type="button" class="btn btn-success px-4 mb-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             @:Agregar
         @:</button>
 
-        @:<!-- Modal -->
-        @:<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            @:<div class="modal-dialog modal-dialog-centered">
-                @:<div class="modal-content">
-                    @:<div class="modal-header">
-                        @:<h5 class="modal-title" id="staticBackdropLabel"></h5>
-                        @:<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    @:</div>
-                    @:<div class="modal-body contenedor-modal align-items-center">
-                        @:<label class="mb-3">ID: </label>
-                        @:<input id="txtID" type="text" class="form-control limpiarCampo w-25 mb-3" disabled />
 
-                        @:<label id="campo0" class="mb-3">Año: </label>
-                        @:<input id="txtAnio" type="number" min="1990" max="@Html.Raw(anioMax)" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+        using (Html.BeginForm("", "", FormMethod.Post, new { @id = "formCurso" }))
+        {
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body contenedor-modal align-items-center">
+                            <label class="mb-3">ID: </label>
+                            @Html.TextBoxFor(model => model.ID, new { @id = "txtID", @readonly = "readonly", @class = "form-control limpiarCampo w-25 mb-3" })
 
-                        @:<label id="campo1" class="mb-3">Cupo: </label>
-                        @:<input id="txtCupo" type="number" min="1" max="500" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+                            <label>Año: </label>
+                            @Html.TextBoxFor(model => model.AnioCalendario, new { @id = "txtAnio", @type = "number", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })
+                            <span></span>
+                            @Html.ValidationMessageFor(model => model.AnioCalendario, null, new { @class = "text-danger mb-3" })
 
-                        @:<label id="campo2" class="mb-2">Materia: </label>
-                        @:<select id="comboMaterias" class="form-select limpiarCampo habilitarCampo deshabilitarCampo required mb-2">
-                        @:</select>
+                            <label>Cupo: </label>
+                            @Html.TextBoxFor(model => model.Cupo, new { @id = "txtCupo", @type = "number", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })
+                            <span></span>
+                            @Html.ValidationMessageFor(model => model.Cupo, null, new { @class = "text-danger mb-3" })
 
-                        @:<label id="campo3" class="mb-2">Comision: </label>
-                        @:<select id="comboComisiones" class="form-select limpiarCampo habilitarCampo deshabilitarCampo required mb-2">
-                        @:</select>
+                            <label class="mb-2">Materia: </label>
+                            @Html.DropDownListFor(model => model.IDMateria, new SelectList(ViewBag.listadoMaterias, "Value", "Text"), "--Seleccione una materia--", new { @id = "comboMaterias", @class = "form-select limpiarCampo habilitarCampo deshabilitarCampo mb-2" })
+                            <span></span>
+                            @Html.ValidationMessageFor(model => model.IDMateria, null, new { @class = "text-danger mb-3" })
 
-                    @:</div>
-                    @:<div class="modal-footer">
-                        @:<button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-                        @:<button id="btnAceptar" onclick="confirmarCambios()" type="button" class="btn btn-success">Aceptar</button>
-                    @:</div>
-                @:</div>
-            @:</div>
-        @:</div>
+                            <label class="mb-2">Comisión: </label>
+                            @Html.DropDownListFor(model => model.IDComision, new SelectList(ViewBag.listadoComisiones, "Value", "Text"), "--Seleccione una comisión--", new { @id = "comboComisiones", @class = "form-select limpiarCampo habilitarCampo deshabilitarCampo mb-2" })
+                            <span></span>
+                            @Html.ValidationMessageFor(model => model.IDComision, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button id="btnAceptar" type="submit" class="btn btn-success">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     }
 }
 
@@ -62,5 +92,7 @@
 </script>
 
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 <script src="~/Scripts/Cursos.js"></script>

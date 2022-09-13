@@ -13,12 +13,24 @@ namespace UI.WebMVC.Controllers
     public class PlanesController : Controller
     {
         private PlanLogic pl = new PlanLogic();
+        private EspecialidadLogic el = new EspecialidadLogic();
         private DataClassesDataContext db = new DataClassesDataContext();
 
         // GET: Planes
         public ActionResult Inicio()
         {
+            ViewBag.listado = listadoEspecialidades();
             return View();
+        }
+        [HttpPost]
+        public ActionResult Inicio(Plan plan)
+        {
+            ViewBag.listado = listadoEspecialidades();
+            if (ModelState.IsValid)
+            {
+                return View(plan);
+            }
+            return RedirectToAction(nameof(Inicio));
         }
         public JsonResult getAll()
         {
@@ -58,26 +70,24 @@ namespace UI.WebMVC.Controllers
             }
         }
         [Admin]
-        public JsonResult Delete(int id)
+        public ActionResult Delete(Plan plan)
         {
-            string[] respuesta = { "", "" };
             try
             {
-                pl.Delete(id);
-                respuesta[0] = "El plan se eliminó correctamente";
-                respuesta[1] = "1";
+                pl.Delete(plan.ID);
+                ViewBag.Message = "El plan se eliminó correctamente";
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listado = listadoEspecialidades();
+            return View("Inicio");
         }
         [Admin]
-        public JsonResult Save(Plan plan)
+        public ActionResult Save(Plan plan)
         {
-            string[] respuesta = { "", "" };
             try
             {
                 Planes repetido = db.Planes
@@ -93,22 +103,22 @@ namespace UI.WebMVC.Controllers
                     {
                         plan.State = BusinessEntity.States.Modified;
                     }
-                    respuesta[0] = "El plan se guardó correctamente";
-                    respuesta[1] = "1";
+                    ViewBag.Message = "El plan se guardó correctamente";
                     pl.Save(plan);
                 }
                 else
                 {
-                    respuesta[0] = "El plan que desea guardar ya existe";
-                    respuesta[1] = "0";
+                    ViewBag.Message = "El plan que desea guardar ya existe";
+                    ViewBag.Error = 1;
                 }
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listado = listadoEspecialidades();
+            return View("Inicio");
         }
         public JsonResult FiltraPlanes(string descripcion)
         {
@@ -132,6 +142,20 @@ namespace UI.WebMVC.Controllers
             {
                 return Json(0, JsonRequestBehavior.AllowGet);
             }
+        }
+        public IEnumerable<SelectListItem> listadoEspecialidades()
+        {
+            IEnumerable<SelectListItem> lista = null;
+            try
+            {
+                IEnumerable<Especialidad> especialidades = el.GetAll();
+                lista = especialidades.Select(e => new SelectListItem { Text = e.Descripcion, Value = e.ID.ToString() });
+            }
+            catch (Exception e)
+            {
+
+            }
+            return lista;
         }
     }
 }

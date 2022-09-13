@@ -13,11 +13,23 @@ namespace UI.WebMVC.Controllers
     [Alumno]
     public class InscripcionesAlumnoController : Controller
     {
+        private CursoLogic cursol = new CursoLogic();
         private PersonaLogic pl = new PersonaLogic();
         // GET: InscripcionesAlumno
         public ActionResult Inicio()
         {
+            ViewBag.listado = listadoCursos();
             return View();
+        }
+        [HttpPost]
+        public ActionResult Inicio(AlumnoInscripcion inscripcion)
+        {
+            ViewBag.listado = listadoCursos();
+            if (ModelState.IsValid)
+            {
+                return View(inscripcion);
+            }
+            return RedirectToAction(nameof(Inicio));
         }
         public JsonResult getOne(int id)
         {
@@ -60,35 +72,45 @@ namespace UI.WebMVC.Controllers
             }
             return Json(ai, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult Save(int idAlumno, int idCurso)
+        public ActionResult Save(AlumnoInscripcion inscripcion)
         {
-            string[] respuesta = { "", "" };
             try
             {
-                if (!pl.EsInscripcionRepetida(idAlumno, idCurso))
+                if (!pl.EsInscripcionRepetida(inscripcion.IDAlumno, inscripcion.IDCurso))
                 {
-                    AlumnoInscripcion inscripcion = new AlumnoInscripcion();
-                    inscripcion.IDAlumno = idAlumno;
-                    inscripcion.IDCurso = idCurso;
                     inscripcion.Condicion = "Inscripto";
                     inscripcion.Nota = null;
                     inscripcion.State = BusinessEntity.States.New;
                     pl.SaveIns(inscripcion);
-                    respuesta[0] = "La inscripción se guardó correctamente";
-                    respuesta[1] = "1";
+                    ViewBag.Message = "La inscripción se guardó correctamente";
                 }
                 else
                 {
-                    respuesta[0] = "Ya te encuentras inscripto a esta materia";
-                    respuesta[1] = "0";
+                    ViewBag.Message = "Ya te encuentras inscripto a esta materia";
+                    ViewBag.Error = 1;
                 }
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listado = listadoCursos();
+            return View("Inicio");
+        }
+        public IEnumerable<SelectListItem> listadoCursos()
+        {
+            IEnumerable<SelectListItem> lista = null;
+            try
+            {
+                IEnumerable<Curso> cursos = cursol.GetAll();
+                lista = cursos.Select(c => new SelectListItem { Text = c.AnioCalendario + " - " + c.ComisionDesc + " - " + c.MateriaDesc, Value = c.ID.ToString() });
+            }
+            catch (Exception e)
+            {
+
+            }
+            return lista;
         }
     }
 }

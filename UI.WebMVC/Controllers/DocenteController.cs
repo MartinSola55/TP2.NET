@@ -23,6 +23,15 @@ namespace UI.WebMVC.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Notas(AlumnoInscripcion inscripcion)
+        {
+            if (ModelState.IsValid)
+            {
+                return View(inscripcion);
+            }
+            return RedirectToAction(nameof(Inicio));
+        }
         public JsonResult getOne(int id)
         {
             Persona persona = new Persona();
@@ -78,21 +87,20 @@ namespace UI.WebMVC.Controllers
             }
             return Json(alumnos, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SaveCondicion(AlumnoInscripcion inscripcion)
+        public ActionResult SaveCondicion(AlumnoInscripcion inscripcion)
         {
-            string[] respuesta = { "", "" };
             try
             {
+                inscripcion.State = BusinessEntity.States.Modified;
                 pl.UpdateCondicion(inscripcion);
-                respuesta[0] = "La inscripción se guardó correctamente";
-                respuesta[1] = "1";
+                ViewBag.Message = "La condición se guardó correctamente";
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            return RedirectToAction("/Notas", new { curso = inscripcion.IDCurso, materia = inscripcion.IDMateria, com = inscripcion.IDComision });
         }
     }
 }

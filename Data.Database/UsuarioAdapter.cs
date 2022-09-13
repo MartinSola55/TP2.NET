@@ -149,6 +149,10 @@ namespace Data.Database
             } catch (SqlException Ex)
             {
                 Exception exceptionManejada = new Exception("El usuario seleccionado no existe", Ex);
+                if (Ex.Number == 547)
+                {
+                    exceptionManejada = new Exception("Existen dependencias del usuario que desea eliminar", Ex);
+                }
                 throw exceptionManejada;
             } catch (Exception Ex)
             {

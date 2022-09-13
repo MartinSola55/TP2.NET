@@ -109,7 +109,7 @@ namespace Data.Database
                 Exception ExceptionManejada = new Exception("La comisión seleccionada no existe", Ex);
                 if (Ex.Number == 547)
                 {
-                    ExceptionManejada = new Exception("No se pudo eliminar la comisión\nSe debe elimnar el curso que la contiene", Ex);
+                    ExceptionManejada = new Exception("Existen dependencias de la comisión que desea eliminar. Se debe eliminar el curso que la contiene", Ex);
                 }
                 throw ExceptionManejada;
             }

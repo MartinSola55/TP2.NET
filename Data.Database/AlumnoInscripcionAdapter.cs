@@ -130,6 +130,10 @@ namespace Data.Database
             catch (SqlException Ex)
             {
                 Exception exceptionManejada = new Exception("La inscripción seleccionada no existe", Ex);
+                if (Ex.Number == 547)
+                {
+                    exceptionManejada = new Exception("Existen dependencias de la inscripción que desea eliminar", Ex);
+                }
                 throw exceptionManejada;
             }
             catch (Exception Ex)
@@ -177,11 +181,17 @@ namespace Data.Database
             {
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand(
-                    "UPDATE alumnos_inscripciones SET condicion = @condicion, nota = @nota " +
+                    "UPDATE alumnos_inscripciones SET condicion = @condicion " +
                     "WHERE id_inscripcion = @id", sqlConn);
+                if (inscripcion.Nota != null)
+                {
+                    cmdSave.CommandText =
+                        "UPDATE alumnos_inscripciones SET condicion = @condicion, nota = @nota " +
+                        "WHERE id_inscripcion = @id";
+                    cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = inscripcion.Nota;
+                }
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = inscripcion.ID;
                 cmdSave.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = inscripcion.Condicion;
-                cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = inscripcion.Nota;
                 cmdSave.ExecuteNonQuery();
             }
             catch (SqlException Ex)

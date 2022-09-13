@@ -13,12 +13,27 @@ namespace UI.WebMVC.Controllers
     public class CursosController : Controller
     {
         private CursoLogic cl = new CursoLogic();
+        private MateriaLogic ml = new MateriaLogic();
+        private ComisionLogic coml = new ComisionLogic();
         private DataClassesDataContext db = new DataClassesDataContext();
 
         // GET: Curso
         public ActionResult Inicio()
         {
+            ViewBag.listadoMaterias = listadoMaterias();
+            ViewBag.listadoComisiones = listadoComisiones();
             return View();
+        }
+        [HttpPost]
+        public ActionResult Inicio(Curso curso)
+        {
+            ViewBag.listadoMaterias = listadoMaterias();
+            ViewBag.listadoComisiones = listadoComisiones();
+            if (ModelState.IsValid)
+            {
+                return View(curso);
+            }
+            return RedirectToAction(nameof(Inicio));
         }
         public JsonResult getAll()
         {
@@ -63,26 +78,25 @@ namespace UI.WebMVC.Controllers
             }
         }
         [Admin]
-        public JsonResult Delete(int id)
+        public ActionResult Delete(Curso curso)
         {
-            string[] respuesta = { "", "" };
             try
             {
-                cl.Delete(id);
-                respuesta[0] = "El curso se eliminó correctamente";
-                respuesta[1] = "1";
+                cl.Delete(curso.ID);
+                ViewBag.Message = "El curso se eliminó correctamente";
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listadoMaterias = listadoMaterias();
+            ViewBag.listadoComisiones = listadoComisiones();
+            return View("Inicio");
         }
         [Admin]
-        public JsonResult Save(Curso curso)
+        public ActionResult Save(Curso curso)
         {
-            string[] respuesta = { "", "" };
             try
             {
                 Cursos repetido = db.Cursos
@@ -91,30 +105,60 @@ namespace UI.WebMVC.Controllers
                     .FirstOrDefault();
                 if (repetido == null)
                 {
-                    if (curso == null)
+                    if (curso.ID == 0)
                     {
                         curso.State = BusinessEntity.States.New;
+                        ViewBag.Message = "El curso se guardó correctamente";
                     }
                     else
                     {
                         curso.State = BusinessEntity.States.Modified;
+                        ViewBag.Message = "El curso se actualizó correctamente";
                     }
-                    respuesta[0] = "El curso se guardó correctamente";
-                    respuesta[1] = "1";
                     cl.Save(curso);
                 }
                 else
                 {
-                    respuesta[0] = "El curso que desea guardar ya existe";
-                    respuesta[1] = "0";
+                    ViewBag.Message = "El curso que desea guardar ya existe";
+                    ViewBag.Error = 1;
                 }
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listadoMaterias = listadoMaterias();
+            ViewBag.listadoComisiones = listadoComisiones();
+            return View("Inicio");
+        }
+        public IEnumerable<SelectListItem> listadoMaterias()
+        {
+            IEnumerable<SelectListItem> lista = null;
+            try
+            {
+                IEnumerable<Materia> materias = ml.GetAll();
+                lista = materias.Select(m => new SelectListItem { Text = m.Descripcion + " - " + m.DescripcionPlan, Value = m.ID.ToString() });
+            }
+            catch (Exception e)
+            {
+
+            }
+            return lista;
+        }
+        public IEnumerable<SelectListItem> listadoComisiones()
+        {
+            IEnumerable<SelectListItem> lista = null;
+            try
+            {
+                IEnumerable<Comision> comisiones = coml.GetAll();
+                lista = comisiones.Select(c => new SelectListItem { Text = c.Descripcion + " - " + c.PlanDesc, Value = c.ID.ToString() });
+            }
+            catch (Exception e)
+            {
+
+            }
+            return lista;
         }
     }
 }

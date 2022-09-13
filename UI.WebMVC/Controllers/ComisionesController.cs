@@ -13,12 +13,24 @@ namespace UI.WebMVC.Controllers
     public class ComisionesController : Controller
     {
         private ComisionLogic cl = new ComisionLogic();
+        private PlanLogic pl = new PlanLogic();
         private DataClassesDataContext db = new DataClassesDataContext();
 
         // GET: Comisiones
         public ActionResult Inicio()
         {
+            ViewBag.listado = listadoPlanes();
             return View();
+        }
+        [HttpPost]
+        public ActionResult Inicio(Comision comision)
+        {
+            ViewBag.listado = listadoPlanes();
+            if (ModelState.IsValid)
+            {
+                return View(comision);
+            }
+            return RedirectToAction(nameof(Inicio));
         }
         public JsonResult getAll()
         {
@@ -61,26 +73,24 @@ namespace UI.WebMVC.Controllers
             }
         }
         [Admin]
-        public JsonResult Delete(int id)
+        public ActionResult Delete(Comision comision)
         {
-            string[] respuesta = { "", "" };
             try
             {
-                cl.Delete(id);
-                respuesta[0] = "La comisión se eliminó correctamente";
-                respuesta[1] = "1";
+                cl.Delete(comision.ID);
+                ViewBag.Message = "La comisión se eliminó correctamente";
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listado = listadoPlanes();
+            return View("Inicio");
         }
         [Admin]
-        public JsonResult Save(Comision comision)
+        public ActionResult Save(Comision comision)
         {
-            string[] respuesta = { "", "" };
             try
             {
                 Comisiones repetido = db.Comisiones
@@ -92,27 +102,28 @@ namespace UI.WebMVC.Controllers
                     if (comision.ID == 0)
                     {
                         comision.State = BusinessEntity.States.New;
+                        ViewBag.Message = "La comisión se guardó correctamente";
                     }
                     else
                     {
                         comision.State = BusinessEntity.States.Modified;
+                        ViewBag.Message = "La comisión se actualizó correctamente";
                     }
-                    respuesta[0] = "La comisión se guardó correctamente";
-                    respuesta[1] = "1";
                     cl.Save(comision);
                 }
                 else
                 {
-                    respuesta[0] = "La comisión que desea guardar ya existe";
-                    respuesta[1] = "0";
+                    ViewBag.Message = "La comisión que desea guardar ya existe";
+                    ViewBag.Error = 1;
                 }
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listado = listadoPlanes();
+            return View("Inicio");
         }
         public JsonResult FiltraComisiones(string descripcion)
         {
@@ -139,6 +150,19 @@ namespace UI.WebMVC.Controllers
             {
                 return Json(0, JsonRequestBehavior.AllowGet);
             }
+        }
+        public IEnumerable<SelectListItem> listadoPlanes()
+        {
+            IEnumerable<SelectListItem> lista = null;
+            try
+            {
+                IEnumerable<Plan> planes = pl.GetAll();
+                lista = planes.Select(p => new SelectListItem { Text = p.Descripcion + " - " + p.DescripcionEsp, Value = p.ID.ToString() });
+            } catch (Exception e)
+            {
+
+            }
+            return lista;
         }
     }
 }

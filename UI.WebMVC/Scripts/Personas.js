@@ -1,8 +1,15 @@
 ﻿listar();
-llenarComboPlanes();
 moment.locale('es');
 const header = ["Apellido", "Nombre", "Teléfono", "Nacimiento", "Legajo", "Tipo", "Plan"];
 const maxDia = new Date();
+
+if ($("#txtNotification").html() !== "") {
+    $("#NotifContainer").show();
+}
+
+setTimeout(function () {
+    $('#NotifContainer').fadeOut(1500)
+}, 4000)
 
 $(function () {
     $('#txtNacimiento').daterangepicker({
@@ -144,25 +151,11 @@ function modalDelete(id) {
     frm.append("id", id);
 }
 
-function llenarComboPlanes() {
-    $.get("../Planes/getAll", function (data) {
-        let control = $("#comboPlanes");
-        let contenido = "";
-        contenido += "<option value='0' disabled selected >--Seleccione un plan--</option>";
-        for (let i = 0; i < data.length; i++) {
-            contenido += "<option value='" + data[i].ID + "'>";
-            contenido += data[i].Descripcion;
-            contenido += " - ";
-            contenido += data[i].DescripcionEsp;
-            contenido += "</option>";
-        }
-        control.html(contenido);
-    });
-}
-
 $("#btnAgregar").click(function () {
     limpiarCampos();
     habilitarCampos();
+    $("#comboPlanes").val("");
+    $("#txtID").prop("disabled", "disabled");
     $("#staticBackdropLabel").text("Agregar persona");
 });
 
@@ -175,12 +168,10 @@ jQuery('#limpia-filtro').on('click', function () {
 
 function limpiarCampos() {
     $(".limpiarCampo").val("");
-    $("#comboTipo").val(0);
+    $("#comboTipo").val("");
     $("#comboPlanes").val(0);
-    campos = $(".required");
-    for (let i = 0; i < campos.length; i++) {
-        $("#campo" + i).removeClass("error");
-    }
+    $("#txtID").prop("disabled", "");
+    $("#txtID").prop("readonly", "readonly");
     $("#btnAceptar").removeClass("eliminar");
 }
 
@@ -192,74 +183,23 @@ function deshabilitarCampos() {
     $(".deshabilitarCampo").attr("disabled", "disabled");
 }
 
-function validaDatos() {
-    let valido = true;
-    campos = $(".required");
-    for (let i = 0; i < campos.length; i++) {
-        if (campos[i].value == "" || campos[i].value == "0") {
-            valido = false;
-            $("#campo" + i).addClass("error");
-        } else {
-            $("#campo" + i).removeClass("error");
+$('#btnAceptar').on('click', function (e) {
+    e.preventDefault();
+    if ($("#btnAceptar").hasClass("eliminar")) {
+        if (confirm("¿Seguro que desea eliminar la persona?") == 1) {
+            $("#formPersona").attr("action", "/Personas/Delete");
+            $("#formPersona").submit();
         }
+    } else {
+        $("#formPersona").attr("action", "/Personas/Save");
+        $("#formPersona").submit();
     }
-    return valido;
-}
-
-function confirmarCambios() {
-    if (validaDatos()) {
-        let frm = new FormData();
-        let id = $("#txtID").val();
-        let nombre = $("#txtNombre").val();
-        let apellido = $("#txtApellido").val();
-        let direccion = $("#txtDireccion").val();
-        let email = $("#txtEmail").val();
-        let tel = $("#txtTelefono").val();
-        let nacimiento = $("#txtNacimiento").val();
-        let legajo = $("#txtLegajo").val();
-        let tipo_per = $("#comboTipo").val();
-        let plan = $("#comboPlanes").val();
-        frm.append("ID", id);
-        frm.append("Nombre", nombre);
-        frm.append("Apellido", apellido);
-        frm.append("Direccion", direccion);
-        frm.append("Email", email);
-        frm.append("Telefono", tel);
-        frm.append("FechaNacimiento", nacimiento);
-        frm.append("Legajo", legajo);
-        frm.append("TipoPersona", tipo_per);
-        frm.append("IDPlan", plan);
-        if ($("#btnAceptar").hasClass("eliminar")) {
-            if (confirm("¿Seguro que desea eliminar la persona?") == 1) {
-                crudPersonas(frm, "Delete");
-            }
-        } else {
-            crudPersonas(frm, "Save");
-        }
-    }
-}
-
-function crudPersonas(frm, action) {
-    $.ajax({
-        type: "POST",
-        url: "../Personas/" + action,
-        data: frm,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            alert(data[0]);
-            if (data[1] == "1") {
-                listar();
-                $("#btnCancelar").click();
-            }
-        }
-    });
-}
+});
 
 function selectPersona(id, tipo) {
     if (tipo == 1) {
-        window.location.href = "Personas/InscripcionesDocente?id=" + id;
+        window.location.href = "/Personas/InscripcionesDocente?nro=" + id;
     } else if (tipo == 2) {
-        window.location.href = "Personas/InscripcionesAlumno?id=" + id;
+        window.location.href = "/Personas/InscripcionesAlumno?nro=" + id;
     }
 }

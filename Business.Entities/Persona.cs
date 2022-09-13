@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -7,75 +8,51 @@ namespace Business.Entities
 {
     public class Persona : BusinessEntity
     {
-        private string _Apellido;
-        private string _Direccion;
-        private string _Email;
-        private DateTime _FechaNacimiento;
-        private int _IDPlan;
-        private int _Legajo;
-        private string _Nombre;
-        private string _Telefono;
-        private int _TipoPersona;
-        private string _NombreUsuario;
+        [Required(ErrorMessage = "Ingrese un apelido")]
+        [MinLength(1, ErrorMessage = "Ingrese un mínimo de 1 caracter")]
+        [MaxLength(30, ErrorMessage = "Máximo 30 caracteres permitidos")]
+        [RegularExpression(@"^[a-zA-Z0-9\u00C0-\u017F\s]+$", ErrorMessage = "Ingrese un apellido válido")]
+        public string Apellido { get; set; }
 
-        public string Apellido
-        {
-            get; set;
-        }
+        [Required(ErrorMessage = "Ingrese un nombre")]
+        [MinLength(1, ErrorMessage = "Ingrese un mínimo de 1 caracter")]
+        [MaxLength(30, ErrorMessage = "Máximo 30 caracteres permitidos")]
+        [RegularExpression(@"^[a-zA-Z0-9\u00C0-\u017F\s]+$", ErrorMessage = "Ingrese un nombre válido")]
+        public string Nombre { get; set; }
 
-        public string Direccion
-        {
-            get; set;
-        }
+        [Required(ErrorMessage = "Ingrese una dirección")]
+        [MinLength(1, ErrorMessage = "Ingrese un mínimo de 1 caracter")]
+        [MaxLength(30, ErrorMessage = "Máximo 30 caracteres permitidos")]
+        [RegularExpression(@"^[a-zA-Z0-9\u00C0-\u017F\s]+$", ErrorMessage = "Ingrese una dirección válida")]
+        public string Direccion { get; set; }
 
-        public string Email
-        {
-            get; set;
-        }
+        [Required(ErrorMessage = "Ingrese un email")]
+        [EmailAddress(ErrorMessage = "Ingrese un formato de email válido")]
+        public string Email { get; set; }
 
-        public DateTime FechaNacimiento
-        {
-            get; set;
-        }
+        [Required(ErrorMessage = "Ingrese un teléfono")]
+        [Phone(ErrorMessage = "Ingrese un teléfono válido")]
+        public string Telefono { get; set; }
 
-        public string NacimientoString
-        {
-            get; set;
-        }
+        [Required(ErrorMessage = "Ingrese una fecha de nacimiento")]
+        [DataType(DataType.Date, ErrorMessage = "Ingrese un formato de fecha válido")]
+        public DateTime FechaNacimiento { get; set; }
 
-        public int IDPlan
-        {
-            get; set;
-        }
+        [Required(ErrorMessage = "Ingrese un número de legajo")]
+        [Range(1, 100000, ErrorMessage = "El legajo debe estar entre 1 y 100.000")]
+        [RegularExpression("^[1-9][0-9]+$", ErrorMessage = "Sólo se permiten números")]
+        public int Legajo { get; set; }
 
-        public string DescPlan
-        {
-            get; set;
-        }
+        [Required(ErrorMessage = "Ingrese un tipo de persona")]
+        public int TipoPersona { get; set; }
 
-        public int TipoPersona
-        {
-            get; set;
-        }
+        [Required(ErrorMessage = "Ingrese un plan")]
+        public int IDPlan { get; set; }
 
-        public string Telefono
-        {
-            get; set;
-        }
+        public string NacimientoString { get; set; }
 
-        public string Nombre
-        {
-            get; set;
-        }
+        public string DescPlan { get; set; }
 
-        public int Legajo
-        {
-            get; set;
-        }
-
-        public string NombreUsuario
-        {
-            get; set;
-        }
+        public string NombreUsuario { get; set; }
     }
 }

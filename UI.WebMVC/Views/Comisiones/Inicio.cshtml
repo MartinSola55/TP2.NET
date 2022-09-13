@@ -1,11 +1,32 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Comisiones";
-    string anioMax = @DateTime.Today.Year.ToString();
 }
+@model Business.Entities.Comision
 
 <link href="~/Content/mis-estilos.css" rel="stylesheet" />
 
+@{ if (ViewBag.Message != null)
+    {
+        if (ViewBag.Error == 1)
+        {
+            @:<div id="NotifContainer" style="background-color: khaki;">
+                @:<h3 id="txtNotification"><i class="bi bi-exclamation-triangle"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+        else if (ViewBag.Error == 2)
+        {
+            @:<div id="NotifContainer" style="background-color: crimson;">
+                @:<h3 id="txtNotification" style="color: white;"><i class="bi bi-exclamation-diamond"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+        else
+        {
+            @:<div id="NotifContainer" style="background-color: cornflowerblue;">
+                @:<h3 id="txtNotification" style="color: white;"><i class="bi bi-info-circle"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+    }
+}
 
 <div class="container-fluid d-flex mb-3">
     <div class="row me-4 col-3">
@@ -17,6 +38,7 @@
     <input type="button" class="btn btn-outline-dark" id="limpia-filtro" value="Limpiar" style="max-height:3rem" />
 </div>
 
+
 <div id="tabla-comisiones">
 
 </div>
@@ -27,37 +49,45 @@
             @:Agregar
         @:</button>
 
-        @:<!-- Modal -->
-        @:<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            @:<div class="modal-dialog modal-dialog-centered">
-                @:<div class="modal-content">
-                    @:<div class="modal-header">
-                        @:<h5 class="modal-title" id="staticBackdropLabel"></h5>
-                        @:<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    @:</div>
-                    @:<div class="modal-body contenedor-modal align-items-center">
-                        @:<label class="mb-3">ID: </label>
-                        @:<input id="txtID" type="text" class="form-control limpiarCampo w-25 mb-3" disabled />
+        using (Html.BeginForm("", "", FormMethod.Post, new { @id = "formComision" }))
+        {
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body contenedor-modal align-items-center">
+                            <label class="mb-3">ID: </label>
+                            @Html.TextBoxFor(model => model.ID, new { @id = "txtID", @readonly = "readonly", @class = "form-control limpiarCampo w-25 mb-3" })
 
-                        @:<label id="campo0" class="mb-3">Nombre: </label>
-                        @:<input id="txtDescripcion" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+                            <label>Nombre: </label>
+                            @Html.TextBoxFor(model => model.Descripcion, new { @id = "txtDescripcion", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })
+                            <span></span>
+                            @Html.ValidationMessageFor(model => model.Descripcion, null, new { @class = "text-danger mb-3" })
 
-                        @:<label id="campo1" class="mb-3">Año especialidad: </label>
-                        @:<input id="txtAnio" type="number" min="1990" max="@Html.Raw(anioMax)" class="form-control limpiarCampo habilitarCampo deshabilitarCampo required mb-3" />
+                            <label>Año especialidad: </label>
+                            @Html.TextBoxFor(model => model.AnioEspecialidad, new { @id = "txtAnio", @type = "number", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })
+                            <span></span>
+                            @Html.ValidationMessageFor(model => model.AnioEspecialidad, null, new { @class = "text-danger mb-3" })
 
-                        @:<label id="campo2" class="mb-2">Plan - Especialidad: </label>
-                        @:<select id="comboPlanes" class="form-select limpiarCampo habilitarCampo deshabilitarCampo required mb-2">
-                        @:</select>
-                    @:</div>
-                    @:<div class="modal-footer">
-                        @:<button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-                        @:<button id="btnAceptar" onclick="confirmarCambios()" type="button" class="btn btn-success">Aceptar</button>
-                    @:</div>
-                @:</div>
-            @:</div>
-        @:</div>
+                            <label class="mb-2">Plan - Especialidad: </label>
+                            @Html.DropDownListFor(model => model.IDPlan, new SelectList(ViewBag.listado, "Value", "Text"), "--Seleccione un plan--", new { @id = "comboPlanes", @class = "form-select limpiarCampo habilitarCampo deshabilitarCampo" })
+                            <span></span>
+                            @Html.ValidationMessageFor(model => model.IDPlan, null, new { @class = "text-danger mb-3" })
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button id="btnAceptar" type="submit" class="btn btn-success">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     }
- }
+}
 
 
 <script type="text/javascript">
@@ -68,5 +98,7 @@
 </script>
 
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 <script src="~/Scripts/Comisiones.js"></script>

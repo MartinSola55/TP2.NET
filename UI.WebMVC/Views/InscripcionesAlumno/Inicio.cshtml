@@ -1,9 +1,32 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Inscripciones";
 }
+@model Business.Entities.AlumnoInscripcion
 
 <link href="~/Content/mis-estilos.css" rel="stylesheet" />
+
+@{ if (ViewBag.Message != null)
+    {
+        if (ViewBag.Error == 1)
+        {
+            @:<div id="NotifContainer" style="background-color: khaki;">
+                @:<h3 id="txtNotification"><i class="bi bi-exclamation-triangle"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+        else if (ViewBag.Error == 2)
+        {
+            @:<div id="NotifContainer" style="background-color: crimson;">
+                @:<h3 id="txtNotification" style="color: white;"><i class="bi bi-exclamation-diamond"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+        else
+        {
+            @:<div id="NotifContainer" style="background-color: cornflowerblue;">
+                @:<h3 id="txtNotification" style="color: white;"><i class="bi bi-info-circle"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+    }
+}
 
 <h1 class="text-center mb-4">Tus datos</h1>
 
@@ -46,39 +69,44 @@
 
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body contenedor-modal">
-                <label class="mb-2">ID: </label>
-                <input id="txtID" type="text" class="form-control limpiarCampo w-25 mb-2" disabled />
+@{
+    using (Html.BeginForm("", "", FormMethod.Post, new { @id = "formInscripcion" }))
+    {
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body contenedor-modal align-items-center">
+                        <label class="mb-3">ID: </label>
+                        @Html.TextBoxFor(model => model.ID, new { @id = "txtID", @readonly = "readonly", @class = "form-control limpiarCampo w-25 mb-3" })
 
-                <label class="mb-2">ID Alumno: </label>
-                <input id="txtIDAlumno" type="text" class="form-control limpiarCampo w-25 mb-2" disabled />
+                        <label class="mb-3">ID Alumno: </label>
+                        @Html.TextBoxFor(model => model.IDAlumno, new { @id = "txtIDAlumno", @readonly = "readonly", @class = "form-control limpiarCampo w-25 mb-3" })
 
-                <label id="lblCondicion" class="mb-2">Condición: </label>
-                <input id="txtCondicion" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo mb-2" />
+                        <label id="lblCondicion" class="mb-2">Condición: </label>
+                        <input id="txtCondicion" type="text" class="form-control limpiarCampo habilitarCampo deshabilitarCampo mb-3" />
 
-                <label id="lblNota" class="mb-2">Nota: </label>
-                <input id="txtNota" type="number" min="1" max="10" class="form-control limpiarCampo habilitarCampo deshabilitarCampo mb-2" />
+                        <label id="lblNota" class="mb-2">Nota: </label>
+                        <input id="txtNota" type="number" min="1" max="10" class="form-control limpiarCampo habilitarCampo deshabilitarCampo mb-3" />
 
-                <label id="lblCurso" class="mb-2">Curso: </label>
-                <select id="comboCursos" class="form-select limpiarCampo habilitarCampo deshabilitarCampo required mb-2">
-                </select>
-
-            </div>
-            <div class="modal-footer">
-                <button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button id="btnAceptar" onclick="confirmarCambios()" type="button" class="btn btn-success">Aceptar</button>
+                        <label id="lblCurso">Curso: </label>
+                        @Html.DropDownListFor(model => model.IDCurso, new SelectList(ViewBag.listado, "Value", "Text"), "--Seleccione un curso--", new { @id = "comboCursos", @class = "form-select limpiarCampo habilitarCampo deshabilitarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.IDCurso, null, new { @class = "text-danger mb-3" })
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button id="btnAceptar" type="submit" class="btn btn-success">Aceptar</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    }
+}
 
 <script type="text/javascript">
     var idPer = getPerID();
@@ -88,4 +116,6 @@
 </script>
 
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Scripts/InscripcionesAlumno.js"></script>

@@ -20,7 +20,7 @@ namespace Data.Database
                 this.OpenConnection();
                 SqlCommand cmdPlanes = new SqlCommand("SELECT * FROM planes p " +
                     "INNER JOIN especialidades e ON p.id_especialidad = e.id_especialidad " +
-                    "ORDER BY p.desc_plan, e.desc_especialidad", sqlConn);
+                    "ORDER BY p.desc_plan DESC, e.desc_especialidad", sqlConn);
                 SqlDataReader drPlanes = cmdPlanes.ExecuteReader();
                 while (drPlanes.Read())
                 {
@@ -90,6 +90,10 @@ namespace Data.Database
             catch (SqlException Ex)
             {
                 Exception exceptionManejada = new Exception("El plan seleccionado no existe", Ex);
+                if (Ex.Number == 547)
+                {
+                    exceptionManejada = new Exception("Existen dependencias del plan que desea eliminar", Ex);
+                }
                 throw exceptionManejada;
             }
             catch (Exception Ex)

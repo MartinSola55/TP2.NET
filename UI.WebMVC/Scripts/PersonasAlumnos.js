@@ -3,10 +3,19 @@
     return results[1] || 0;
 }
 
-listarCursos();
+if ($("#txtNotification").html() !== "") {
+    $("#NotifContainer").show();
+}
+
+setTimeout(function () {
+    $('#NotifContainer').fadeOut(1500)
+}, 4000)
+
+$("#txtTipoUser").val("2");
+
 listarInscripciones();
 
-$.get("../Personas/getOne/?id=" + $.urlParam('id'), function (data) {
+$.get("../Personas/getOne/?id=" + $.urlParam('nro'), function (data) {
     $("#txtNombre").val(data['Nombre']);
     $("#txtApellido").val(data['Apellido']);
     $("#txtDireccion").val(data['Direccion']);
@@ -21,26 +30,8 @@ $.get("../Personas/getOne/?id=" + $.urlParam('id'), function (data) {
     }
 });
 
-function listarCursos() {
-    $.get("../Cursos/getAll", function (data) {
-        let control = $("#comboCursos");
-        let contenido = "";
-        contenido += "<option value='0' disabled selected >--Seleccione una curso--</option>";
-        for (let i = 0; i < data.length; i++) {
-            contenido += "<option value='" + data[i].ID + "'>";
-            contenido += data[i].AnioCalendario;
-            contenido += " - ";
-            contenido += data[i].ComisionDesc;
-            contenido += " - ";
-            contenido += data[i].MateriaDesc;
-            contenido += "</option>";
-        }
-        control.html(contenido);
-    });
-}
-
 function listarInscripciones() {
-    $.get("../Personas/GetInscripciones?id=" + $.urlParam('id') + "&tipo=2", function (data) {
+    $.get("../Personas/GetInscripciones?id=" + $.urlParam('nro') + "&tipo=2", function (data) {
         let contenedor = $('#tarjetasInscripciones');
         let tarjeta = "";
         for (let i = 0; i < data.length; i++) {
@@ -68,8 +59,9 @@ jQuery('#btnAgregar').on('click', function () {
     limpiarCampos();
     habilitarCampos();
     $("#staticBackdropLabel").text("Agregar inscripción");
-    $("#txtIDAlumno").val($.urlParam('id'));
-    $("#comboCursos").val("0");
+    $("#txtIDAlumno").val($.urlParam('nro'));
+    $("#comboCursos").val("");
+    $("#txtID").prop("disabled", "disabled");
 });
 
 function modalEdit(id) {
@@ -78,7 +70,7 @@ function modalEdit(id) {
     habilitarCampos();
     $.get("../Personas/getInscripcion/?id=" + id + "&tipo=2", function (data) {
         $("#txtID").val(data["ID"]);
-        $("#txtIDAlumno").val($.urlParam('id'));
+        $("#txtIDAlumno").val($.urlParam('nro'));
         $("#txtCondicion").val(data["Condicion"]);
         $("#txtNota").val(data["Nota"]);
         $("#comboCursos").val(data["IDCurso"]);
@@ -92,7 +84,7 @@ function modalDelete(id) {
     $("#btnAceptar").addClass("eliminar");
     $.get("../Personas/GetInscripcion/?id=" + id + "&tipo=2", function (data) {
         $("#txtID").val(data["ID"]);
-        $("#txtIDAlumno").val($.urlParam('id'));
+        $("#txtIDAlumno").val($.urlParam('nro'));
         $("#txtCondicion").val(data["Condicion"]);
         $("#txtNota").val(data["Nota"]);
         $("#comboCursos").val(data["IDCurso"]);
@@ -103,10 +95,8 @@ function modalDelete(id) {
 
 function limpiarCampos() {
     $(".limpiarCampo").val("");
-    campos = $(".required");
-    for (let i = 0; i < campos.length; i++) {
-        $("#campo" + i).removeClass("error");
-    }
+    $("#txtID").prop("disabled", "");
+    $("#txtID").prop("readonly", "readonly");
     $("#btnAceptar").removeClass("eliminar");
 }
 
@@ -118,56 +108,15 @@ function deshabilitarCampos() {
     $(".deshabilitarCampo").attr("disabled", "disabled");
 }
 
-function campoRequired() {
-    let valido = true;
-    campos = $(".required");
-    for (let i = 0; i < campos.length; i++) {
-        if (campos[i].value == "" || campos[i].value == "0") {
-            valido = false;
-            $("#campo" + i).addClass("error");
-        } else {
-            $("#campo" + i).removeClass("error");
+$('#btnAceptar').on('click', function (e) {
+    e.preventDefault();
+    if ($("#btnAceptar").hasClass("eliminar")) {
+        if (confirm("¿Seguro que desea eliminar la inscripción?") == 1) {
+            $("#formInscripcion").attr("action", "/Personas/DeleteInsAl");
+            $("#formInscripcion").submit();
         }
+    } else {
+        $("#formInscripcion").attr("action", "/Personas/SaveInsAl");
+        $("#formInscripcion").submit();
     }
-    return valido;
-}
-
-function confirmarCambios() {
-    if (campoRequired()) {
-        let frm = new FormData();
-        let id = $("#txtID").val();
-        let idAlumno = $("#txtIDAlumno").val();
-        let curso = $("#comboCursos").val();
-        let condicion = $("#txtCondicion").val();
-        let nota = $("#txtNota").val();
-        frm.append("ID", id);
-        frm.append("IDAlumno", idAlumno);
-        frm.append("IDCurso", curso);
-        frm.append("Condicion", condicion);
-        frm.append("Nota", nota);
-        if ($("#btnAceptar").hasClass("eliminar")) {
-            if (confirm("¿Seguro que desea eliminar la inscripción?") == 1) {
-                crudInscripcion(frm, "DeleteInsAl");
-            }
-        } else {
-            crudInscripcion(frm, "SaveInsAl");
-        }
-    }
-}
-
-function crudInscripcion(frm, action) {
-    $.ajax({
-        type: "POST",
-        url: "../Personas/" + action,
-        data: frm,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            alert(data[0]);
-            if (data[1] == "1") {
-                listarInscripciones();
-                $("#btnCancelar").click();
-            }
-        }
-    });
-}
+});

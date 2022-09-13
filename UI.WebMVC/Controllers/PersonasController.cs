@@ -15,18 +15,53 @@ namespace UI.WebMVC.Controllers
     {
         private PersonaLogic pl = new PersonaLogic();
         private UsuarioLogic ul = new UsuarioLogic();
+        private PlanLogic planl = new PlanLogic();
+        private CursoLogic cursol = new CursoLogic();
         // GET: Personas
         public ActionResult Inicio()
         {
+            ViewBag.listado = listadoPlanes();
             return View();
+        }
+        [HttpPost]
+        public ActionResult Inicio(Persona persona)
+        {
+            ViewBag.listado = listadoPlanes();
+            if (ModelState.IsValid)
+            {
+                return View(persona);
+            }
+            return RedirectToAction(nameof(Inicio));
         }
         public ActionResult InscripcionesAlumno()
         {
+            ViewBag.listadoCursos = listadoCursos();
             return View();
+        }
+        [HttpPost]
+        public ActionResult InscripcionesAlumno(AlumnoInscripcion inscripcion)
+        {
+            ViewBag.listadoCursos = listadoCursos();
+            if (ModelState.IsValid)
+            {
+                return View(inscripcion);
+            }
+            return RedirectToAction(nameof(Inicio));
         }
         public ActionResult InscripcionesDocente()
         {
+            ViewBag.listadoCursos = listadoCursos();
             return View();
+        }
+        [HttpPost]
+        public ActionResult InscripcionesDocente(DocenteCurso inscripcion)
+        {
+            ViewBag.listadoCursos = listadoCursos();
+            if (ModelState.IsValid)
+            {
+                return View(inscripcion);
+            }            ViewBag.listadoCursos = listadoCursos();
+            return RedirectToAction(nameof(Inicio));
         }
         public JsonResult getAll()
         {
@@ -54,25 +89,23 @@ namespace UI.WebMVC.Controllers
             }
             return Json(persona, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult Delete(int id)
+        public ActionResult Delete(Persona persona)
         {
-            string[] respuesta = { "", "" };
             try
             {
-                pl.Delete(id);
-                respuesta[0] = "La persona se eliminó correctamente";
-                respuesta[1] = "1";
+                pl.Delete(persona.ID);
+                ViewBag.Message = persona.TipoPersona == 1 ? "El docente se eliminó correctamente" : "El alumno se eliminó correctamente";
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listado = listadoPlanes();
+            return View("Inicio");
         }
-        public JsonResult Save(Persona persona)
+        public ActionResult Save(Persona persona)
         {
-            string[] respuesta = { "", "" };
             try
             {
                 if (!pl.EsLegajoRepetido(persona))
@@ -83,32 +116,33 @@ namespace UI.WebMVC.Controllers
                         if (persona.ID == 0)
                         {
                             persona.State = BusinessEntity.States.New;
+                            ViewBag.Message = persona.TipoPersona == 1 ? "El docente se guardó correctamente" : "El alumno se guardó correctamente";
                         }
                         else
                         {
                             persona.State = BusinessEntity.States.Modified;
+                            ViewBag.Message = persona.TipoPersona == 1 ? "El docente se actualizó correctamente" : "El alumno se actualizó correctamente";
                         }
-                        respuesta[0] = "La persona se guardó correctamente";
-                        respuesta[1] = "1";
                         pl.Save(persona);
                     }
                     else
                     {
-                        respuesta[0] = "La persona que desea guardar ya existe";
-                        respuesta[1] = "0";
+                        ViewBag.Message = persona.TipoPersona == 1 ? "El docente que desea guardar ya existe" : "El alumno que desea guardar ya existe";
+                        ViewBag.Error = 1;
                     }
                 } else
                 {
-                    respuesta[0] = "El legajo que desea guardar ya existe";
-                    respuesta[1] = "0";
+                    ViewBag.Message = "El legajo que desea guardar ya existe";
+                    ViewBag.Error = 1;
                 }
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listado = listadoPlanes();
+            return View("Inicio");
         }
         public JsonResult FiltraPersonas(string nombre, string apellido, string legajo)
         {
@@ -172,9 +206,8 @@ namespace UI.WebMVC.Controllers
             }
             return Json(ai, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SaveInsAl(AlumnoInscripcion inscripcion)
+        public ActionResult SaveInsAl(AlumnoInscripcion inscripcion)
         {
-            string[] respuesta = { "", "" };
             try
             {
                 if (!pl.EsInscripcionRepetida(inscripcion))
@@ -182,31 +215,31 @@ namespace UI.WebMVC.Controllers
                     if (inscripcion.ID == 0)
                     {
                         inscripcion.State = BusinessEntity.States.New;
+                        ViewBag.Message = "La inscripción se guardó correctamente";
                     }
                     else
                     {
                         inscripcion.State = BusinessEntity.States.Modified;
+                        ViewBag.Message = "La inscripción se actualizó correctamente";
                     }
-                    respuesta[0] = "La inscripción se guardó correctamente";
-                    respuesta[1] = "1";
                     pl.SaveIns(inscripcion);
                 }
                 else
                 {
-                    respuesta[0] = "La inscripción que desea guardar ya existe";
-                    respuesta[1] = "0";
+                    ViewBag.Message = "La inscripción que desea guardar ya existe";
+                    ViewBag.Error = 1;
                 }
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listadoCursos = listadoCursos();
+            return RedirectToAction("/InscripcionesAlumno", new { nro = inscripcion.IDAlumno });
         }
-        public JsonResult SaveInsDoc(DocenteCurso inscripcion)
+        public ActionResult SaveInsDoc(DocenteCurso inscripcion)
         {
-            string[] respuesta = { "", "" };
             try
             {
                 if (!pl.EsInscripcionRepetida(inscripcion))
@@ -214,83 +247,110 @@ namespace UI.WebMVC.Controllers
                     if (inscripcion.ID == 0)
                     {
                         inscripcion.State = BusinessEntity.States.New;
+                        ViewBag.Message = "La inscripción se guardó correctamente";
                     }
                     else
                     {
                         inscripcion.State = BusinessEntity.States.Modified;
+                        ViewBag.Message = "La inscripción se actualizó correctamente";
                     }
-                    respuesta[0] = "La inscripción se guardó correctamente";
-                    respuesta[1] = "1";
                     pl.SaveIns(inscripcion);
                 }
                 else
                 {
-                    respuesta[0] = "La inscripción que desea guardar ya existe";
-                    respuesta[1] = "0";
+                    ViewBag.Message = "La inscripción que desea guardar ya existe";
+                    ViewBag.Error = 1;
                 }
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listadoCursos = listadoCursos();
+            return RedirectToAction("/InscripcionesDocente", new { nro = inscripcion.IDDocente });
         }
-        public JsonResult DeleteInsAl(int id)
+        public ActionResult DeleteInsAl(AlumnoInscripcion inscripcion)
         {
-            string[] respuesta = { "", "" };
             try
             {
-                pl.DeleteInsAl(id);
-                respuesta[0] = "La inscripción se eliminó correctamente";
-                respuesta[1] = "1";
+                pl.DeleteInsAl(inscripcion.ID);
+                ViewBag.Message = "La inscripción se eliminó correctamente";
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listadoCursos = listadoCursos();
+            return RedirectToAction("/InscripcionesAlumno", new { nro = inscripcion.IDAlumno });
         }
-        public JsonResult DeleteInsDoc(int id)
+        public ActionResult DeleteInsDoc(DocenteCurso inscripcion)
         {
-            string[] respuesta = { "", "" };
             try
             {
-                pl.DeleteInsDoc(id);
-                respuesta[0] = "La inscripción se eliminó correctamente";
-                respuesta[1] = "1";
+                pl.DeleteInsDoc(inscripcion.ID);
+                ViewBag.Message = "La inscripción se eliminó correctamente";
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listadoCursos = listadoCursos();
+            return RedirectToAction("/InscripcionesDocente", new { nro = inscripcion.IDDocente });
         }
-        public JsonResult SaveUser(Usuario usuario)
+        public ActionResult SaveUser(Usuario usuario)
         {
-            string[] respuesta = { "", "" };
             try
             {
                 if (!ul.EsRepetido(usuario.NombreUsuario))
                 {
                     usuario.State = BusinessEntity.States.New;
                     ul.Create(usuario);
-                    respuesta[0] = "El usuario se guardó correctamente";
-                    respuesta[1] = "1";
+                    ViewBag.Message = "El usuario se guardó correctamente";
                 } else
                 {
-                    respuesta[0] = "El usuario que desea guardar ya existe";
-                    respuesta[1] = "0";
+                    ViewBag.Message = "El usuario que desea guardar ya existe";
+                    ViewBag.Error = 1;
                 }
             }
             catch (Exception ex)
             {
-                respuesta[0] = ex.Message;
-                respuesta[1] = "0";
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
             }
-            return Json(respuesta, JsonRequestBehavior.AllowGet);
+            ViewBag.listadoCursos = listadoCursos();
+            string tipoPersona = usuario.TipoPersona == 1 ? "Docente" : "Alumno";
+            return RedirectToAction("/Inscripciones" + tipoPersona, new { nro = usuario.IDPersona});
+        }
+        public IEnumerable<SelectListItem> listadoPlanes()
+        {
+            IEnumerable<SelectListItem> lista = null;
+            try
+            {
+                IEnumerable<Plan> planes = planl.GetAll();
+                lista = planes.Select(p => new SelectListItem { Text = p.Descripcion + " - " + p.DescripcionEsp, Value = p.ID.ToString() });
+            }
+            catch (Exception e)
+            {
+
+            }
+            return lista;
+        }
+        public IEnumerable<SelectListItem> listadoCursos()
+        {
+            IEnumerable<SelectListItem> lista = null;
+            try
+            {
+                IEnumerable<Curso> cursos = cursol.GetAll();
+                lista = cursos.Select(c => new SelectListItem { Text = c.AnioCalendario + " - " + c.ComisionDesc + " - " + c.MateriaDesc, Value = c.ID.ToString() });
+            }
+            catch (Exception e)
+            {
+
+            }
+            return lista;
         }
     }
 }

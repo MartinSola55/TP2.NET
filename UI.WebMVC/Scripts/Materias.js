@@ -1,6 +1,13 @@
 ﻿listar();
-llenarComboPlanes();
 const header = ["Descripción", "Hs. Semanales", "Hs. Totales", "Plan - Especialidad"];
+
+if ($("#txtNotification").html() !== "") {
+    $("#NotifContainer").show();
+}
+
+setTimeout(function () {
+    $('#NotifContainer').fadeOut(1500)
+}, 4000)
 
 function listar() {
     $.get("../Materias/getAll", function (data) {
@@ -101,25 +108,11 @@ function modalDelete(id) {
     frm.append("id", id);
 }
 
-function llenarComboPlanes() {
-    $.get("../Planes/getAll", function (data) {
-        let control = $("#comboPlanes");
-        let contenido = "";
-        contenido += "<option value='0' disabled selected >--Seleccione un plan--</option>";
-        for (let i = 0; i < data.length; i++) {
-            contenido += "<option value='" + data[i].ID + "'>";
-            contenido += data[i].Descripcion;
-            contenido += " - ";
-            contenido += data[i].DescripcionEsp;
-            contenido += "</option>";
-        }
-        control.html(contenido);
-    });
-}
-
 $("#btnAgregar").click(function () {
     limpiarCampos();
     habilitarCampos();
+    $("#comboPlanes").val("");
+    $("#txtID").prop("disabled", "disabled");
     $("#staticBackdropLabel").text("Agregar materia");
 });
 
@@ -129,12 +122,10 @@ jQuery('#limpia-filtro').on('click', function () {
 });
 
 function limpiarCampos() {
+    $("#txtID").prop("disabled", "");
+    $("#txtID").prop("readonly", "readonly");
     $(".limpiarCampo").val("");
     $("#comboPlanes").val(0);
-    campos = $(".required");
-    for (let i = 0; i < campos.length; i++) {
-        $("#campo" + i).removeClass("error");
-    }
     $("#btnAceptar").removeClass("eliminar");
 }
 
@@ -146,56 +137,15 @@ function deshabilitarCampos() {
     $(".deshabilitarCampo").attr("disabled", "disabled");
 }
 
-function validaDatos() {
-    let valido = true;
-    campos = $(".required");
-    for (let i = 0; i < campos.length; i++) {
-        if (campos[i].value == "" || campos[i].value == "0") {
-            valido = false;
-            $("#campo" + i).addClass("error");
-        } else {
-            $("#campo" + i).removeClass("error");
+$('#btnAceptar').on('click', function (e) {
+    e.preventDefault();
+    if ($("#btnAceptar").hasClass("eliminar")) {
+        if (confirm("¿Seguro que desea eliminar la materia?") == 1) {
+            $("#formMateria").attr("action", "/Materias/Delete");
+            $("#formMateria").submit();
         }
+    } else {
+        $("#formMateria").attr("action", "/Materias/Save");
+        $("#formMateria").submit();
     }
-    return valido;
-}
-
-function confirmarCambios() {
-    if (validaDatos()) {
-        let frm = new FormData();
-        let id = $("#txtID").val();
-        let descripcion = $("#txtDescripcion").val();
-        let hss = $("#txtHSS").val();
-        let hst = $("#txtHST").val();
-        let plan = $("#comboPlanes").val();
-        frm.append("ID", id);
-        frm.append("Descripcion", descripcion);
-        frm.append("HSSemanales", hss);
-        frm.append("HSTotales", hst);
-        frm.append("IDPlan", plan);
-        if ($("#btnAceptar").hasClass("eliminar")) {
-            if (confirm("¿Seguro que desea eliminar la materia?") == 1) {
-                crudPlanes(frm, "Delete");
-            }
-        } else {
-            crudPlanes(frm, "Save");
-        }
-    }
-}
-
-function crudPlanes(frm, action) {
-    $.ajax({
-        type: "POST",
-        url: "../Materias/" + action,
-        data: frm,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            alert(data[0]);
-            if (data[1] == "1") {
-                listar();
-                $("#btnCancelar").click();
-            }
-        }
-    });
-}
+});

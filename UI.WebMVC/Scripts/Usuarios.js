@@ -1,6 +1,14 @@
 ﻿listar();
 const header = ["Usuario", "Email", "Habilitado"];
 
+if ($("#txtNotification").html() !== "") {
+    $("#NotifContainer").show();
+}
+
+setTimeout(function () {
+    $('#NotifContainer').fadeOut(1500)
+}, 4000)
+
 function listar() {
     $.get("../Usuarios/getAll", function (data) {
         listadoUsuarios(header, data);
@@ -122,11 +130,9 @@ jQuery('#limpia-filtro').on('click', function () {
 });
 
 function limpiarCampos() {
+    $("#txtID").prop("disabled", "");
+    $("#txtID").prop("readonly", "readonly");
     $(".limpiarCampo").val("");
-    campos = $(".required");
-    for (let i = 0; i < campos.length; i++) {
-        $(".campo" + i).removeClass("error");
-    }
     $("#btnAceptar").removeClass("eliminar");
     $("#txtClave").attr("type", "password");
     $("#txtRepiteClave").attr("type", "password");
@@ -153,60 +159,15 @@ function deshabilitarCampos() {
     $("#btnVerClave").attr("hidden", "hidden");
 }
 
-function validaDatos() {
-    let valido = true;
-    campos = $(".required");
-    for (let i = 0; i < campos.length; i++) {
-        if (campos[i].value == "") {
-            valido = false;
-            $(".campo" + i).addClass("error");
-        } else {
-            $(".campo" + i).removeClass("error");
+$('#btnAceptar').on('click', function (e) {
+    e.preventDefault();
+    if ($("#btnAceptar").hasClass("eliminar")) {
+        if (confirm("¿Seguro que desea eliminar el usuario?") == 1) {
+            $("#formUsuario").attr("action", "/Usuarios/Delete");
+            $("#formUsuario").submit();
         }
-    }
-    if ($("#txtClave").val() != $("#txtRepiteClave").val() || $("#txtClave").val() == "" || $("#txtRepiteClave").val() == "") {
-        valido = false;
-        $("#lblClave").addClass("error");
-        $("#lblRepiteClave").addClass("error");
     } else {
-        $("#lblClave").removeClass("error");
-        $("#lblRepiteClave").removeClass("error");
+        $("#formUsuario").attr("action", "/Usuarios/Save");
+        $("#formUsuario").submit();
     }
-    return valido;
-}
-
-function confirmarCambios() {
-    if (validaDatos()) {
-        let frm = new FormData();
-        let id = $("#txtID").val();
-        let usuario = $("#txtNombreUsuario").val();
-        let clave = $("#txtClave").val();
-        let check = $("#checkHabilitado").is(':checked');
-        frm.append("ID", id);
-        frm.append("NombreUsuario", usuario);
-        frm.append("Clave", clave);
-        frm.append("Habilitado", check);
-        if ($("#btnAceptar").hasClass("eliminar")) {
-            if (confirm("¿Seguro que desea eliminar el usuario?") == 1) {
-                crudUsuarios(frm, "Delete");
-            }
-        } else {
-            crudUsuarios(frm, "Save");
-        }
-    }
-}
-
-function crudUsuarios(frm, action) {
-    $.ajax({
-        type: "POST",
-        url: "../Usuarios/" + action,
-        data: frm,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            listar();
-            alert(data);
-            $("#btnCancelar").click();
-        }
-    });
-}
+});

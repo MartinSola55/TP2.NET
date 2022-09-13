@@ -1,49 +1,84 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Notas";
 }
-
+@model Business.Entities.AlumnoInscripcion
 
 <link href="~/Content/mis-estilos.css" rel="stylesheet" />
+
+@{ if (ViewBag.Message != null)
+    {
+        if (ViewBag.Error == 1)
+        {
+            @:<div id="NotifContainer" style="background-color: khaki;">
+                @:<h3 id="txtNotification"><i class="bi bi-exclamation-triangle"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+        else if (ViewBag.Error == 2)
+        {
+            @:<div id="NotifContainer" style="background-color: crimson;">
+                @:<h3 id="txtNotification" style="color: white;"><i class="bi bi-exclamation-diamond"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+        else
+        {
+            @:<div id="NotifContainer" style="background-color: cornflowerblue;">
+                @:<h3 id="txtNotification" style="color: white;"><i class="bi bi-info-circle"></i>&nbsp;@ViewBag.Message</h3>
+            @:</div>
+        }
+    }
+}
 
 <h1 id="headerNota"></h1>
 
 <div id="tabla-notas">
 
 </div>
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                
-            </div>
-            <div class="modal-body contenedor-modal align-items-center">
-                <input id="txtIDAlumno" type="text" class="limpiarCampo" style="display: none" />
 
-                <label class="mb-3">ID: </label>
-                <input id="txtID" type="text" class="form-control limpiarCampo w-25 mb-3" disabled />
+@{
+    using (Html.BeginForm("SaveCondicion", "Docente", FormMethod.Post, new { @id = "formNotas" }))
+    {
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body contenedor-modal align-items-center">
+                        <label class="mb-3">ID: </label>
+                        @Html.TextBoxFor(model => model.ID, new { @id = "txtID", @readonly = "readonly", @class = "form-control limpiarCampo w-25 mb-3" })
 
-                <label class="mb-3">Alumno: </label>
-                <input id="txtAlumno" type="text" class="form-control limpiarCampo mb-3" disabled />
+                        @Html.TextBoxFor(model => model.IDCurso, new { @id = "txtIDCurso", @style = "display: none" })
+                        @Html.TextBoxFor(model => model.IDMateria, new { @id = "txtIDMateria", @style = "display: none" })
+                        @Html.TextBoxFor(model => model.IDComision, new { @id = "txtIDComision", @style = "display: none" })
 
-                <label id="campo0" class="mb-3">Condición: </label>
-                <input id="txtCondicion" type="text" class="form-control limpiarCampo mb-3" />
+                        <label class="mb-3">Alumno: </label>
+                        <input id="txtAlumno" type="text" class="form-control limpiarCampo mb-3" disabled />
 
-                <label id="campo1" class="mb-3">Nota: </label>
-                <input id="txtNota" type="number" min="1" max="10" class="form-control limpiarCampo mb-3" />
+                        <label>Condición: </label>
+                        @Html.TextBoxFor(model => model.Condicion, new { @id = "txtCondicion", @class = "form-control limpiarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.Condicion, null, new { @class = "text-danger mb-3" })
 
-            </div>
-            <div class="modal-footer">
-                <button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button id="btnAceptar" onclick="confirmarCambios()" type="button" class="btn btn-success">Aceptar</button>
+                        <label>Nota: </label>
+                        @Html.TextBoxFor(model => model.Nota, new { @id = "txtNota", @type = "number", @class = "form-control limpiarCampo" })
+                        <span></span>
+                        @Html.ValidationMessageFor(model => model.Nota, null, new { @class = "text-danger mb-3" })
+
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnCancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button id="btnAceptar" type="submit" class="btn btn-success">Aceptar</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    }
+}
 
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 <script src="~/Scripts/NotasAlumno.js"></script>
