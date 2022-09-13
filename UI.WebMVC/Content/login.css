@@ -7,6 +7,14 @@
     background: linear-gradient(to bottom, rgb(0, 0, 0), rgb(0, 58, 156))
 }
 
+#NotifContainer {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto 0 auto;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
 .formLogin label {
     display: block;
     font-weight: 700;

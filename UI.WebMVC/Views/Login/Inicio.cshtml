@@ -1,7 +1,7 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
+@model Business.Entities.Usuario
 
 <!DOCTYPE html>
 
@@ -15,55 +15,69 @@
     <title>Inicio de sesión - SYSACAD</title>
 </head>
 <body>
-    <section class="gradient-custom" style="min-height: 100vh">
-        <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                        <div class="card-body px-5 pb-5 text-center">
+            <section class="gradient-custom" style="min-height: 100vh">
+                <div class="container py-5 h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                                <div class="card-body px-5 pb-5 text-center">
+                                    @{
+                                        using (Html.BeginForm("Validar", "Login", FormMethod.Post, new { @id = "formLogin", @class = "formLogin mt-md-4 pb-3" }))
+                                        {
+                                            <img src="~/Images/logoUTN.png" class="mb-md-3" height="50" style="filter: invert(0%);" />
+                                            <h3 class="fw-bold mb-3 text-uppercase">Universidad Tecnológica Nacional</h3>
 
-                            <form id="formLogin" class="formLogin mb-md-1 mt-md-4 pb-5">
+                                            <h5 class="text-white-50 mb-3">Por favor, ingrese su usuario y contraseña</h5>
 
-                                <img src="~/Images/logoUTN.png" class="mb-md-3" height="50" style="filter: invert(0%);" />
-                                <h3 class="fw-bold mb-3 text-uppercase">Universidad Tecnológica Nacional</h3>
+                                            <div id="containerUser" class="form-outline form-white mb-3 text-start">
+                                                <label class="form-label">Usuario</label>
+                                                <div class="formInput">
+                                                    @Html.TextBoxFor(model => model.NombreUsuario, new { @id = "txtUser", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.NombreUsuario, null, new { @class = "text-danger mb-4 mt-3", @id = "lblUser" })
+                                            </div>
 
-                                <h5 class="text-white-50 mb-5">Por favor, ingrese su usuario y contraseña</h5>
+                                            <div id="containerPass" class="form-outline form-white mb-3 text-start">
+                                                <label class="form-label" for="typePasswordX">Contraseña</label>
+                                                <div class="formInput">
+                                                    @Html.TextBoxFor(model => model.Clave, new { @id = "txtPass", @type = "password", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Clave, null, new { @class = "text-danger mb-4 mt-3", @id = "lblPass" })
+                                            </div>
 
-                                <div id="containerUser" class="form-outline form-white mb-4 text-start">
-                                    <label class="form-label">Usuario</label>
-                                    <div class="formInput">
-                                        <input type="text" id="txtUser" class="form-control form-control-lg" placeholder="Tu usuario" />
-                                        <i class="validacionEstado bi bi-x-circle-fill"></i>
-                                    </div>
-                                    <p id="emptyUser" style="display: none">Por favor, completa este campo</p>
-                                    <p class="informaError" style="display: none">Debes ingresar un usuario válido</p>
+                                            <input id="btnIngresar" type="submit" class="btn btn-outline-light btn-lg px-5 mt-2" value="Ingresar" />
+
+                                            <div class="p-2 mt-4 errorMessage" id="errorMessage">
+                                                <p class="my-auto text-center"><i class="bi bi-exclamation-triangle-fill"></i><b> Error: </b>Por favor, completa los datos requeridos</p>
+                                            </div>
+                                            if (ViewBag.Message != null)
+                                            {
+                                                if (ViewBag.Error == 1)
+                                                {
+                                                    @:<div id="NotifContainer" style="background-color: khaki;">
+                                                        @:<h3 id="txtNotification" style="color: black;"><i class="bi bi-exclamation-triangle"></i>&nbsp;@ViewBag.Message</h3>
+                                                    @:</div>
+                                                }
+                                                else if (ViewBag.Error == 2)
+                                                {
+                                                    @:<div id="NotifContainer" style="background-color: crimson;">
+                                                        @:<h3 id="txtNotification" style="color: white;"><i class="bi bi-exclamation-diamond"></i>&nbsp;@ViewBag.Message</h3>
+                                                    @:</div>
+                                                }
+                                            }
+                                            
+                                        }
+                                    }
                                 </div>
-
-                                <div id="containerPass" class="form-outline form-white mb-4 text-start">
-                                    <label class="form-label" for="typePasswordX">Contraseña</label>
-                                    <div class="formInput">
-                                        <input type="password" id="txtPass" class="form-control form-control-lg" placeholder="Contraseña" />
-                                        <i class="validacionEstado bi bi-x-circle-fill"></i>
-                                    </div>
-                                    <p id="emptyPass" style="display: none">Por favor, completa este campo</p>
-                                    <p class="informaError" style="display: none">Debes ingresar una contraseña válida</p>
-                                </div>
-
-                                <input id="btnIngresar" type="submit" class="btn btn-outline-light btn-lg px-5" value="Ingresar" />
-
-                                <div class="p-2 mt-4 errorMessage" id="errorMessage">
-                                    <p class="my-auto text-center"><i class="bi bi-exclamation-triangle-fill"></i><b> Error: </b>Por favor, completa los datos requeridos</p>
-                                </div>
-
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
     <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/login.js"></script>
 </body>
 </html>

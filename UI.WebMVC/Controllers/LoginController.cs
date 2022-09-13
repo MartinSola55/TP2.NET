@@ -18,6 +18,15 @@ namespace UI.WebMVC.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Inicio(Usuario user)
+        {
+            if (ModelState.IsValid)
+            {
+                return View(user);
+            }
+            return RedirectToAction(nameof(Inicio));
+        }
         public ActionResult CerrarSesion()
         {
             Session["user"] = null;
@@ -25,33 +34,37 @@ namespace UI.WebMVC.Controllers
             Session["idUsr"] = null;
             return RedirectToAction("Inicio", "Home");
         }
-        public bool Validar(string user, string pass)
+        public ActionResult Validar(Usuario user)
         {
             bool respuesta = false;
             try
             {
                 //Cifrar contraseña
                 SHA256Managed sha = new SHA256Managed();
-                byte[] passNoCifrada = Encoding.Default.GetBytes(pass);
+                byte[] passNoCifrada = Encoding.Default.GetBytes(user.Clave);
                 byte[] bytesCifrados = sha.ComputeHash(passNoCifrada);
                 string passCifrada = BitConverter.ToString(bytesCifrados).Replace("-", string.Empty);
 
-                respuesta = ul.ValidaLogin(user, pass);
-                int tipoUsr = ul.GetTipoUsuario(user, pass);
-                int idPer = ul.GetIDPersona(user, pass);
+                respuesta = ul.ValidaLogin(user.NombreUsuario, user.Clave);
+                int tipoUsr = ul.GetTipoUsuario(user.NombreUsuario, user.Clave);
+                int idPer = ul.GetIDPersona(user.NombreUsuario, user.Clave);
 
                 if (respuesta == true)
                 {
                     Session["user"] = user;
                     Session["tipoUsr"] = tipoUsr;
                     Session["idPer"] = idPer;
-                    return respuesta;
+                    return RedirectToAction("Inicio", "Home");
                 }
-                return respuesta;
+                ViewBag.Error = 1;
+                ViewBag.Message = "Usuario y/o contraseña incorrectos";
+                return View("Inicio");
             }
             catch (Exception ex)
             {
-                return respuesta;
+                ViewBag.Message = ex.Message;
+                ViewBag.Error = 2;
+                return View("Inicio");
             }
         }
     }
