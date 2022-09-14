@@ -56,6 +56,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AcademiaDataSetUsuarios.xsd</DependentUpon>
     </Compile>
+    <Compile Include="LoginInfo.cs" />
     <Compile Include="MateriaDesktop.cs">
       <SubType>Form</SubType>
     </Compile>

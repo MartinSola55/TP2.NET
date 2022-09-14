@@ -40,6 +40,17 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
+        public string GetNombreApellido(string nombre, string clave)
+        {
+            try
+            {
+                return UsuarioData.GetNombreApellido(nombre, clave);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
         public int GetIDPersona(string nombre, string clave)
         {
             try

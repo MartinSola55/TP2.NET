@@ -30,6 +30,9 @@ namespace UI.Desktop
                 UsuarioLogic ul = new UsuarioLogic();
                 if (ul.ValidaLogin(this.txtUsuario.Text, this.txtPass.Text))
                 {
+                    LoginInfo.IDPersona = ul.GetIDPersona(this.txtUsuario.Text, this.txtPass.Text);
+                    LoginInfo.TipoPersona = ul.GetTipoUsuario(this.txtUsuario.Text, this.txtPass.Text);
+                    LoginInfo.NombreApellido = ul.GetNombreApellido(this.txtUsuario.Text, this.txtPass.Text);
                     return true;
                 }
             } catch (Exception exceptionManejada)

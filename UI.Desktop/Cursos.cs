@@ -31,6 +31,19 @@ namespace UI.Desktop
             }
         }
 
+        private void Comisiones_Load(object sender, EventArgs e)
+        {
+            if (LoginInfo.TipoPersona != 3)
+            {
+                this.tsCursos.Visible = false;
+            }
+            else
+            {
+                this.tsCursos.Visible = true;
+            }
+            this.Listar();
+        }
+
         private void Cursos_Load(object sender, EventArgs e)
         {
             this.Listar();

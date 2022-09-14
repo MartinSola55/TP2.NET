@@ -106,6 +106,40 @@ namespace Data.Database
             }
             return TipoUsr;
         }
+        public string GetNombreApellido(string nombre, string clave)
+        {
+            string nombreApellido = "";
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdUsuario = new SqlCommand(
+                    "SELECT * FROM usuarios u " +
+                    "INNER JOIN personas p ON u.id_persona = p.id_persona " +
+                    "WHERE u.nombre_usuario = @nombre_usario AND u.clave = @clave", sqlConn);
+                cmdUsuario.Parameters.Add("@nombre_usario", SqlDbType.VarChar, 50).Value = nombre;
+                cmdUsuario.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = clave;
+                SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
+                if (drUsuario.Read())
+                {
+                    nombreApellido = (string)drUsuario["apellido"];
+                    nombreApellido += ", ";
+                    nombreApellido += (string)drUsuario["nombre"];
+                }
+                drUsuario.Close();
+            } catch (SqlException Ex)
+            {
+                Exception exceptionManejada = new Exception("El usuario seleccionado no existe", Ex);
+                throw exceptionManejada;
+            } catch (Exception Ex)
+            {
+                Exception exceptionManejada = new Exception("Hubo un error al recuperar los datos del usuario", Ex);
+                throw exceptionManejada;
+            } finally
+            {
+                this.CloseConnection();
+            }
+            return nombreApellido;
+        }
         public int GetIDPersona(string nombre, string clave)
         {
             int idPer = 0;

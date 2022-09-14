@@ -32,6 +32,19 @@ namespace UI.Desktop
             }
         }
 
+        private void Comisiones_Load(object sender, EventArgs e)
+        {
+            if (LoginInfo.TipoPersona != 3)
+            {
+                this.tsMaterias.Visible = false;
+            }
+            else
+            {
+                this.tsMaterias.Visible = true;
+            }
+            this.Listar();
+        }
+
         private void Materias_Load(object sender, EventArgs e)
         {
             this.Listar();

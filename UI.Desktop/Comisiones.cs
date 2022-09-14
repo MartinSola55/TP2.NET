@@ -34,6 +34,13 @@ namespace UI.Desktop
 
         private void Comisiones_Load(object sender, EventArgs e)
         {
+            if (LoginInfo.TipoPersona != 3)
+            {
+                this.tsComisiones.Visible = false;
+            } else
+            {
+                this.tsComisiones.Visible = true;
+            }
             this.Listar();
         }
 

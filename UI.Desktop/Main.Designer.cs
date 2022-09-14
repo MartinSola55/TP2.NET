@@ -30,247 +30,44 @@ namespace UI.Desktop
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblCursos = new System.Windows.Forms.Label();
-            this.lblEspecialidades = new System.Windows.Forms.Label();
-            this.lblUsuarios = new System.Windows.Forms.Label();
-            this.lblComisiones = new System.Windows.Forms.Label();
-            this.btnUsuarios = new System.Windows.Forms.Button();
-            this.btnComisiones = new System.Windows.Forms.Button();
-            this.btnCursos = new System.Windows.Forms.Button();
-            this.btnEspecialidades = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.lblPlanes = new System.Windows.Forms.Label();
-            this.btnPlanes = new System.Windows.Forms.Button();
             this.mnsPrincipal = new System.Windows.Forms.MenuStrip();
             this.mnuArchivo = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSalir = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblMaterias = new System.Windows.Forms.Label();
-            this.btnMaterias = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.mnuComisiones = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVerComisiones = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCursos = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVerCursos = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEspecialidades = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVerEspecialidades = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMaterias = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVerMaterias = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPlanes = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVerPlanes = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVerUsuarios = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnLogOut = new System.Windows.Forms.Button();
+            this.lblBienvenido = new System.Windows.Forms.Label();
             this.mnsPrincipal.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.Controls.Add(this.lblCursos, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblEspecialidades, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblUsuarios, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblComisiones, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnUsuarios, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnComisiones, 4, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnCursos, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnEspecialidades, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnSalir, 4, 3);
-            this.tableLayoutPanel1.Controls.Add(this.lblPlanes, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnPlanes, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lblMaterias, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnMaterias, 4, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 28);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(732, 425);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // lblCursos
-            // 
-            this.lblCursos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCursos.AutoSize = true;
-            this.lblCursos.ForeColor = System.Drawing.Color.White;
-            this.lblCursos.Location = new System.Drawing.Point(0, 48);
-            this.lblCursos.Margin = new System.Windows.Forms.Padding(0);
-            this.lblCursos.Name = "lblCursos";
-            this.lblCursos.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.lblCursos.Size = new System.Drawing.Size(109, 30);
-            this.lblCursos.TabIndex = 0;
-            this.lblCursos.Text = "Cursos:";
-            this.lblCursos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblEspecialidades
-            // 
-            this.lblEspecialidades.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEspecialidades.AutoSize = true;
-            this.lblEspecialidades.ForeColor = System.Drawing.Color.White;
-            this.lblEspecialidades.Location = new System.Drawing.Point(478, 48);
-            this.lblEspecialidades.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblEspecialidades.Name = "lblEspecialidades";
-            this.lblEspecialidades.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.lblEspecialidades.Size = new System.Drawing.Size(138, 30);
-            this.lblEspecialidades.TabIndex = 1;
-            this.lblEspecialidades.Text = "Especialidades:";
-            this.lblEspecialidades.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblUsuarios
-            // 
-            this.lblUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblUsuarios.AutoSize = true;
-            this.lblUsuarios.ForeColor = System.Drawing.Color.White;
-            this.lblUsuarios.Location = new System.Drawing.Point(4, 175);
-            this.lblUsuarios.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblUsuarios.Name = "lblUsuarios";
-            this.lblUsuarios.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.lblUsuarios.Size = new System.Drawing.Size(101, 30);
-            this.lblUsuarios.TabIndex = 2;
-            this.lblUsuarios.Text = "Usuarios:";
-            this.lblUsuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblComisiones
-            // 
-            this.lblComisiones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblComisiones.AutoSize = true;
-            this.lblComisiones.ForeColor = System.Drawing.Color.White;
-            this.lblComisiones.Location = new System.Drawing.Point(478, 175);
-            this.lblComisiones.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblComisiones.Name = "lblComisiones";
-            this.lblComisiones.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.lblComisiones.Size = new System.Drawing.Size(138, 30);
-            this.lblComisiones.TabIndex = 3;
-            this.lblComisiones.Text = "Comisiones:";
-            this.lblComisiones.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnUsuarios
-            // 
-            this.btnUsuarios.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            this.btnUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUsuarios.ForeColor = System.Drawing.Color.White;
-            this.btnUsuarios.Location = new System.Drawing.Point(113, 165);
-            this.btnUsuarios.Margin = new System.Windows.Forms.Padding(4);
-            this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(101, 50);
-            this.btnUsuarios.TabIndex = 2;
-            this.btnUsuarios.Text = "Ver";
-            this.btnUsuarios.UseVisualStyleBackColor = false;
-            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
-            this.btnUsuarios.MouseEnter += new System.EventHandler(this.btnUsuarios_MouseEnter);
-            this.btnUsuarios.MouseLeave += new System.EventHandler(this.btnUsuarios_MouseLeave);
-            // 
-            // btnComisiones
-            // 
-            this.btnComisiones.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnComisiones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            this.btnComisiones.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnComisiones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnComisiones.ForeColor = System.Drawing.Color.White;
-            this.btnComisiones.Location = new System.Drawing.Point(624, 165);
-            this.btnComisiones.Margin = new System.Windows.Forms.Padding(4);
-            this.btnComisiones.Name = "btnComisiones";
-            this.btnComisiones.Size = new System.Drawing.Size(104, 50);
-            this.btnComisiones.TabIndex = 5;
-            this.btnComisiones.Text = "Ver";
-            this.btnComisiones.UseVisualStyleBackColor = false;
-            this.btnComisiones.Click += new System.EventHandler(this.btnComisiones_Click);
-            this.btnComisiones.MouseEnter += new System.EventHandler(this.btnComisiones_MouseEnter);
-            this.btnComisiones.MouseLeave += new System.EventHandler(this.btnComisiones_MouseLeave);
-            // 
-            // btnCursos
-            // 
-            this.btnCursos.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnCursos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            this.btnCursos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCursos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCursos.ForeColor = System.Drawing.Color.White;
-            this.btnCursos.Location = new System.Drawing.Point(113, 38);
-            this.btnCursos.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCursos.Name = "btnCursos";
-            this.btnCursos.Size = new System.Drawing.Size(101, 50);
-            this.btnCursos.TabIndex = 1;
-            this.btnCursos.Text = "Ver";
-            this.btnCursos.UseVisualStyleBackColor = false;
-            this.btnCursos.Click += new System.EventHandler(this.btnCursos_Click);
-            this.btnCursos.MouseEnter += new System.EventHandler(this.btnCursos_MouseEnter);
-            this.btnCursos.MouseLeave += new System.EventHandler(this.btnCursos_MouseLeave);
-            // 
-            // btnEspecialidades
-            // 
-            this.btnEspecialidades.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnEspecialidades.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            this.btnEspecialidades.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEspecialidades.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEspecialidades.ForeColor = System.Drawing.Color.White;
-            this.btnEspecialidades.Location = new System.Drawing.Point(624, 38);
-            this.btnEspecialidades.Margin = new System.Windows.Forms.Padding(4);
-            this.btnEspecialidades.Name = "btnEspecialidades";
-            this.btnEspecialidades.Size = new System.Drawing.Size(104, 50);
-            this.btnEspecialidades.TabIndex = 4;
-            this.btnEspecialidades.Text = "Ver";
-            this.btnEspecialidades.UseVisualStyleBackColor = false;
-            this.btnEspecialidades.Click += new System.EventHandler(this.btnEspecialidades_Click);
-            this.btnEspecialidades.MouseEnter += new System.EventHandler(this.btnEspecialidades_MouseEnter);
-            this.btnEspecialidades.MouseLeave += new System.EventHandler(this.btnEspecialidades_MouseLeave);
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSalir.ForeColor = System.Drawing.Color.Red;
-            this.btnSalir.Location = new System.Drawing.Point(629, 384);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(100, 38);
-            this.btnSalir.TabIndex = 6;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = false;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            this.btnSalir.MouseEnter += new System.EventHandler(this.btnSalir_MouseEnter);
-            this.btnSalir.MouseLeave += new System.EventHandler(this.btnSalir_MouseLeave);
-            // 
-            // lblPlanes
-            // 
-            this.lblPlanes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPlanes.AutoSize = true;
-            this.lblPlanes.ForeColor = System.Drawing.Color.White;
-            this.lblPlanes.Location = new System.Drawing.Point(4, 302);
-            this.lblPlanes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPlanes.Name = "lblPlanes";
-            this.lblPlanes.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.lblPlanes.Size = new System.Drawing.Size(101, 30);
-            this.lblPlanes.TabIndex = 5;
-            this.lblPlanes.Text = "Planes:";
-            this.lblPlanes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnPlanes
-            // 
-            this.btnPlanes.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnPlanes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            this.btnPlanes.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPlanes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlanes.ForeColor = System.Drawing.Color.White;
-            this.btnPlanes.Location = new System.Drawing.Point(113, 292);
-            this.btnPlanes.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPlanes.Name = "btnPlanes";
-            this.btnPlanes.Size = new System.Drawing.Size(101, 50);
-            this.btnPlanes.TabIndex = 3;
-            this.btnPlanes.Text = "Ver";
-            this.btnPlanes.UseVisualStyleBackColor = false;
-            this.btnPlanes.Click += new System.EventHandler(this.btnPlanes_Click);
-            this.btnPlanes.MouseEnter += new System.EventHandler(this.btnPlanes_MouseEnter);
-            this.btnPlanes.MouseLeave += new System.EventHandler(this.btnPlanes_MouseLeave);
             // 
             // mnsPrincipal
             // 
             this.mnsPrincipal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.mnsPrincipal.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnsPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuArchivo});
+            this.mnuArchivo,
+            this.mnuComisiones,
+            this.mnuCursos,
+            this.mnuEspecialidades,
+            this.mnuMaterias,
+            this.mnuPlanes,
+            this.mnuUsuarios});
             this.mnsPrincipal.Location = new System.Drawing.Point(0, 0);
             this.mnsPrincipal.Name = "mnsPrincipal";
-            this.mnsPrincipal.Size = new System.Drawing.Size(732, 28);
+            this.mnsPrincipal.Size = new System.Drawing.Size(632, 28);
             this.mnsPrincipal.TabIndex = 1;
             this.mnsPrincipal.Text = "menuStrip1";
             // 
@@ -284,7 +81,6 @@ namespace UI.Desktop
             this.mnuArchivo.Name = "mnuArchivo";
             this.mnuArchivo.Size = new System.Drawing.Size(73, 24);
             this.mnuArchivo.Text = "Archivo";
-            this.mnuArchivo.CheckStateChanged += new System.EventHandler(this.mnuArchivo_CheckStateChanged);
             // 
             // mnuSalir
             // 
@@ -292,84 +88,232 @@ namespace UI.Desktop
             this.mnuSalir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.mnuSalir.ForeColor = System.Drawing.Color.White;
             this.mnuSalir.Name = "mnuSalir";
-            this.mnuSalir.Size = new System.Drawing.Size(121, 26);
+            this.mnuSalir.Size = new System.Drawing.Size(224, 26);
             this.mnuSalir.Text = "Salir";
             this.mnuSalir.Click += new System.EventHandler(this.mnuSalir_Click);
             // 
-            // lblMaterias
+            // mnuComisiones
             // 
-            this.lblMaterias.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblMaterias.AutoSize = true;
-            this.lblMaterias.ForeColor = System.Drawing.Color.White;
-            this.lblMaterias.Location = new System.Drawing.Point(477, 305);
-            this.lblMaterias.Name = "lblMaterias";
-            this.lblMaterias.Size = new System.Drawing.Size(86, 24);
-            this.lblMaterias.TabIndex = 7;
-            this.lblMaterias.Text = "Materias:";
+            this.mnuComisiones.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.mnuComisiones.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuVerComisiones});
+            this.mnuComisiones.ForeColor = System.Drawing.Color.White;
+            this.mnuComisiones.Name = "mnuComisiones";
+            this.mnuComisiones.Size = new System.Drawing.Size(99, 24);
+            this.mnuComisiones.Text = "Comisiones";
             // 
-            // btnMaterias
+            // mnuVerComisiones
             // 
-            this.btnMaterias.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnMaterias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            this.btnMaterias.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMaterias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaterias.ForeColor = System.Drawing.Color.White;
-            this.btnMaterias.Location = new System.Drawing.Point(624, 292);
-            this.btnMaterias.Margin = new System.Windows.Forms.Padding(4);
-            this.btnMaterias.Name = "btnMaterias";
-            this.btnMaterias.Size = new System.Drawing.Size(104, 50);
-            this.btnMaterias.TabIndex = 8;
-            this.btnMaterias.Text = "Ver";
-            this.btnMaterias.UseVisualStyleBackColor = false;
-            this.btnMaterias.Click += new System.EventHandler(this.btnMaterias_Click);
-            this.btnMaterias.MouseEnter += new System.EventHandler(this.btnMaterias_MouseEnter);
-            this.btnMaterias.MouseLeave += new System.EventHandler(this.btnMaterias_MouseLeave);
+            this.mnuVerComisiones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.mnuVerComisiones.ForeColor = System.Drawing.Color.White;
+            this.mnuVerComisiones.Name = "mnuVerComisiones";
+            this.mnuVerComisiones.Size = new System.Drawing.Size(113, 26);
+            this.mnuVerComisiones.Text = "Ver";
+            this.mnuVerComisiones.Click += new System.EventHandler(this.mnuVerComisiones_Click);
+            // 
+            // mnuCursos
+            // 
+            this.mnuCursos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuVerCursos});
+            this.mnuCursos.ForeColor = System.Drawing.Color.White;
+            this.mnuCursos.Name = "mnuCursos";
+            this.mnuCursos.Size = new System.Drawing.Size(66, 24);
+            this.mnuCursos.Text = "Cursos";
+            // 
+            // mnuVerCursos
+            // 
+            this.mnuVerCursos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.mnuVerCursos.ForeColor = System.Drawing.Color.White;
+            this.mnuVerCursos.Name = "mnuVerCursos";
+            this.mnuVerCursos.Size = new System.Drawing.Size(113, 26);
+            this.mnuVerCursos.Text = "Ver";
+            this.mnuVerCursos.Click += new System.EventHandler(this.mnuVerCursos_Click);
+            // 
+            // mnuEspecialidades
+            // 
+            this.mnuEspecialidades.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuVerEspecialidades});
+            this.mnuEspecialidades.ForeColor = System.Drawing.Color.White;
+            this.mnuEspecialidades.Name = "mnuEspecialidades";
+            this.mnuEspecialidades.Size = new System.Drawing.Size(121, 24);
+            this.mnuEspecialidades.Text = "Especialidades";
+            // 
+            // mnuVerEspecialidades
+            // 
+            this.mnuVerEspecialidades.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.mnuVerEspecialidades.ForeColor = System.Drawing.Color.White;
+            this.mnuVerEspecialidades.Name = "mnuVerEspecialidades";
+            this.mnuVerEspecialidades.Size = new System.Drawing.Size(113, 26);
+            this.mnuVerEspecialidades.Text = "Ver";
+            this.mnuVerEspecialidades.Click += new System.EventHandler(this.mnuVerEspecialidades_Click);
+            // 
+            // mnuMaterias
+            // 
+            this.mnuMaterias.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuVerMaterias});
+            this.mnuMaterias.ForeColor = System.Drawing.Color.White;
+            this.mnuMaterias.Name = "mnuMaterias";
+            this.mnuMaterias.Size = new System.Drawing.Size(80, 24);
+            this.mnuMaterias.Text = "Materias";
+            // 
+            // mnuVerMaterias
+            // 
+            this.mnuVerMaterias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.mnuVerMaterias.ForeColor = System.Drawing.Color.White;
+            this.mnuVerMaterias.Name = "mnuVerMaterias";
+            this.mnuVerMaterias.Size = new System.Drawing.Size(224, 26);
+            this.mnuVerMaterias.Text = "Ver";
+            this.mnuVerMaterias.Click += new System.EventHandler(this.mnuVerMaterias_Click);
+            // 
+            // mnuPlanes
+            // 
+            this.mnuPlanes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuVerPlanes});
+            this.mnuPlanes.ForeColor = System.Drawing.Color.White;
+            this.mnuPlanes.Name = "mnuPlanes";
+            this.mnuPlanes.Size = new System.Drawing.Size(65, 24);
+            this.mnuPlanes.Text = "Planes";
+            // 
+            // mnuVerPlanes
+            // 
+            this.mnuVerPlanes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.mnuVerPlanes.ForeColor = System.Drawing.Color.White;
+            this.mnuVerPlanes.Name = "mnuVerPlanes";
+            this.mnuVerPlanes.Size = new System.Drawing.Size(224, 26);
+            this.mnuVerPlanes.Text = "Ver";
+            this.mnuVerPlanes.Click += new System.EventHandler(this.mnuVerPlanes_Click);
+            // 
+            // mnuUsuarios
+            // 
+            this.mnuUsuarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuVerUsuarios});
+            this.mnuUsuarios.ForeColor = System.Drawing.Color.White;
+            this.mnuUsuarios.Name = "mnuUsuarios";
+            this.mnuUsuarios.Size = new System.Drawing.Size(79, 24);
+            this.mnuUsuarios.Text = "Usuarios";
+            // 
+            // mnuVerUsuarios
+            // 
+            this.mnuVerUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.mnuVerUsuarios.ForeColor = System.Drawing.Color.White;
+            this.mnuVerUsuarios.Name = "mnuVerUsuarios";
+            this.mnuVerUsuarios.Size = new System.Drawing.Size(224, 26);
+            this.mnuVerUsuarios.Text = "Ver";
+            this.mnuVerUsuarios.Click += new System.EventHandler(this.mnuVerUsuarios_Click);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.Controls.Add(this.btnSalir, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnLogOut, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblBienvenido, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 28);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(632, 325);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalir.ForeColor = System.Drawing.Color.Red;
+            this.btnSalir.Location = new System.Drawing.Point(492, 263);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(130, 52);
+            this.btnSalir.TabIndex = 6;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = false;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            this.btnSalir.MouseEnter += new System.EventHandler(this.btnSalir_MouseEnter);
+            this.btnSalir.MouseLeave += new System.EventHandler(this.btnSalir_MouseLeave);
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.btnLogOut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogOut.ForeColor = System.Drawing.Color.FloralWhite;
+            this.btnLogOut.Location = new System.Drawing.Point(10, 263);
+            this.btnLogOut.Margin = new System.Windows.Forms.Padding(10, 3, 3, 10);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(129, 52);
+            this.btnLogOut.TabIndex = 8;
+            this.btnLogOut.Text = "Cerrar sesión";
+            this.btnLogOut.UseVisualStyleBackColor = false;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
+            this.btnLogOut.MouseEnter += new System.EventHandler(this.btnLogOut_MouseEnter);
+            this.btnLogOut.MouseLeave += new System.EventHandler(this.btnLogOut_MouseLeave);
+            // 
+            // lblBienvenido
+            // 
+            this.lblBienvenido.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblBienvenido.AutoSize = true;
+            this.lblBienvenido.Location = new System.Drawing.Point(232, 60);
+            this.lblBienvenido.Margin = new System.Windows.Forms.Padding(3, 60, 3, 0);
+            this.lblBienvenido.Name = "lblBienvenido";
+            this.lblBienvenido.Size = new System.Drawing.Size(166, 24);
+            this.lblBienvenido.TabIndex = 9;
+            this.lblBienvenido.Text = "Debes iniciar sesión";
+            this.lblBienvenido.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(732, 453);
+            this.ClientSize = new System.Drawing.Size(632, 353);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.mnsPrincipal);
             this.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
             this.ForeColor = System.Drawing.Color.White;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(750, 500);
+            this.MinimumSize = new System.Drawing.Size(650, 400);
             this.Name = "Main";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "SYSACAD";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.Main_Shown);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.mnsPrincipal.ResumeLayout(false);
             this.mnsPrincipal.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label lblCursos;
-        private System.Windows.Forms.Label lblEspecialidades;
-        private System.Windows.Forms.Label lblUsuarios;
-        private System.Windows.Forms.Label lblComisiones;
-        private System.Windows.Forms.Button btnUsuarios;
-        private System.Windows.Forms.Button btnComisiones;
-        private System.Windows.Forms.Button btnCursos;
-        private System.Windows.Forms.Button btnEspecialidades;
-        private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.MenuStrip mnsPrincipal;
         private System.Windows.Forms.ToolStripMenuItem mnuArchivo;
         private System.Windows.Forms.ToolStripMenuItem mnuSalir;
-        private System.Windows.Forms.Label lblPlanes;
-        private System.Windows.Forms.Button btnPlanes;
-        private System.Windows.Forms.Label lblMaterias;
-        private System.Windows.Forms.Button btnMaterias;
+        private System.Windows.Forms.ToolStripMenuItem mnuComisiones;
+        private System.Windows.Forms.ToolStripMenuItem mnuVerComisiones;
+        private System.Windows.Forms.ToolStripMenuItem mnuCursos;
+        private System.Windows.Forms.ToolStripMenuItem mnuVerCursos;
+        private System.Windows.Forms.ToolStripMenuItem mnuEspecialidades;
+        private System.Windows.Forms.ToolStripMenuItem mnuVerEspecialidades;
+        private System.Windows.Forms.ToolStripMenuItem mnuMaterias;
+        private System.Windows.Forms.ToolStripMenuItem mnuVerMaterias;
+        private System.Windows.Forms.ToolStripMenuItem mnuPlanes;
+        private System.Windows.Forms.ToolStripMenuItem mnuVerPlanes;
+        private System.Windows.Forms.ToolStripMenuItem mnuUsuarios;
+        private System.Windows.Forms.ToolStripMenuItem mnuVerUsuarios;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnLogOut;
+        private System.Windows.Forms.Label lblBienvenido;
     }
 }
