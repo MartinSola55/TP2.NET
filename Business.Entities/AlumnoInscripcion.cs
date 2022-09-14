@@ -31,5 +31,9 @@ namespace Business.Entities
         public string NombreApellido { get; set; }
         
         public Usuario Usuario { get; set; }
+
+        public string DescripcionMateria { get; set; }
+
+        public string DescripcionPlan { get; set; }
     }
 }

@@ -240,6 +240,7 @@
     <Content Include="Views\Docente\Inicio.cshtml" />
     <Content Include="Views\Docente\Notas.cshtml" />
     <Content Include="Views\Cursos\Report.cshtml" />
+    <Content Include="Views\InscripcionesAlumno\Report.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

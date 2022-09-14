@@ -55,9 +55,13 @@
     <label class="mb-2">Plan: </label>
     <input id="txtPlan" type="text" class="form-control mb-2" disabled />
 
-    <button id="btnAgregar" type="button" class="btn btn-success px-4 mt-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Inscribirse
-    </button>
+    <div class="d-flex justify-content-between" style="grid-column: 1 / 5; ">
+        <button id="btnAgregar" type="button" class="btn btn-success px-4 mt-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Inscribirse
+        </button>
+
+        <input type="button" class="btn btn-success px-4 mt-4" onclick="location.href='/InscripcionesAlumno/Print';" value="Imprimir constancia" />
+    </div>
 
 </div>
 

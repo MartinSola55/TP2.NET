@@ -20,6 +20,7 @@ namespace Data.Database
                     "INNER JOIN materias m ON c.id_materia = m.id_materia " +
                     "INNER JOIN comisiones com ON c.id_comision = com.id_comision " +
                     "INNER JOIN planes p ON m.id_plan = p.id_plan " +
+                    "INNER JOIN personas per ON ai.id_alumno = per.id_persona " +
                     "WHERE id_alumno = @id " +
                     "ORDER BY anio_calendario DESC", sqlConn);
                 cmdInscripciones.Parameters.Add("@id", SqlDbType.Int).Value = id;
@@ -38,8 +39,13 @@ namespace Data.Database
                     ins.DescripcionCurso += (string)drInscripciones["desc_materia"];
                     ins.DescripcionCurso += " - ";
                     ins.DescripcionCurso += (string)drInscripciones["desc_plan"];
+                    ins.DescripcionMateria = (string)drInscripciones["desc_materia"];
+                    ins.DescripcionPlan = (string)drInscripciones["desc_plan"];
                     ins.Nota = drInscripciones["nota"] as int?;
                     ins.Condicion = (string)drInscripciones["condicion"];
+                    ins.NombreApellido = (string)drInscripciones["apellido"];
+                    ins.NombreApellido += ", ";
+                    ins.NombreApellido += (string)drInscripciones["nombre"];
                     inscripciones.Add(ins);
                 }
                 drInscripciones.Close();

@@ -1,5 +1,6 @@
 ﻿using Business.Entities;
 using Business.Logic;
+using Rotativa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +10,20 @@ using UI.WebMVC.Filter;
 
 namespace UI.WebMVC.Controllers
 {
-    [Seguridad]
-    [Alumno]
     public class InscripcionesAlumnoController : Controller
     {
         private CursoLogic cursol = new CursoLogic();
         private PersonaLogic pl = new PersonaLogic();
         // GET: InscripcionesAlumno
+        [Seguridad]
+        [Alumno]
         public ActionResult Inicio()
         {
             ViewBag.listado = listadoCursos();
             return View();
         }
+        [Seguridad]
+        [Alumno]
         [HttpPost]
         public ActionResult Inicio(AlumnoInscripcion inscripcion)
         {
@@ -31,6 +34,8 @@ namespace UI.WebMVC.Controllers
             }
             return RedirectToAction(nameof(Inicio));
         }
+        [Seguridad]
+        [Alumno]
         public JsonResult getOne(int id)
         {
             Persona persona = new Persona();
@@ -44,6 +49,8 @@ namespace UI.WebMVC.Controllers
             }
             return Json(persona, JsonRequestBehavior.AllowGet);
         }
+        [Seguridad]
+        [Alumno]
         public JsonResult GetInscripciones(int id)
         {
             List<AlumnoInscripcion> ai = new List<AlumnoInscripcion>();
@@ -58,6 +65,8 @@ namespace UI.WebMVC.Controllers
             }
             return Json(ai, JsonRequestBehavior.AllowGet);
         }
+        [Seguridad]
+        [Alumno]
         public JsonResult GetInscripcion(int id)
         {
             AlumnoInscripcion ai = new AlumnoInscripcion();
@@ -72,6 +81,8 @@ namespace UI.WebMVC.Controllers
             }
             return Json(ai, JsonRequestBehavior.AllowGet);
         }
+        [Seguridad]
+        [Alumno]
         public ActionResult Save(AlumnoInscripcion inscripcion)
         {
             try
@@ -98,6 +109,8 @@ namespace UI.WebMVC.Controllers
             ViewBag.listado = listadoCursos();
             return View("Inicio");
         }
+        [Seguridad]
+        [Alumno]
         public IEnumerable<SelectListItem> listadoCursos()
         {
             IEnumerable<SelectListItem> lista = null;
@@ -111,6 +124,22 @@ namespace UI.WebMVC.Controllers
 
             }
             return lista;
+        }
+        public ActionResult Report(int id)
+        {
+            List<AlumnoInscripcion> listado = pl.GetInscripcionesAlumnno(id);
+            return View(listado);
+        }
+        [Seguridad]
+        [Alumno]
+        public ActionResult Print()
+        {
+            string id = Session["idPer"].ToString();
+            var report = new UrlAsPdf("/InscripcionesAlumno/Report/?id=" + id)
+            {
+                FileName = "Condición alumno.pdf",
+            };
+            return report;
         }
     }
 }

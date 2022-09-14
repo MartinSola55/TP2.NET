@@ -34,9 +34,13 @@
 
 @{ if (Session["tipoUsr"].ToString() == "3")
     {
-        @:<button id="btnAgregar" type="button" class="btn btn-success px-4 mb-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            @:Agregar
-        @:</button>
+        <div class="d-flex justify-content-between mt-3">
+            <button id="btnAgregar" type="button" class="btn btn-success px-4 mb-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Agregar
+            </button>
+
+            <input type="button" class="btn btn-success px-4 mb-5" onclick="location.href='/Cursos/Print';" value="Imprimir constancia" />
+        </div>
 
 
         using (Html.BeginForm("", "", FormMethod.Post, new { @id = "formCurso" }))
@@ -81,6 +85,10 @@
                 </div>
             </div>
         }
+    }
+    else
+    {
+        <input type="button" class="btn btn-success px-4 mt-4" onclick="location.href='/Cursos/Print';" value="Imprimir constancia" />
     }
 }
 

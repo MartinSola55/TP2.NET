@@ -31,7 +31,7 @@ namespace UI.WebMVC.Controllers
         {
             Session["user"] = null;
             Session["tipoUsr"] = null;
-            Session["idUsr"] = null;
+            Session["idPer"] = null;
             return RedirectToAction("Inicio", "Home");
         }
         public ActionResult Validar(Usuario user)

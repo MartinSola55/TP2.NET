@@ -1,0 +1,88 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<Business.Entities.AlumnoInscripcion> 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+
+@try
+{
+    @:<body class="container mt-5" style="font-family: 'Open Sans', sans-serif;">
+        @:<div class="container">
+            @:<table class="d-flex mb-3" style="border: none">
+                @:<tbody class="w-100" style="border: none">
+                    @:<tr class="d-flex w-100" style="border: none">
+                        @:<td style="border: none"><img src="../../Images/logoUTN-negro.png" alt="Logo UTN" style="max-width: 300px; max-height: 100px;"></td>
+                        @:<td class="w-100 text-end align-self-end" style="border: none"><p class="align-self-end mb-0">Reporte de notas a la fecha para @Model.First().NombreApellido</p></td>
+                    @:</tr>
+                @:</tbody>
+            @:</table>
+            @:<table class="table table-light table-striped table-bordered">
+                @:<thead>
+                    @:<tr>
+                        @:<td class="text-center" style="font-weight:600">Plan</td>
+                        @:<td class="text-center" style="font-weight:600">Materia</td>
+                        @:<td class="text-center" style="font-weight:600">Condición</td>
+                        @:<td class="text-center" style="font-weight:600">Nota</td>
+                    @:</tr>
+                @:</thead>
+                @:<tbody>
+                    int i = 0;
+                    double? notas = 0;
+                    int total = 0;
+                    foreach (var ins in Model)
+                    {
+                        if (ins.Nota != null)
+                        {
+                            total ++;
+                            notas += ins.Nota;
+                        }
+                        i++;
+                        if (i % 2 == 0)
+                        {
+                            @:<tr>
+                                @:<td class="text-center">@ins.DescripcionPlan</td>
+                                @:<td>@ins.DescripcionMateria</td>
+                                @:<td class="text-center">@ins.Condicion</td>
+                                @:<td class="text-center">@ins.Nota</td>
+                            @:</tr>
+                        }
+                        else
+                        {
+                            @:<tr style="background-color: #ecedee">
+                                @:<td class="text-center">@ins.DescripcionPlan</td>
+                                @:<td>@ins.DescripcionMateria</td>
+                                @:<td class="text-center">@ins.Condicion</td>
+                                @:<td class="text-center">@ins.Nota</td>
+                            @:</tr>
+                        }
+                    }
+                    double? prom = notas / total;
+                @:</tbody>
+            @:</table>
+            @:<p>Obersvación: Su promedio es de @Math.Round(prom ?? 0, 2)</p>
+            @:<table class="d-flex mb-3" style="border: none">
+                @:<tbody class="w-100" style="border: none">
+                    @:<tr class="d-flex w-100" style="border: none">
+                        @:<td class="w-50 text-start" style="border: none"><p class="mt-0">SYSACAD - Todos los derechos reservados ©</p></td>
+                        @:<td class="w-50 text-end" style="border: none"><p class="mt-0">@DateTime.Now.ToShortDateString() - @DateTime.Now.ToLongTimeString() hs.</p></td>
+                    @:</tr>
+                @:</tbody>
+            @:</table>
+        @:</div>
+    @:</body>
+}
+catch (Exception e)
+{
+    @:<p class="text-center">Ocurrio un error al intentar imprimir la condición del alumno</p>
+}
+</html>
