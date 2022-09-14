@@ -9,7 +9,7 @@ namespace Business.Entities
     public class Usuario : BusinessEntity
     {
         [Required(ErrorMessage = "Ingrese un nombre de usuario")]
-        [MinLength(6, ErrorMessage = "Ingrese un mínimo de 6 caracteres")]
+        [MinLength(5, ErrorMessage = "Ingrese un mínimo de 5 caracteres")]
         [MaxLength(18, ErrorMessage = "Máximo 18 caracteres permitidos")]
         [RegularExpression(@"^[a-zA-Z][a-zA-Z0-9_.-]+$", ErrorMessage = "Ingrese un nombre de usuario válido")]
         public string NombreUsuario { get; set; }

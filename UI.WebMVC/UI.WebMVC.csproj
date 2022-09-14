@@ -59,6 +59,9 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -126,7 +129,12 @@
     <Content Include="Global.asax" />
     <Content Include="Images\favicon.png" />
     <Content Include="Images\Fondo inicio.jpg" />
+    <Content Include="Images\logoUTN-Negro.png" />
     <Content Include="Images\logoUTN.png" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\CargosDocente.js" />
     <Content Include="Scripts\InscripcionesAlumno.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -135,6 +143,7 @@
       <LastGenOutput>DataClasses.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </None>
@@ -230,6 +239,7 @@
     <Content Include="Views\InscripcionesAlumno\Inicio.cshtml" />
     <Content Include="Views\Docente\Inicio.cshtml" />
     <Content Include="Views\Docente\Notas.cshtml" />
+    <Content Include="Views\Cursos\Report.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,5 +1,6 @@
 ﻿using Business.Entities;
 using Business.Logic;
+using Rotativa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,6 @@ using UI.WebMVC.Filter;
 
 namespace UI.WebMVC.Controllers
 {
-    [Seguridad]
     public class CursosController : Controller
     {
         private CursoLogic cl = new CursoLogic();
@@ -18,12 +18,14 @@ namespace UI.WebMVC.Controllers
         private DataClassesDataContext db = new DataClassesDataContext();
 
         // GET: Curso
+        [Seguridad]
         public ActionResult Inicio()
         {
             ViewBag.listadoMaterias = listadoMaterias();
             ViewBag.listadoComisiones = listadoComisiones();
             return View();
         }
+        [Seguridad]
         [HttpPost]
         public ActionResult Inicio(Curso curso)
         {
@@ -35,6 +37,7 @@ namespace UI.WebMVC.Controllers
             }
             return RedirectToAction(nameof(Inicio));
         }
+        [Seguridad]
         public JsonResult getAll()
         {
             try
@@ -62,6 +65,7 @@ namespace UI.WebMVC.Controllers
                 return Json(0, JsonRequestBehavior.AllowGet);
             }
         }
+        [Seguridad]
         public JsonResult getOne(int id)
         {
             try
@@ -77,6 +81,7 @@ namespace UI.WebMVC.Controllers
                 return Json(0, JsonRequestBehavior.AllowGet);
             }
         }
+        [Seguridad]
         [Admin]
         public ActionResult Delete(Curso curso)
         {
@@ -94,6 +99,7 @@ namespace UI.WebMVC.Controllers
             ViewBag.listadoComisiones = listadoComisiones();
             return View("Inicio");
         }
+        [Seguridad]
         [Admin]
         public ActionResult Save(Curso curso)
         {
@@ -132,6 +138,7 @@ namespace UI.WebMVC.Controllers
             ViewBag.listadoComisiones = listadoComisiones();
             return View("Inicio");
         }
+        [Seguridad]
         public IEnumerable<SelectListItem> listadoMaterias()
         {
             IEnumerable<SelectListItem> lista = null;
@@ -146,6 +153,7 @@ namespace UI.WebMVC.Controllers
             }
             return lista;
         }
+        [Seguridad]
         public IEnumerable<SelectListItem> listadoComisiones()
         {
             IEnumerable<SelectListItem> lista = null;
@@ -159,6 +167,49 @@ namespace UI.WebMVC.Controllers
 
             }
             return lista;
+        }
+        public ActionResult Report()
+        {
+            var cursos = from c in db.Cursos
+                         join m in db.Materias
+                            on c.IDMateria equals m.ID
+                         join com in db.Comisiones
+                            on c.IDComision equals com.ID
+                         orderby m.Descripcion, com.Descripcion
+                         select new
+                         {
+                             c.ID,
+                             c.IDComision,
+                             c.IDMateria,
+                             c.AnioCalendario,
+                             c.Cupo,
+                             MateriaDesc = m.Descripcion,
+                             ComisionDesc = com.Descripcion
+                         };
+            List<Curso> listadoCursos = new List<Curso>();
+            foreach (var curso in cursos)
+            {
+                listadoCursos.Add(new Curso
+                {
+                    ID = curso.ID,
+                    IDComision = curso.IDComision,
+                    IDMateria = curso.IDMateria,
+                    AnioCalendario = curso.AnioCalendario,
+                    Cupo = curso.Cupo,
+                    MateriaDesc = curso.MateriaDesc,
+                    ComisionDesc = curso.ComisionDesc
+                });
+            }
+            return View(listadoCursos);
+        }
+        [Seguridad]
+        public ActionResult Print()
+        {
+            var report = new ActionAsPdf("Report")
+            {
+                FileName = "Reporte Cursos.pdf",
+            };
+            return report;
         }
     }
 }
