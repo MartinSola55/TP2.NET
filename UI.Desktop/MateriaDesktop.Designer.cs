@@ -200,6 +200,7 @@ namespace UI.Desktop
             // 
             this.txtID.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtID.BackColor = System.Drawing.SystemColors.Control;
+            this.txtID.Cursor = System.Windows.Forms.Cursors.No;
             this.txtID.Enabled = false;
             this.txtID.ForeColor = System.Drawing.Color.Black;
             this.txtID.Location = new System.Drawing.Point(203, 18);
@@ -212,6 +213,8 @@ namespace UI.Desktop
             // 
             this.comboPlan.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.comboPlan.BackColor = System.Drawing.Color.White;
+            this.comboPlan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboPlan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboPlan.ForeColor = System.Drawing.Color.Black;
             this.comboPlan.FormattingEnabled = true;

@@ -160,10 +160,16 @@ namespace Data.Database
                 SqlCommand cmdSave = new SqlCommand(
                     "UPDATE alumnos_inscripciones SET id_curso = @id_curso, condicion = @condicion, nota = @nota " +
                     "WHERE id_inscripcion = @id", sqlConn);
+                if (inscripcion.Nota == null)
+                {
+                    cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = DBNull.Value;
+                } else
+                {
+                    cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = inscripcion.Nota;
+                }
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = inscripcion.ID;
                 cmdSave.Parameters.Add("@id_curso", SqlDbType.Int).Value = inscripcion.IDCurso;
                 cmdSave.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = inscripcion.Condicion;
-                cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = inscripcion.Nota;
                 cmdSave.ExecuteNonQuery();
             }
             catch (SqlException Ex)

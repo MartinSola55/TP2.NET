@@ -141,6 +141,7 @@ namespace UI.Desktop
             // 
             this.txtID.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtID.BackColor = System.Drawing.Color.White;
+            this.txtID.Cursor = System.Windows.Forms.Cursors.No;
             this.txtID.Enabled = false;
             this.txtID.ForeColor = System.Drawing.Color.Black;
             this.txtID.Location = new System.Drawing.Point(182, 30);
@@ -212,10 +213,12 @@ namespace UI.Desktop
             // 
             this.comboMateria.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.comboMateria.BackColor = System.Drawing.Color.White;
+            this.comboMateria.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboMateria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboMateria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboMateria.ForeColor = System.Drawing.Color.Black;
             this.comboMateria.FormattingEnabled = true;
-            this.comboMateria.Location = new System.Drawing.Point(181, 120);
+            this.comboMateria.Location = new System.Drawing.Point(181, 124);
             this.comboMateria.Name = "comboMateria";
             this.comboMateria.Size = new System.Drawing.Size(195, 32);
             this.comboMateria.TabIndex = 7;
@@ -224,10 +227,12 @@ namespace UI.Desktop
             // 
             this.comboComision.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.comboComision.BackColor = System.Drawing.Color.White;
+            this.comboComision.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboComision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboComision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboComision.ForeColor = System.Drawing.Color.Black;
             this.comboComision.FormattingEnabled = true;
-            this.comboComision.Location = new System.Drawing.Point(181, 215);
+            this.comboComision.Location = new System.Drawing.Point(181, 211);
             this.comboComision.Name = "comboComision";
             this.comboComision.Size = new System.Drawing.Size(195, 32);
             this.comboComision.TabIndex = 8;

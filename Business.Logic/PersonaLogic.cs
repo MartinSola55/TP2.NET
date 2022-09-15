@@ -51,6 +51,28 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
+        public List<Persona> GetAlumnos()
+        {
+            try
+            {
+                return PersonaData.GetAlumnos();
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
+        public List<Persona> GetDocentes()
+        {
+            try
+            {
+                return PersonaData.GetDocentes();
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
         public void Save(Persona persona)
         {
             try

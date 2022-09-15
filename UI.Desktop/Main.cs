@@ -30,14 +30,38 @@ namespace UI.Desktop
             Login login = new Login();
             if (login.ShowDialog() == DialogResult.OK)
             {
+                this.mnsPrincipal.Visible = true;
                 this.lblBienvenido.Text = "Bienvenido al SYSACAD\n" + LoginInfo.NombreApellido;
-                if (LoginInfo.TipoPersona != 3)
+                switch (LoginInfo.TipoPersona)
                 {
-                    this.mnuUsuarios.DisplayStyle = ToolStripItemDisplayStyle.None;
-                }
-                else
-                {
-                    this.mnuUsuarios.DisplayStyle = ToolStripItemDisplayStyle.Text;
+                    case 1:
+                        {
+                            this.mnuUsuarios.Visible = false;
+                            this.mnuPersonas.Visible = false;
+                            this.mnuInscripciones.Visible = false;
+                            this.mnuCargos.Visible = true;
+                            break;
+                        }
+                    case 2:
+                        {
+                            this.mnuUsuarios.Visible = false;
+                            this.mnuPersonas.Visible = false;
+                            this.mnuInscripciones.Visible = true;
+                            this.mnuCargos.Visible = false;
+                            break;
+                        }
+                    case 3:
+                        {
+                            this.mnuUsuarios.Visible = true;
+                            this.mnuPersonas.Visible = true;
+                            this.mnuInscripciones.Visible = false;
+                            this.mnuCargos.Visible = false;
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
                 }
             }
             else
@@ -52,6 +76,7 @@ namespace UI.Desktop
             LoginInfo.TipoPersona = null;
             LoginInfo.NombreApellido = null;
             this.lblBienvenido.Text = "Debes iniciar sesión";
+            this.mnsPrincipal.Visible = false;
             this.LogIn();
         }
 
@@ -61,6 +86,7 @@ namespace UI.Desktop
         }
         private void Main_Shown(object sender, EventArgs e)
         {
+            this.mnsPrincipal.Visible = false;
             this.LogIn();
         }
 
@@ -104,6 +130,20 @@ namespace UI.Desktop
             Usuarios usuarios = new Usuarios();
             usuarios.ShowDialog();
             usuarios.Listar();
+        }
+
+        private void mnuAlumnos_Click(object sender, EventArgs e)
+        {
+            Alumnos alumnos = new Alumnos();
+            alumnos.ShowDialog();
+            alumnos.Listar();
+        }
+
+        private void mnuVerInscripciones_Click(object sender, EventArgs e)
+        {
+            AlumnoInscripcion inscripciones = new AlumnoInscripcion(LoginInfo.IDPersona ?? 0);
+            inscripciones.ShowDialog();
+            inscripciones.Listar();
         }
 
         private void btnSalir_MouseEnter(object sender, EventArgs e)

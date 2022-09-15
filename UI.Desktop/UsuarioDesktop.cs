@@ -52,7 +52,6 @@ namespace UI.Desktop
         {
             this.txtID.Text = this.UsuarioActual.ID.ToString();
             this.chkHabilitado.Checked = this.UsuarioActual.Habilitado;
-            this.txtEmail.Text = this.UsuarioActual.Email;
             this.txtUsuario.Text = this.UsuarioActual.NombreUsuario;
             this.txtClave.Text = this.UsuarioActual.Clave;
             switch (this.Modo)
@@ -65,7 +64,6 @@ namespace UI.Desktop
                 case ModoForm.Baja:
                     {
                         btnAceptar.Text = "Eliminar";
-                        txtEmail.Enabled = false;
                         txtUsuario.Enabled = false;
                         txtClave.Enabled = false;
                         txtConfimarClave.Enabled = false;
@@ -89,7 +87,6 @@ namespace UI.Desktop
             if (this.Modo == ModoForm.Alta || this.Modo == ModoForm.Modificacion)
             {
                 this.UsuarioActual.Habilitado = this.chkHabilitado.Checked;
-                this.UsuarioActual.Email = this.txtEmail.Text;
                 this.UsuarioActual.NombreUsuario = this.txtUsuario.Text;
                 this.UsuarioActual.Clave = this.txtClave.Text;
                 this.UsuarioActual.Clave = this.txtConfimarClave.Text;
@@ -108,8 +105,7 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
-            if (this.txtEmail.Text.Length == 0 || this.txtUsuario.Text.Length == 0 || this.txtClave.Text.Length == 0 
-                || this.txtConfimarClave.Text.Length == 0)
+            if (this.txtUsuario.Text.Length == 0 || this.txtClave.Text.Length == 0 || this.txtConfimarClave.Text.Length == 0)
             {
                 this.Notificar("ERROR", "Debes completar todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -122,11 +118,6 @@ namespace UI.Desktop
             else if (this.txtClave.Text.Length < 8)
             {
                 this.Notificar("ERROR", "La contraseña debe ser de al menos 8 carateres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            else if (Validaciones.esMailValido(this.txtEmail.Text) == false)
-            {
-                this.Notificar("ERROR", "El formato del email es inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;

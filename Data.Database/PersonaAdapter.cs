@@ -54,6 +54,98 @@ namespace Data.Database
             }
             return personas;
         }
+        public List<Persona> GetAlumnos()
+        {
+            List<Persona> personas = new List<Persona>();
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdPersonas = new SqlCommand("SELECT * FROM personas p " +
+                    "INNER JOIN planes pl ON p.id_plan = pl.id_plan " +
+                    "INNER JOIN especialidades e ON pl.id_especialidad = e.id_especialidad " +
+                    "WHERE p.tipo_persona = 2 " +
+                    "ORDER BY apellido, nombre", sqlConn);
+                SqlDataReader drPersonas = cmdPersonas.ExecuteReader();
+                while (drPersonas.Read())
+                {
+                    Persona per = new Persona();
+                    per.ID = (int)drPersonas["id_persona"];
+                    per.Nombre = (string)drPersonas["nombre"];
+                    per.Apellido = (string)drPersonas["apellido"];
+                    per.Direccion = (string)drPersonas["direccion"];
+                    per.Email = (string)drPersonas["email"];
+                    per.Telefono = (string)drPersonas["telefono"];
+                    per.FechaNacimiento = (DateTime)drPersonas["fecha_nac"];
+                    per.NacimientoString = per.FechaNacimiento.ToShortDateString();
+                    per.Legajo = (int)drPersonas["legajo"];
+                    per.TipoPersona = (int)drPersonas["tipo_persona"];
+                    per.IDPlan = (int)drPersonas["id_plan"];
+                    per.DescPlan = (string)drPersonas["desc_plan"];
+                    per.DescPlan += " - ";
+                    per.DescPlan += (string)drPersonas["desc_especialidad"];
+                    personas.Add(per);
+                }
+
+                drPersonas.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception exceptionManejada = new Exception("Hubo un error al recuperar la lista de personas", Ex);
+                throw exceptionManejada;
+
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return personas;
+        }
+        public List<Persona> GetDocentes()
+        {
+            List<Persona> personas = new List<Persona>();
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdPersonas = new SqlCommand("SELECT * FROM personas p " +
+                    "INNER JOIN planes pl ON p.id_plan = pl.id_plan " +
+                    "INNER JOIN especialidades e ON pl.id_especialidad = e.id_especialidad " +
+                    "WHERE p.tipo_persona = 1 " +
+                    "ORDER BY apellido, nombre", sqlConn);
+                SqlDataReader drPersonas = cmdPersonas.ExecuteReader();
+                while (drPersonas.Read())
+                {
+                    Persona per = new Persona();
+                    per.ID = (int)drPersonas["id_persona"];
+                    per.Nombre = (string)drPersonas["nombre"];
+                    per.Apellido = (string)drPersonas["apellido"];
+                    per.Direccion = (string)drPersonas["direccion"];
+                    per.Email = (string)drPersonas["email"];
+                    per.Telefono = (string)drPersonas["telefono"];
+                    per.FechaNacimiento = (DateTime)drPersonas["fecha_nac"];
+                    per.NacimientoString = per.FechaNacimiento.ToShortDateString();
+                    per.Legajo = (int)drPersonas["legajo"];
+                    per.TipoPersona = (int)drPersonas["tipo_persona"];
+                    per.IDPlan = (int)drPersonas["id_plan"];
+                    per.DescPlan = (string)drPersonas["desc_plan"];
+                    per.DescPlan += " - ";
+                    per.DescPlan += (string)drPersonas["desc_especialidad"];
+                    personas.Add(per);
+                }
+
+                drPersonas.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception exceptionManejada = new Exception("Hubo un error al recuperar la lista de personas", Ex);
+                throw exceptionManejada;
+
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return personas;
+        }
         public Persona GetOne(int ID)
             {
             Persona per = new Persona();

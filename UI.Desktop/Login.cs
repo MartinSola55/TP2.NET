@@ -54,7 +54,7 @@ namespace UI.Desktop
 
         private void lnkOlvidaPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("Es Ud. un usuario muy descuidado, haga memoria", "Olvidé mi contraseña", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            MessageBox.Show("Contacte con un administrador para cambiar su contraseña", "Olvidé mi contraseña", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

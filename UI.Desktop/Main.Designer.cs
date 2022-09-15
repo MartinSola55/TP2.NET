@@ -37,6 +37,7 @@ namespace UI.Desktop
             this.mnuVerComisiones = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCursos = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVerCursos = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrintCurso = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEspecialidades = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVerEspecialidades = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMaterias = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,6 +46,14 @@ namespace UI.Desktop
             this.mnuVerPlanes = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVerUsuarios = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuInscripciones = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVerInscripciones = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrintInscripciones = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCargos = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVerCargos = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPersonas = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAlumnos = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDocentes = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
@@ -64,10 +73,13 @@ namespace UI.Desktop
             this.mnuEspecialidades,
             this.mnuMaterias,
             this.mnuPlanes,
-            this.mnuUsuarios});
+            this.mnuUsuarios,
+            this.mnuInscripciones,
+            this.mnuCargos,
+            this.mnuPersonas});
             this.mnsPrincipal.Location = new System.Drawing.Point(0, 0);
             this.mnsPrincipal.Name = "mnsPrincipal";
-            this.mnsPrincipal.Size = new System.Drawing.Size(632, 28);
+            this.mnsPrincipal.Size = new System.Drawing.Size(860, 28);
             this.mnsPrincipal.TabIndex = 1;
             this.mnsPrincipal.Text = "menuStrip1";
             // 
@@ -88,7 +100,7 @@ namespace UI.Desktop
             this.mnuSalir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.mnuSalir.ForeColor = System.Drawing.Color.White;
             this.mnuSalir.Name = "mnuSalir";
-            this.mnuSalir.Size = new System.Drawing.Size(224, 26);
+            this.mnuSalir.Size = new System.Drawing.Size(121, 26);
             this.mnuSalir.Text = "Salir";
             this.mnuSalir.Click += new System.EventHandler(this.mnuSalir_Click);
             // 
@@ -114,7 +126,8 @@ namespace UI.Desktop
             // mnuCursos
             // 
             this.mnuCursos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuVerCursos});
+            this.mnuVerCursos,
+            this.mnuPrintCurso});
             this.mnuCursos.ForeColor = System.Drawing.Color.White;
             this.mnuCursos.Name = "mnuCursos";
             this.mnuCursos.Size = new System.Drawing.Size(66, 24);
@@ -125,9 +138,17 @@ namespace UI.Desktop
             this.mnuVerCursos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.mnuVerCursos.ForeColor = System.Drawing.Color.White;
             this.mnuVerCursos.Name = "mnuVerCursos";
-            this.mnuVerCursos.Size = new System.Drawing.Size(113, 26);
+            this.mnuVerCursos.Size = new System.Drawing.Size(202, 26);
             this.mnuVerCursos.Text = "Ver";
             this.mnuVerCursos.Click += new System.EventHandler(this.mnuVerCursos_Click);
+            // 
+            // mnuPrintCurso
+            // 
+            this.mnuPrintCurso.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.mnuPrintCurso.ForeColor = System.Drawing.Color.White;
+            this.mnuPrintCurso.Name = "mnuPrintCurso";
+            this.mnuPrintCurso.Size = new System.Drawing.Size(202, 26);
+            this.mnuPrintCurso.Text = "Imprimir reporte";
             // 
             // mnuEspecialidades
             // 
@@ -161,7 +182,7 @@ namespace UI.Desktop
             this.mnuVerMaterias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.mnuVerMaterias.ForeColor = System.Drawing.Color.White;
             this.mnuVerMaterias.Name = "mnuVerMaterias";
-            this.mnuVerMaterias.Size = new System.Drawing.Size(224, 26);
+            this.mnuVerMaterias.Size = new System.Drawing.Size(113, 26);
             this.mnuVerMaterias.Text = "Ver";
             this.mnuVerMaterias.Click += new System.EventHandler(this.mnuVerMaterias_Click);
             // 
@@ -201,6 +222,77 @@ namespace UI.Desktop
             this.mnuVerUsuarios.Text = "Ver";
             this.mnuVerUsuarios.Click += new System.EventHandler(this.mnuVerUsuarios_Click);
             // 
+            // mnuInscripciones
+            // 
+            this.mnuInscripciones.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuVerInscripciones,
+            this.mnuPrintInscripciones});
+            this.mnuInscripciones.ForeColor = System.Drawing.Color.White;
+            this.mnuInscripciones.Name = "mnuInscripciones";
+            this.mnuInscripciones.Size = new System.Drawing.Size(108, 24);
+            this.mnuInscripciones.Text = "Inscripciones";
+            // 
+            // mnuVerInscripciones
+            // 
+            this.mnuVerInscripciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.mnuVerInscripciones.ForeColor = System.Drawing.Color.White;
+            this.mnuVerInscripciones.Name = "mnuVerInscripciones";
+            this.mnuVerInscripciones.Size = new System.Drawing.Size(224, 26);
+            this.mnuVerInscripciones.Text = "Ver";
+            this.mnuVerInscripciones.Click += new System.EventHandler(this.mnuVerInscripciones_Click);
+            // 
+            // mnuPrintInscripciones
+            // 
+            this.mnuPrintInscripciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.mnuPrintInscripciones.ForeColor = System.Drawing.Color.White;
+            this.mnuPrintInscripciones.Name = "mnuPrintInscripciones";
+            this.mnuPrintInscripciones.Size = new System.Drawing.Size(224, 26);
+            this.mnuPrintInscripciones.Text = "Imprimir reporte";
+            // 
+            // mnuCargos
+            // 
+            this.mnuCargos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuVerCargos});
+            this.mnuCargos.ForeColor = System.Drawing.Color.White;
+            this.mnuCargos.Name = "mnuCargos";
+            this.mnuCargos.Size = new System.Drawing.Size(69, 24);
+            this.mnuCargos.Text = "Cargos";
+            // 
+            // mnuVerCargos
+            // 
+            this.mnuVerCargos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.mnuVerCargos.ForeColor = System.Drawing.Color.White;
+            this.mnuVerCargos.Name = "mnuVerCargos";
+            this.mnuVerCargos.Size = new System.Drawing.Size(224, 26);
+            this.mnuVerCargos.Text = "Ver";
+            // 
+            // mnuPersonas
+            // 
+            this.mnuPersonas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuAlumnos,
+            this.mnuDocentes});
+            this.mnuPersonas.ForeColor = System.Drawing.Color.White;
+            this.mnuPersonas.Name = "mnuPersonas";
+            this.mnuPersonas.Size = new System.Drawing.Size(80, 24);
+            this.mnuPersonas.Text = "Personas";
+            // 
+            // mnuAlumnos
+            // 
+            this.mnuAlumnos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.mnuAlumnos.ForeColor = System.Drawing.Color.White;
+            this.mnuAlumnos.Name = "mnuAlumnos";
+            this.mnuAlumnos.Size = new System.Drawing.Size(224, 26);
+            this.mnuAlumnos.Text = "Ver alumnos";
+            this.mnuAlumnos.Click += new System.EventHandler(this.mnuAlumnos_Click);
+            // 
+            // mnuDocentes
+            // 
+            this.mnuDocentes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.mnuDocentes.ForeColor = System.Drawing.Color.White;
+            this.mnuDocentes.Name = "mnuDocentes";
+            this.mnuDocentes.Size = new System.Drawing.Size(224, 26);
+            this.mnuDocentes.Text = "Ver docentes";
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
@@ -217,7 +309,7 @@ namespace UI.Desktop
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(632, 325);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(860, 325);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnSalir
@@ -227,7 +319,7 @@ namespace UI.Desktop
             this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.ForeColor = System.Drawing.Color.Red;
-            this.btnSalir.Location = new System.Drawing.Point(492, 263);
+            this.btnSalir.Location = new System.Drawing.Point(720, 263);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(130, 52);
@@ -260,7 +352,7 @@ namespace UI.Desktop
             // 
             this.lblBienvenido.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblBienvenido.AutoSize = true;
-            this.lblBienvenido.Location = new System.Drawing.Point(232, 60);
+            this.lblBienvenido.Location = new System.Drawing.Point(347, 60);
             this.lblBienvenido.Margin = new System.Windows.Forms.Padding(3, 60, 3, 0);
             this.lblBienvenido.Name = "lblBienvenido";
             this.lblBienvenido.Size = new System.Drawing.Size(166, 24);
@@ -273,16 +365,16 @@ namespace UI.Desktop
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(632, 353);
+            this.ClientSize = new System.Drawing.Size(860, 353);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.mnsPrincipal);
             this.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
             this.ForeColor = System.Drawing.Color.White;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(650, 400);
+            this.MinimumSize = new System.Drawing.Size(700, 400);
             this.Name = "Main";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SYSACAD";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.Main_Shown);
@@ -315,5 +407,14 @@ namespace UI.Desktop
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Label lblBienvenido;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrintCurso;
+        private System.Windows.Forms.ToolStripMenuItem mnuInscripciones;
+        private System.Windows.Forms.ToolStripMenuItem mnuCargos;
+        private System.Windows.Forms.ToolStripMenuItem mnuVerInscripciones;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrintInscripciones;
+        private System.Windows.Forms.ToolStripMenuItem mnuVerCargos;
+        private System.Windows.Forms.ToolStripMenuItem mnuPersonas;
+        private System.Windows.Forms.ToolStripMenuItem mnuAlumnos;
+        private System.Windows.Forms.ToolStripMenuItem mnuDocentes;
     }
 }

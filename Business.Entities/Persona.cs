@@ -11,13 +11,13 @@ namespace Business.Entities
         [Required(ErrorMessage = "Ingrese un apelido")]
         [MinLength(1, ErrorMessage = "Ingrese un mínimo de 1 caracter")]
         [MaxLength(30, ErrorMessage = "Máximo 30 caracteres permitidos")]
-        [RegularExpression(@"^[a-zA-Z0-9\u00C0-\u017F\s]+$", ErrorMessage = "Ingrese un apellido válido")]
+        [RegularExpression(@"^[a-zA-Z\u00C0-\u017F\s]+$", ErrorMessage = "Ingrese un apellido válido")]
         public string Apellido { get; set; }
 
         [Required(ErrorMessage = "Ingrese un nombre")]
         [MinLength(1, ErrorMessage = "Ingrese un mínimo de 1 caracter")]
         [MaxLength(30, ErrorMessage = "Máximo 30 caracteres permitidos")]
-        [RegularExpression(@"^[a-zA-Z0-9\u00C0-\u017F\s]+$", ErrorMessage = "Ingrese un nombre válido")]
+        [RegularExpression(@"^[a-zA-Z\u00C0-\u017F\s]+$", ErrorMessage = "Ingrese un nombre válido")]
         public string Nombre { get; set; }
 
         [Required(ErrorMessage = "Ingrese una dirección")]

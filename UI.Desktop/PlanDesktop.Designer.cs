@@ -166,6 +166,7 @@ namespace UI.Desktop
             // 
             this.comboEspecialidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.comboEspecialidad.BackColor = System.Drawing.Color.White;
+            this.comboEspecialidad.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboEspecialidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboEspecialidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboEspecialidad.ForeColor = System.Drawing.Color.Black;

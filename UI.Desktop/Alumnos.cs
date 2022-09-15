@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Business.Entities;
+using Business.Logic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,31 +9,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Business.Entities;
-using Business.Logic;
 
 namespace UI.Desktop
 {
-    public partial class Usuarios : ApplicationForm
+    public partial class Alumnos : ApplicationForm
     {
-        public Usuarios()
+        public Alumnos()
         {
             InitializeComponent();
-            this.dgvUsuarios.AutoGenerateColumns = false;
+            this.dgvPersonas.AutoGenerateColumns = false;
         }
         public void Listar()
         {
             try
             {
-                UsuarioLogic ul = new UsuarioLogic();
-                this.dgvUsuarios.DataSource = ul.GetAll();
-            } catch (Exception exceptionManejada)
+                PersonaLogic pl = new PersonaLogic();
+                this.dgvPersonas.DataSource = pl.GetAlumnos();
+            }
+            catch (Exception exceptionManejada)
             {
-                MessageBox.Show(exceptionManejada.Message, "ERROR AL RECUPERAR USUARIOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(exceptionManejada.Message, "ERROR AL RECUPERAR ALUMNOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void Usuarios_Load(object sender, EventArgs e)
+        private void Personas_Load(object sender, EventArgs e)
         {
             this.Listar();
         }
@@ -41,42 +42,26 @@ namespace UI.Desktop
             this.Listar();
         }
 
-        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-
-        private void tlUsuarios_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        /*private void tsbNuevo_Click(object sender, EventArgs e)
+        private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            UsuarioDesktop ud = new UsuarioDesktop(ApplicationForm.ModoForm.Alta);
-            ud.ShowDialog();
+            PersonaDesktop ad = new PersonaDesktop(ApplicationForm.ModoForm.Alta);
+            ad.ShowDialog();
             this.Listar();
-        }*/
+        }
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (this.dgvUsuarios.SelectedRows != null)
+                if (this.dgvPersonas.SelectedRows != null)
                 {
-                    int ID = ((Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
-                    UsuarioDesktop ud = new UsuarioDesktop(ID, ApplicationForm.ModoForm.Modificacion);
-                    ud.ShowDialog();
+                    int ID = ((Persona)this.dgvPersonas.SelectedRows[0].DataBoundItem).ID;
+                    PersonaDesktop ad = new PersonaDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+                    ad.ShowDialog();
                     this.Listar();
                 }
             }
@@ -90,14 +75,29 @@ namespace UI.Desktop
         {
             try
             {
-                int ID = ((Usuario)this.dgvUsuarios.SelectedRows[0].DataBoundItem).ID;
-                UsuarioDesktop ud = new UsuarioDesktop(ID, ApplicationForm.ModoForm.Baja);
-                ud.ShowDialog();
+                int ID = ((Persona)this.dgvPersonas.SelectedRows[0].DataBoundItem).ID;
+                PersonaDesktop ad = new PersonaDesktop(ID, ApplicationForm.ModoForm.Baja);
+                ad.ShowDialog();
                 this.Listar();
             }
             catch (Exception exceptionManejada)
             {
                 MessageBox.Show(exceptionManejada.Message, "ERROR AL ELIMINAR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tsbInscripciones_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int ID = ((Business.Entities.Persona)this.dgvPersonas.SelectedRows[0].DataBoundItem).ID;
+                AlumnoInscripcion ai = new AlumnoInscripcion(ID);
+                ai.ShowDialog();
+                this.Listar();
+            }
+            catch (Exception exceptionManejada)
+            {
+                MessageBox.Show(exceptionManejada.Message, "ERROR AL VER LAS INSCRIPCIONES", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -133,6 +133,16 @@ namespace UI.Desktop
         private void tsbEditar_MouseLeave(object sender, EventArgs e)
         {
             this.tsbEditar.ForeColor = Color.White;
+        }
+
+        private void tsbInscripciones_MouseEnter(object sender, EventArgs e)
+        {
+            this.tsbInscripciones.ForeColor = Color.Black;
+        }
+
+        private void tsbInscripciones_MouseLeave(object sender, EventArgs e)
+        {
+            this.tsbInscripciones.ForeColor = Color.White;
         }
     }
 }
