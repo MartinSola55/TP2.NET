@@ -193,13 +193,13 @@ namespace Data.Database
             {
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand(
-                    "UPDATE alumnos_inscripciones SET condicion = @condicion " +
+                    "UPDATE alumnos_inscripciones SET condicion = @condicion, nota = @nota " +
                     "WHERE id_inscripcion = @id", sqlConn);
-                if (inscripcion.Nota != null)
+                if (inscripcion.Nota == null)
                 {
-                    cmdSave.CommandText =
-                        "UPDATE alumnos_inscripciones SET condicion = @condicion, nota = @nota " +
-                        "WHERE id_inscripcion = @id";
+                    cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = DBNull.Value;
+                } else
+                {
                     cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = inscripcion.Nota;
                 }
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = inscripcion.ID;
@@ -325,7 +325,7 @@ namespace Data.Database
             }
             return false;
         }
-        public List<AlumnoInscripcion> GetAlumnosXCurso(int idCurso, int idMateria, int idComision)
+        public List<AlumnoInscripcion> GetAlumnosXCurso(int idCurso)
         {
             List<AlumnoInscripcion> alumnos = new List<AlumnoInscripcion>();
             try
@@ -338,12 +338,8 @@ namespace Data.Database
                     "INNER JOIN comisiones com ON c.id_comision = com.id_comision " +
                     "INNER JOIN planes pl ON m.id_plan = pl.id_plan " +
                     "WHERE ai.id_curso = @idCurso " +
-                    "AND c.id_materia = @idMateria " +
-                    "AND c.id_comision = @idComision " +
                     "ORDER BY p.apellido, p.nombre", sqlConn);
                 cmdAlumnos.Parameters.Add("@idCurso", SqlDbType.Int).Value = idCurso;
-                cmdAlumnos.Parameters.Add("@idMateria", SqlDbType.Int).Value = idMateria;
-                cmdAlumnos.Parameters.Add("@idComision", SqlDbType.Int).Value = idComision;
                 SqlDataReader drAlumnos = cmdAlumnos.ExecuteReader();
                 while (drAlumnos.Read())
                 {
@@ -362,6 +358,7 @@ namespace Data.Database
                     alum.NombreApellido = (string)drAlumnos["apellido"];
                     alum.NombreApellido += ", ";
                     alum.NombreApellido += (string)drAlumnos["nombre"];
+                    alum.Legajo = (int)drAlumnos["legajo"];
                     alumnos.Add(alum);
                 }
                 drAlumnos.Close();

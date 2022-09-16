@@ -73,12 +73,12 @@ namespace UI.WebMVC.Controllers
             }
             return Json(ai, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetAlumnosXCurso(int idCurso, int idMateria, int idComision)
+        public JsonResult GetAlumnosXCurso(int idCurso)
         {
             List<AlumnoInscripcion> alumnos = new List<AlumnoInscripcion>();
             try
             {
-                alumnos = pl.GetAlumnosXCurso(idCurso, idMateria, idComision);
+                alumnos = pl.GetAlumnosXCurso(idCurso);
                 return Json(alumnos, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)

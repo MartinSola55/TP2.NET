@@ -146,6 +146,20 @@ namespace UI.Desktop
             inscripciones.Listar();
         }
 
+        private void mnuDocentes_Click(object sender, EventArgs e)
+        {
+            Docentes docentes = new Docentes();
+            docentes.ShowDialog();
+            docentes.Listar();
+        }
+
+        private void mnuVerCargos_Click(object sender, EventArgs e)
+        {
+            CargosDocentes cargosDocentes = new CargosDocentes(LoginInfo.IDPersona ?? 0);
+            cargosDocentes.ShowDialog();
+            cargosDocentes.Listar();
+        }
+
         private void btnSalir_MouseEnter(object sender, EventArgs e)
         {
             this.btnSalir.BackColor = Color.Red;

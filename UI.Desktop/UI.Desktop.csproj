@@ -56,53 +56,83 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AcademiaDataSetUsuarios.xsd</DependentUpon>
     </Compile>
-    <Compile Include="AlumnoInscripcion.cs">
+    <Compile Include="Personas\Alumnos\AlumnoInscripcion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AlumnoInscripcion.Designer.cs">
+    <Compile Include="Personas\Alumnos\AlumnoInscripcion.Designer.cs">
       <DependentUpon>AlumnoInscripcion.cs</DependentUpon>
     </Compile>
-    <Compile Include="InscripcionDesktop.cs">
+    <Compile Include="Personas\Docentes\CargoDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InscripcionDesktop.Designer.cs">
+    <Compile Include="Personas\Docentes\CargoDesktop.Designer.cs">
+      <DependentUpon>CargoDesktop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personas\Docentes\CargosDocentes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personas\Docentes\CargosDocentes.Designer.cs">
+      <DependentUpon>CargosDocentes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personas\Docentes\CondicionesDesktop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personas\Docentes\CondicionesDesktop.Designer.cs">
+      <DependentUpon>CondicionesDesktop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personas\Docentes\Docentes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personas\Docentes\Docentes.Designer.cs">
+      <DependentUpon>Docentes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personas\Alumnos\InscripcionDesktop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personas\Alumnos\InscripcionDesktop.Designer.cs">
       <DependentUpon>InscripcionDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginInfo.cs" />
-    <Compile Include="MateriaDesktop.cs">
+    <Compile Include="Login\LoginInfo.cs" />
+    <Compile Include="Materias\MateriaDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MateriaDesktop.Designer.cs">
+    <Compile Include="Materias\MateriaDesktop.Designer.cs">
       <DependentUpon>MateriaDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Materias.cs">
+    <Compile Include="Materias\Materias.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Materias.Designer.cs">
+    <Compile Include="Materias\Materias.Designer.cs">
       <DependentUpon>Materias.cs</DependentUpon>
     </Compile>
-    <Compile Include="PersonaDesktop.cs">
+    <Compile Include="Personas\Docentes\CondicionesAlumnos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PersonaDesktop.Designer.cs">
+    <Compile Include="Personas\Docentes\CondicionesAlumnos.Designer.cs">
+      <DependentUpon>CondicionesAlumnos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personas\PersonaDesktop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personas\PersonaDesktop.Designer.cs">
       <DependentUpon>PersonaDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Alumnos.cs">
+    <Compile Include="Personas\Alumnos\Alumnos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Alumnos.Designer.cs">
+    <Compile Include="Personas\Alumnos\Alumnos.Designer.cs">
       <DependentUpon>Alumnos.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlanDesktop.cs">
+    <Compile Include="Planes\PlanDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PlanDesktop.Designer.cs">
+    <Compile Include="Planes\PlanDesktop.Designer.cs">
       <DependentUpon>PlanDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Planes.cs">
+    <Compile Include="Planes\Planes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Planes.Designer.cs">
+    <Compile Include="Planes\Planes.Designer.cs">
       <DependentUpon>Planes.cs</DependentUpon>
     </Compile>
     <Compile Include="ApplicationForm.cs">
@@ -116,123 +146,138 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>App.settings</DependentUpon>
     </Compile>
-    <Compile Include="ComisionDesktop.cs">
+    <Compile Include="Comisiones\ComisionDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ComisionDesktop.Designer.cs">
+    <Compile Include="Comisiones\ComisionDesktop.Designer.cs">
       <DependentUpon>ComisionDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comisiones.cs">
+    <Compile Include="Comisiones\Comisiones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comisiones.Designer.cs">
+    <Compile Include="Comisiones\Comisiones.Designer.cs">
       <DependentUpon>Comisiones.cs</DependentUpon>
     </Compile>
-    <Compile Include="CursoDesktop.cs">
+    <Compile Include="Cursos\CursoDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CursoDesktop.Designer.cs">
+    <Compile Include="Cursos\CursoDesktop.Designer.cs">
       <DependentUpon>CursoDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cursos.cs">
+    <Compile Include="Cursos\Cursos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Cursos.Designer.cs">
+    <Compile Include="Cursos\Cursos.Designer.cs">
       <DependentUpon>Cursos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Especialidades.cs">
+    <Compile Include="Especialidades\Especialidades.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Especialidades.Designer.cs">
+    <Compile Include="Especialidades\Especialidades.Designer.cs">
       <DependentUpon>Especialidades.cs</DependentUpon>
     </Compile>
-    <Compile Include="EspecialidadDesktop.cs">
+    <Compile Include="Especialidades\EspecialidadDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EspecialidadDesktop.Designer.cs">
+    <Compile Include="Especialidades\EspecialidadDesktop.Designer.cs">
       <DependentUpon>EspecialidadDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="Login\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="Login\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Main.cs">
+    <Compile Include="Main\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.cs">
+    <Compile Include="Main\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioDesktop.cs">
+    <Compile Include="Usuarios\UsuarioDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UsuarioDesktop.Designer.cs">
+    <Compile Include="Usuarios\UsuarioDesktop.Designer.cs">
       <DependentUpon>UsuarioDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios.cs">
+    <Compile Include="Usuarios\Usuarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Usuarios.Designer.cs">
+    <Compile Include="Usuarios\Usuarios.Designer.cs">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AlumnoInscripcion.resx">
+    <EmbeddedResource Include="Personas\Alumnos\AlumnoInscripcion.resx">
       <DependentUpon>AlumnoInscripcion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ApplicationForm.resx">
       <DependentUpon>ApplicationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComisionDesktop.resx">
+    <EmbeddedResource Include="Personas\Docentes\CargoDesktop.resx">
+      <DependentUpon>CargoDesktop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comisiones\ComisionDesktop.resx">
       <DependentUpon>ComisionDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comisiones.resx">
+    <EmbeddedResource Include="Comisiones\Comisiones.resx">
       <DependentUpon>Comisiones.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CursoDesktop.resx">
+    <EmbeddedResource Include="Cursos\CursoDesktop.resx">
       <DependentUpon>CursoDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Cursos.resx">
+    <EmbeddedResource Include="Cursos\Cursos.resx">
       <DependentUpon>Cursos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EspecialidadDesktop.resx">
+    <EmbeddedResource Include="Personas\Docentes\CargosDocentes.resx">
+      <DependentUpon>CargosDocentes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personas\Docentes\CondicionesAlumnos.resx">
+      <DependentUpon>CondicionesAlumnos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personas\Docentes\CondicionesDesktop.resx">
+      <DependentUpon>CondicionesDesktop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personas\Docentes\Docentes.resx">
+      <DependentUpon>Docentes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Especialidades\EspecialidadDesktop.resx">
       <DependentUpon>EspecialidadDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Especialidades.resx">
+    <EmbeddedResource Include="Especialidades\Especialidades.resx">
       <DependentUpon>Especialidades.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InscripcionDesktop.resx">
+    <EmbeddedResource Include="Personas\Alumnos\InscripcionDesktop.resx">
       <DependentUpon>InscripcionDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
+    <EmbeddedResource Include="Main\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MateriaDesktop.resx">
+    <EmbeddedResource Include="Materias\MateriaDesktop.resx">
       <DependentUpon>MateriaDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Materias.resx">
+    <EmbeddedResource Include="Materias\Materias.resx">
       <DependentUpon>Materias.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PersonaDesktop.resx">
+    <EmbeddedResource Include="Personas\PersonaDesktop.resx">
       <DependentUpon>PersonaDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Alumnos.resx">
+    <EmbeddedResource Include="Personas\Alumnos\Alumnos.resx">
       <DependentUpon>Alumnos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Planes.resx">
+    <EmbeddedResource Include="Planes\Planes.resx">
       <DependentUpon>Planes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PlanDesktop.resx">
+    <EmbeddedResource Include="Planes\PlanDesktop.resx">
       <DependentUpon>PlanDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UsuarioDesktop.resx">
+    <EmbeddedResource Include="Usuarios\UsuarioDesktop.resx">
       <DependentUpon>UsuarioDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuarios.resx">
+    <EmbeddedResource Include="Usuarios\Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

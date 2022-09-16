@@ -200,7 +200,7 @@ namespace UI.Desktop
             this.mnuVerPlanes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.mnuVerPlanes.ForeColor = System.Drawing.Color.White;
             this.mnuVerPlanes.Name = "mnuVerPlanes";
-            this.mnuVerPlanes.Size = new System.Drawing.Size(224, 26);
+            this.mnuVerPlanes.Size = new System.Drawing.Size(113, 26);
             this.mnuVerPlanes.Text = "Ver";
             this.mnuVerPlanes.Click += new System.EventHandler(this.mnuVerPlanes_Click);
             // 
@@ -265,6 +265,7 @@ namespace UI.Desktop
             this.mnuVerCargos.Name = "mnuVerCargos";
             this.mnuVerCargos.Size = new System.Drawing.Size(224, 26);
             this.mnuVerCargos.Text = "Ver";
+            this.mnuVerCargos.Click += new System.EventHandler(this.mnuVerCargos_Click);
             // 
             // mnuPersonas
             // 
@@ -292,6 +293,7 @@ namespace UI.Desktop
             this.mnuDocentes.Name = "mnuDocentes";
             this.mnuDocentes.Size = new System.Drawing.Size(224, 26);
             this.mnuDocentes.Text = "Ver docentes";
+            this.mnuDocentes.Click += new System.EventHandler(this.mnuDocentes_Click);
             // 
             // tableLayoutPanel1
             // 

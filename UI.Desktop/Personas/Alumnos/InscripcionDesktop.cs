@@ -163,7 +163,7 @@ namespace UI.Desktop
                 }
                 else if (pl.EsInscripcionRepetida(int.Parse(this.txtIDAlumno.Text), int.Parse(comboCursos.SelectedValue.ToString())))
                 {
-                    this.Notificar("ERROR", "Ya se encuentras inscripto a esta materia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    this.Notificar("ERROR", "Ya te encuentras inscripto a esta materia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }

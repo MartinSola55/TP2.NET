@@ -20,7 +20,7 @@ setTimeout(function () {
 listar();
 
 function listar() {
-    $.get("../Docente/GetAlumnosXCurso/?idCurso=" + $.urlParam('curso') + "&idMateria=" + $.urlParam('materia') + "&idComision=" + $.urlParam('com') , function (data) {
+    $.get("../Docente/GetAlumnosXCurso/?idCurso=" + $.urlParam('curso'), function (data) {
         $('#headerNota').html("Notas de " + data[0].DescripcionCurso);
         listadoAlumnos(header, data);
     });

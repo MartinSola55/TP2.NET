@@ -43,7 +43,13 @@ namespace UI.Desktop
         }
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (this.Validar())
+            if (this.txtUsuario.Text == "")
+            {
+                MessageBox.Show("Por favor, ingrese un usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            } else if (this.txtPass.Text == "")
+            {
+                MessageBox.Show("Por favor, ingrese una contraseña", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            } else if (this.Validar())
             {
                 this.DialogResult = DialogResult.OK;
             } else

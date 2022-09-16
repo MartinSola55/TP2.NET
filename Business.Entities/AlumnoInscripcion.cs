@@ -26,6 +26,8 @@ namespace Business.Entities
 
         public int IDComision { get; set; }
 
+        public int Legajo { get; set; }
+
         public string DescripcionCurso { get; set; }
 
         public string NombreApellido { get; set; }

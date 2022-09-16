@@ -271,11 +271,11 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
-        public List<AlumnoInscripcion> GetAlumnosXCurso(int idCurso, int idMateria, int idComision)
+        public List<AlumnoInscripcion> GetAlumnosXCurso(int idCurso)
         {
             try
             {
-                return AlumnoData.GetAlumnosXCurso(idCurso, idMateria, idComision);
+                return AlumnoData.GetAlumnosXCurso(idCurso);
             }
             catch (Exception exceptionManejada)
             {
