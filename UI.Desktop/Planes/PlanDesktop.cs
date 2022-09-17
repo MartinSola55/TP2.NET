@@ -101,6 +101,14 @@ namespace UI.Desktop
             {
                 this.Notificar("ERROR", "Debes seleccionar una especialidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
+            } else if (!Validaciones.esDireccionValida(this.txtDescripcion.Text))
+            {
+                this.Notificar("ERROR", "Sólo se permite una descripción con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            } else if (this.txtDescripcion.Text.Length < 3 || this.txtDescripcion.Text.Length > 50)
+            {
+                this.Notificar("ERROR", "Ingrese una descripción de entre 3 y 50 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
             return true;
         }

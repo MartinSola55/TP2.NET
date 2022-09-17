@@ -105,14 +105,14 @@ namespace UI.Desktop
                 this.Notificar("ERROR", "Debes completar todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (int.Parse(txtHSSemanales.Text) <= 0 || int.Parse(txtHSSemanales.Text) > 20)
+            else if (int.Parse(txtHSSemanales.Text) < 1 || int.Parse(txtHSSemanales.Text) > 20)
             {
-                this.Notificar("ERROR", "Debes ingresar una cantidad de horas semanales válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Notificar("ERROR", "Ingrese entre 1 y 20 horas semanales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (int.Parse(txtHSTotales.Text) <= 0 || int.Parse(txtHSTotales.Text) > 1000)
+            else if (int.Parse(txtHSTotales.Text) < 1 || int.Parse(txtHSTotales.Text) > 1000)
             {
-                this.Notificar("ERROR", "Debes ingresar una cantidad de horas totales válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Notificar("ERROR", "Ingrese entre 1 y 500 horas totales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             } else if (int.Parse(txtHSTotales.Text) <= int.Parse(txtHSSemanales.Text))
             {
@@ -122,6 +122,14 @@ namespace UI.Desktop
             else if (this.comboPlan.SelectedValue.ToString() == "0")
             {
                 this.Notificar("ERROR", "Debes seleccionar un plan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            } else if (this.txtDescripcion.Text.Length < 3 || this.txtDescripcion.Text.Length > 50)
+            {
+                this.Notificar("ERROR", "Ingrese una descripción de entre 3 y 50 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            } else if (!Validaciones.esDireccionValida(this.txtDescripcion.Text))
+            {
+                this.Notificar("ERROR", "Sólo se permite una descripción con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;

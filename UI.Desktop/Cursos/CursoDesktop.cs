@@ -110,7 +110,7 @@ namespace UI.Desktop
             }
             else if (int.Parse(txtAnio.Text) < 1980 || int.Parse(txtAnio.Text) > System.DateTime.Now.Year)
             {
-                this.Notificar("ERROR", "Debes ingresar un año válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Notificar("ERROR", "Debes ingresar un año entre 1980 y " + System.DateTime.Now.Year, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             else if (int.Parse(txtCupo.Text) <= 0 || int.Parse(txtCupo.Text) > 500)

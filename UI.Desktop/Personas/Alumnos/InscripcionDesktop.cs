@@ -149,7 +149,13 @@ namespace UI.Desktop
                 {
                     this.Notificar("ERROR", "Debes seleccionar un curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
-                } else if (pl.EsInscripcionRepetida(int.Parse(this.txtIDAlumno.Text), int.Parse(comboCursos.SelectedValue.ToString())))
+                }
+                else if (!Validaciones.esDireccionValida(this.txtCondicion.Text))
+                {
+                    this.Notificar("ERROR", "Sólo se permite una condición con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                else if (pl.EsInscripcionRepetida(int.Parse(this.txtIDAlumno.Text), int.Parse(comboCursos.SelectedValue.ToString())))
                 {
                     this.Notificar("ERROR", "El alumno ya se encuentra inscripto a esta materia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;

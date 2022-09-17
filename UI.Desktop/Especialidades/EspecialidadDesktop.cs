@@ -32,6 +32,25 @@ namespace UI.Desktop
             }
 
         }
+
+        public override bool Validar()
+        {
+            if (this.txtDesc.Text.Length == 0)
+            {
+                this.Notificar("ERROR", "Debes ingresar una descripción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            } else if (this.txtDesc.Text.Length < 3 || this.txtDesc.Text.Length > 30)
+            {
+                this.Notificar("ERROR", "Debes ingresar una descripción de entre 3 y 30 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            } else if (!Validaciones.esNombreValido(this.txtDesc.Text))
+            {
+                this.Notificar("ERROR", "Sólo se permiten caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
         public EspecialidadDesktop(int id, ModoForm modo) : this()
         {
             EspecialidadLogic el = new EspecialidadLogic();
@@ -45,13 +64,22 @@ namespace UI.Desktop
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (this.txtDesc.Text.Length > 0)
+            try
             {
-                this.GuardarCambios();
-                this.Close();
-            } else
+                if (this.Validar())
+                {
+                    this.GuardarCambios();
+                    this.Close();
+                } else
+                {
+                    MessageBox.Show("Debes escribir una descripción", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            } catch (FormatException)
             {
-                MessageBox.Show("Debes escribir una descripción", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Alguno de los campos ingresados no tiene el formato adecuado", "ERROR AL GUARDAR LA ESPECIALIDAD", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } catch (Exception exceptionManejada)
+            {
+                MessageBox.Show(exceptionManejada.Message, "ERROR AL GUARDAR LA ESPECIALIDAD", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public override void GuardarCambios()

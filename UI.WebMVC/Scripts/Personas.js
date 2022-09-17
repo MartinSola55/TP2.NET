@@ -28,6 +28,8 @@ $(function () {
     })
 });
 
+$('#txtNacimiento').removeAttr("data-val-date");
+
 function listar() {
     $.get("../Personas/getAll", function (data) {
         listadoPersonas(header, data);

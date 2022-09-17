@@ -118,6 +118,11 @@ namespace UI.Desktop
                 this.Notificar("ERROR", "Debes seleccionar un curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            else if (!Validaciones.esDireccionValida(this.txtCargo.Text))
+            {
+                this.Notificar("ERROR", "Sólo se permite un cargo con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             else if (pl.EsInscripcionRepetida(dc))
             {
                 this.Notificar("ERROR", "El docente ya se cuenta con un cargo en este curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);

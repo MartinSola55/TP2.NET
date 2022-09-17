@@ -46,13 +46,24 @@ namespace UI.Desktop
             if (this.txtUsuario.Text == "")
             {
                 MessageBox.Show("Por favor, ingrese un usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            } else if (this.txtPass.Text == "")
+            }
+            else if (this.txtPass.Text == "")
             {
                 MessageBox.Show("Por favor, ingrese una contraseña", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            } else if (this.Validar())
+            }
+            else if (!Validaciones.esUsuarioValido(this.txtUsuario.Text))
+            { 
+                MessageBox.Show("Por favor, ingrese un usuario válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (!Validaciones.esPassValida(this.txtPass.Text))
+            { 
+                MessageBox.Show("Por favor, ingrese una contraseña válida", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (this.Validar())
             {
                 this.DialogResult = DialogResult.OK;
-            } else
+            }
+            else
             {
                 MessageBox.Show("Usuario y/o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }

@@ -11,23 +11,27 @@ namespace Business.Logic
     {
         public static bool esMailValido(string mail)
         {
-            return mail != null && Regex.IsMatch(mail, "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@(([a-zA-Z]+[\\w-]+\\.){1,2}[a-zA-Z]{2,4})$"); ;
+            return mail != null && Regex.IsMatch(mail, "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@(([a-zA-Z]+[\\w-]+\\.){1,2}[a-zA-Z]{2,4})$");
         }
         public static bool esNombreValido(string nombre)
         {
-            return nombre != null && Regex.IsMatch(nombre, @"^[a-zA-Z\u00C0-\u017F\s]+$"); ;
+            return nombre != null && Regex.IsMatch(nombre, @"^[a-zA-Z\u00C0-\u017F\s]+$");
         }
         public static bool esDireccionValida(string nombre)
         {
-            return nombre != null && Regex.IsMatch(nombre, @"^[a-zA-Z0-9\u00C0-\u017F\s]+$"); ;
+            return nombre != null && Regex.IsMatch(nombre, @"^[a-zA-Z0-9\u00C0-\u017F\s]+$");
         }
         public static bool esUsuarioValido(string usuario)
         {
-            return usuario != null && Regex.IsMatch(usuario, @"^[a-zA-Z0-9\u00C0-\u017F\s]+$"); ;
+            return usuario != null && Regex.IsMatch(usuario, @"^[a-zA-Z][a-zA-Z0-9_.-]+$");
+        }
+        public static bool esPassValida(string pass)
+        {
+            return pass != null && Regex.IsMatch(pass, @"^[a-zA-Z0-9]+$");
         }
         public static bool esNumeroValido(string numero)
         {
-            return numero != null && Regex.IsMatch(numero, "^[1-9][0-9]+$"); ;
+            return numero != null && Regex.IsMatch(numero, "^[1-9][0-9]+$");
         }
     }
 }

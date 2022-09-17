@@ -35,7 +35,7 @@ namespace Business.Entities
         public string Telefono { get; set; }
 
         [Required(ErrorMessage = "Ingrese una fecha de nacimiento")]
-        [DataType(DataType.Date, ErrorMessage = "Ingrese un formato de fecha válido")]
+        [RegularExpression("^[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}$", ErrorMessage = "Ingrese un formato de fecha válido")]
         public DateTime FechaNacimiento { get; set; }
 
         [Required(ErrorMessage = "Ingrese un número de legajo")]

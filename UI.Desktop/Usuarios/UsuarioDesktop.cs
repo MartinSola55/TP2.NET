@@ -63,6 +63,7 @@ namespace UI.Desktop
                     }
                 case ModoForm.Baja:
                     {
+                        this.txtConfimarClave.Text = this.UsuarioActual.Clave;
                         btnAceptar.Text = "Eliminar";
                         txtUsuario.Enabled = false;
                         txtClave.Enabled = false;
@@ -115,9 +116,24 @@ namespace UI.Desktop
                 this.Notificar("ERROR", "Las contraseñas no coinciden", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (this.txtClave.Text.Length < 8)
+            else if (this.txtUsuario.Text.Length < 5 || this.txtUsuario.Text.Length > 18)
             {
-                this.Notificar("ERROR", "La contraseña debe ser de al menos 8 carateres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Notificar("ERROR", "El usuario debe contener entre 5 y 18 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (this.txtClave.Text.Length < 3)
+            {
+                this.Notificar("ERROR", "La contraseña debe ser de al menos 3 carateres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (!Validaciones.esUsuarioValido(this.txtUsuario.Text))
+            {
+                this.Notificar("ERROR", "Debes ingresar un usuario válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (!Validaciones.esPassValida(this.txtClave.Text))
+            {
+                this.Notificar("ERROR", "Debes ingresar una contraseña válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;

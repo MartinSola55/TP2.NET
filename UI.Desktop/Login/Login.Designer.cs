@@ -44,11 +44,11 @@ namespace UI.Desktop
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(149, 42);
+            this.lblTitulo.Location = new System.Drawing.Point(83, 34);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(344, 48);
+            this.lblTitulo.Size = new System.Drawing.Size(428, 48);
             this.lblTitulo.TabIndex = 0;
-            this.lblTitulo.Text = "Bienvenido al SYSACAD\r\nPor favor, ingrese sus datos para ingresar";
+            this.lblTitulo.Text = "Bienvenido al SYSACAD\r\nPor favor, ingrese sus datos para acceder al sistema";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblUsuario

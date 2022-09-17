@@ -64,6 +64,11 @@ namespace UI.Desktop.Personas.Docentes
                     return false;
                 }
             }
+            if (!Validaciones.esDireccionValida(this.txtCondicion.Text))
+            {
+                this.Notificar("ERROR", "Sólo se permite una condición con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             return true;
         }
         public override void GuardarCambios()

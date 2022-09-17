@@ -74,6 +74,7 @@ namespace UI.Desktop
                         txtEmail.Enabled = false;
                         txtTelefono.Enabled = false;
                         txtLegajo.Enabled = false;
+                        dtpNacimiento.Enabled = false;
                         break;
                     }
                 case ModoForm.Consulta:
@@ -123,11 +124,6 @@ namespace UI.Desktop
                 this.Notificar("ERROR", "Debes completar todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (int.Parse(txtLegajo.Text) < 1 || int.Parse(txtLegajo.Text) > 100000)
-            {
-                this.Notificar("ERROR", "Debes ingresar un legajo entre 1 y 100.000", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
             else if (this.comboPlanes.SelectedValue.ToString() == "0")
             {
                 this.Notificar("ERROR", "Debes seleccionar un plan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -138,14 +134,19 @@ namespace UI.Desktop
                 this.Notificar("ERROR", "Debes seleccionar un tipo de persona", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (Validaciones.esMailValido(this.txtEmail.Text) == false)
+            else if (int.Parse(txtLegajo.Text) < 1 || int.Parse(txtLegajo.Text) > 100000)
+            {
+                this.Notificar("ERROR", "Debes ingresar un legajo entre 1 y 100.000", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (!Validaciones.esMailValido(this.txtEmail.Text))
             {
                 this.Notificar("ERROR", "El formato del email es inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (Validaciones.esNombreValido(this.txtNombre.Text) == false || Validaciones.esNombreValido(this.txtApellido.Text) == false ||
-                Validaciones.esDireccionValida(this.txtDireccion.Text) == false || Validaciones.esNumeroValido(this.txtTelefono.Text) == false ||
-                Validaciones.esNumeroValido(this.txtLegajo.Text) == false)
+            else if (!Validaciones.esNombreValido(this.txtNombre.Text) || !Validaciones.esNombreValido(this.txtApellido.Text) ||
+                !Validaciones.esDireccionValida(this.txtDireccion.Text) || !Validaciones.esNumeroValido(this.txtTelefono.Text) ||
+                !Validaciones.esNumeroValido(this.txtLegajo.Text))
             {
                 this.Notificar("ERROR", "El formato de uno de los campos es inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;

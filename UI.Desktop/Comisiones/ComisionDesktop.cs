@@ -103,17 +103,24 @@ namespace UI.Desktop
         {
             if (this.txtDescripcion.Text.Length == 0 || this.txtAnio.Text.Length == 0)
             {
-                this.Notificar("ERROR", "Debes completar todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Notificar("ERROR", "Complete todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             } 
             else if (int.Parse(this.txtAnio.Text) < 1980 || int.Parse(this.txtAnio.Text) > System.DateTime.Now.Year)
             {
-                this.Notificar("ERROR", "Debes añadir un año válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Notificar("ERROR", "Complete con un año entre 1980 y " + System.DateTime.Now.Year, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             else if (this.comboPlan.SelectedValue.ToString() == "0")
             {
                 this.Notificar("ERROR", "Debes seleccionar un plan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            } else if (this.txtDescripcion.Text.Length < 3 || this.txtDescripcion.Text.Length > 30)
+            {
+                this.Notificar("ERROR", "Debes ingresar una descripción entre 3 y 30 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            } else if (!Validaciones.esNombreValido(this.txtDescripcion.Text)) {
+                this.Notificar("ERROR", "Sólo se permite una descripción con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
