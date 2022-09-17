@@ -31,9 +31,9 @@ namespace UI.Desktop
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Alumnos));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -42,6 +42,7 @@ namespace UI.Desktop
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcPersonas = new System.Windows.Forms.ToolStripContainer();
             this.tlPersonas = new System.Windows.Forms.TableLayoutPanel();
             this.dgvPersonas = new System.Windows.Forms.DataGridView();
@@ -50,6 +51,8 @@ namespace UI.Desktop
             this.tsPersonas = new System.Windows.Forms.ToolStrip();
             this.tsbInscripciones = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbNuevoUsuario = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
@@ -63,6 +66,7 @@ namespace UI.Desktop
             this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaNacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcPersonas.ContentPanel.SuspendLayout();
             this.tcPersonas.TopToolStripPanel.SuspendLayout();
             this.tcPersonas.SuspendLayout();
@@ -144,34 +148,35 @@ namespace UI.Desktop
             this.email,
             this.Direccion,
             this.Telefono,
-            this.FechaNacimiento});
+            this.FechaNacimiento,
+            this.NombreUsuario});
             this.tlPersonas.SetColumnSpan(this.dgvPersonas, 2);
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.DarkSlateGray;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(54)))), ((int)(((byte)(90)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPersonas.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.DarkSlateGray;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(54)))), ((int)(((byte)(90)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPersonas.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvPersonas.EnableHeadersVisualStyles = false;
             this.dgvPersonas.Location = new System.Drawing.Point(4, 4);
             this.dgvPersonas.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPersonas.MultiSelect = false;
             this.dgvPersonas.Name = "dgvPersonas";
             this.dgvPersonas.ReadOnly = true;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(54)))), ((int)(((byte)(90)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPersonas.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            this.dgvPersonas.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
             dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            this.dgvPersonas.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(54)))), ((int)(((byte)(90)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPersonas.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.dgvPersonas.RowHeadersWidth = 51;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            this.dgvPersonas.RowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvPersonas.RowTemplate.Height = 24;
             this.dgvPersonas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPersonas.Size = new System.Drawing.Size(974, 445);
@@ -224,6 +229,8 @@ namespace UI.Desktop
             this.tsPersonas.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbInscripciones,
             this.toolStripSeparator3,
+            this.tsbNuevoUsuario,
+            this.toolStripSeparator4,
             this.tsbNuevo,
             this.toolStripSeparator1,
             this.tsbEditar,
@@ -232,7 +239,7 @@ namespace UI.Desktop
             this.tsPersonas.Location = new System.Drawing.Point(4, 0);
             this.tsPersonas.MinimumSize = new System.Drawing.Size(0, 36);
             this.tsPersonas.Name = "tsPersonas";
-            this.tsPersonas.Size = new System.Drawing.Size(333, 36);
+            this.tsPersonas.Size = new System.Drawing.Size(449, 36);
             this.tsPersonas.TabIndex = 0;
             // 
             // tsbInscripciones
@@ -253,6 +260,23 @@ namespace UI.Desktop
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 36);
+            // 
+            // tsbNuevoUsuario
+            // 
+            this.tsbNuevoUsuario.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbNuevoUsuario.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbNuevoUsuario.ForeColor = System.Drawing.Color.Green;
+            this.tsbNuevoUsuario.Image = ((System.Drawing.Image)(resources.GetObject("tsbNuevoUsuario.Image")));
+            this.tsbNuevoUsuario.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNuevoUsuario.Name = "tsbNuevoUsuario";
+            this.tsbNuevoUsuario.Size = new System.Drawing.Size(110, 33);
+            this.tsbNuevoUsuario.Text = "Nuevo usuario";
+            this.tsbNuevoUsuario.Click += new System.EventHandler(this.tsbNuevoUsuario_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 36);
             // 
             // tsbNuevo
             // 
@@ -395,6 +419,18 @@ namespace UI.Desktop
             this.FechaNacimiento.ReadOnly = true;
             this.FechaNacimiento.Width = 182;
             // 
+            // NombreUsuario
+            // 
+            this.NombreUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.NombreUsuario.DataPropertyName = "NombreUsuario";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.NombreUsuario.DefaultCellStyle = dataGridViewCellStyle10;
+            this.NombreUsuario.HeaderText = "Usuario";
+            this.NombreUsuario.MinimumWidth = 6;
+            this.NombreUsuario.Name = "NombreUsuario";
+            this.NombreUsuario.ReadOnly = true;
+            this.NombreUsuario.Width = 99;
+            // 
             // Alumnos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
@@ -439,6 +475,8 @@ namespace UI.Desktop
         private System.Windows.Forms.ToolStripButton tsbEditar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
+        private System.Windows.Forms.ToolStripButton tsbNuevoUsuario;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Legajo;
         private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
@@ -447,5 +485,6 @@ namespace UI.Desktop
         private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaNacimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreUsuario;
     }
 }

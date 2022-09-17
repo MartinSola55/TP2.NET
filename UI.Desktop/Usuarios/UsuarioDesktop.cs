@@ -32,8 +32,10 @@ namespace UI.Desktop
             get;
             set;
         }
-        public UsuarioDesktop(ModoForm modo) : this() 
+        public UsuarioDesktop(ModoForm modo, int IDPersona) : this() 
         {
+            UsuarioActual = new Usuario();
+            UsuarioActual.IDPersona = IDPersona;
             Modo = modo;
             if (modo == ModoForm.Alta) 
             {
@@ -80,11 +82,6 @@ namespace UI.Desktop
         }
         public override void MapearADatos()
         {
-            if (this.Modo == ModoForm.Alta)
-            {
-                Usuario usuario = new Usuario();
-                UsuarioActual = usuario;
-            }
             if (this.Modo == ModoForm.Alta || this.Modo == ModoForm.Modificacion)
             {
                 this.UsuarioActual.Habilitado = this.chkHabilitado.Checked;

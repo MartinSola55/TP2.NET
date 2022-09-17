@@ -223,28 +223,6 @@ namespace Data.Database
                 this.CloseConnection();
             }
         }
-        public void Insert(Usuario usuario)
-        {
-            try
-            {
-                this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand(
-                    "INSERT INTO usuarios (nombre_usuario, clave, habilitado)" +
-                    "VALUES (@nombre_usuario, @clave, @habilitado) SELECT @@identity", sqlConn);
-                cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = usuario.ID;
-                cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
-                cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
-                cmdSave.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
-                usuario.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
-            } catch (Exception Ex)
-            {
-                Exception exceptionManejada = new Exception("Hubo un error al crear el usuario", Ex);
-                throw exceptionManejada;
-            } finally
-            {
-                this.CloseConnection();
-            }
-        }
         public void Create(Usuario usuario)
         {
             try
@@ -272,7 +250,7 @@ namespace Data.Database
         {
             if (usuario.State == BusinessEntity.States.New)
             {
-                this.Insert(usuario);
+                this.Create(usuario);
             }
             else if (usuario.State == BusinessEntity.States.Deleted)
             {

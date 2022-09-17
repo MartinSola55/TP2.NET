@@ -63,6 +63,7 @@ namespace Data.Database
                 SqlCommand cmdPersonas = new SqlCommand("SELECT * FROM personas p " +
                     "INNER JOIN planes pl ON p.id_plan = pl.id_plan " +
                     "INNER JOIN especialidades e ON pl.id_especialidad = e.id_especialidad " +
+                    "LEFT JOIN usuarios u ON p.id_persona = u.id_persona " +
                     "WHERE p.tipo_persona = 2 " +
                     "ORDER BY apellido, nombre", sqlConn);
                 SqlDataReader drPersonas = cmdPersonas.ExecuteReader();
@@ -83,6 +84,10 @@ namespace Data.Database
                     per.DescPlan = (string)drPersonas["desc_plan"];
                     per.DescPlan += " - ";
                     per.DescPlan += (string)drPersonas["desc_especialidad"];
+                    if (drPersonas["nombre_usuario"] != DBNull.Value)
+                    {
+                        per.NombreUsuario = (string)drPersonas["nombre_usuario"];
+                    }
                     personas.Add(per);
                 }
 
@@ -109,6 +114,7 @@ namespace Data.Database
                 SqlCommand cmdPersonas = new SqlCommand("SELECT * FROM personas p " +
                     "INNER JOIN planes pl ON p.id_plan = pl.id_plan " +
                     "INNER JOIN especialidades e ON pl.id_especialidad = e.id_especialidad " +
+                    "LEFT JOIN usuarios u ON p.id_persona = u.id_persona " +
                     "WHERE p.tipo_persona = 1 " +
                     "ORDER BY apellido, nombre", sqlConn);
                 SqlDataReader drPersonas = cmdPersonas.ExecuteReader();
@@ -129,6 +135,10 @@ namespace Data.Database
                     per.DescPlan = (string)drPersonas["desc_plan"];
                     per.DescPlan += " - ";
                     per.DescPlan += (string)drPersonas["desc_especialidad"];
+                    if (drPersonas["nombre_usuario"] != DBNull.Value)
+                    {
+                        per.NombreUsuario = (string)drPersonas["nombre_usuario"];
+                    }
                     personas.Add(per);
                 }
 

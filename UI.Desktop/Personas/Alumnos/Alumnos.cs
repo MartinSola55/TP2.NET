@@ -86,6 +86,27 @@ namespace UI.Desktop
             }
         }
 
+        private void tsbNuevoUsuario_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (((Persona)this.dgvPersonas.SelectedRows[0].DataBoundItem).NombreUsuario == null)
+                {
+                    int ID = ((Persona)this.dgvPersonas.SelectedRows[0].DataBoundItem).ID;
+                    UsuarioDesktop ud = new UsuarioDesktop(ModoForm.Alta, ID);
+                    ud.ShowDialog();
+                    this.Listar();
+                } else
+                {
+                    MessageBox.Show("Este alumno ya cuenta con un usuario", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception exceptionManejada)
+            {
+                MessageBox.Show(exceptionManejada.Message, "ERROR AL CREAR UN USUARIO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void tsbInscripciones_Click(object sender, EventArgs e)
         {
             try
