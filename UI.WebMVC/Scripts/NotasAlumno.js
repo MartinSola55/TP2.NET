@@ -43,7 +43,7 @@ function listadoAlumnos(arrayHeader, data) {
     for (let i = 0; i < data.length; i++) {
         contenido += "<tr>";
         contenido += "<td>" + data[i].NombreApellido + "</td>";
-        contenido += "<td class='text-center'>" + data[i].Condicion + "</td>";
+        contenido += "<td class='text-center'>" + data[i].DescripcionCondicion + "</td>";
         let nota = data[i].Nota == null ? "-" : data[i].Nota;
         contenido += "<td class='text-center'>" + nota + "</td>";
         contenido += "<td class='d-flex justify-content-center'>";
@@ -84,7 +84,7 @@ function modalEdit(idIns) {
         $("#txtIDAlumno").val(data['IDAlumno']);
         $("#txtID").val(data['ID']);
         $("#txtAlumno").val(data['NombreApellido']);
-        $("#txtCondicion").val(data['Condicion']);
+        $("#comboCondiciones").val(data['IDCondicion']);
         $("#txtNota").val(data['Nota']);
     });
 }

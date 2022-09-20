@@ -37,7 +37,7 @@ function listarInscripciones() {
         for (let i = 0; i < data.length; i++) {
             tarjeta += "<div class='card me-4 col-3 mb-4' style='width: 18rem;'>";
             tarjeta += "<div class='card-body d-flex flex-column'>"
-            tarjeta += "<h5 class='card-title'>Condición: " + data[i].Condicion + "</h5>"
+            tarjeta += "<h5 class='card-title'>Condición: " + data[i].DescripcionCondicion + "</h5>"
             let nota = data[i].Nota == null ? "" : data[i].Nota;
             if (nota != "") {
                 tarjeta += "<h5 class='card-title'>Nota: " + nota + "</h5>"
@@ -61,6 +61,7 @@ jQuery('#btnAgregar').on('click', function () {
     $("#staticBackdropLabel").text("Agregar inscripción");
     $("#txtIDAlumno").val($.urlParam('nro'));
     $("#comboCursos").val("");
+    $("#comboCondiciones").val("");
     $("#txtID").prop("disabled", "disabled");
 });
 
@@ -71,7 +72,7 @@ function modalEdit(id) {
     $.get("../Personas/getInscripcion/?id=" + id + "&tipo=2", function (data) {
         $("#txtID").val(data["ID"]);
         $("#txtIDAlumno").val($.urlParam('nro'));
-        $("#txtCondicion").val(data["Condicion"]);
+        $("#comboCondiciones").val(data["IDCondicion"]);
         $("#txtNota").val(data["Nota"]);
         $("#comboCursos").val(data["IDCurso"]);
     });
@@ -85,7 +86,7 @@ function modalDelete(id) {
     $.get("../Personas/GetInscripcion/?id=" + id + "&tipo=2", function (data) {
         $("#txtID").val(data["ID"]);
         $("#txtIDAlumno").val($.urlParam('nro'));
-        $("#txtCondicion").val(data["Condicion"]);
+        $("#comboCondiciones").val(data["IDCondicion"]);
         $("#txtNota").val(data["Nota"]);
         $("#comboCursos").val(data["IDCurso"]);
     });

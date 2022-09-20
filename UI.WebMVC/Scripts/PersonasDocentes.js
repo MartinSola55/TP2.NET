@@ -37,7 +37,7 @@ function listarInscripciones() {
         for (let i = 0; i < data.length; i++) {
             tarjeta += "<div class='card me-4 col-3 mb-4' style='width: 18rem;'>";
             tarjeta += "<div class='card-body d-flex flex-column'>"
-            tarjeta += "<h5 class='card-title'>Cargo: " + data[i].Cargo + "</h5>"
+            tarjeta += "<h5 class='card-title'>Cargo: " + data[i].DescripcionCargo + "</h5>"
             tarjeta += "<p class='card-text'>" + data[i].DescripcionCurso + "</p>"
             tarjeta += "<div class='d-flex justify-content-between mt-auto'>"
             tarjeta += "<button class='btn btn-outline-dark' onclick='modalEdit(" + data[i].ID + ")' data-bs-toggle='modal' data-bs-target='#staticBackdrop' >Ver</button>"
@@ -57,6 +57,7 @@ jQuery('#btnAgregar').on('click', function () {
     $("#staticBackdropLabel").text("Agregar cargo");
     $("#txtIDDocente").val($.urlParam('nro'));
     $("#comboCursos").val("");
+    $("#comboCargos").val("");
     $("#txtID").prop("disabled", "disabled");
 });
 
@@ -67,7 +68,7 @@ function modalEdit(id) {
     $.get("../Personas/getInscripcion/?id=" + id + "&tipo=1", function (data) {
         $("#txtID").val(data["ID"]);
         $("#txtIDDocente").val($.urlParam('nro'));
-        $("#txtCargo").val(data["Cargo"]);
+        $("#comboCargos").val(data["IDCargo"]);
         $("#comboCursos").val(data["IDCurso"]);
     });
 }
@@ -80,7 +81,7 @@ function modalDelete(id) {
     $.get("../Personas/GetInscripcion/?id=" + id + "&tipo=1", function (data) {
         $("#txtID").val(data["ID"]);
         $("#txtIDDocente").val($.urlParam('nro'));
-        $("#txtCargo").val(data["Cargo"]);
+        $("#comboCargos").val(data["IDCargo"]);
         $("#comboCursos").val(data["IDCurso"]);
     });
     let frm = new FormData();

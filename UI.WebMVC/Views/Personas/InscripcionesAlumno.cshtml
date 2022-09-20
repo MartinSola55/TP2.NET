@@ -97,9 +97,9 @@
                         @Html.TextBoxFor(model => model.IDAlumno, new { @id = "txtIDAlumno", @readonly = "readonly", @class = "form-control limpiarCampo w-25 mb-3" })
 
                         <label>Condición: </label>
-                        @Html.TextBoxFor(model => model.Condicion, new { @id = "txtCondicion", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })
+                        @Html.DropDownListFor(model => model.IDCondicion, new SelectList(ViewBag.listadoCondiciones, "Value", "Text"), "--Seleccione una condición--", new { @id = "comboCondiciones", @class = "form-select limpiarCampo habilitarCampo deshabilitarCampo" })
                         <span></span>
-                        @Html.ValidationMessageFor(model => model.Condicion, null, new { @class = "text-danger mb-3" })
+                        @Html.ValidationMessageFor(model => model.IDCondicion, null, new { @class = "text-danger mb-3" })
 
                         <label>Nota: </label>
                         @Html.TextBoxFor(model => model.Nota, new { @id = "txtNota", @type = "number", @class = "form-control limpiarCampo habilitarCampo deshabilitarCampo" })

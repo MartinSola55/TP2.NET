@@ -21,11 +21,13 @@ namespace UI.WebMVC.Controllers
         }
         public ActionResult Notas()
         {
+            ViewBag.listadoCondiciones = listadoCondiciones();
             return View();
         }
         [HttpPost]
         public ActionResult Notas(AlumnoInscripcion inscripcion)
         {
+            ViewBag.listadoCondiciones = listadoCondiciones();
             if (ModelState.IsValid)
             {
                 return View(inscripcion);
@@ -101,6 +103,21 @@ namespace UI.WebMVC.Controllers
                 ViewBag.Error = 2;
             }
             return RedirectToAction("/Notas", new { curso = inscripcion.IDCurso, materia = inscripcion.IDMateria, com = inscripcion.IDComision });
+        }
+        public IEnumerable<SelectListItem> listadoCondiciones()
+        {
+            CondicionLogic condl = new CondicionLogic();
+            IEnumerable<SelectListItem> lista = null;
+            try
+            {
+                IEnumerable<Condicion> condiciones = condl.GetAll();
+                lista = condiciones.Select(c => new SelectListItem { Text = c.Descripcion, Value = c.ID.ToString() });
+            }
+            catch (Exception e)
+            {
+
+            }
+            return lista;
         }
     }
 }

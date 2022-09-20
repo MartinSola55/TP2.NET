@@ -26,7 +26,7 @@ function listarInscripciones() {
         for (let i = 0; i < data.length; i++) {
             tarjeta += "<div class='card me-4 col-3 mb-4' style='width: 18rem;'>";
             tarjeta += "<div class='card-body d-flex flex-column'>"
-            tarjeta += "<h5 class='card-title'>Condición: " + data[i].Condicion + "</h5>"
+            tarjeta += "<h5 class='card-title'>Condición: " + data[i].DescripcionCondicion + "</h5>"
             let nota = data[i].Nota == null ? "" : data[i].Nota;
             if (nota != "") {
                 tarjeta += "<h5 class='card-title'>Nota: " + nota + "</h5>"

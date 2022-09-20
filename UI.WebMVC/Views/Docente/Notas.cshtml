@@ -57,9 +57,9 @@
                         <input id="txtAlumno" type="text" class="form-control limpiarCampo mb-3" disabled />
 
                         <label>Condición: </label>
-                        @Html.TextBoxFor(model => model.Condicion, new { @id = "txtCondicion", @class = "form-control limpiarCampo" })
+                        @Html.DropDownListFor(model => model.IDCondicion, new SelectList(ViewBag.listadoCondiciones, "Value", "Text"), "--Seleccione una condición--", new { @id = "comboCondiciones", @class = "form-select limpiarCampo habilitarCampo deshabilitarCampo" })
                         <span></span>
-                        @Html.ValidationMessageFor(model => model.Condicion, null, new { @class = "text-danger mb-3" })
+                        @Html.ValidationMessageFor(model => model.IDCondicion, null, new { @class = "text-danger mb-3" })
 
                         <label>Nota: </label>
                         @Html.TextBoxFor(model => model.Nota, new { @id = "txtNota", @type = "number", @class = "form-control limpiarCampo" })

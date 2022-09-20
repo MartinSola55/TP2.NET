@@ -18,7 +18,7 @@ function listarCargos() {
         for (let i = 0; i < data.length; i++) {
             tarjeta += "<div class='card me-4 col-3 mb-4' style='width: 18rem;'>";
             tarjeta += "<div class='card-body d-flex flex-column'>"
-            tarjeta += "<h5 class='card-title'>Cargo: " + data[i].Cargo + "</h5>"
+            tarjeta += "<h5 class='card-title'>Cargo: " + data[i].DescripcionCargo + "</h5>"
             tarjeta += "<p class='card-text'>" + data[i].DescripcionCurso + "</p>"
             tarjeta += "<div class='d-flex justify-content-end mt-auto'>"
             tarjeta += "<button class='btn btn-outline-dark' onclick='selectDictado(" + data[i]["IDCurso"] + ", " + data[i]["IDMateria"] + ", " + data[i]["IDComision"] +  ")'>Seleccionar</button>";

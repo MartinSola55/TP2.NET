@@ -36,12 +36,14 @@ namespace UI.WebMVC.Controllers
         public ActionResult InscripcionesAlumno()
         {
             ViewBag.listadoCursos = listadoCursos();
+            ViewBag.listadoCondiciones = listadoCondiciones();
             return View();
         }
         [HttpPost]
         public ActionResult InscripcionesAlumno(AlumnoInscripcion inscripcion)
         {
             ViewBag.listadoCursos = listadoCursos();
+            ViewBag.listadoCondiciones = listadoCondiciones();
             if (ModelState.IsValid)
             {
                 return View(inscripcion);
@@ -51,12 +53,14 @@ namespace UI.WebMVC.Controllers
         public ActionResult InscripcionesDocente()
         {
             ViewBag.listadoCursos = listadoCursos();
+            ViewBag.listadoCargos = listadoCargos();
             return View();
         }
         [HttpPost]
         public ActionResult InscripcionesDocente(DocenteCurso inscripcion)
         {
             ViewBag.listadoCursos = listadoCursos();
+            ViewBag.listadoCargos = listadoCargos();
             if (ModelState.IsValid)
             {
                 return View(inscripcion);
@@ -236,6 +240,7 @@ namespace UI.WebMVC.Controllers
                 ViewBag.Error = 2;
             }
             ViewBag.listadoCursos = listadoCursos();
+            ViewBag.listadoCondiciones = listadoCondiciones();
             return RedirectToAction("/InscripcionesAlumno", new { nro = inscripcion.IDAlumno });
         }
         public ActionResult SaveInsDoc(DocenteCurso inscripcion)
@@ -268,6 +273,7 @@ namespace UI.WebMVC.Controllers
                 ViewBag.Error = 2;
             }
             ViewBag.listadoCursos = listadoCursos();
+            ViewBag.listadoCargos = listadoCargos();
             return RedirectToAction("/InscripcionesDocente", new { nro = inscripcion.IDDocente });
         }
         public ActionResult DeleteInsAl(AlumnoInscripcion inscripcion)
@@ -283,6 +289,7 @@ namespace UI.WebMVC.Controllers
                 ViewBag.Error = 2;
             }
             ViewBag.listadoCursos = listadoCursos();
+            ViewBag.listadoCondiciones = listadoCondiciones();
             return RedirectToAction("/InscripcionesAlumno", new { nro = inscripcion.IDAlumno });
         }
         public ActionResult DeleteInsDoc(DocenteCurso inscripcion)
@@ -298,6 +305,7 @@ namespace UI.WebMVC.Controllers
                 ViewBag.Error = 2;
             }
             ViewBag.listadoCursos = listadoCursos();
+            ViewBag.listadoCargos = listadoCargos();
             return RedirectToAction("/InscripcionesDocente", new { nro = inscripcion.IDDocente });
         }
         public ActionResult SaveUser(Usuario usuario)
@@ -321,6 +329,8 @@ namespace UI.WebMVC.Controllers
                 ViewBag.Error = 2;
             }
             ViewBag.listadoCursos = listadoCursos();
+            ViewBag.listadoCondiciones = listadoCondiciones();
+            ViewBag.listadoCargos = listadoCargos();
             string tipoPersona = usuario.TipoPersona == 1 ? "Docente" : "Alumno";
             return RedirectToAction("/Inscripciones" + tipoPersona, new { nro = usuario.IDPersona});
         }
@@ -345,6 +355,36 @@ namespace UI.WebMVC.Controllers
             {
                 IEnumerable<Curso> cursos = cursol.GetAll();
                 lista = cursos.Select(c => new SelectListItem { Text = c.AnioCalendario + " - " + c.ComisionDesc + " - " + c.MateriaDesc, Value = c.ID.ToString() });
+            }
+            catch (Exception e)
+            {
+
+            }
+            return lista;
+        }
+        public IEnumerable<SelectListItem> listadoCondiciones()
+        {
+            CondicionLogic condl = new CondicionLogic();
+            IEnumerable<SelectListItem> lista = null;
+            try
+            {
+                IEnumerable<Condicion> condiciones = condl.GetAll();
+                lista = condiciones.Select(c => new SelectListItem { Text = c.Descripcion, Value = c.ID.ToString() });
+            }
+            catch (Exception e)
+            {
+
+            }
+            return lista;
+        }
+        public IEnumerable<SelectListItem> listadoCargos()
+        {
+            CargoLogic cargol = new CargoLogic();
+            IEnumerable<SelectListItem> lista = null;
+            try
+            {
+                IEnumerable<Cargo> cargos = cargol.GetAll();
+                lista = cargos.Select(c => new SelectListItem { Text = c.Descripcion, Value = c.ID.ToString() });
             }
             catch (Exception e)
             {
