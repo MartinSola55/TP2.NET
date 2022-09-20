@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CargoLogic.cs" />
+    <Compile Include="CondicionLogic.cs" />
     <Compile Include="MateriaLogic.cs" />
     <Compile Include="PersonaLogic.cs" />
     <Compile Include="PlanLogic.cs" />

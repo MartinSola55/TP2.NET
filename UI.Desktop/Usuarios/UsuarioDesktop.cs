@@ -14,6 +14,7 @@ namespace UI.Desktop
 {
     public partial class UsuarioDesktop : ApplicationForm
     {
+        private UsuarioLogic ul = new UsuarioLogic();
         public UsuarioDesktop()
         {
             InitializeComponent();
@@ -45,7 +46,6 @@ namespace UI.Desktop
         }
         public UsuarioDesktop(int id, ModoForm modo) : this() 
         {
-            UsuarioLogic ul = new UsuarioLogic();
             UsuarioActual = ul.GetOne(id);
             Modo = modo;
             this.MapearDeDatos();
@@ -133,6 +133,26 @@ namespace UI.Desktop
                 this.Notificar("ERROR", "Debes ingresar una contraseña válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            if (this.txtID.Text == "")
+            {
+                if (ul.EsRepetido(this.txtUsuario.Text))
+                {
+                    this.Notificar("ERROR", "El nombre de usuario ingresado ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            } else
+            {
+                Usuario user = new Usuario
+                {
+                    ID = int.Parse(this.txtID.Text),
+                    NombreUsuario = this.txtUsuario.Text
+                };
+                if (ul.EsRepetido(user))
+                {
+                    this.Notificar("ERROR", "El nombre de usuario ingresado ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
             return true;
         }
         public override void GuardarCambios()
@@ -140,7 +160,6 @@ namespace UI.Desktop
             try
             {
                 this.MapearADatos();
-                UsuarioLogic ul = new UsuarioLogic();
                 ul.Save(UsuarioActual);
             } catch (Exception exceptionManejada)
             {
@@ -150,10 +169,29 @@ namespace UI.Desktop
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (this.Validar())
+            try
             {
-                this.GuardarCambios();
-                this.Close();
+                if (Modo != ModoForm.Baja)
+                {
+                    if (this.Validar())
+                    {
+                        this.GuardarCambios();
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    this.GuardarCambios();
+                    this.Close();
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Alguno de los campos no tiene el formato adecuado", "ERROR AL GUARDAR EL USUARIO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception exceptionManejada)
+            {
+                MessageBox.Show(exceptionManejada.Message, "ERROR AL GUARDAR EL USUARIO", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

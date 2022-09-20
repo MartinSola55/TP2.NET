@@ -21,6 +21,7 @@ namespace Data.Database
                     "INNER JOIN comisiones com ON c.id_comision = com.id_comision " +
                     "INNER JOIN planes p ON m.id_plan = p.id_plan " +
                     "INNER JOIN personas per ON ai.id_alumno = per.id_persona " +
+                    "INNER JOIN condiciones_alumnos cond ON ai.id_condicion = cond.id_condicion " +
                     "WHERE id_alumno = @id " +
                     "ORDER BY anio_calendario DESC", sqlConn);
                 cmdInscripciones.Parameters.Add("@id", SqlDbType.Int).Value = id;
@@ -42,10 +43,11 @@ namespace Data.Database
                     ins.DescripcionMateria = (string)drInscripciones["desc_materia"];
                     ins.DescripcionPlan = (string)drInscripciones["desc_plan"];
                     ins.Nota = drInscripciones["nota"] as int?;
-                    ins.Condicion = (string)drInscripciones["condicion"];
+                    ins.IDCondicion = (int)drInscripciones["id_condicion"];
                     ins.NombreApellido = (string)drInscripciones["apellido"];
                     ins.NombreApellido += ", ";
                     ins.NombreApellido += (string)drInscripciones["nombre"];
+                    ins.DescripcionCondicion = (string)drInscripciones["desc_condicion"];
                     inscripciones.Add(ins);
                 }
                 drInscripciones.Close();
@@ -90,7 +92,7 @@ namespace Data.Database
                     ins.DescripcionCurso += " - ";
                     ins.DescripcionCurso += (string)drInscripcion["desc_plan"];
                     ins.Nota = drInscripcion["nota"] as int?;
-                    ins.Condicion = (string)drInscripcion["condicion"];
+                    ins.IDCondicion = (int)drInscripcion["id_condicion"];
                     ins.NombreApellido = (string)drInscripcion["apellido"];
                     ins.NombreApellido += ", ";
                     ins.NombreApellido += (string)drInscripcion["nombre"];
@@ -158,7 +160,7 @@ namespace Data.Database
             {
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand(
-                    "UPDATE alumnos_inscripciones SET id_curso = @id_curso, condicion = @condicion, nota = @nota " +
+                    "UPDATE alumnos_inscripciones SET id_curso = @id_curso, id_condicion = @id_condicion, nota = @nota " +
                     "WHERE id_inscripcion = @id", sqlConn);
                 if (inscripcion.Nota == null)
                 {
@@ -169,7 +171,7 @@ namespace Data.Database
                 }
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = inscripcion.ID;
                 cmdSave.Parameters.Add("@id_curso", SqlDbType.Int).Value = inscripcion.IDCurso;
-                cmdSave.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = inscripcion.Condicion;
+                cmdSave.Parameters.Add("@id_condicion", SqlDbType.VarChar, 50).Value = inscripcion.IDCondicion;
                 cmdSave.ExecuteNonQuery();
             }
             catch (SqlException Ex)
@@ -193,7 +195,7 @@ namespace Data.Database
             {
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand(
-                    "UPDATE alumnos_inscripciones SET condicion = @condicion, nota = @nota " +
+                    "UPDATE alumnos_inscripciones SET id_condicion = @id_condicion, nota = @nota " +
                     "WHERE id_inscripcion = @id", sqlConn);
                 if (inscripcion.Nota == null)
                 {
@@ -203,7 +205,7 @@ namespace Data.Database
                     cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = inscripcion.Nota;
                 }
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = inscripcion.ID;
-                cmdSave.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = inscripcion.Condicion;
+                cmdSave.Parameters.Add("@id_condicion", SqlDbType.VarChar, 50).Value = inscripcion.IDCondicion;
                 cmdSave.ExecuteNonQuery();
             }
             catch (SqlException Ex)
@@ -229,18 +231,18 @@ namespace Data.Database
                 SqlCommand cmdSave;
                 if (inscripcion.Nota == null) {
                     cmdSave = new SqlCommand(
-                    "INSERT INTO alumnos_inscripciones (id_curso, id_alumno, condicion) " +
-                    "VALUES (@id_curso, @id_alumno, @condicion) SELECT @@identity", sqlConn);
+                    "INSERT INTO alumnos_inscripciones (id_curso, id_alumno, id_condicion) " +
+                    "VALUES (@id_curso, @id_alumno, @id_condicion) SELECT @@identity", sqlConn);
                 } else
                 {
                     cmdSave = new SqlCommand(
-                    "INSERT INTO alumnos_inscripciones (id_curso, id_alumno, condicion, nota) " +
-                    "VALUES (@id_curso, @id_alumno, @condicion, @nota) SELECT @@identity", sqlConn);
+                    "INSERT INTO alumnos_inscripciones (id_curso, id_alumno, id_condicion, nota) " +
+                    "VALUES (@id_curso, @id_alumno, @id_condicion, @nota) SELECT @@identity", sqlConn);
                     cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = inscripcion.Nota;
                 }
                 cmdSave.Parameters.Add("@id_curso", SqlDbType.Int).Value = inscripcion.IDCurso;
                 cmdSave.Parameters.Add("@id_alumno", SqlDbType.Int).Value = inscripcion.IDAlumno;
-                cmdSave.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = inscripcion.Condicion;
+                cmdSave.Parameters.Add("@id_condicion", SqlDbType.VarChar, 50).Value = inscripcion.IDCondicion;
                 inscripcion.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
             }
             catch (Exception Ex)
@@ -262,11 +264,9 @@ namespace Data.Database
                     "SELECT * FROM alumnos_inscripciones " +
                     "WHERE id_curso = @curso " +
                     "AND id_alumno = @id_alumno " +
-                    "AND condicion = @condicion " +
                     "AND NOT id_inscripcion = @id", sqlConn);
                 cmdInscripcion.Parameters.Add("@curso", SqlDbType.Int).Value = inscripcion.IDCurso;
                 cmdInscripcion.Parameters.Add("@id_alumno", SqlDbType.Int).Value = inscripcion.IDAlumno;
-                cmdInscripcion.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = inscripcion.Condicion;
                 cmdInscripcion.Parameters.Add("@id", SqlDbType.Int).Value = inscripcion.ID;
                 SqlDataReader drInscripcion = cmdInscripcion.ExecuteReader();
                 if (drInscripcion.Read())
@@ -337,6 +337,7 @@ namespace Data.Database
                     "INNER JOIN materias m ON c.id_materia = m.id_materia " +
                     "INNER JOIN comisiones com ON c.id_comision = com.id_comision " +
                     "INNER JOIN planes pl ON m.id_plan = pl.id_plan " +
+                    "INNER JOIN condiciones_alumnos cond ON ai.id_condicion = cond.id_condicion " +
                     "WHERE ai.id_curso = @idCurso " +
                     "ORDER BY p.apellido, p.nombre", sqlConn);
                 cmdAlumnos.Parameters.Add("@idCurso", SqlDbType.Int).Value = idCurso;
@@ -354,11 +355,12 @@ namespace Data.Database
                     int anio = (int)drAlumnos["anio_calendario"];
                     alum.DescripcionCurso += anio.ToString();
                     alum.Nota = drAlumnos["nota"] as int?;
-                    alum.Condicion = (string)drAlumnos["condicion"];
+                    alum.IDCondicion = (int)drAlumnos["id_condicion"];
                     alum.NombreApellido = (string)drAlumnos["apellido"];
                     alum.NombreApellido += ", ";
                     alum.NombreApellido += (string)drAlumnos["nombre"];
                     alum.Legajo = (int)drAlumnos["legajo"];
+                    alum.DescripcionCondicion = (string)drAlumnos["desc_condicion"];
                     alumnos.Add(alum);
                 }
                 drAlumnos.Close();

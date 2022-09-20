@@ -9,9 +9,7 @@ namespace Business.Entities
     public class AlumnoInscripcion : BusinessEntity
     {      
         [Required(ErrorMessage = "Ingrese una condición")]
-        [MinLength(4, ErrorMessage = "Ingrese un mínimo de 3 caracteres")]
-        [RegularExpression(@"^[a-zA-Z0-9\u00C0-\u017F\s]+$", ErrorMessage = "Sólo se permiten caracteres alfanuméricos")]
-        public string Condicion { get; set; }
+        public int IDCondicion { get; set; }
 
         [Range(1, 10, ErrorMessage = "Ingrese una nota entre 1 y 10")]
         public int? Nota { get; set; }
@@ -37,5 +35,7 @@ namespace Business.Entities
         public string DescripcionMateria { get; set; }
 
         public string DescripcionPlan { get; set; }
+
+        public string DescripcionCondicion { get; set; }
     }
 }

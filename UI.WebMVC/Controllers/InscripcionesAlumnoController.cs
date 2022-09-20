@@ -89,7 +89,7 @@ namespace UI.WebMVC.Controllers
             {
                 if (!pl.EsInscripcionRepetida(inscripcion.IDAlumno, inscripcion.IDCurso))
                 {
-                    inscripcion.Condicion = "Inscripto";
+                    inscripcion.IDCondicion = 4;
                     inscripcion.Nota = null;
                     inscripcion.State = BusinessEntity.States.New;
                     pl.SaveIns(inscripcion);

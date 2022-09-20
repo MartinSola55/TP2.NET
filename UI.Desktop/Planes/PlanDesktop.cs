@@ -112,10 +112,10 @@ namespace UI.Desktop
             }
             Plan plan = new Plan
             {
+                ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0,
                 Descripcion = this.txtDescripcion.Text,
                 IDEspecialidad = int.Parse(this.comboEspecialidad.SelectedValue.ToString())
             };
-            plan.ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0;
             if (pl.GetRepetido(plan).ID != 0)
             {
                 this.Notificar("ERROR", "El plan que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);

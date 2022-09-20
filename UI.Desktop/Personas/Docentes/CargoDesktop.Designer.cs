@@ -36,10 +36,10 @@ namespace UI.Desktop
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblCargo = new System.Windows.Forms.Label();
-            this.txtCargo = new System.Windows.Forms.TextBox();
             this.lblCurso = new System.Windows.Forms.Label();
             this.comboCursos = new System.Windows.Forms.ComboBox();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.comboCargos = new System.Windows.Forms.ComboBox();
             this.tlCargo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,10 +57,10 @@ namespace UI.Desktop
             this.tlCargo.Controls.Add(this.btnCancelar, 3, 3);
             this.tlCargo.Controls.Add(this.txtID, 1, 0);
             this.tlCargo.Controls.Add(this.lblCargo, 0, 1);
-            this.tlCargo.Controls.Add(this.txtCargo, 1, 1);
             this.tlCargo.Controls.Add(this.lblCurso, 0, 2);
             this.tlCargo.Controls.Add(this.comboCursos, 1, 2);
             this.tlCargo.Controls.Add(this.btnAceptar, 0, 3);
+            this.tlCargo.Controls.Add(this.comboCargos, 1, 1);
             this.tlCargo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlCargo.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tlCargo.ForeColor = System.Drawing.Color.DarkSlateGray;
@@ -160,17 +160,6 @@ namespace UI.Desktop
             this.lblCargo.TabIndex = 6;
             this.lblCargo.Text = "Cargo:";
             // 
-            // txtCargo
-            // 
-            this.txtCargo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtCargo.BackColor = System.Drawing.Color.White;
-            this.txtCargo.ForeColor = System.Drawing.Color.Black;
-            this.txtCargo.Location = new System.Drawing.Point(137, 152);
-            this.txtCargo.Margin = new System.Windows.Forms.Padding(4, 8, 4, 8);
-            this.txtCargo.Name = "txtCargo";
-            this.txtCargo.Size = new System.Drawing.Size(270, 31);
-            this.txtCargo.TabIndex = 2;
-            // 
             // lblCurso
             // 
             this.lblCurso.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -192,7 +181,7 @@ namespace UI.Desktop
             this.comboCursos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboCursos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboCursos.ForeColor = System.Drawing.Color.Black;
-            this.comboCursos.Location = new System.Drawing.Point(137, 267);
+            this.comboCursos.Location = new System.Drawing.Point(137, 264);
             this.comboCursos.Margin = new System.Windows.Forms.Padding(4);
             this.comboCursos.Name = "comboCursos";
             this.comboCursos.Size = new System.Drawing.Size(269, 32);
@@ -216,6 +205,20 @@ namespace UI.Desktop
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             this.btnAceptar.MouseEnter += new System.EventHandler(this.btnAceptar_MouseEnter);
             this.btnAceptar.MouseLeave += new System.EventHandler(this.btnAceptar_MouseLeave);
+            // 
+            // comboCargos
+            // 
+            this.comboCargos.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.comboCargos.BackColor = System.Drawing.Color.White;
+            this.comboCargos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboCargos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboCargos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboCargos.ForeColor = System.Drawing.Color.Black;
+            this.comboCargos.Location = new System.Drawing.Point(137, 152);
+            this.comboCargos.Margin = new System.Windows.Forms.Padding(4);
+            this.comboCargos.Name = "comboCargos";
+            this.comboCargos.Size = new System.Drawing.Size(269, 32);
+            this.comboCargos.TabIndex = 25;
             // 
             // CargoDesktop
             // 
@@ -251,9 +254,9 @@ namespace UI.Desktop
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label lblCargo;
-        private System.Windows.Forms.TextBox txtCargo;
         private System.Windows.Forms.Label lblCurso;
         private System.Windows.Forms.ComboBox comboCursos;
         private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.ComboBox comboCargos;
     }
 }

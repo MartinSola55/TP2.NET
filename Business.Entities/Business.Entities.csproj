@@ -44,8 +44,10 @@
   <ItemGroup>
     <Compile Include="AlumnoInscripcion.cs" />
     <Compile Include="BusinessEntity.cs" />
+    <Compile Include="Cargo.cs" />
     <Compile Include="ComboboxItem.cs" />
     <Compile Include="Comision.cs" />
+    <Compile Include="Condicion.cs" />
     <Compile Include="Curso.cs" />
     <Compile Include="DocenteCurso.cs" />
     <Compile Include="Especialidad.cs" />

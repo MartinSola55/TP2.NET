@@ -26,6 +26,7 @@ namespace UI.Desktop.Personas.Docentes
         }
         public CondicionesDesktop(int id) : this()
         {
+            this.ListarCombo();
             CondicionActual = pl.GetInscripcionAlumnno(id);
             Modo = ModoForm.Modificacion;
             this.MapearDeDatos();
@@ -34,12 +35,12 @@ namespace UI.Desktop.Personas.Docentes
         {
             this.txtID.Text = this.CondicionActual.ID.ToString();
             this.txtAlumno.Text = this.CondicionActual.NombreApellido;
-            this.txtCondicion.Text = this.CondicionActual.Condicion;
+            this.comboCondiciones.SelectedValue = this.CondicionActual.IDCondicion;
             this.txtNota.Text = this.CondicionActual.Nota.ToString();
         }
         public override void MapearADatos()
         {
-            this.CondicionActual.Condicion = this.txtCondicion.Text;
+            this.CondicionActual.IDCondicion = int.Parse(this.comboCondiciones.SelectedValue.ToString());
             this.CondicionActual.State = BusinessEntity.States.Modified;
             if (this.txtNota.Text != "")
             {
@@ -51,7 +52,7 @@ namespace UI.Desktop.Personas.Docentes
         }
         public override bool Validar()
         {
-            if (txtCondicion.Text.Length == 0)
+            if (this.comboCondiciones.SelectedValue.ToString() == "0")
             {
                 this.Notificar("ERROR", "Debes ingresar una condición", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -64,17 +65,12 @@ namespace UI.Desktop.Personas.Docentes
                     return false;
                 }
             }
-            if (!Validaciones.esDireccionValida(this.txtCondicion.Text))
-            {
-                this.Notificar("ERROR", "Sólo se permite una condición con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
             Business.Entities.AlumnoInscripcion ins = new Business.Entities.AlumnoInscripcion
             {
                 ID = int.Parse(this.txtID.Text),
                 IDCurso = CondicionActual.IDCurso,
                 IDAlumno = CondicionActual.IDAlumno,
-                Condicion = this.txtCondicion.Text
+                IDCondicion = int.Parse(this.comboCondiciones.SelectedValue.ToString())
             };
                 if (pl.EsInscripcionRepetida(ins))
             {
@@ -88,6 +84,23 @@ namespace UI.Desktop.Personas.Docentes
             this.MapearADatos();
             pl.UpdateCondicion(CondicionActual);
         }
+
+        private void ListarCombo()
+        {
+            CondicionLogic condl = new CondicionLogic();
+            List<Condicion> condiciones = condl.GetAll();
+            Dictionary<int, string> comboSource = new Dictionary<int, string>();
+            comboSource.Add(0, "-- Seleccione una condición --");
+            foreach (Condicion c in condiciones)
+            {
+                comboSource.Add(c.ID, c.Descripcion);
+            }
+            this.comboCondiciones.DataSource = new BindingSource(comboSource, null);
+            this.comboCondiciones.DisplayMember = "Value";
+            this.comboCondiciones.ValueMember = "Key";
+            this.comboCondiciones.SelectedValue = 0;
+        }
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             try

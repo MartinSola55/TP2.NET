@@ -20,6 +20,7 @@ namespace Data.Database
                     "INNER JOIN materias m ON c.id_materia = m.id_materia " +
                     "INNER JOIN comisiones com ON c.id_comision = com.id_comision " +
                     "INNER JOIN planes p ON m.id_plan = p.id_plan " +
+                    "INNER JOIN cargos car ON dc.id_cargo = car.id_cargo " +
                     "WHERE id_docente = @id " +
                     "ORDER BY anio_calendario DESC", sqlConn);
                 cmdInscripciones.Parameters.Add("@id", SqlDbType.Int).Value = id;
@@ -40,7 +41,8 @@ namespace Data.Database
                     ins.DescripcionCurso += (string)drInscripciones["desc_materia"];
                     ins.DescripcionCurso += " - ";
                     ins.DescripcionCurso += (string)drInscripciones["desc_plan"];
-                    ins.Cargo = (string)drInscripciones["cargo"];
+                    ins.IDCargo = (int)drInscripciones["id_cargo"];
+                    ins.DescripcionCargo = (string)drInscripciones["desc_cargo"];
                     inscripciones.Add(ins);
                 }
                 drInscripciones.Close();
@@ -67,6 +69,7 @@ namespace Data.Database
                     "INNER JOIN materias m ON c.id_materia = m.id_materia " +
                     "INNER JOIN comisiones com ON c.id_comision = com.id_comision " +
                     "INNER JOIN planes p ON m.id_plan = p.id_plan " +
+                    "INNER JOIN cargos car ON dc.id_cargo = car.id_cargo " +
                     "WHERE id_dictado = @id ", sqlConn);
                 cmdInscripciones.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 SqlDataReader drInscripciones = cmdInscripciones.ExecuteReader();
@@ -83,7 +86,8 @@ namespace Data.Database
                     ins.DescripcionCurso += (string)drInscripciones["desc_materia"];
                     ins.DescripcionCurso += " - ";
                     ins.DescripcionCurso += (string)drInscripciones["desc_plan"];
-                    ins.Cargo = (string)drInscripciones["cargo"];
+                    ins.IDCargo = (int)drInscripciones["id_cargo"];
+                    ins.DescripcionCargo += (string)drInscripciones["desc_cargo"];
                 }
                 drInscripciones.Close();
             }
@@ -148,11 +152,11 @@ namespace Data.Database
             {
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand(
-                    "UPDATE docentes_cursos SET id_curso = @id_curso, cargo = @cargo " +
+                    "UPDATE docentes_cursos SET id_curso = @id_curso, id_cargo = @id_cargo " +
                     "WHERE id_dictado = @id", sqlConn);
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = inscripcion.ID;
                 cmdSave.Parameters.Add("@id_curso", SqlDbType.Int).Value = inscripcion.IDCurso;
-                cmdSave.Parameters.Add("@cargo", SqlDbType.VarChar, 50).Value = inscripcion.Cargo;
+                cmdSave.Parameters.Add("@id_cargo", SqlDbType.VarChar, 50).Value = inscripcion.IDCargo;
                 cmdSave.ExecuteNonQuery();
             }
             catch (SqlException Ex)
@@ -176,12 +180,12 @@ namespace Data.Database
             {
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand(
-                    "INSERT INTO docentes_cursos (id_curso, id_docente, cargo) " +
-                    "VALUES (@id_curso, @id_docente, @cargo) SELECT @@identity", sqlConn);
+                    "INSERT INTO docentes_cursos (id_curso, id_docente, id_cargo) " +
+                    "VALUES (@id_curso, @id_docente, @id_cargo) SELECT @@identity", sqlConn);
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = inscripcion.ID;
                 cmdSave.Parameters.Add("@id_curso", SqlDbType.Int).Value = inscripcion.IDCurso;
                 cmdSave.Parameters.Add("@id_docente", SqlDbType.Int).Value = inscripcion.IDDocente;
-                cmdSave.Parameters.Add("@cargo", SqlDbType.VarChar, 50).Value = inscripcion.Cargo;
+                cmdSave.Parameters.Add("@id_cargo", SqlDbType.VarChar, 50).Value = inscripcion.IDCargo;
                 inscripcion.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
             }
             catch (Exception Ex)

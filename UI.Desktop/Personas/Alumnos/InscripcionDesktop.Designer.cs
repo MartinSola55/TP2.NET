@@ -30,13 +30,13 @@ namespace UI.Desktop
         private void InitializeComponent()
         {
             this.tllnscripcion = new System.Windows.Forms.TableLayoutPanel();
+            this.comboCondiciones = new System.Windows.Forms.ComboBox();
             this.txtIDAlumno = new System.Windows.Forms.TextBox();
             this.lblIDAlumno = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblCondicion = new System.Windows.Forms.Label();
-            this.txtCondicion = new System.Windows.Forms.TextBox();
             this.lblNota = new System.Windows.Forms.Label();
             this.txtNota = new System.Windows.Forms.TextBox();
             this.lblCurso = new System.Windows.Forms.Label();
@@ -53,13 +53,13 @@ namespace UI.Desktop
             this.tllnscripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.tllnscripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
             this.tllnscripcion.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34F));
+            this.tllnscripcion.Controls.Add(this.comboCondiciones, 1, 1);
             this.tllnscripcion.Controls.Add(this.txtIDAlumno, 3, 0);
             this.tllnscripcion.Controls.Add(this.lblIDAlumno, 2, 0);
             this.tllnscripcion.Controls.Add(this.lblID, 0, 0);
             this.tllnscripcion.Controls.Add(this.btnCancelar, 3, 4);
             this.tllnscripcion.Controls.Add(this.txtID, 1, 0);
             this.tllnscripcion.Controls.Add(this.lblCondicion, 0, 1);
-            this.tllnscripcion.Controls.Add(this.txtCondicion, 1, 1);
             this.tllnscripcion.Controls.Add(this.lblNota, 0, 2);
             this.tllnscripcion.Controls.Add(this.txtNota, 1, 2);
             this.tllnscripcion.Controls.Add(this.lblCurso, 0, 3);
@@ -79,6 +79,20 @@ namespace UI.Desktop
             this.tllnscripcion.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tllnscripcion.Size = new System.Drawing.Size(830, 446);
             this.tllnscripcion.TabIndex = 2;
+            // 
+            // comboCondiciones
+            // 
+            this.comboCondiciones.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.comboCondiciones.BackColor = System.Drawing.Color.White;
+            this.comboCondiciones.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboCondiciones.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboCondiciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboCondiciones.ForeColor = System.Drawing.Color.Black;
+            this.comboCondiciones.Location = new System.Drawing.Point(128, 114);
+            this.comboCondiciones.Margin = new System.Windows.Forms.Padding(4);
+            this.comboCondiciones.Name = "comboCondiciones";
+            this.comboCondiciones.Size = new System.Drawing.Size(269, 32);
+            this.comboCondiciones.TabIndex = 25;
             // 
             // txtIDAlumno
             // 
@@ -163,17 +177,6 @@ namespace UI.Desktop
             this.lblCondicion.Size = new System.Drawing.Size(90, 94);
             this.lblCondicion.TabIndex = 6;
             this.lblCondicion.Text = "Condición:";
-            // 
-            // txtCondicion
-            // 
-            this.txtCondicion.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtCondicion.BackColor = System.Drawing.Color.White;
-            this.txtCondicion.ForeColor = System.Drawing.Color.Black;
-            this.txtCondicion.Location = new System.Drawing.Point(128, 111);
-            this.txtCondicion.Margin = new System.Windows.Forms.Padding(4, 8, 4, 8);
-            this.txtCondicion.Name = "txtCondicion";
-            this.txtCondicion.Size = new System.Drawing.Size(270, 31);
-            this.txtCondicion.TabIndex = 2;
             // 
             // lblNota
             // 
@@ -277,7 +280,6 @@ namespace UI.Desktop
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label lblCondicion;
-        private System.Windows.Forms.TextBox txtCondicion;
         private System.Windows.Forms.Label lblNota;
         private System.Windows.Forms.TextBox txtNota;
         private System.Windows.Forms.Button btnAceptar;
@@ -286,5 +288,6 @@ namespace UI.Desktop
         private System.Windows.Forms.TextBox txtIDAlumno;
         private System.Windows.Forms.Label lblIDAlumno;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.ComboBox comboCondiciones;
     }
 }

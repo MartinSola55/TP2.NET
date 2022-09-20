@@ -18,6 +18,7 @@ namespace UI.Desktop
         public InscripcionDesktop()
         {
             InitializeComponent();
+            this.ListarCombos();
         }
         public Business.Entities.AlumnoInscripcion InscripcionActual
         {
@@ -33,7 +34,6 @@ namespace UI.Desktop
             {
                 btnAceptar.Text = "Guardar";
             }
-            this.ListarCombo();
         }
         public InscripcionDesktop(int id, ModoForm modo) : this()
         {
@@ -41,7 +41,6 @@ namespace UI.Desktop
             InscripcionActual = pl.GetInscripcionAlumnno(id);
             Modo = modo;
             this.txtIDAlumno.Text = this.InscripcionActual.IDAlumno.ToString();
-            this.ListarCombo();
             if (modo == ModoForm.Alta)
             {
                 btnAceptar.Text = "Guardar";
@@ -55,13 +54,13 @@ namespace UI.Desktop
             if (LoginInfo.TipoPersona != 3)
             {
                 this.lblCondicion.Visible = false;
-                this.txtCondicion.Visible = false;
+                this.comboCondiciones.Visible = false;
                 this.lblNota.Visible = false;
                 this.txtNota.Visible = false;
             } else
             {
                 this.lblCondicion.Visible = true;
-                this.txtCondicion.Visible = true;
+                this.comboCondiciones.Visible = true;
                 this.lblNota.Visible = true;
                 this.txtNota.Visible = true;
             }
@@ -70,7 +69,7 @@ namespace UI.Desktop
         {
             this.txtID.Text = this.InscripcionActual.ID.ToString();
             this.txtIDAlumno.Text = this.InscripcionActual.IDAlumno.ToString();
-            this.txtCondicion.Text = this.InscripcionActual.Condicion;
+            this.comboCondiciones.SelectedValue = this.InscripcionActual.IDCondicion;
             this.txtNota.Text = this.InscripcionActual.Nota.ToString();
             this.comboCursos.SelectedValue = this.InscripcionActual.IDCurso;
             switch (this.Modo)
@@ -83,7 +82,7 @@ namespace UI.Desktop
                 case ModoForm.Baja:
                     {
                         btnAceptar.Text = "Eliminar";
-                        txtCondicion.Enabled = false;
+                        comboCondiciones.Enabled = false;
                         txtNota.Enabled = false;
                         comboCursos.Enabled = false;
                         break;
@@ -105,7 +104,7 @@ namespace UI.Desktop
             InscripcionActual.IDAlumno = int.Parse(this.txtIDAlumno.Text);
             if (this.Modo == ModoForm.Alta || this.Modo == ModoForm.Modificacion)
             {
-                this.InscripcionActual.Condicion = this.txtCondicion.Text;
+                this.InscripcionActual.IDCondicion = int.Parse(this.comboCondiciones.SelectedValue.ToString());
                 if (this.txtNota.Text != "")
                 {
                     this.InscripcionActual.Nota = int.Parse(this.txtNota.Text);
@@ -122,7 +121,7 @@ namespace UI.Desktop
                 {
                     this.InscripcionActual.State = BusinessEntity.States.Modified;
                 }
-                InscripcionActual.Condicion = LoginInfo.TipoPersona != 3 ? "Inscripto" : InscripcionActual.Condicion;
+                InscripcionActual.IDCondicion = LoginInfo.TipoPersona != 3 ? 4 : InscripcionActual.IDCondicion;
             }
             if (this.Modo == ModoForm.Baja)
             {
@@ -141,7 +140,7 @@ namespace UI.Desktop
                         return false;
                     }
                 }
-                if (txtCondicion.Text.Length == 0)
+                if (this.comboCondiciones.SelectedValue.ToString() == "0")
                 {
                     this.Notificar("ERROR", "Debes ingresar una condición", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
@@ -151,17 +150,12 @@ namespace UI.Desktop
                     this.Notificar("ERROR", "Debes seleccionar un curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
-                else if (!Validaciones.esDireccionValida(this.txtCondicion.Text))
-                {
-                    this.Notificar("ERROR", "Sólo se permite una condición con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
                 Business.Entities.AlumnoInscripcion ins = new Business.Entities.AlumnoInscripcion
                 {
-                    ID = int.Parse(this.txtID.Text),
+                    ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0,
                     IDCurso = int.Parse(comboCursos.SelectedValue.ToString()),
                     IDAlumno = int.Parse(this.txtIDAlumno.Text),
-                    Condicion = this.txtCondicion.Text
+                    IDCondicion = int.Parse(comboCondiciones.SelectedValue.ToString()),
                 };
                 if (pl.EsInscripcionRepetida(ins))
                 {
@@ -188,20 +182,32 @@ namespace UI.Desktop
             this.MapearADatos();
             pl.SaveIns(InscripcionActual);
         }
-        private void ListarCombo()
+        private void ListarCombos()
         {
             CursoLogic cl = new CursoLogic();
+            CondicionLogic condl = new CondicionLogic();
             List<Curso> cursos = cl.GetAll();
+            List<Condicion> condiciones = condl.GetAll();
             Dictionary<int, string> comboSource = new Dictionary<int, string>();
+            Dictionary<int, string> comboSourceCondiciones = new Dictionary<int, string>();
             comboSource.Add(0, "-- Seleccione un curso --");
+            comboSourceCondiciones.Add(0, "-- Seleccione una condición --");
             foreach (Curso c in cursos)
             {
                 comboSource.Add(c.ID, c.AnioCalendario + " - " + c.ComisionDesc + " - " + c.MateriaDesc);
             }
+            foreach (Condicion c in condiciones)
+            {
+                comboSourceCondiciones.Add(c.ID, c.Descripcion);
+            }
             this.comboCursos.DataSource = new BindingSource(comboSource, null);
+            this.comboCondiciones.DataSource = new BindingSource(comboSourceCondiciones, null);
             this.comboCursos.DisplayMember = "Value";
+            this.comboCondiciones.DisplayMember = "Value";
             this.comboCursos.ValueMember = "Key";
+            this.comboCondiciones.ValueMember = "Key";
             this.comboCursos.SelectedValue = 0;
+            this.comboCondiciones.SelectedValue = 0;
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {

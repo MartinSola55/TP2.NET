@@ -485,7 +485,7 @@ namespace UI.Desktop
             // condicion
             // 
             this.condicion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.condicion.DataPropertyName = "Condicion";
+            this.condicion.DataPropertyName = "DescripcionCondicion";
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;

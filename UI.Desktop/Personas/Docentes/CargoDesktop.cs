@@ -32,14 +32,14 @@ namespace UI.Desktop
             {
                 btnAceptar.Text = "Guardar";
             }
-            this.ListarCombo();
+            this.ListarCombos();
         }
         public CargoDesktop(int id, ModoForm modo) : this()
         {
             CargoActual = pl.GetInscripcionDocente(id);
             Modo = modo;
             this.txtIDDocente.Text = this.CargoActual.IDDocente.ToString();
-            this.ListarCombo();
+            this.ListarCombos();
             if (modo == ModoForm.Alta)
             {
                 btnAceptar.Text = "Guardar";
@@ -53,7 +53,7 @@ namespace UI.Desktop
         {
             this.txtID.Text = this.CargoActual.ID.ToString();
             this.txtIDDocente.Text = this.CargoActual.IDDocente.ToString();
-            this.txtCargo.Text = this.CargoActual.Cargo;
+            this.comboCargos.SelectedValue = this.CargoActual.IDCargo;
             this.comboCursos.SelectedValue = this.CargoActual.IDCurso;
             switch (this.Modo)
             {
@@ -65,7 +65,7 @@ namespace UI.Desktop
                 case ModoForm.Baja:
                     {
                         btnAceptar.Text = "Eliminar";
-                        txtCargo.Enabled = false;
+                        comboCargos.Enabled = false;
                         comboCursos.Enabled = false;
                         break;
                     }
@@ -86,7 +86,7 @@ namespace UI.Desktop
             CargoActual.IDDocente = int.Parse(this.txtIDDocente.Text);
             if (this.Modo == ModoForm.Alta || this.Modo == ModoForm.Modificacion)
             {
-                this.CargoActual.Cargo = this.txtCargo.Text;
+                this.CargoActual.IDCargo = int.Parse(this.comboCargos.SelectedValue.ToString());
                 this.CargoActual.IDCurso = int.Parse(this.comboCursos.SelectedValue.ToString());
                 if (this.Modo == ModoForm.Alta)
                 {
@@ -104,13 +104,7 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
-            DocenteCurso dc = new DocenteCurso
-            {
-                ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0,
-                IDCurso = int.Parse(this.comboCursos.SelectedValue.ToString()),
-                IDDocente = int.Parse(this.txtIDDocente.Text)
-            };
-            if (txtCargo.Text.Length == 0)
+            if (this.comboCargos.SelectedValue.ToString() == "0")
             {
                 this.Notificar("ERROR", "Debes ingresar un cargo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -120,12 +114,13 @@ namespace UI.Desktop
                 this.Notificar("ERROR", "Debes seleccionar un curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (!Validaciones.esDireccionValida(this.txtCargo.Text))
+            DocenteCurso dc = new DocenteCurso
             {
-                this.Notificar("ERROR", "Sólo se permite un cargo con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            else if (pl.EsInscripcionRepetida(dc))
+                ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0,
+                IDCurso = int.Parse(this.comboCursos.SelectedValue.ToString()),
+                IDDocente = int.Parse(this.txtIDDocente.Text)
+            };
+            if (pl.EsInscripcionRepetida(dc))
             {
                 this.Notificar("ERROR", "El docente ya cuenta con un cargo en este curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -137,20 +132,32 @@ namespace UI.Desktop
             this.MapearADatos();
             pl.SaveIns(CargoActual);
         }
-        private void ListarCombo()
+        private void ListarCombos()
         {
             CursoLogic cl = new CursoLogic();
+            CargoLogic carl = new CargoLogic();
             List<Curso> cursos = cl.GetAll();
+            List<Cargo> cargos = carl.GetAll();
             Dictionary<int, string> comboSource = new Dictionary<int, string>();
+            Dictionary<int, string> comboSourceCargos = new Dictionary<int, string>();
             comboSource.Add(0, "-- Seleccione un curso --");
+            comboSourceCargos.Add(0, "-- Seleccione un cargo --");
             foreach (Curso c in cursos)
             {
                 comboSource.Add(c.ID, c.AnioCalendario + " - " + c.ComisionDesc + " - " + c.MateriaDesc);
             }
+            foreach (Cargo c in cargos)
+            {
+                comboSourceCargos.Add(c.ID, c.Descripcion);
+            }
             this.comboCursos.DataSource = new BindingSource(comboSource, null);
+            this.comboCargos.DataSource = new BindingSource(comboSourceCargos, null);
             this.comboCursos.DisplayMember = "Value";
+            this.comboCargos.DisplayMember = "Value";
             this.comboCursos.ValueMember = "Key";
+            this.comboCargos.ValueMember = "Key";
             this.comboCursos.SelectedValue = 0;
+            this.comboCargos.SelectedValue = 0;
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {

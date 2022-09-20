@@ -354,5 +354,34 @@ namespace Data.Database
             }
             return false;
         }
+        public bool GetRepetido(Usuario usr)
+        {
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdUsuarios = new SqlCommand(
+                    "SELECT * FROM usuarios " +
+                    "WHERE nombre_usuario = @nombre_usario " +
+                    "AND NOT id_usuario = @id ", sqlConn);
+                cmdUsuarios.Parameters.Add("@nombre_usario", SqlDbType.VarChar, 50).Value = usr.NombreUsuario;
+                cmdUsuarios.Parameters.Add("@id", SqlDbType.VarChar, 50).Value = usr.ID;
+                SqlDataReader drUsuarios = cmdUsuarios.ExecuteReader();
+                if (drUsuarios.Read())
+                {
+                    return true;
+                }
+                drUsuarios.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception exceptionManejada = new Exception("Hubo un error al validar si el nombre de usuario es repetido", Ex);
+                throw exceptionManejada;
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return false;
+        }
     }
 }

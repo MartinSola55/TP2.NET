@@ -262,7 +262,7 @@ namespace UI.Desktop.Personas.Docentes
             // Condicion
             // 
             this.Condicion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Condicion.DataPropertyName = "Condicion";
+            this.Condicion.DataPropertyName = "DescripcionCondicion";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.Condicion.DefaultCellStyle = dataGridViewCellStyle4;
             this.Condicion.HeaderText = "Condición";

@@ -34,17 +34,14 @@ namespace UI.Desktop
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CargosDocentes));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CargosDocentes));
             this.tcCargosDocente = new System.Windows.Forms.ToolStripContainer();
             this.tlCargosDocente = new System.Windows.Forms.TableLayoutPanel();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.dgvCargosDocente = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescripcionCurso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblPlan = new System.Windows.Forms.Label();
             this.lblLegajo = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -65,6 +62,9 @@ namespace UI.Desktop
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescripcionCurso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcCargosDocente.ContentPanel.SuspendLayout();
             this.tcCargosDocente.TopToolStripPanel.SuspendLayout();
             this.tcCargosDocente.SuspendLayout();
@@ -205,46 +205,6 @@ namespace UI.Desktop
             this.dgvCargosDocente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCargosDocente.Size = new System.Drawing.Size(1132, 382);
             this.dgvCargosDocente.TabIndex = 25;
-            // 
-            // id
-            // 
-            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.id.DataPropertyName = "ID";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            this.id.DefaultCellStyle = dataGridViewCellStyle3;
-            this.id.HeaderText = "ID";
-            this.id.MinimumWidth = 6;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Width = 59;
-            // 
-            // DescripcionCurso
-            // 
-            this.DescripcionCurso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DescripcionCurso.DataPropertyName = "DescripcionCurso";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            this.DescripcionCurso.DefaultCellStyle = dataGridViewCellStyle4;
-            this.DescripcionCurso.HeaderText = "Curso";
-            this.DescripcionCurso.MinimumWidth = 6;
-            this.DescripcionCurso.Name = "DescripcionCurso";
-            this.DescripcionCurso.ReadOnly = true;
-            // 
-            // cargo
-            // 
-            this.cargo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cargo.DataPropertyName = "Cargo";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            this.cargo.DefaultCellStyle = dataGridViewCellStyle5;
-            this.cargo.HeaderText = "Cargo";
-            this.cargo.MinimumWidth = 6;
-            this.cargo.Name = "cargo";
-            this.cargo.ReadOnly = true;
             // 
             // lblPlan
             // 
@@ -449,7 +409,7 @@ namespace UI.Desktop
             this.tsCargosDocente.Location = new System.Drawing.Point(4, 0);
             this.tsCargosDocente.MinimumSize = new System.Drawing.Size(0, 36);
             this.tsCargosDocente.Name = "tsCargosDocente";
-            this.tsCargosDocente.Size = new System.Drawing.Size(357, 36);
+            this.tsCargosDocente.Size = new System.Drawing.Size(318, 36);
             this.tsCargosDocente.TabIndex = 1;
             // 
             // tsbNotas
@@ -518,6 +478,46 @@ namespace UI.Desktop
             this.tsbEliminar.Text = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.id.DataPropertyName = "ID";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            this.id.DefaultCellStyle = dataGridViewCellStyle3;
+            this.id.HeaderText = "ID";
+            this.id.MinimumWidth = 6;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Width = 59;
+            // 
+            // DescripcionCurso
+            // 
+            this.DescripcionCurso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DescripcionCurso.DataPropertyName = "DescripcionCurso";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            this.DescripcionCurso.DefaultCellStyle = dataGridViewCellStyle4;
+            this.DescripcionCurso.HeaderText = "Curso";
+            this.DescripcionCurso.MinimumWidth = 6;
+            this.DescripcionCurso.Name = "DescripcionCurso";
+            this.DescripcionCurso.ReadOnly = true;
+            // 
+            // cargo
+            // 
+            this.cargo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cargo.DataPropertyName = "DescripcionCargo";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            this.cargo.DefaultCellStyle = dataGridViewCellStyle5;
+            this.cargo.HeaderText = "Cargo";
+            this.cargo.MinimumWidth = 6;
+            this.cargo.Name = "cargo";
+            this.cargo.ReadOnly = true;
+            // 
             // CargosDocentes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
@@ -573,9 +573,9 @@ namespace UI.Desktop
         private System.Windows.Forms.ToolStripButton tsbEditar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
+        private System.Windows.Forms.ToolStripButton tsbNotas;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionCurso;
         private System.Windows.Forms.DataGridViewTextBoxColumn cargo;
-        private System.Windows.Forms.ToolStripButton tsbNotas;
     }
 }
