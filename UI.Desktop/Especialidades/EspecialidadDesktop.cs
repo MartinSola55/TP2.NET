@@ -14,6 +14,7 @@ namespace UI.Desktop
 {
     public partial class EspecialidadDesktop : ApplicationForm
     {
+        private EspecialidadLogic el = new EspecialidadLogic();
         public EspecialidadDesktop()
         {
             InitializeComponent();
@@ -39,13 +40,17 @@ namespace UI.Desktop
             {
                 this.Notificar("ERROR", "Debes ingresar una descripción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
-            } else if (this.txtDesc.Text.Length < 3 || this.txtDesc.Text.Length > 30)
+            } else if (this.txtDesc.Text.Length < 1 || this.txtDesc.Text.Length > 30)
             {
-                this.Notificar("ERROR", "Debes ingresar una descripción de entre 3 y 30 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Notificar("ERROR", "Debes ingresar una descripción de entre 1 y 30 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             } else if (!Validaciones.esNombreValido(this.txtDesc.Text))
             {
                 this.Notificar("ERROR", "Sólo se permiten caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            } else if (el.GetByDescripcion(this.txtDesc.Text).ID != 0)
+            {
+                this.Notificar("ERROR", "La especialidad que intenta guardar se encuentra repetida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
@@ -53,7 +58,6 @@ namespace UI.Desktop
 
         public EspecialidadDesktop(int id, ModoForm modo) : this()
         {
-            EspecialidadLogic el = new EspecialidadLogic();
             EspecialidadActual = el.GetOne(id);
             Modo = modo;
             this.MapearDeDatos();
@@ -66,13 +70,17 @@ namespace UI.Desktop
         {
             try
             {
-                if (this.Validar())
+                if (Modo != ModoForm.Baja)
+                {
+                    if ( this.Validar())
+                    {
+                        this.GuardarCambios();
+                        this.Close();
+                    }
+                } else
                 {
                     this.GuardarCambios();
                     this.Close();
-                } else
-                {
-                    MessageBox.Show("Debes escribir una descripción", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             } catch (FormatException)
             {
@@ -87,7 +95,6 @@ namespace UI.Desktop
             try
             {
                 this.MapearADatos();
-                EspecialidadLogic el = new EspecialidadLogic();
                 el.Save(EspecialidadActual);
             } catch (Exception exceptionManejada)
             {

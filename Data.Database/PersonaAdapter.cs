@@ -355,6 +355,7 @@ namespace Data.Database
             Persona persona = new Persona();
             try
             {
+                string asdasd = per.FechaNacimiento.ToShortDateString();
                 this.OpenConnection();
                 SqlCommand cmdPersonas = new SqlCommand(
                     "SELECT * FROM personas p " +
@@ -368,7 +369,7 @@ namespace Data.Database
                     "AND NOT p.id_persona = @id_persona", sqlConn);
                 cmdPersonas.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = per.Nombre;
                 cmdPersonas.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = per.Apellido;
-                cmdPersonas.Parameters.Add("@nacimiento", SqlDbType.DateTime).Value = per.FechaNacimiento;
+                cmdPersonas.Parameters.Add("@nacimiento", SqlDbType.DateTime).Value = per.FechaNacimiento.ToShortDateString();
                 cmdPersonas.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = per.TipoPersona;
                 cmdPersonas.Parameters.Add("@id_plan", SqlDbType.Int).Value = per.IDPlan;
                 cmdPersonas.Parameters.Add("@id_persona", SqlDbType.Int).Value = per.ID;

@@ -14,9 +14,12 @@ namespace UI.Desktop
 {
     public partial class PersonaDesktop : ApplicationForm
     {
+        private PersonaLogic pl = new PersonaLogic();
         public PersonaDesktop()
         {
             InitializeComponent();
+            this.dtpNacimiento.MaxDate = DateTime.Now;
+            this.dtpNacimiento.MinDate = DateTime.Now.AddYears(-100);
         }
         public Persona PersonaActual
         {
@@ -25,8 +28,6 @@ namespace UI.Desktop
         }
         public PersonaDesktop(ModoForm modo) : this()
         {
-            this.dtpNacimiento.MaxDate = DateTime.Now;
-            this.dtpNacimiento.MinDate = DateTime.Now.AddYears(-100);
             Modo = modo;
             if (modo == ModoForm.Alta)
             {
@@ -36,11 +37,8 @@ namespace UI.Desktop
         }
         public PersonaDesktop(int id, ModoForm modo) : this()
         {
-            PersonaLogic pl = new PersonaLogic();
-            PersonaActual = pl.GetOne(id);
             Modo = modo;
-            this.dtpNacimiento.MaxDate = DateTime.Now;
-            this.dtpNacimiento.MinDate = DateTime.Now.AddYears(-100);
+            PersonaActual = pl.GetOne(id);
             this.ListarCombos();
             this.MapearDeDatos();
         }
@@ -151,12 +149,32 @@ namespace UI.Desktop
                 this.Notificar("ERROR", "El formato de uno de los campos es inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            Persona per = new Persona
+            {
+                Legajo = int.Parse(this.txtLegajo.Text),
+                Nombre = this.txtNombre.Text,
+                Apellido = this.txtApellido.Text,
+                FechaNacimiento = this.dtpNacimiento.Value,
+                TipoPersona = int.Parse(this.comboTipoPersona.SelectedValue.ToString()),
+                IDPlan = int.Parse(this.comboPlanes.SelectedValue.ToString())
+            };
+            per.ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0;
+            if (pl.EsLegajoRepetido(per))
+            {
+                this.Notificar("ERROR", "El legajo ingresado ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            Persona persona = pl.GetRepetido(per);
+            if (pl.GetRepetido(per).ID != 0)
+            {
+                this.Notificar("ERROR", "La persona que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             return true;
         }
         public override void GuardarCambios()
         {
             this.MapearADatos();
-            PersonaLogic pl = new PersonaLogic();
             pl.Save(PersonaActual);
         }
         private void ListarCombos()
@@ -186,7 +204,15 @@ namespace UI.Desktop
         {
             try
             {
-                if (this.Validar())
+                if (Modo != ModoForm.Baja)
+                {
+                    if (this.Validar())
+                    {
+                        this.GuardarCambios();
+                        this.Close();
+                    }
+                }
+                else
                 {
                     this.GuardarCambios();
                     this.Close();

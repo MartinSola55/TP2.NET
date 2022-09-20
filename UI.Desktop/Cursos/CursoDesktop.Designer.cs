@@ -74,7 +74,7 @@ namespace UI.Desktop
             this.tlCurso.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tlCurso.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tlCurso.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlCurso.Size = new System.Drawing.Size(445, 609);
+            this.tlCurso.Size = new System.Drawing.Size(678, 609);
             this.tlCurso.TabIndex = 0;
             // 
             // lblID
@@ -144,7 +144,7 @@ namespace UI.Desktop
             this.txtID.Cursor = System.Windows.Forms.Cursors.No;
             this.txtID.Enabled = false;
             this.txtID.ForeColor = System.Drawing.Color.Black;
-            this.txtID.Location = new System.Drawing.Point(182, 30);
+            this.txtID.Location = new System.Drawing.Point(275, 30);
             this.txtID.Margin = new System.Windows.Forms.Padding(4);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
@@ -156,10 +156,10 @@ namespace UI.Desktop
             this.txtAnio.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtAnio.BackColor = System.Drawing.Color.White;
             this.txtAnio.ForeColor = System.Drawing.Color.Black;
-            this.txtAnio.Location = new System.Drawing.Point(182, 303);
+            this.txtAnio.Location = new System.Drawing.Point(275, 303);
             this.txtAnio.Margin = new System.Windows.Forms.Padding(4);
             this.txtAnio.Name = "txtAnio";
-            this.txtAnio.Size = new System.Drawing.Size(194, 31);
+            this.txtAnio.Size = new System.Drawing.Size(138, 31);
             this.txtAnio.TabIndex = 3;
             // 
             // txtCupo
@@ -167,10 +167,10 @@ namespace UI.Desktop
             this.txtCupo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtCupo.BackColor = System.Drawing.Color.White;
             this.txtCupo.ForeColor = System.Drawing.Color.Black;
-            this.txtCupo.Location = new System.Drawing.Point(182, 394);
+            this.txtCupo.Location = new System.Drawing.Point(275, 394);
             this.txtCupo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCupo.Name = "txtCupo";
-            this.txtCupo.Size = new System.Drawing.Size(194, 31);
+            this.txtCupo.Size = new System.Drawing.Size(138, 31);
             this.txtCupo.TabIndex = 4;
             // 
             // btnCancelar
@@ -180,7 +180,7 @@ namespace UI.Desktop
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.ForeColor = System.Drawing.Color.Red;
-            this.btnCancelar.Location = new System.Drawing.Point(305, 507);
+            this.btnCancelar.Location = new System.Drawing.Point(538, 507);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(120, 50);
@@ -218,9 +218,9 @@ namespace UI.Desktop
             this.comboMateria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboMateria.ForeColor = System.Drawing.Color.Black;
             this.comboMateria.FormattingEnabled = true;
-            this.comboMateria.Location = new System.Drawing.Point(181, 124);
+            this.comboMateria.Location = new System.Drawing.Point(274, 124);
             this.comboMateria.Name = "comboMateria";
-            this.comboMateria.Size = new System.Drawing.Size(195, 32);
+            this.comboMateria.Size = new System.Drawing.Size(352, 32);
             this.comboMateria.TabIndex = 7;
             // 
             // comboComision
@@ -232,9 +232,9 @@ namespace UI.Desktop
             this.comboComision.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboComision.ForeColor = System.Drawing.Color.Black;
             this.comboComision.FormattingEnabled = true;
-            this.comboComision.Location = new System.Drawing.Point(181, 211);
+            this.comboComision.Location = new System.Drawing.Point(274, 211);
             this.comboComision.Name = "comboComision";
-            this.comboComision.Size = new System.Drawing.Size(195, 32);
+            this.comboComision.Size = new System.Drawing.Size(352, 32);
             this.comboComision.TabIndex = 8;
             // 
             // CursoDesktop
@@ -244,7 +244,7 @@ namespace UI.Desktop
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(445, 609);
+            this.ClientSize = new System.Drawing.Size(678, 609);
             this.Controls.Add(this.tlCurso);
             this.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.DarkSlateGray;

@@ -69,6 +69,18 @@ namespace UI.Desktop.Personas.Docentes
                 this.Notificar("ERROR", "Sólo se permite una condición con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            Business.Entities.AlumnoInscripcion ins = new Business.Entities.AlumnoInscripcion
+            {
+                ID = int.Parse(this.txtID.Text),
+                IDCurso = CondicionActual.IDCurso,
+                IDAlumno = CondicionActual.IDAlumno,
+                Condicion = this.txtCondicion.Text
+            };
+                if (pl.EsInscripcionRepetida(ins))
+            {
+                this.Notificar("ERROR", "La inscripción que desea guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             return true;
         }
         public override void GuardarCambios()
@@ -80,7 +92,15 @@ namespace UI.Desktop.Personas.Docentes
         {
             try
             {
-                if (this.Validar())
+                if (Modo != ModoForm.Baja)
+                {
+                    if (this.Validar())
+                    {
+                        this.GuardarCambios();
+                        this.Close();
+                    }
+                }
+                else
                 {
                     this.GuardarCambios();
                     this.Close();

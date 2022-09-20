@@ -266,7 +266,7 @@ namespace Data.Database
                     "AND NOT id_inscripcion = @id", sqlConn);
                 cmdInscripcion.Parameters.Add("@curso", SqlDbType.Int).Value = inscripcion.IDCurso;
                 cmdInscripcion.Parameters.Add("@id_alumno", SqlDbType.Int).Value = inscripcion.IDAlumno;
-                cmdInscripcion.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = inscripcion.Condicion    ;
+                cmdInscripcion.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = inscripcion.Condicion;
                 cmdInscripcion.Parameters.Add("@id", SqlDbType.Int).Value = inscripcion.ID;
                 SqlDataReader drInscripcion = cmdInscripcion.ExecuteReader();
                 if (drInscripcion.Read())

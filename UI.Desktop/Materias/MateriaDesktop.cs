@@ -14,6 +14,7 @@ namespace UI.Desktop
 {
     public partial class MateriaDesktop : ApplicationForm
     {
+        private MateriaLogic ml = new MateriaLogic();
         public MateriaDesktop()
         {
             InitializeComponent();
@@ -35,7 +36,6 @@ namespace UI.Desktop
         }
         public MateriaDesktop(int id, ModoForm modo) : this()
         {
-            MateriaLogic ml = new MateriaLogic();
             MateriaActual = ml.GetOne(id);
             Modo = modo;
             this.ListarCombo();
@@ -110,7 +110,7 @@ namespace UI.Desktop
                 this.Notificar("ERROR", "Ingrese entre 1 y 20 horas semanales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (int.Parse(txtHSTotales.Text) < 1 || int.Parse(txtHSTotales.Text) > 1000)
+            else if (int.Parse(txtHSTotales.Text) < 1 || int.Parse(txtHSTotales.Text) > 500)
             {
                 this.Notificar("ERROR", "Ingrese entre 1 y 500 horas totales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -132,12 +132,22 @@ namespace UI.Desktop
                 this.Notificar("ERROR", "Sólo se permite una descripción con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            Materia mat = new Materia
+            {
+                Descripcion = this.txtDescripcion.Text,
+                IDPlan = int.Parse(this.comboPlan.SelectedValue.ToString())
+            };
+            mat.ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0;
+            if (ml.GetRepetido(mat).ID != 0)
+            {
+                this.Notificar("ERROR", "La materia que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             return true;
         }
         public override void GuardarCambios()
         {
             this.MapearADatos();
-            MateriaLogic ml = new MateriaLogic();
             ml.Save(MateriaActual);
         }
         private void ListarCombo()
@@ -159,7 +169,15 @@ namespace UI.Desktop
         {
             try
             {
-                if (this.Validar())
+                if (Modo != ModoForm.Baja)
+                {
+                    if (this.Validar())
+                    {
+                        this.GuardarCambios();
+                        this.Close();
+                    }
+                }
+                else
                 {
                     this.GuardarCambios();
                     this.Close();

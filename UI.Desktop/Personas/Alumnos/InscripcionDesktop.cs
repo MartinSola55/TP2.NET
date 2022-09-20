@@ -122,6 +122,7 @@ namespace UI.Desktop
                 {
                     this.InscripcionActual.State = BusinessEntity.States.Modified;
                 }
+                InscripcionActual.Condicion = LoginInfo.TipoPersona != 3 ? "Inscripto" : InscripcionActual.Condicion;
             }
             if (this.Modo == ModoForm.Baja)
             {
@@ -132,18 +133,18 @@ namespace UI.Desktop
         {
             if (LoginInfo.TipoPersona == 3)
             {
-                if (txtCondicion.Text.Length == 0)
-                {
-                    this.Notificar("ERROR", "Debes ingresar una condición", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
-                else if (txtNota.Text != "")
+                if (txtNota.Text != "")
                 {
                     if (int.Parse(txtNota.Text) < 0 || int.Parse(txtNota.Text) > 10)
                     {
                         this.Notificar("ERROR", "Debes ingresar una nota entre 1 y 10", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return false;
                     }
+                }
+                if (txtCondicion.Text.Length == 0)
+                {
+                    this.Notificar("ERROR", "Debes ingresar una condición", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
                 }
                 else if (this.comboCursos.SelectedValue.ToString() == "0")
                 {
@@ -155,12 +156,19 @@ namespace UI.Desktop
                     this.Notificar("ERROR", "Sólo se permite una condición con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
-                else if (pl.EsInscripcionRepetida(int.Parse(this.txtIDAlumno.Text), int.Parse(comboCursos.SelectedValue.ToString())))
+                Business.Entities.AlumnoInscripcion ins = new Business.Entities.AlumnoInscripcion
+                {
+                    ID = int.Parse(this.txtID.Text),
+                    IDCurso = int.Parse(comboCursos.SelectedValue.ToString()),
+                    IDAlumno = int.Parse(this.txtIDAlumno.Text),
+                    Condicion = this.txtCondicion.Text
+                };
+                if (pl.EsInscripcionRepetida(ins))
                 {
                     this.Notificar("ERROR", "El alumno ya se encuentra inscripto a esta materia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
-            } else if (LoginInfo.TipoPersona != 3)
+            } else
             {
                 if (this.comboCursos.SelectedValue.ToString() == "0")
                 {
@@ -199,7 +207,15 @@ namespace UI.Desktop
         {
             try
             {
-                if (this.Validar())
+                if (Modo != ModoForm.Baja)
+                {
+                    if (this.Validar())
+                    {
+                        this.GuardarCambios();
+                        this.Close();
+                    }
+                }
+                else
                 {
                     this.GuardarCambios();
                     this.Close();

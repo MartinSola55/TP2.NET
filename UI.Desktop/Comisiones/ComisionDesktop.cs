@@ -14,6 +14,7 @@ namespace UI.Desktop
 {
     public partial class ComisionDesktop : ApplicationForm
     {
+        private ComisionLogic cl = new ComisionLogic();
         public ComisionDesktop()
         {
             InitializeComponent();
@@ -39,7 +40,6 @@ namespace UI.Desktop
         }
         public ComisionDesktop(int id, ModoForm modo) : this()
         {
-            ComisionLogic cl = new ComisionLogic();
             ComisionActual = cl.GetOne(id);
             Modo = modo;
             this.ListarCombo();
@@ -106,9 +106,9 @@ namespace UI.Desktop
                 this.Notificar("ERROR", "Complete todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             } 
-            else if (int.Parse(this.txtAnio.Text) < 1980 || int.Parse(this.txtAnio.Text) > System.DateTime.Now.Year)
+            else if (int.Parse(this.txtAnio.Text) < 1980 || int.Parse(this.txtAnio.Text) > System.DateTime.Now.AddYears(1).Year)
             {
-                this.Notificar("ERROR", "Complete con un año entre 1980 y " + System.DateTime.Now.Year, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Notificar("ERROR", "Complete con un año entre 1980 y " + System.DateTime.Now.AddYears(1).Year, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             else if (this.comboPlan.SelectedValue.ToString() == "0")
@@ -119,8 +119,20 @@ namespace UI.Desktop
             {
                 this.Notificar("ERROR", "Debes ingresar una descripción entre 3 y 30 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
-            } else if (!Validaciones.esNombreValido(this.txtDescripcion.Text)) {
+            } else if (!Validaciones.esDireccionValida(this.txtDescripcion.Text)) {
                 this.Notificar("ERROR", "Sólo se permite una descripción con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            Comision comi = new Comision
+            {
+                Descripcion = this.txtDescripcion.Text,
+                AnioEspecialidad = int.Parse(this.txtAnio.Text),
+                IDPlan = int.Parse(this.comboPlan.SelectedValue.ToString())
+            };
+            comi.ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0;
+            if (cl.GetRepetido(comi).ID != 0)
+            {
+                this.Notificar("ERROR", "La comisión que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
@@ -128,7 +140,6 @@ namespace UI.Desktop
         public override void GuardarCambios()
         {
             this.MapearADatos();
-            ComisionLogic cl = new ComisionLogic();
             cl.Save(ComisionActual);
         }
         private void ListarCombo()
@@ -150,12 +161,20 @@ namespace UI.Desktop
         {
             try
             {
-                if (this.Validar())
+                if (Modo != ModoForm.Baja)
+                {
+                    if (this.Validar())
+                    {
+                        this.GuardarCambios();
+                        this.Close();
+                    }
+                }
+                else
                 {
                     this.GuardarCambios();
                     this.Close();
                 }
-            } catch (FormatException)
+            } catch (FormatException ex)
             {
                 MessageBox.Show("El formato del año o el ID no son válidos", "ERROR AL GUARDAR LA COMISIÓN", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } catch (Exception exceptionManejada)

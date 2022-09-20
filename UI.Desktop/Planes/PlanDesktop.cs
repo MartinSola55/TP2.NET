@@ -14,6 +14,7 @@ namespace UI.Desktop
 {
     public partial class PlanDesktop : ApplicationForm
     {
+        private PlanLogic pl = new PlanLogic();
         public PlanDesktop()
         {
             InitializeComponent();
@@ -34,7 +35,6 @@ namespace UI.Desktop
         }
         public PlanDesktop(int id, ModoForm modo) : this()
         {
-            PlanLogic pl = new PlanLogic();
             PlanActual = pl.GetOne(id);
             Modo = modo;
             this.ListarCombo();
@@ -110,12 +110,22 @@ namespace UI.Desktop
                 this.Notificar("ERROR", "Ingrese una descripción de entre 3 y 50 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            Plan plan = new Plan
+            {
+                Descripcion = this.txtDescripcion.Text,
+                IDEspecialidad = int.Parse(this.comboEspecialidad.SelectedValue.ToString())
+            };
+            plan.ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0;
+            if (pl.GetRepetido(plan).ID != 0)
+            {
+                this.Notificar("ERROR", "El plan que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             return true;
         }
         public override void GuardarCambios()
         {
             this.MapearADatos();
-            PlanLogic pl = new PlanLogic();
             pl.Save(PlanActual);
         }
         private void ListarCombo()
@@ -137,7 +147,15 @@ namespace UI.Desktop
         {
             try
             {
-                if (this.Validar())
+                if (Modo != ModoForm.Baja)
+                {
+                    if (this.Validar())
+                    {
+                        this.GuardarCambios();
+                        this.Close();
+                    }
+                }
+                else
                 {
                     this.GuardarCambios();
                     this.Close();
@@ -145,7 +163,7 @@ namespace UI.Desktop
             }
             catch (FormatException)
             {
-                MessageBox.Show("Debes ingresar un número de ID", "ERROR AL GUARDAR EL PLAN", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Alguno de los campos no tiene el formato adecuado", "ERROR AL GUARDAR EL PLAN", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception exceptionManejada)
             {

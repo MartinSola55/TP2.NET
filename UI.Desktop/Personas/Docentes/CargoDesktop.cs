@@ -104,10 +104,12 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
-            DocenteCurso dc = new DocenteCurso();
-            dc.ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0;
-            dc.IDCurso = int.Parse(this.comboCursos.SelectedValue.ToString());
-            dc.IDDocente = int.Parse(this.txtIDDocente.Text);
+            DocenteCurso dc = new DocenteCurso
+            {
+                ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0,
+                IDCurso = int.Parse(this.comboCursos.SelectedValue.ToString()),
+                IDDocente = int.Parse(this.txtIDDocente.Text)
+            };
             if (txtCargo.Text.Length == 0)
             {
                 this.Notificar("ERROR", "Debes ingresar un cargo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -125,7 +127,7 @@ namespace UI.Desktop
             }
             else if (pl.EsInscripcionRepetida(dc))
             {
-                this.Notificar("ERROR", "El docente ya se cuenta con un cargo en este curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Notificar("ERROR", "El docente ya cuenta con un cargo en este curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
@@ -154,7 +156,15 @@ namespace UI.Desktop
         {
             try
             {
-                if (this.Validar())
+                if (Modo != ModoForm.Baja)
+                {
+                    if (this.Validar())
+                    {
+                        this.GuardarCambios();
+                        this.Close();
+                    }
+                }
+                else
                 {
                     this.GuardarCambios();
                     this.Close();

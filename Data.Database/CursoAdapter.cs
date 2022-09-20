@@ -21,6 +21,8 @@ namespace Data.Database
                     "SELECT * FROM cursos c " +
                     "INNER JOIN materias m ON c.id_materia = m.id_materia " +
                     "INNER JOIN comisiones com ON c.id_comision = com.id_comision " +
+                    "INNER JOIN planes p ON p.id_plan = m.id_plan " +
+                    "INNER JOIN especialidades e ON e.id_especialidad = p.id_especialidad " +
                     "ORDER BY m.desc_materia, com.desc_comision"
                     , sqlConn);
                 SqlDataReader drCursos = cmdCursos.ExecuteReader();
@@ -33,6 +35,10 @@ namespace Data.Database
                     curso.AnioCalendario = (int)drCursos["anio_calendario"];
                     curso.Cupo = (int)drCursos["cupo"];
                     curso.MateriaDesc = (string)drCursos["desc_materia"];
+                    curso.MateriaDesc += " - ";
+                    curso.MateriaDesc += (string)drCursos["desc_plan"];
+                    curso.MateriaDesc += " - ";
+                    curso.MateriaDesc += (string)drCursos["desc_especialidad"];
                     curso.ComisionDesc = (string)drCursos["desc_comision"];
                     cursos.Add(curso);
                 }

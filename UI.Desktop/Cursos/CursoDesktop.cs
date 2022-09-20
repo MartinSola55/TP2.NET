@@ -14,6 +14,7 @@ namespace UI.Desktop
 {
     public partial class CursoDesktop : ApplicationForm
     {
+        private CursoLogic cl = new CursoLogic();
         public CursoDesktop()
         {
             InitializeComponent();
@@ -38,7 +39,6 @@ namespace UI.Desktop
         }
         public CursoDesktop(int id, ModoForm modo) : this()
         {
-            CursoLogic cl = new CursoLogic();
             CursoActual = cl.GetOne(id);
             Modo = modo;
             this.ListarCombos();
@@ -128,12 +128,23 @@ namespace UI.Desktop
                 this.Notificar("ERROR", "Debes seleccionar una comisión", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            Curso cur = new Curso
+            {
+                IDMateria = int.Parse(this.comboMateria.SelectedValue.ToString()),
+                IDComision = int.Parse(this.comboComision.SelectedValue.ToString()),
+                AnioCalendario = int.Parse(this.txtAnio.Text)
+            };
+            cur.ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0;
+            if (cl.GetRepetido(cur).ID != 0)
+            {
+                this.Notificar("ERROR", "El curso que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             return true;
         }
         public override void GuardarCambios()
         {
             this.MapearADatos();
-            CursoLogic cl = new CursoLogic();
             cl.Save(CursoActual);
         }
         private void ListarCombos()
@@ -148,7 +159,7 @@ namespace UI.Desktop
             comboSourceC.Add(0, "-- Seleccione una comisión --");
             foreach (Materia m in materias)
             {
-                comboSourceM.Add(m.ID, m.Descripcion);
+                comboSourceM.Add(m.ID, m.Descripcion + " - " + m.DescripcionPlan);
             }
             foreach (Comision c in comisiones)
             {
@@ -167,7 +178,15 @@ namespace UI.Desktop
         {
             try
             {
-                if (this.Validar())
+                if (Modo != ModoForm.Baja)
+                {
+                    if (this.Validar())
+                    {
+                        this.GuardarCambios();
+                        this.Close();
+                    }
+                }
+                else
                 {
                     this.GuardarCambios();
                     this.Close();
