@@ -31,14 +31,15 @@ namespace UI.Desktop
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AlumnoInscripcion));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcAlumnoInscripcion = new System.Windows.Forms.ToolStripContainer();
             this.tlAlumnoInscripcion = new System.Windows.Forms.TableLayoutPanel();
             this.lblUsuario = new System.Windows.Forms.Label();
@@ -57,14 +58,17 @@ namespace UI.Desktop
             this.txtPlan = new System.Windows.Forms.TextBox();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.tsAlumnoInscripcion = new System.Windows.Forms.ToolStrip();
+            this.tsbImprimir = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescripcionCurso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.condicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescripcionPlan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescripcionMateria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescripcionCondicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcAlumnoInscripcion.ContentPanel.SuspendLayout();
             this.tcAlumnoInscripcion.TopToolStripPanel.SuspendLayout();
@@ -169,36 +173,37 @@ namespace UI.Desktop
             this.dgvAlumnoInscripcion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAlumnoInscripcion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
-            this.DescripcionCurso,
-            this.condicion,
+            this.DescripcionPlan,
+            this.DescripcionMateria,
+            this.DescripcionCondicion,
             this.nota});
             this.tlAlumnoInscripcion.SetColumnSpan(this.dgvAlumnoInscripcion, 4);
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.DarkSlateGray;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(54)))), ((int)(((byte)(90)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAlumnoInscripcion.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.DarkSlateGray;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(54)))), ((int)(((byte)(90)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAlumnoInscripcion.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvAlumnoInscripcion.EnableHeadersVisualStyles = false;
             this.dgvAlumnoInscripcion.Location = new System.Drawing.Point(4, 202);
             this.dgvAlumnoInscripcion.Margin = new System.Windows.Forms.Padding(4);
             this.dgvAlumnoInscripcion.MultiSelect = false;
             this.dgvAlumnoInscripcion.Name = "dgvAlumnoInscripcion";
             this.dgvAlumnoInscripcion.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(54)))), ((int)(((byte)(90)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAlumnoInscripcion.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvAlumnoInscripcion.RowHeadersWidth = 51;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Comic Sans MS", 10.2F);
             dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            this.dgvAlumnoInscripcion.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(54)))), ((int)(((byte)(90)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlumnoInscripcion.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvAlumnoInscripcion.RowHeadersWidth = 51;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            this.dgvAlumnoInscripcion.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvAlumnoInscripcion.RowTemplate.Height = 24;
             this.dgvAlumnoInscripcion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAlumnoInscripcion.Size = new System.Drawing.Size(1143, 389);
@@ -393,6 +398,8 @@ namespace UI.Desktop
             this.tsAlumnoInscripcion.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsAlumnoInscripcion.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsAlumnoInscripcion.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbImprimir,
+            this.toolStripSeparator3,
             this.tsbNuevo,
             this.toolStripSeparator1,
             this.tsbEditar,
@@ -401,8 +408,26 @@ namespace UI.Desktop
             this.tsAlumnoInscripcion.Location = new System.Drawing.Point(4, 0);
             this.tsAlumnoInscripcion.MinimumSize = new System.Drawing.Size(0, 36);
             this.tsAlumnoInscripcion.Name = "tsAlumnoInscripcion";
-            this.tsAlumnoInscripcion.Size = new System.Drawing.Size(196, 36);
+            this.tsAlumnoInscripcion.Size = new System.Drawing.Size(353, 36);
             this.tsAlumnoInscripcion.TabIndex = 1;
+            this.tsAlumnoInscripcion.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsAlumnoInscripcion_ItemClicked);
+            // 
+            // tsbImprimir
+            // 
+            this.tsbImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            this.tsbImprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbImprimir.Font = new System.Drawing.Font("Comic Sans MS", 9F);
+            this.tsbImprimir.ForeColor = System.Drawing.Color.White;
+            this.tsbImprimir.Image = ((System.Drawing.Image)(resources.GetObject("tsbImprimir.Image")));
+            this.tsbImprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbImprimir.Name = "tsbImprimir";
+            this.tsbImprimir.Size = new System.Drawing.Size(151, 33);
+            this.tsbImprimir.Text = "Imprimir constancia";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 36);
             // 
             // tsbNuevo
             // 
@@ -469,40 +494,51 @@ namespace UI.Desktop
             this.id.ReadOnly = true;
             this.id.Width = 59;
             // 
-            // DescripcionCurso
+            // DescripcionPlan
             // 
-            this.DescripcionCurso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DescripcionCurso.DataPropertyName = "DescripcionCurso";
+            this.DescripcionPlan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DescripcionPlan.DataPropertyName = "DescripcionPlan";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            this.DescripcionCurso.DefaultCellStyle = dataGridViewCellStyle4;
-            this.DescripcionCurso.HeaderText = "Año - Comisión - Materia - Plan";
-            this.DescripcionCurso.MinimumWidth = 6;
-            this.DescripcionCurso.Name = "DescripcionCurso";
-            this.DescripcionCurso.ReadOnly = true;
+            this.DescripcionPlan.DefaultCellStyle = dataGridViewCellStyle4;
+            this.DescripcionPlan.HeaderText = "Plan";
+            this.DescripcionPlan.MinimumWidth = 6;
+            this.DescripcionPlan.Name = "DescripcionPlan";
+            this.DescripcionPlan.ReadOnly = true;
             // 
-            // condicion
+            // DescripcionMateria
             // 
-            this.condicion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.condicion.DataPropertyName = "DescripcionCondicion";
+            this.DescripcionMateria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DescripcionMateria.DataPropertyName = "DescripcionMateria";
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            this.condicion.DefaultCellStyle = dataGridViewCellStyle5;
-            this.condicion.HeaderText = "Condición";
-            this.condicion.MinimumWidth = 6;
-            this.condicion.Name = "condicion";
-            this.condicion.ReadOnly = true;
+            this.DescripcionMateria.DefaultCellStyle = dataGridViewCellStyle5;
+            this.DescripcionMateria.HeaderText = "Materia";
+            this.DescripcionMateria.MinimumWidth = 6;
+            this.DescripcionMateria.Name = "DescripcionMateria";
+            this.DescripcionMateria.ReadOnly = true;
+            // 
+            // DescripcionCondicion
+            // 
+            this.DescripcionCondicion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DescripcionCondicion.DataPropertyName = "DescripcionCondicion";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            this.DescripcionCondicion.DefaultCellStyle = dataGridViewCellStyle6;
+            this.DescripcionCondicion.HeaderText = "Condición";
+            this.DescripcionCondicion.MinimumWidth = 6;
+            this.DescripcionCondicion.Name = "DescripcionCondicion";
+            this.DescripcionCondicion.ReadOnly = true;
             // 
             // nota
             // 
             this.nota.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.nota.DataPropertyName = "Nota";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            this.nota.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(53)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            this.nota.DefaultCellStyle = dataGridViewCellStyle7;
             this.nota.HeaderText = "Nota";
             this.nota.MinimumWidth = 6;
             this.nota.Name = "nota";
@@ -564,9 +600,12 @@ namespace UI.Desktop
         private System.Windows.Forms.ToolStripButton tsbEditar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
+        private System.Windows.Forms.ToolStripButton tsbImprimir;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionCurso;
-        private System.Windows.Forms.DataGridViewTextBoxColumn condicion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionPlan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionMateria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionCondicion;
         private System.Windows.Forms.DataGridViewTextBoxColumn nota;
     }
 }

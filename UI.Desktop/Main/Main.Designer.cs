@@ -37,7 +37,6 @@ namespace UI.Desktop
             this.mnuVerComisiones = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCursos = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVerCursos = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPrintCurso = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEspecialidades = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVerEspecialidades = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMaterias = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,7 +47,6 @@ namespace UI.Desktop
             this.mnuVerUsuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuInscripciones = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVerInscripciones = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPrintInscripciones = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCargos = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVerCargos = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPersonas = new System.Windows.Forms.ToolStripMenuItem();
@@ -126,8 +124,7 @@ namespace UI.Desktop
             // mnuCursos
             // 
             this.mnuCursos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuVerCursos,
-            this.mnuPrintCurso});
+            this.mnuVerCursos});
             this.mnuCursos.ForeColor = System.Drawing.Color.White;
             this.mnuCursos.Name = "mnuCursos";
             this.mnuCursos.Size = new System.Drawing.Size(66, 24);
@@ -138,17 +135,9 @@ namespace UI.Desktop
             this.mnuVerCursos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.mnuVerCursos.ForeColor = System.Drawing.Color.White;
             this.mnuVerCursos.Name = "mnuVerCursos";
-            this.mnuVerCursos.Size = new System.Drawing.Size(202, 26);
+            this.mnuVerCursos.Size = new System.Drawing.Size(113, 26);
             this.mnuVerCursos.Text = "Ver";
             this.mnuVerCursos.Click += new System.EventHandler(this.mnuVerCursos_Click);
-            // 
-            // mnuPrintCurso
-            // 
-            this.mnuPrintCurso.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            this.mnuPrintCurso.ForeColor = System.Drawing.Color.White;
-            this.mnuPrintCurso.Name = "mnuPrintCurso";
-            this.mnuPrintCurso.Size = new System.Drawing.Size(202, 26);
-            this.mnuPrintCurso.Text = "Imprimir reporte";
             // 
             // mnuEspecialidades
             // 
@@ -218,15 +207,14 @@ namespace UI.Desktop
             this.mnuVerUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.mnuVerUsuarios.ForeColor = System.Drawing.Color.White;
             this.mnuVerUsuarios.Name = "mnuVerUsuarios";
-            this.mnuVerUsuarios.Size = new System.Drawing.Size(224, 26);
+            this.mnuVerUsuarios.Size = new System.Drawing.Size(113, 26);
             this.mnuVerUsuarios.Text = "Ver";
             this.mnuVerUsuarios.Click += new System.EventHandler(this.mnuVerUsuarios_Click);
             // 
             // mnuInscripciones
             // 
             this.mnuInscripciones.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuVerInscripciones,
-            this.mnuPrintInscripciones});
+            this.mnuVerInscripciones});
             this.mnuInscripciones.ForeColor = System.Drawing.Color.White;
             this.mnuInscripciones.Name = "mnuInscripciones";
             this.mnuInscripciones.Size = new System.Drawing.Size(108, 24);
@@ -237,17 +225,9 @@ namespace UI.Desktop
             this.mnuVerInscripciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.mnuVerInscripciones.ForeColor = System.Drawing.Color.White;
             this.mnuVerInscripciones.Name = "mnuVerInscripciones";
-            this.mnuVerInscripciones.Size = new System.Drawing.Size(224, 26);
+            this.mnuVerInscripciones.Size = new System.Drawing.Size(113, 26);
             this.mnuVerInscripciones.Text = "Ver";
             this.mnuVerInscripciones.Click += new System.EventHandler(this.mnuVerInscripciones_Click);
-            // 
-            // mnuPrintInscripciones
-            // 
-            this.mnuPrintInscripciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
-            this.mnuPrintInscripciones.ForeColor = System.Drawing.Color.White;
-            this.mnuPrintInscripciones.Name = "mnuPrintInscripciones";
-            this.mnuPrintInscripciones.Size = new System.Drawing.Size(224, 26);
-            this.mnuPrintInscripciones.Text = "Imprimir reporte";
             // 
             // mnuCargos
             // 
@@ -263,7 +243,7 @@ namespace UI.Desktop
             this.mnuVerCargos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.mnuVerCargos.ForeColor = System.Drawing.Color.White;
             this.mnuVerCargos.Name = "mnuVerCargos";
-            this.mnuVerCargos.Size = new System.Drawing.Size(224, 26);
+            this.mnuVerCargos.Size = new System.Drawing.Size(113, 26);
             this.mnuVerCargos.Text = "Ver";
             this.mnuVerCargos.Click += new System.EventHandler(this.mnuVerCargos_Click);
             // 
@@ -282,7 +262,7 @@ namespace UI.Desktop
             this.mnuAlumnos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.mnuAlumnos.ForeColor = System.Drawing.Color.White;
             this.mnuAlumnos.Name = "mnuAlumnos";
-            this.mnuAlumnos.Size = new System.Drawing.Size(224, 26);
+            this.mnuAlumnos.Size = new System.Drawing.Size(177, 26);
             this.mnuAlumnos.Text = "Ver alumnos";
             this.mnuAlumnos.Click += new System.EventHandler(this.mnuAlumnos_Click);
             // 
@@ -291,7 +271,7 @@ namespace UI.Desktop
             this.mnuDocentes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.mnuDocentes.ForeColor = System.Drawing.Color.White;
             this.mnuDocentes.Name = "mnuDocentes";
-            this.mnuDocentes.Size = new System.Drawing.Size(224, 26);
+            this.mnuDocentes.Size = new System.Drawing.Size(177, 26);
             this.mnuDocentes.Text = "Ver docentes";
             this.mnuDocentes.Click += new System.EventHandler(this.mnuDocentes_Click);
             // 
@@ -409,11 +389,9 @@ namespace UI.Desktop
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Label lblBienvenido;
-        private System.Windows.Forms.ToolStripMenuItem mnuPrintCurso;
         private System.Windows.Forms.ToolStripMenuItem mnuInscripciones;
         private System.Windows.Forms.ToolStripMenuItem mnuCargos;
         private System.Windows.Forms.ToolStripMenuItem mnuVerInscripciones;
-        private System.Windows.Forms.ToolStripMenuItem mnuPrintInscripciones;
         private System.Windows.Forms.ToolStripMenuItem mnuVerCargos;
         private System.Windows.Forms.ToolStripMenuItem mnuPersonas;
         private System.Windows.Forms.ToolStripMenuItem mnuAlumnos;
