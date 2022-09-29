@@ -26,7 +26,7 @@ namespace UI.Desktop
             get;
             set;
         }
-        public PersonaDesktop(ModoForm modo) : this()
+        public PersonaDesktop(ModoForm modo, int tipo) : this()
         {
             Modo = modo;
             if (modo == ModoForm.Alta)
@@ -34,6 +34,7 @@ namespace UI.Desktop
                 btnAceptar.Text = "Guardar";
             }
             ListarCombos();
+            this.comboTipoPersona.SelectedValue = tipo;
         }
         public PersonaDesktop(int id, ModoForm modo) : this()
         {

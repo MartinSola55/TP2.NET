@@ -48,7 +48,7 @@ namespace UI.Desktop
         }
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            PersonaDesktop ad = new PersonaDesktop(ApplicationForm.ModoForm.Alta);
+            PersonaDesktop ad = new PersonaDesktop(ApplicationForm.ModoForm.Alta, 2);
             ad.ShowDialog();
             this.Listar();
         }
