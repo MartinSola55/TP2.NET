@@ -1,57 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Business.Entities.Usuario">
-    <Position X="10.75" Y="5.75" Width="1.75" />
+  <Class Name="Business.Entities.AlumnoInscripcion">
+    <Position X="6" Y="4" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAABACAAAAAEAAAAgAAAIAEAABEAAIAAAAAAFAA=</HashCode>
-      <FileName>usuarios.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Business.Entities.Persona">
-    <Position X="4" Y="5.75" Width="2" />
-    <TypeIdentifier>
-      <HashCode>EAAAAAEAACgAAQCEACAAhEAEAAUAAAAAEAAAAgAABAA=</HashCode>
-      <FileName>personas.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Business.Entities.Plan">
-    <Position X="4.25" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAQAAAAAAAAAAAAAAABAAAAAAAEAAAAAEAAAAA=</HashCode>
-      <FileName>Plan.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Business.Entities.Comision">
-    <Position X="8.5" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAEAgAAAAAAAIAAAAAABAAAAAAAEEAAAAAAAAAA=</HashCode>
-      <FileName>Comision.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Business.Entities.Modulo">
-    <Position X="2.25" Y="3.25" Width="1.5" />
-    <InheritanceLine Type="Business.Entities.BusinessEntity" ManuallyRouted="true" FixedToPoint="true">
-      <Path>
-        <Point X="7" Y="2.75" />
-        <Point X="7" Y="2.45" />
-        <Point X="3" Y="2.45" />
-        <Point X="3" Y="3.25" />
-      </Path>
-    </InheritanceLine>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAA=</HashCode>
-      <FileName>Modulo.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Business.Entities.Materia">
-    <Position X="2.25" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAEAAAAAAAgAAAAAAAABAAAAAAAEEAAAQAAAAwA=</HashCode>
-      <FileName>Materia.cs</FileName>
+      <HashCode>gAIAAQAAIAAACAAAAAgABAEAAAEAggAAAAAEEAAAAAA=</HashCode>
+      <FileName>AlumnoInscripcion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Business.Entities.BusinessEntity">
-    <Position X="6.25" Y="2.75" Width="1.5" />
+    <Position X="12" Y="0.75" Width="1.5" />
     <NestedTypes>
       <Enum Name="Business.Entities.BusinessEntity.States" Collapsed="true">
         <TypeIdentifier>
@@ -61,46 +18,88 @@
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAABCAEAAA=</HashCode>
-      <FileName>BisinessEntity.cs</FileName>
+      <FileName>BusinessEntity.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Business.Entities.Especialidad">
-    <Position X="10.75" Y="3.25" Width="1.5" />
+  <Class Name="Business.Entities.Cargo">
+    <Position X="15.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAA=</HashCode>
-      <FileName>Especialidad.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cargo.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Business.Entities.ModuloUsuario">
-    <Position X="6.25" Y="5.75" Width="2.25" />
+  <Class Name="Business.Entities.Comision">
+    <Position X="6.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAgAAAwAAAAAAACAAAAAQAAEAAAAAAAQABQAEAEAA=</HashCode>
-      <FileName>ModuloUsuario.cs</FileName>
+      <HashCode>AAAAAAEAAAAAQAAAIAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Comision.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Business.Entities.AlumnoInscripcion">
-    <Position X="8.75" Y="5.75" Width="1.75" />
+  <Class Name="Business.Entities.Condicion">
+    <Position X="15.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAACACAAAAAgAAAAAAAAAAAAAAAABERAAAAA=</HashCode>
-      <FileName>AlumnoInscripcion.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Condicion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Business.Entities.Curso">
-    <Position X="12.75" Y="5.75" Width="1.5" />
+    <Position X="14" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQIAAIAAIAAAACACAAAAAAABgAAAAAAEAAAAAAAABAA=</HashCode>
+      <HashCode>AAIAAIAAIAAAAAACAAAAAAAAAACAAAAAAAAAAAAAEAA=</HashCode>
       <FileName>Curso.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Business.Entities.DocenteCurso">
-    <Position X="14.75" Y="5.75" Width="1.5" />
+    <Position X="17.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAACAAAACAAACAAAAAAAAABAAAAAQAAAIA=</HashCode>
+      <HashCode>AAIAAQAAIAAACAAAAAAAACAQAAAAAAAAAAAEgAAAAAA=</HashCode>
       <FileName>DocenteCurso.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Business.Entities.Especialidad">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="Business.Entities.BusinessEntity" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12" Y="2.125" />
+        <Point X="8.812" Y="2.125" />
+        <Point X="8.812" Y="1.733" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Especialidad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business.Entities.Materia">
+    <Position X="10.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAEAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAwA=</HashCode>
+      <FileName>Materia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business.Entities.Persona">
+    <Position X="12" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAEAAEAACAAAQAEACAAhAAAAAAAAAAAAIAAAgAAAAI=</HashCode>
+      <FileName>Persona.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business.Entities.Plan">
+    <Position X="15.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAMAAAAA=</HashCode>
+      <FileName>Plan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business.Entities.Usuario">
+    <Position X="8.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAQAAAAAAAAAAAAAAABAQAICAAAAAEAA=</HashCode>
+      <FileName>Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="Business.Entities.States">
-    <Position X="6.25" Y="0.75" Width="1.5" />
+    <Position X="9.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAACAAABAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>States.cs</FileName>

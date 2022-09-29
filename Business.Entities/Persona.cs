@@ -35,12 +35,12 @@ namespace Business.Entities
         public string Telefono { get; set; }
 
         [Required(ErrorMessage = "Ingrese una fecha de nacimiento")]
-        [RegularExpression("^[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}$", ErrorMessage = "Ingrese un formato de fecha válido")]
+        [RegularExpression("^[0-9]{2}\\/[0-9]{2}\\/[1-2][0-9]{3}$", ErrorMessage = "Ingrese un formato de fecha válido")]
         public DateTime FechaNacimiento { get; set; }
 
         [Required(ErrorMessage = "Ingrese un número de legajo")]
-        [Range(1, 100000, ErrorMessage = "El legajo debe estar entre 1 y 100.000")]
-        [RegularExpression("^[1-9][0-9]+$", ErrorMessage = "Sólo se permiten números")]
+        [Range(10, 100000, ErrorMessage = "El legajo debe estar entre 10 y 100.000")]
+        [RegularExpression("^[1-9][0-9]+$", ErrorMessage = "Sólo se permiten números y no debe comenzar con 0")]
         public int Legajo { get; set; }
 
         [Required(ErrorMessage = "Ingrese un tipo de persona")]

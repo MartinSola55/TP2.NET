@@ -159,7 +159,7 @@ namespace UI.Desktop
             this.tsbEditar.ForeColor = Color.White;
         }
 
-        private void tsAlumnoInscripcion_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void tsbImprimir_Click(object sender, EventArgs e)
         {
             try
             {
@@ -185,7 +185,8 @@ namespace UI.Desktop
                         if (row.Cells["nota"].Value != null)
                         {
                             filas += "<td style='text-align: center;'>" + row.Cells["nota"].Value.ToString() + "</td>";
-                        } else
+                        }
+                        else
                         {
                             filas += "<td></td>";
                         }
