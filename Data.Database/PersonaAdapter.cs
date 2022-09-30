@@ -95,7 +95,7 @@ namespace Data.Database
             }
             catch (Exception Ex)
             {
-                Exception exceptionManejada = new Exception("Hubo un error al recuperar la lista de personas", Ex);
+                Exception exceptionManejada = new Exception("Hubo un error al recuperar la lista de alumnos", Ex);
                 throw exceptionManejada;
 
             }
@@ -146,7 +146,7 @@ namespace Data.Database
             }
             catch (Exception Ex)
             {
-                Exception exceptionManejada = new Exception("Hubo un error al recuperar la lista de personas", Ex);
+                Exception exceptionManejada = new Exception("Hubo un error al recuperar la lista de docentes", Ex);
                 throw exceptionManejada;
 
             }
@@ -355,7 +355,6 @@ namespace Data.Database
             Persona persona = new Persona();
             try
             {
-                string asdasd = per.FechaNacimiento.ToShortDateString();
                 this.OpenConnection();
                 SqlCommand cmdPersonas = new SqlCommand(
                     "SELECT * FROM personas p " +

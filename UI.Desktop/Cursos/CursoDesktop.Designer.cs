@@ -222,6 +222,7 @@ namespace UI.Desktop
             this.comboMateria.Name = "comboMateria";
             this.comboMateria.Size = new System.Drawing.Size(352, 32);
             this.comboMateria.TabIndex = 7;
+            this.comboMateria.SelectedValueChanged += new System.EventHandler(this.comboMateria_SelectedValueChanged);
             // 
             // comboComision
             // 

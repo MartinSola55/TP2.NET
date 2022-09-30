@@ -35,20 +35,20 @@ namespace UI.Desktop
             {
                 btnAceptar.Text = "Guardar";
             }
-            ListarCombos();
+            ListarComboMaterias();
         }
         public CursoDesktop(int id, ModoForm modo) : this()
         {
             CursoActual = cl.GetOne(id);
             Modo = modo;
-            this.ListarCombos();
+            this.ListarComboMaterias();
             this.MapearDeDatos();
         }
         public override void MapearDeDatos()
         {
             this.txtID.Text = this.CursoActual.ID.ToString();
-            this.comboComision.SelectedValue = this.CursoActual.IDComision;
             this.comboMateria.SelectedValue = this.CursoActual.IDMateria;
+            this.comboComision.SelectedValue = this.CursoActual.IDComision;
             this.txtAnio.Text = this.CursoActual.AnioCalendario.ToString();
             this.txtCupo.Text = this.CursoActual.Cupo.ToString();
             switch (this.Modo)
@@ -147,31 +147,35 @@ namespace UI.Desktop
             this.MapearADatos();
             cl.Save(CursoActual);
         }
-        private void ListarCombos()
+        private void ListarComboMaterias()
         {
             MateriaLogic ml = new MateriaLogic();
-            ComisionLogic cl = new ComisionLogic();
             List<Materia> materias = ml.GetAll();
-            List<Comision> comisiones = cl.GetAll();
-            Dictionary<int, string> comboSourceM = new Dictionary<int, string>();
-            Dictionary<int, string> comboSourceC = new Dictionary<int, string>();
-            comboSourceM.Add(0, "-- Seleccione una materia--");
-            comboSourceC.Add(0, "-- Seleccione una comisión --");
+            Dictionary<int, string> comboSource = new Dictionary<int, string>();
+            comboSource.Add(0, "-- Seleccione una materia--");
             foreach (Materia m in materias)
             {
-                comboSourceM.Add(m.ID, m.Descripcion + " - " + m.DescripcionPlan);
+                comboSource.Add(m.ID, m.Descripcion + " - " + m.DescripcionPlan);
             }
+
+            this.comboMateria.DataSource = new BindingSource(comboSource, null);
+            this.comboMateria.DisplayMember = "Value";
+            this.comboMateria.ValueMember = "Key";
+            this.comboMateria.SelectedValue = 0;
+        }
+        private void ListarComboComi(int id_plan)
+        {
+            ComisionLogic cl = new ComisionLogic();
+            List<Comision> comisiones = cl.GetXPlan(id_plan);
+            Dictionary<int, string> comboSource = new Dictionary<int, string>();
+            comboSource.Add(0, "-- Seleccione una comisión --");
             foreach (Comision c in comisiones)
             {
-                comboSourceC.Add(c.ID, c.Descripcion);
+                comboSource.Add(c.ID, c.Descripcion);
             }
-            this.comboMateria.DataSource = new BindingSource(comboSourceM, null);
-            this.comboComision.DataSource = new BindingSource(comboSourceC, null);
-            this.comboMateria.DisplayMember = "Value";
+            this.comboComision.DataSource = new BindingSource(comboSource, null);
             this.comboComision.DisplayMember = "Value";
-            this.comboMateria.ValueMember = "Key";
             this.comboComision.ValueMember = "Key";
-            this.comboMateria.SelectedValue = 0;
             this.comboComision.SelectedValue = 0;
         }
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -197,6 +201,19 @@ namespace UI.Desktop
             } catch (Exception exceptionManejada)
             {
                 MessageBox.Show(exceptionManejada.Message, "ERROR AL GUARDAR EL CURSO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void comboMateria_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                MateriaLogic ml = new MateriaLogic();
+                Materia materia = ml.GetOne(int.Parse(this.comboMateria.SelectedValue.ToString()));
+                this.ListarComboComi(materia.IDPlan);
+            } catch
+            {
+
             }
         }
 

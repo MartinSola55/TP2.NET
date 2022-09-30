@@ -259,5 +259,46 @@ namespace Data.Database
             }
             return comision;
         }
+        public List<Comision> GetXPlan(int id_plan)
+        {
+            List<Comision> comisiones = new List<Comision>();
+            try
+            {
+                this.OpenConnection();
+                SqlCommand cmdComisiones = new SqlCommand(
+                    "SELECT * FROM comisiones c " +
+                    "INNER JOIN planes p ON c.id_plan = p.id_plan " +
+                    "INNER JOIN especialidades e ON p.id_especialidad = e.id_especialidad " +
+                    "WHERE p.id_plan = @id_plan " +
+                    "ORDER BY desc_comision", sqlConn);
+                cmdComisiones.Parameters.Add("@id_plan", SqlDbType.Int).Value = id_plan;
+                SqlDataReader drComisiones = cmdComisiones.ExecuteReader();
+                while (drComisiones.Read())
+                {
+                    Comision com = new Comision();
+                    com.ID = (int)drComisiones["id_comision"];
+                    com.Descripcion = (string)drComisiones["desc_comision"];
+                    com.AnioEspecialidad = (int)drComisiones["anio_especialidad"];
+                    com.IDPlan = (int)drComisiones["id_plan"];
+                    com.PlanDesc = (string)drComisiones["desc_plan"];
+                    com.PlanDesc += " - ";
+                    com.PlanDesc += (string)drComisiones["desc_especialidad"];
+                    comisiones.Add(com);
+                }
+
+                drComisiones.Close();
+            }
+            catch (Exception Ex)
+            {
+                Exception ExceptionManejada = new Exception("Hubo un error al recuperar la lista de comisiones", Ex);
+                throw ExceptionManejada;
+
+            }
+            finally
+            {
+                this.CloseConnection();
+            }
+            return comisiones;
+        }
     }
 }

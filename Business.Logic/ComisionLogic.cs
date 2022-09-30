@@ -42,6 +42,17 @@ namespace Business.Logic
                 throw exceptionManejada;
             }
         }
+        public List<Comision> GetXPlan(int id_plan)
+        {
+            try
+            {
+                return ComisionData.GetXPlan(id_plan);
+            }
+            catch (Exception exceptionManejada)
+            {
+                throw exceptionManejada;
+            }
+        }
         public void Save(Comision comision)
         {
             try
