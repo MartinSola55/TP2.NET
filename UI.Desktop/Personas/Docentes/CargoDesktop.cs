@@ -104,28 +104,42 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
+            List<string> errores = new List<string>();
             if (this.comboCargos.SelectedValue.ToString() == "0")
             {
-                this.Notificar("ERROR", "Debes ingresar un cargo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errores.Add("Debes ingresar un cargo");
+            }
+            if (this.comboCursos.SelectedValue.ToString() == "0")
+            {
+                errores.Add("Debes seleccionar un curso");
+            }
+
+            if (errores.Count == 0)
+            {
+                DocenteCurso dc = new DocenteCurso
+                {
+                    ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0,
+                    IDCurso = int.Parse(this.comboCursos.SelectedValue.ToString()),
+                    IDDocente = int.Parse(this.txtIDDocente.Text)
+                };
+                if (pl.EsInscripcionRepetida(dc))
+                {
+                    this.Notificar("ERROR", "El docente ya cuenta con un cargo en este curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                string cadena = "";
+                foreach (string s in errores)
+                {
+                    cadena += s;
+                    cadena += "\n";
+                }
+                this.Notificar("ERROR", cadena, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (this.comboCursos.SelectedValue.ToString() == "0")
-            {
-                this.Notificar("ERROR", "Debes seleccionar un curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            DocenteCurso dc = new DocenteCurso
-            {
-                ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0,
-                IDCurso = int.Parse(this.comboCursos.SelectedValue.ToString()),
-                IDDocente = int.Parse(this.txtIDDocente.Text)
-            };
-            if (pl.EsInscripcionRepetida(dc))
-            {
-                this.Notificar("ERROR", "El docente ya cuenta con un cargo en este curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            return true;
         }
         public override void GuardarCambios()
         {

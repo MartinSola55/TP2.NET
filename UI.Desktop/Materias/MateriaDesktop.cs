@@ -100,50 +100,62 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
+            List<string> errores = new List<string>();
             if (txtDescripcion.Text.Length == 0 || txtHSSemanales.Text.Length == 0 || txtHSTotales.Text.Length == 0)
             {
-                this.Notificar("ERROR", "Debes completar todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("Debes completar todos los campos");
             }
-            else if (int.Parse(txtHSSemanales.Text) < 1 || int.Parse(txtHSSemanales.Text) > 20)
+            if (int.Parse(txtHSSemanales.Text) < 1 || int.Parse(txtHSSemanales.Text) > 20)
             {
-                this.Notificar("ERROR", "Ingrese entre 1 y 20 horas semanales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("Ingrese entre 1 y 20 horas semanales");
             }
-            else if (int.Parse(txtHSTotales.Text) < 1 || int.Parse(txtHSTotales.Text) > 500)
+            if (int.Parse(txtHSTotales.Text) < 1 || int.Parse(txtHSTotales.Text) > 500)
             {
-                this.Notificar("ERROR", "Ingrese entre 1 y 500 horas totales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            } else if (int.Parse(txtHSTotales.Text) <= int.Parse(txtHSSemanales.Text))
-            {
-                this.Notificar("ERROR", "Debes ingresar una cantidad de horas totales mayor a las semanales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("Ingrese entre 1 y 500 horas totales");
             } 
-            else if (this.comboPlan.SelectedValue.ToString() == "0")
+            if (int.Parse(txtHSTotales.Text) <= int.Parse(txtHSSemanales.Text))
             {
-                this.Notificar("ERROR", "Debes seleccionar un plan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            } else if (this.txtDescripcion.Text.Length < 3 || this.txtDescripcion.Text.Length > 50)
+                errores.Add("Debes ingresar una cantidad de horas totales mayor a las semanales");
+            } 
+            if (this.comboPlan.SelectedValue.ToString() == "0")
             {
-                this.Notificar("ERROR", "Ingrese una descripción de entre 3 y 50 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            } else if (!Validaciones.esDireccionValida(this.txtDescripcion.Text))
+                errores.Add("Debes seleccionar un plan");
+            } 
+            if (this.txtDescripcion.Text.Length < 3 || this.txtDescripcion.Text.Length > 50)
             {
-                this.Notificar("ERROR", "Sólo se permite una descripción con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errores.Add("Ingrese una descripción de entre 3 y 50 caracteres");
+            }
+            if (!Validaciones.esDireccionValida(this.txtDescripcion.Text))
+            {
+                errores.Add("Sólo se permite una descripción con caracteres alfanuméricos");
+            }
+
+            if (errores.Count == 0)
+            {
+                Materia mat = new Materia
+                {
+                    Descripcion = this.txtDescripcion.Text,
+                    IDPlan = int.Parse(this.comboPlan.SelectedValue.ToString())
+                };
+                mat.ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0;
+                if (ml.GetRepetido(mat).ID != 0)
+                {
+                    this.Notificar("ERROR", "La materia que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                string cadena = "";
+                foreach (string s in errores)
+                {
+                    cadena += s;
+                    cadena += "\n";
+                }
+                this.Notificar("ERROR", cadena, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            Materia mat = new Materia
-            {
-                Descripcion = this.txtDescripcion.Text,
-                IDPlan = int.Parse(this.comboPlan.SelectedValue.ToString())
-            };
-            mat.ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0;
-            if (ml.GetRepetido(mat).ID != 0)
-            {
-                this.Notificar("ERROR", "La materia que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            return true;
         }
         public override void GuardarCambios()
         {

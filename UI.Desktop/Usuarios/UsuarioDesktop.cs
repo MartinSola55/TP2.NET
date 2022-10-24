@@ -103,57 +103,67 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
+            List<string> errores = new List<string>();
             if (this.txtUsuario.Text.Length == 0 || this.txtClave.Text.Length == 0 || this.txtConfimarClave.Text.Length == 0)
             {
-                this.Notificar("ERROR", "Debes completar todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("Debes completar todos los campos");
             }
-            else if (this.txtConfimarClave.Text != this.txtClave.Text)
+            if (this.txtConfimarClave.Text != this.txtClave.Text)
             {
-                this.Notificar("ERROR", "Las contraseñas no coinciden", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("Las contraseñas no coinciden");
             }
-            else if (this.txtUsuario.Text.Length < 5 || this.txtUsuario.Text.Length > 18)
+            if (this.txtUsuario.Text.Length < 5 || this.txtUsuario.Text.Length > 18)
             {
-                this.Notificar("ERROR", "El usuario debe contener entre 5 y 18 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("El usuario debe contener entre 5 y 18 caracteres");
             }
-            else if (this.txtClave.Text.Length < 3)
+            if (this.txtClave.Text.Length < 3)
             {
-                this.Notificar("ERROR", "La contraseña debe ser de al menos 3 carateres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("La contraseña debe ser de al menos 3 carateres");
             }
-            else if (!Validaciones.esUsuarioValido(this.txtUsuario.Text))
+            if (!Validaciones.esUsuarioValido(this.txtUsuario.Text))
             {
-                this.Notificar("ERROR", "Debes ingresar un usuario válido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("Debes ingresar un usuario válido");
             }
-            else if (!Validaciones.esPassValida(this.txtClave.Text))
+            if (!Validaciones.esPassValida(this.txtClave.Text))
             {
-                this.Notificar("ERROR", "Debes ingresar una contraseña válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("Debes ingresar una contraseña válida");
             }
-            if (this.txtID.Text == "")
+
+            if (errores.Count == 0)
             {
-                if (ul.EsRepetido(this.txtUsuario.Text))
+                if (this.txtID.Text == "")
                 {
-                    this.Notificar("ERROR", "El nombre de usuario ingresado ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
+                    if (ul.EsRepetido(this.txtUsuario.Text))
+                    {
+                        this.Notificar("ERROR", "El nombre de usuario ingresado ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                } else
+                {
+                    Usuario user = new Usuario
+                    {
+                        ID = int.Parse(this.txtID.Text),
+                        NombreUsuario = this.txtUsuario.Text
+                    };
+                    if (ul.EsRepetido(user))
+                    {
+                        this.Notificar("ERROR", "El nombre de usuario ingresado ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
                 }
-            } else
-            {
-                Usuario user = new Usuario
-                {
-                    ID = int.Parse(this.txtID.Text),
-                    NombreUsuario = this.txtUsuario.Text
-                };
-                if (ul.EsRepetido(user))
-                {
-                    this.Notificar("ERROR", "El nombre de usuario ingresado ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
+                return true;
             }
-            return true;
+            else
+            {
+                string cadena = "";
+                foreach (string s in errores)
+                {
+                    cadena += s;
+                    cadena += "\n";
+                }
+                this.Notificar("ERROR", cadena, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
         }
         public override void GuardarCambios()
         {

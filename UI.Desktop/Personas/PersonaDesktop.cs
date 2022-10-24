@@ -117,61 +117,71 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
+            List<string> errores = new List<string>();
             if (txtNombre.Text.Length == 0 || txtApellido.Text.Length == 0 || txtDireccion.Text.Length == 0 || 
                 txtEmail.Text.Length == 0 || txtTelefono.Text.Length == 0 || txtLegajo.Text.Length == 0)
             {
-                this.Notificar("ERROR", "Debes completar todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("Debes completar todos los campos");
             }
-            else if (this.comboPlanes.SelectedValue.ToString() == "0")
+            if (this.comboPlanes.SelectedValue.ToString() == "0")
             {
-                this.Notificar("ERROR", "Debes seleccionar un plan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("Debes seleccionar un plan");
             }
-            else if (this.comboTipoPersona.SelectedValue.ToString() == "0")
+            if (this.comboTipoPersona.SelectedValue.ToString() == "0")
             {
-                this.Notificar("ERROR", "Debes seleccionar un tipo de persona", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("Debes seleccionar un tipo de persona");
             }
-            else if (int.Parse(txtLegajo.Text) < 1 || int.Parse(txtLegajo.Text) > 100000)
+            if (int.Parse(txtLegajo.Text) < 1 || int.Parse(txtLegajo.Text) > 100000)
             {
-                this.Notificar("ERROR", "Debes ingresar un legajo entre 1 y 100.000", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("Debes ingresar un legajo entre 1 y 100.000");
             }
-            else if (!Validaciones.esMailValido(this.txtEmail.Text))
+            if (!Validaciones.esMailValido(this.txtEmail.Text))
             {
-                this.Notificar("ERROR", "El formato del email es inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("El formato del email es inválido");
             }
-            else if (!Validaciones.esNombreValido(this.txtNombre.Text) || !Validaciones.esNombreValido(this.txtApellido.Text) ||
+            if (!Validaciones.esNombreValido(this.txtNombre.Text) || !Validaciones.esNombreValido(this.txtApellido.Text) ||
                 !Validaciones.esDireccionValida(this.txtDireccion.Text) || !Validaciones.esNumeroValido(this.txtTelefono.Text) ||
                 !Validaciones.esNumeroValido(this.txtLegajo.Text))
             {
-                this.Notificar("ERROR", "El formato de uno de los campos es inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errores.Add("El formato de uno de los campos es inválido");
+            }
+
+            if (errores.Count == 0)
+            {
+                Persona per = new Persona
+                {
+                    Legajo = int.Parse(this.txtLegajo.Text),
+                    Nombre = this.txtNombre.Text,
+                    Apellido = this.txtApellido.Text,
+                    FechaNacimiento = this.dtpNacimiento.Value,
+                    TipoPersona = int.Parse(this.comboTipoPersona.SelectedValue.ToString()),
+                    IDPlan = int.Parse(this.comboPlanes.SelectedValue.ToString())
+                };
+                per.ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0;
+                if (pl.EsLegajoRepetido(per))
+                {
+                    this.Notificar("ERROR", "El legajo ingresado ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                Persona persona = pl.GetRepetido(per);
+                if (pl.GetRepetido(per).ID != 0)
+                {
+                    this.Notificar("ERROR", "La persona que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                string cadena = "";
+                foreach (string s in errores)
+                {
+                    cadena += s;
+                    cadena += "\n";
+                }
+                this.Notificar("ERROR", cadena, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            Persona per = new Persona
-            {
-                Legajo = int.Parse(this.txtLegajo.Text),
-                Nombre = this.txtNombre.Text,
-                Apellido = this.txtApellido.Text,
-                FechaNacimiento = this.dtpNacimiento.Value,
-                TipoPersona = int.Parse(this.comboTipoPersona.SelectedValue.ToString()),
-                IDPlan = int.Parse(this.comboPlanes.SelectedValue.ToString())
-            };
-            per.ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0;
-            if (pl.EsLegajoRepetido(per))
-            {
-                this.Notificar("ERROR", "El legajo ingresado ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            Persona persona = pl.GetRepetido(per);
-            if (pl.GetRepetido(per).ID != 0)
-            {
-                this.Notificar("ERROR", "La persona que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            return true;
         }
         public override void GuardarCambios()
         {

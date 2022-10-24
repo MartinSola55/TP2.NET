@@ -101,41 +101,52 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
+            List<string> errores = new List<string>();
             if (this.txtDescripcion.Text.Length == 0 || this.txtAnio.Text.Length == 0)
             {
-                this.Notificar("ERROR", "Complete todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("Complete todos los campos");
             } 
-            else if (int.Parse(this.txtAnio.Text) < 1980 || int.Parse(this.txtAnio.Text) > System.DateTime.Now.AddYears(1).Year)
+            if (int.Parse(this.txtAnio.Text) < 1980 || int.Parse(this.txtAnio.Text) > System.DateTime.Now.AddYears(1).Year)
             {
-                this.Notificar("ERROR", "Complete con un año entre 1980 y " + System.DateTime.Now.AddYears(1).Year, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errores.Add("Complete con un año entre 1980 y " + System.DateTime.Now.AddYears(1).Year);
+            }
+             if (this.comboPlan.SelectedValue.ToString() == "0")
+            {
+                errores.Add("Debes seleccionar un plan");
+            } 
+            if (this.txtDescripcion.Text.Length < 3 || this.txtDescripcion.Text.Length > 30)
+            {
+                errores.Add("Debes ingresar una descripción entre 3 y 30 caracteres");
+            } 
+            if (!Validaciones.esDireccionValida(this.txtDescripcion.Text)) {
+                errores.Add("Sólo se permite una descripción con caracteres alfanuméricos");
+            }
+            if (errores.Count == 0)
+            {
+                Comision comi = new Comision
+                {
+                    Descripcion = this.txtDescripcion.Text,
+                    AnioEspecialidad = int.Parse(this.txtAnio.Text),
+                    IDPlan = int.Parse(this.comboPlan.SelectedValue.ToString())
+                };
+                comi.ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0;
+                if (cl.GetRepetido(comi).ID != 0)
+                {
+                    this.Notificar("ERROR", "La comisión que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                return true;
+            } else
+            {
+                string cadena = "";
+                foreach (string s in errores)
+                {
+                    cadena += s;
+                    cadena += "\n";
+                }
+                this.Notificar("ERROR", cadena, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (this.comboPlan.SelectedValue.ToString() == "0")
-            {
-                this.Notificar("ERROR", "Debes seleccionar un plan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            } else if (this.txtDescripcion.Text.Length < 3 || this.txtDescripcion.Text.Length > 30)
-            {
-                this.Notificar("ERROR", "Debes ingresar una descripción entre 3 y 30 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            } else if (!Validaciones.esDireccionValida(this.txtDescripcion.Text)) {
-                this.Notificar("ERROR", "Sólo se permite una descripción con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            Comision comi = new Comision
-            {
-                Descripcion = this.txtDescripcion.Text,
-                AnioEspecialidad = int.Parse(this.txtAnio.Text),
-                IDPlan = int.Parse(this.comboPlan.SelectedValue.ToString())
-            };
-            comi.ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0;
-            if (cl.GetRepetido(comi).ID != 0)
-            {
-                this.Notificar("ERROR", "La comisión que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            return true;
         }
         public override void GuardarCambios()
         {

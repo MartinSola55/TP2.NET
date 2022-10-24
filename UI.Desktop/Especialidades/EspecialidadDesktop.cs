@@ -36,24 +36,39 @@ namespace UI.Desktop
 
         public override bool Validar()
         {
+            List<string> errores = new List<string>();
             if (this.txtDesc.Text.Length == 0)
             {
-                this.Notificar("ERROR", "Debes ingresar una descripción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            } else if (this.txtDesc.Text.Length < 1 || this.txtDesc.Text.Length > 30)
+                errores.Add("Debes ingresar una descripción");
+            }
+            if (this.txtDesc.Text.Length < 1 || this.txtDesc.Text.Length > 30)
             {
-                this.Notificar("ERROR", "Debes ingresar una descripción de entre 1 y 30 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            } else if (!Validaciones.esNombreValido(this.txtDesc.Text))
+                errores.Add("Debes ingresar una descripción de entre 1 y 30 caracteres");
+            }  
+            if (!Validaciones.esNombreValido(this.txtDesc.Text))
             {
-                this.Notificar("ERROR", "Sólo se permiten caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            } else if (el.GetByDescripcion(this.txtDesc.Text).ID != 0)
+                errores.Add("Sólo se permiten caracteres alfanuméricos");
+            }
+            if (errores.Count == 0)
             {
-                this.Notificar("ERROR", "La especialidad que intenta guardar se encuentra repetida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (el.GetByDescripcion(this.txtDesc.Text).ID != 0)
+                {
+                    this.Notificar("ERROR", "La especialidad que intenta guardar se encuentra repetida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                string cadena = "";
+                foreach (string s in errores)
+                {
+                    cadena += s;
+                    cadena += "\n";
+                }
+                this.Notificar("ERROR", cadena, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            return true;
         }
 
         public EspecialidadDesktop(int id, ModoForm modo) : this()

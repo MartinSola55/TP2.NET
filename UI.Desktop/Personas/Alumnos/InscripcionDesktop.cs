@@ -130,48 +130,75 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
+            List<string> errores = new List<string>();
             if (LoginInfo.TipoPersona == 3)
             {
                 if (txtNota.Text != "")
                 {
                     if (int.Parse(txtNota.Text) < 0 || int.Parse(txtNota.Text) > 10)
                     {
-                        this.Notificar("ERROR", "Debes ingresar una nota entre 1 y 10", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return false;
+                        errores.Add("Debes ingresar una nota entre 1 y 10");
                     }
                 }
                 if (this.comboCondiciones.SelectedValue.ToString() == "0")
                 {
-                    this.Notificar("ERROR", "Debes ingresar una condición", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
+                    errores.Add("Debes ingresar una condición");
                 }
-                else if (this.comboCursos.SelectedValue.ToString() == "0")
+                if (this.comboCursos.SelectedValue.ToString() == "0")
                 {
-                    this.Notificar("ERROR", "Debes seleccionar un curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
+                    errores.Add("Debes seleccionar un curso");
                 }
-                Business.Entities.AlumnoInscripcion ins = new Business.Entities.AlumnoInscripcion
+
+                if (errores.Count == 0)
                 {
-                    ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0,
-                    IDCurso = int.Parse(comboCursos.SelectedValue.ToString()),
-                    IDAlumno = int.Parse(this.txtIDAlumno.Text),
-                    IDCondicion = int.Parse(comboCondiciones.SelectedValue.ToString()),
-                };
-                if (pl.EsInscripcionRepetida(ins))
+                    Business.Entities.AlumnoInscripcion ins = new Business.Entities.AlumnoInscripcion
+                    {
+                        ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0,
+                        IDCurso = int.Parse(comboCursos.SelectedValue.ToString()),
+                        IDAlumno = int.Parse(this.txtIDAlumno.Text),
+                        IDCondicion = int.Parse(comboCondiciones.SelectedValue.ToString()),
+                    };
+                    if (pl.EsInscripcionRepetida(ins))
+                    {
+                        this.Notificar("ERROR", "El alumno ya se encuentra inscripto a esta materia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+                else
                 {
-                    this.Notificar("ERROR", "El alumno ya se encuentra inscripto a esta materia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    string cadena = "";
+                    foreach (string s in errores)
+                    {
+                        cadena += s;
+                        cadena += "\n";
+                    }
+                    this.Notificar("ERROR", cadena, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             } else
             {
                 if (this.comboCursos.SelectedValue.ToString() == "0")
                 {
-                    this.Notificar("ERROR", "Debes seleccionar un curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
+                    errores.Add("Debes seleccionar un curso");
                 }
-                else if (pl.EsInscripcionRepetida(int.Parse(this.txtIDAlumno.Text), int.Parse(comboCursos.SelectedValue.ToString())))
+
+                if (errores.Count == 0)
                 {
-                    this.Notificar("ERROR", "Ya te encuentras inscripto a esta materia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (pl.EsInscripcionRepetida(int.Parse(this.txtIDAlumno.Text), int.Parse(comboCursos.SelectedValue.ToString())))
+                    {
+                        this.Notificar("ERROR", "Ya te encuentras inscripto a esta materia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+                else
+                {
+                    string cadena = "";
+                    foreach (string s in errores)
+                    {
+                        cadena += s;
+                        cadena += "\n";
+                    }
+                    this.Notificar("ERROR", cadena, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }

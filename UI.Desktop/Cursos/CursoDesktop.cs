@@ -103,44 +103,55 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
+            List<string> errores = new List<string>();
             if (txtAnio.Text.Length == 0 || txtCupo.Text.Length == 0)
             {
-                this.Notificar("ERROR", "Debes completar todos los campos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errores.Add("Debes completar todos los campos");
+            }
+            if (int.Parse(txtAnio.Text) < 1980 || int.Parse(txtAnio.Text) > System.DateTime.Now.Year)
+            {
+                errores.Add("Debes ingresar un año entre 1980 y " + System.DateTime.Now.Year);
+            }
+            if (int.Parse(txtCupo.Text) <= 0 || int.Parse(txtCupo.Text) > 500)
+            {
+                errores.Add("El cupo debe ser estar entre 1 y 500");
+            }
+            if (this.comboMateria.SelectedValue.ToString() == "0")
+            {
+                errores.Add("Debes seleccionar una materia");
+            }
+            if (this.comboComision.SelectedValue.ToString() == "0")
+            {
+                errores.Add("Debes seleccionar una comisión");
+            }
+
+            if (errores.Count == 0)
+            {
+                Curso cur = new Curso
+                {
+                    IDMateria = int.Parse(this.comboMateria.SelectedValue.ToString()),
+                    IDComision = int.Parse(this.comboComision.SelectedValue.ToString()),
+                    AnioCalendario = int.Parse(this.txtAnio.Text)
+                };
+                cur.ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0;
+                if (cl.GetRepetido(cur).ID != 0)
+                {
+                    this.Notificar("ERROR", "El curso que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                string cadena = "";
+                foreach (string s in errores)
+                {
+                    cadena += s;
+                    cadena += "\n";
+                }
+                this.Notificar("ERROR", cadena, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (int.Parse(txtAnio.Text) < 1980 || int.Parse(txtAnio.Text) > System.DateTime.Now.Year)
-            {
-                this.Notificar("ERROR", "Debes ingresar un año entre 1980 y " + System.DateTime.Now.Year, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            else if (int.Parse(txtCupo.Text) <= 0 || int.Parse(txtCupo.Text) > 500)
-            {
-                this.Notificar("ERROR", "El cupo debe ser estar entre 1 y 500", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            else if (this.comboMateria.SelectedValue.ToString() == "0")
-            {
-                this.Notificar("ERROR", "Debes seleccionar una materia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            else if (this.comboComision.SelectedValue.ToString() == "0")
-            {
-                this.Notificar("ERROR", "Debes seleccionar una comisión", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            Curso cur = new Curso
-            {
-                IDMateria = int.Parse(this.comboMateria.SelectedValue.ToString()),
-                IDComision = int.Parse(this.comboComision.SelectedValue.ToString()),
-                AnioCalendario = int.Parse(this.txtAnio.Text)
-            };
-            cur.ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0;
-            if (cl.GetRepetido(cur).ID != 0)
-            {
-                this.Notificar("ERROR", "El curso que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            return true;
         }
         public override void GuardarCambios()
         {

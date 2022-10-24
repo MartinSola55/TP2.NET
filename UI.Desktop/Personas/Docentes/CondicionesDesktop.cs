@@ -52,32 +52,46 @@ namespace UI.Desktop.Personas.Docentes
         }
         public override bool Validar()
         {
+            List<string> errores = new List<string>();
             if (this.comboCondiciones.SelectedValue.ToString() == "0")
             {
-                this.Notificar("ERROR", "Debes ingresar una condición", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                errores.Add("Debes ingresar una condición");
             }
-            else if (txtNota.Text != "")
+            if (txtNota.Text != "")
             {
                 if (int.Parse(txtNota.Text) < 0 || int.Parse(txtNota.Text) > 10)
                 {
-                    this.Notificar("ERROR", "Debes ingresar una nota entre 1 y 10", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
+                    errores.Add("Debes ingresar una nota entre 1 y 10");
                 }
             }
-            Business.Entities.AlumnoInscripcion ins = new Business.Entities.AlumnoInscripcion
+
+            if (errores.Count == 0)
             {
-                ID = int.Parse(this.txtID.Text),
-                IDCurso = CondicionActual.IDCurso,
-                IDAlumno = CondicionActual.IDAlumno,
-                IDCondicion = int.Parse(this.comboCondiciones.SelectedValue.ToString())
-            };
-                if (pl.EsInscripcionRepetida(ins))
+                Business.Entities.AlumnoInscripcion ins = new Business.Entities.AlumnoInscripcion
+                {
+                    ID = int.Parse(this.txtID.Text),
+                    IDCurso = CondicionActual.IDCurso,
+                    IDAlumno = CondicionActual.IDAlumno,
+                    IDCondicion = int.Parse(this.comboCondiciones.SelectedValue.ToString())
+                };
+                    if (pl.EsInscripcionRepetida(ins))
+                {
+                    this.Notificar("ERROR", "La inscripción que desea guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                return true;
+            }
+            else
             {
-                this.Notificar("ERROR", "La inscripción que desea guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string cadena = "";
+                foreach (string s in errores)
+                {
+                    cadena += s;
+                    cadena += "\n";
+                }
+                this.Notificar("ERROR", cadena, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            return true;
         }
         public override void GuardarCambios()
         {

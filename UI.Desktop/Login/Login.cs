@@ -43,29 +43,43 @@ namespace UI.Desktop
         }
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            List<string> errores = new List<string>();
             if (this.txtUsuario.Text == "")
             {
-                MessageBox.Show("Por favor, ingrese un usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errores.Add("Por favor, ingrese un usuario");
             }
-            else if (this.txtPass.Text == "")
+            if (this.txtPass.Text == "")
             {
-                MessageBox.Show("Por favor, ingrese una contraseña", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errores.Add("Por favor, ingrese una contraseña");
             }
-            else if (!Validaciones.esUsuarioValido(this.txtUsuario.Text))
+            if (!Validaciones.esUsuarioValido(this.txtUsuario.Text))
             { 
-                MessageBox.Show("Por favor, ingrese un usuario válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errores.Add("Por favor, ingrese un usuario válido");
             }
-            else if (!Validaciones.esPassValida(this.txtPass.Text))
+            if (!Validaciones.esPassValida(this.txtPass.Text))
             { 
-                MessageBox.Show("Por favor, ingrese una contraseña válida", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errores.Add("Por favor, ingrese una contraseña válida");
             }
-            else if (this.Validar())
+            if (errores.Count == 0)
             {
-                this.DialogResult = DialogResult.OK;
+                if (this.Validar())
+                {
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Usuario y/o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else
             {
-                MessageBox.Show("Usuario y/o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string cadena = "";
+                foreach (string s in errores)
+                {
+                    cadena += s;
+                    cadena += "\n";
+                }
+                this.Notificar("ERROR", cadena, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

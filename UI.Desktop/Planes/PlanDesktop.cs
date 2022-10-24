@@ -93,35 +93,50 @@ namespace UI.Desktop
         }
         public override bool Validar()
         {
+            List<string> errores = new List<string>();
             if (this.txtDescripcion.Text.Length == 0)
             {
-                this.Notificar("ERROR", "Debes escribir una descripción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            } else if (this.comboEspecialidad.SelectedValue.ToString() == "0")
+                errores.Add("Debes escribir una descripción");
+            } 
+            if (this.comboEspecialidad.SelectedValue.ToString() == "0")
             {
-                this.Notificar("ERROR", "Debes seleccionar una especialidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            } else if (!Validaciones.esDireccionValida(this.txtDescripcion.Text))
+                errores.Add("Debes seleccionar una especialidad");
+            } 
+            if (!Validaciones.esDireccionValida(this.txtDescripcion.Text))
             {
-                this.Notificar("ERROR", "Sólo se permite una descripción con caracteres alfanuméricos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            } else if (this.txtDescripcion.Text.Length < 3 || this.txtDescripcion.Text.Length > 50)
+                errores.Add("Sólo se permite una descripción con caracteres alfanuméricos");
+            } 
+            if (this.txtDescripcion.Text.Length < 3 || this.txtDescripcion.Text.Length > 50)
             {
-                this.Notificar("ERROR", "Ingrese una descripción de entre 3 y 50 caracteres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errores.Add("Ingrese una descripción de entre 3 y 50 caracteres");
+            }
+
+            if (errores.Count == 0)
+            {
+                Plan plan = new Plan
+                {
+                    ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0,
+                    Descripcion = this.txtDescripcion.Text,
+                    IDEspecialidad = int.Parse(this.comboEspecialidad.SelectedValue.ToString())
+                };
+                if (pl.GetRepetido(plan).ID != 0)
+                {
+                    this.Notificar("ERROR", "El plan que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                string cadena = "";
+                foreach (string s in errores)
+                {
+                    cadena += s;
+                    cadena += "\n";
+                }
+                this.Notificar("ERROR", cadena, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            Plan plan = new Plan
-            {
-                ID = this.txtID.Text != "" ? int.Parse(this.txtID.Text) : 0,
-                Descripcion = this.txtDescripcion.Text,
-                IDEspecialidad = int.Parse(this.comboEspecialidad.SelectedValue.ToString())
-            };
-            if (pl.GetRepetido(plan).ID != 0)
-            {
-                this.Notificar("ERROR", "El plan que deseas guardar ya existe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            return true;
         }
         public override void GuardarCambios()
         {
